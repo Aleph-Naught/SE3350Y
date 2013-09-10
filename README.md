@@ -9,3 +9,5 @@ Zach still <3 dicks
 Project one: Lets all make a quick HTML file and upload
 
 I DID IT :D
+
+Ryan: Uploaded my first .html yo now how do we see it in action
