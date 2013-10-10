@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainDataEntry" >
+
+    <TextView
+        android:id="@+id/clients"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clients_textview" />
+
+    <Spinner
+        android:id="@+id/clientSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/locations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/locations_textview" />
+
+    <Spinner
+        android:id="@+id/locationsSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/rooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rooms_textview" />
+
+    <Spinner
+        android:id="@+id/roomsSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/equiptment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/equiptment_textview" />
+
+    <Spinner
+        android:id="@+id/equiptmentSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/enterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/enter_button"
+        android:onClick="getDataInput" />
+
+</LinearLayout>
