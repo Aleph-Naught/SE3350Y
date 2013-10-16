@@ -1,0 +1,359 @@
+
+
+
+TIME:    	Tuesday 2013-10-08 10:54:48 PM
+PRODUCT:	Rational RequisitePro (version 9.100.0.1)
+SYSTEM:  	WindowsNT (version 6.1, build 7600 , Canada)
+------------------------------------------------------------------------
+Runtime error: ActiveX component can't create object(RqWordServices.WordWrapper,421,429)
+
+OLEDispatchError(Exception)>>defaultAction
+OLEDispatchError(Exception)>>activateHandler: <anUndefinedObject> 
+OLEDispatchError(Exception)>>handle
+OLEDispatchError(Exception)>>signal
+[] in OLEInterface>>signalDispatchError:exceptionInfo:argError:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>ensure: <aBlockClosure> 
+IDispatch(OLEInterface)>>signalDispatchError: <2147614729> exceptionInfo: <anOLE_EXCEPINFO> argError: <0> 
+IDispatch>>invoke: <1610809411> localeID: <0> flags: <1> parameters: <anOLE_DISPPARAMS> result: <anOLEDispatchValueReference> 
+IDispatch>>invokeMethod: <1610809411> with: <anOLE_DISPPARAMS> localeID: <0> result: <anOLEDispatchValueReference> 
+[] in OLEDispatchDriver>>invokeMethod:withArguments:result:
+ProtectedFrameMarker(BlockClosure)>>setUnwind: <aBlockClosure> 
+BlockClosure>>ensure: <aBlockClosure> 
+OLEDispatchDriver>>invokeMethod: <'InitializeWord'> withArguments: <anArray> result: <anOLEDispatchValueReference> 
+OLEDispatchDriver>>invokeMethod: <'InitializeWord'> 
+RqWinWordApp(RqOLEAutomationController)>>invokeMethod: <'InitializeWord'> 
+RqWinWordApp>>open
+RqPreRequisiteAppNT(RqPreRequisiteApp)>>checkWinWordOpen
+RqPreRequisiteAppNT(RqPreRequisiteApp)>>getReqTypesToBeRenumbered: <anIdentityDictionary> requiredDocs: <aSet> 
+RqPreRequisiteAppNT(RqPreRequisiteApp)>>projRenumberReqs
+RqPreRequisiteAppNT(Object)>>perform: <#projRenumberReqs> 
+MenuWindow>>performMenuItem: <775> 
+RqMDIFrame(ApplicationWindow)>>performMenuItem: <775> 
+RqMDIFrame>>performMenuItem: <775> 
+Message>>perform
+NotificationManager>>empty
+NotificationManager>>runPendingEvents
+NotificationManager>>runEventLoop
+Message>>perform
+Message>>evaluate
+Process>>safelyEvaluate: <aMessage> 
+Process>>evaluate: <aMessage> 
+
+
+Error log timestamp 10/16/2013 16:23:26
+ERROR.LOG
+GPF has occurred
+
+START
+API method: OLEDLL >> invokeCoCreateInstance:_:_:_:_:
+5 arguments.
+5: IDispatchPointer size = 4 ( 0 0 0 0 )
+4: GUID size = 16 ( 0 4 2 0 0 0 0 0 -64 0 0 0 0 0 0 70 )
+3: Smalltalk integer 7 (0x00000007)
+2: UndefinedObject 
+1: UndefinedObject 
+
+Stack frames:
+OLEDLL (OLEDLL) >> CoCreateInstance:_:_:_:_:
+ () >> createInstance:iid:controllingUnknown:context:
+ () >> createObject:
+ () >> newObject:
+ () >> newApplication
+ () >> getXdeInstalledProductNames
+ExceptionHandler (ExceptionHandler) >> evaluateProtectedBlock:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ProtectedFrameMarker (BlockClosure) >> setUnwind:
+BlockClosure (BlockClosure) >> invisibleEnsure:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ () >> handle:with:during:
+BlockClosure (BlockClosure) >> on:do:
+ () >> getXdeInstalledProductNames
+RqOptionsDlg (RqOptionsDlg) >> initXdePreferenceCombo
+RqOptionsDlg (RqOptionsDlg) >> initCtrls
+RqOptionsDlg (RqResDlg) >> open:fromModule:id:
+RqOptionsDlg (RqResDlg) >> open:fromModule:id:owner:
+RqPreRequisiteAppNT (RqPreRequisiteApp) >> toolsOptions
+RqPreRequisiteAppNT (Object) >> perform:
+MenuWindow (MenuWindow) >> performMenuItem:
+RqMDIFrame (ApplicationWindow) >> performMenuItem:
+RqMDIFrame (RqMDIFrame) >> performMenuItem:
+Message (Message) >> perform
+NotificationManager (NotificationManager) >> empty
+NotificationManager (NotificationManager) >> runPendingEvents
+NotificationManager (NotificationManager) >> runEventLoop
+Message (Message) >> perform
+Message (Message) >> evaluate
+Process (Process) >> safelyEvaluate:
+Process (Process) >> evaluate:
+SystemDictionary (SystemDictionary) >> launch
+End of stack dump
+
+The registers were:
+EIP =  0x74d09d62
+ESP =  0x0018e9b4
+EBP =  0x0018e9bc
+EAX =  0x00000000
+EBX =  0x00000006
+ECX =  0x00000004
+EDX =  0x0018fb60
+EDI =  0x74d09ae4
+ESI =  0x00000000
+CS  =  0x00000023
+DS  =  0x0000002b
+ES  =  0x0000002b
+SS  =  0x0000002b
+End Registers 
+
+
+
+Error log timestamp 10/16/2013 16:25:05
+ERROR.LOG
+GPF has occurred
+
+START
+API method: OLEDLL >> invokeCoCreateInstance:_:_:_:_:
+5 arguments.
+5: IDispatchPointer size = 4 ( 0 0 0 0 )
+4: GUID size = 16 ( 0 4 2 0 0 0 0 0 -64 0 0 0 0 0 0 70 )
+3: Smalltalk integer 7 (0x00000007)
+2: UndefinedObject 
+1: UndefinedObject 
+
+Stack frames:
+OLEDLL (OLEDLL) >> CoCreateInstance:_:_:_:_:
+ () >> createInstance:iid:controllingUnknown:context:
+ () >> createObject:
+ () >> newObject:
+ () >> newApplication
+ () >> getXdeInstalledProductNames
+ExceptionHandler (ExceptionHandler) >> evaluateProtectedBlock:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ProtectedFrameMarker (BlockClosure) >> setUnwind:
+BlockClosure (BlockClosure) >> invisibleEnsure:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ () >> handle:with:during:
+BlockClosure (BlockClosure) >> on:do:
+ () >> getXdeInstalledProductNames
+RqOptionsDlg (RqOptionsDlg) >> initXdePreferenceCombo
+RqOptionsDlg (RqOptionsDlg) >> initCtrls
+RqOptionsDlg (RqResDlg) >> open:fromModule:id:
+RqOptionsDlg (RqResDlg) >> open:fromModule:id:owner:
+RqPreRequisiteAppNT (RqPreRequisiteApp) >> toolsOptions
+RqPreRequisiteAppNT (Object) >> perform:
+MenuWindow (MenuWindow) >> performMenuItem:
+RqMDIFrame (ApplicationWindow) >> performMenuItem:
+RqMDIFrame (RqMDIFrame) >> performMenuItem:
+Message (Message) >> perform
+NotificationManager (NotificationManager) >> empty
+NotificationManager (NotificationManager) >> runPendingEvents
+NotificationManager (NotificationManager) >> runEventLoop
+Message (Message) >> perform
+Message (Message) >> evaluate
+Process (Process) >> safelyEvaluate:
+Process (Process) >> evaluate:
+SystemDictionary (SystemDictionary) >> launch
+End of stack dump
+
+The registers were:
+EIP =  0x74d09d62
+ESP =  0x0018e9b4
+EBP =  0x0018e9bc
+EAX =  0x00000000
+EBX =  0x00000006
+ECX =  0x00000004
+EDX =  0x0018fb60
+EDI =  0x74d09ae4
+ESI =  0x00000000
+CS  =  0x00000023
+DS  =  0x0000002b
+ES  =  0x0000002b
+SS  =  0x0000002b
+End Registers 
+
+
+
+Error log timestamp 10/16/2013 16:25:52
+ERROR.LOG
+GPF has occurred
+
+START
+API method: OLEDLL >> invokeCoCreateInstance:_:_:_:_:
+5 arguments.
+5: IDispatchPointer size = 4 ( 0 0 0 0 )
+4: GUID size = 16 ( 0 4 2 0 0 0 0 0 -64 0 0 0 0 0 0 70 )
+3: Smalltalk integer 7 (0x00000007)
+2: UndefinedObject 
+1: UndefinedObject 
+
+Stack frames:
+OLEDLL (OLEDLL) >> CoCreateInstance:_:_:_:_:
+ () >> createInstance:iid:controllingUnknown:context:
+ () >> createObject:
+ () >> newObject:
+ () >> newApplication
+ () >> setPreference:
+ExceptionHandler (ExceptionHandler) >> evaluateProtectedBlock:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ProtectedFrameMarker (BlockClosure) >> setUnwind:
+BlockClosure (BlockClosure) >> invisibleEnsure:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ () >> handle:with:during:
+BlockClosure (BlockClosure) >> on:do:
+ () >> setPreference:
+RqOptionsDlg (RqOptionsDlg) >> xlateXdeStartPreference
+RqOptionsDlg (RqOptionsDlg) >> xlate
+RqOptionsDlg (RqResDlg) >> ok
+Message (Message) >> perform
+NotificationManager (NotificationManager) >> empty
+NotificationManager (NotificationManager) >> runPendingEvents
+NotificationManager (NotificationManager) >> runEventLoop
+Message (Message) >> perform
+Message (Message) >> evaluate
+Process (Process) >> safelyEvaluate:
+Process (Process) >> evaluate:
+SystemDictionary (SystemDictionary) >> launch
+End of stack dump
+
+The registers were:
+EIP =  0x74d09d62
+ESP =  0x0018ea6c
+EBP =  0x0018ea74
+EAX =  0x00000000
+EBX =  0x00000006
+ECX =  0x00000004
+EDX =  0x0018fc18
+EDI =  0x74d09ae4
+ESI =  0x00000000
+CS  =  0x00000023
+DS  =  0x0000002b
+ES  =  0x0000002b
+SS  =  0x0000002b
+End Registers 
+
+
+
+Error log timestamp 10/16/2013 16:26:24
+ERROR.LOG
+GPF has occurred
+
+START
+API method: OLEDLL >> invokeCoCreateInstance:_:_:_:_:
+5 arguments.
+5: IDispatchPointer size = 4 ( 0 0 0 0 )
+4: GUID size = 16 ( 0 4 2 0 0 0 0 0 -64 0 0 0 0 0 0 70 )
+3: Smalltalk integer 7 (0x00000007)
+2: UndefinedObject 
+1: UndefinedObject 
+
+Stack frames:
+OLEDLL (OLEDLL) >> CoCreateInstance:_:_:_:_:
+ () >> createInstance:iid:controllingUnknown:context:
+ () >> createObject:
+ () >> newObject:
+ () >> newApplication
+ () >> getXdeInstalledProductNames
+ExceptionHandler (ExceptionHandler) >> evaluateProtectedBlock:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ProtectedFrameMarker (BlockClosure) >> setUnwind:
+BlockClosure (BlockClosure) >> invisibleEnsure:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ () >> handle:with:during:
+BlockClosure (BlockClosure) >> on:do:
+ () >> getXdeInstalledProductNames
+RqOptionsDlg (RqOptionsDlg) >> initXdePreferenceCombo
+RqOptionsDlg (RqOptionsDlg) >> initCtrls
+RqOptionsDlg (RqResDlg) >> open:fromModule:id:
+RqOptionsDlg (RqResDlg) >> open:fromModule:id:owner:
+RqPreRequisiteAppNT (RqPreRequisiteApp) >> toolsOptions
+RqPreRequisiteAppNT (Object) >> perform:
+MenuWindow (MenuWindow) >> performMenuItem:
+RqMDIFrame (ApplicationWindow) >> performMenuItem:
+RqMDIFrame (RqMDIFrame) >> performMenuItem:
+Message (Message) >> perform
+NotificationManager (NotificationManager) >> empty
+NotificationManager (NotificationManager) >> runPendingEvents
+NotificationManager (NotificationManager) >> runEventLoop
+Message (Message) >> perform
+Message (Message) >> evaluate
+Process (Process) >> safelyEvaluate:
+Process (Process) >> evaluate:
+SystemDictionary (SystemDictionary) >> launch
+End of stack dump
+
+The registers were:
+EIP =  0x74d09d62
+ESP =  0x0018e9b4
+EBP =  0x0018e9bc
+EAX =  0x00000000
+EBX =  0x00000006
+ECX =  0x00000004
+EDX =  0x0018fb60
+EDI =  0x74d09ae4
+ESI =  0x00000000
+CS  =  0x00000023
+DS  =  0x0000002b
+ES  =  0x0000002b
+SS  =  0x0000002b
+End Registers 
+
+
+
+Error log timestamp 10/16/2013 16:26:32
+ERROR.LOG
+GPF has occurred
+
+START
+API method: OLEDLL >> invokeCoCreateInstance:_:_:_:_:
+5 arguments.
+5: IDispatchPointer size = 4 ( 0 0 0 0 )
+4: GUID size = 16 ( 0 4 2 0 0 0 0 0 -64 0 0 0 0 0 0 70 )
+3: Smalltalk integer 7 (0x00000007)
+2: UndefinedObject 
+1: UndefinedObject 
+
+Stack frames:
+OLEDLL (OLEDLL) >> CoCreateInstance:_:_:_:_:
+ () >> createInstance:iid:controllingUnknown:context:
+ () >> createObject:
+ () >> newObject:
+ () >> newApplication
+ () >> setPreference:
+ExceptionHandler (ExceptionHandler) >> evaluateProtectedBlock:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ProtectedFrameMarker (BlockClosure) >> setUnwind:
+BlockClosure (BlockClosure) >> invisibleEnsure:
+ExceptionHandler (ExceptionHandler) >> activateDuring:
+ () >> handle:with:during:
+BlockClosure (BlockClosure) >> on:do:
+ () >> setPreference:
+RqOptionsDlg (RqOptionsDlg) >> xlateXdeStartPreference
+RqOptionsDlg (RqOptionsDlg) >> xlate
+RqOptionsDlg (RqResDlg) >> ok
+Message (Message) >> perform
+NotificationManager (NotificationManager) >> empty
+NotificationManager (NotificationManager) >> runPendingEvents
+NotificationManager (NotificationManager) >> runEventLoop
+Message (Message) >> perform
+Message (Message) >> evaluate
+Process (Process) >> safelyEvaluate:
+Process (Process) >> evaluate:
+SystemDictionary (SystemDictionary) >> launch
+End of stack dump
+
+The registers were:
+EIP =  0x74d09d62
+ESP =  0x0018ea6c
+EBP =  0x0018ea74
+EAX =  0x00000000
+EBX =  0x00000006
+ECX =  0x00000004
+EDX =  0x0018fc18
+EDI =  0x74d09ae4
+ESI =  0x00000000
+CS  =  0x00000023
+DS  =  0x0000002b
+ES  =  0x0000002b
+SS  =  0x0000002b
+End Registers 
+
