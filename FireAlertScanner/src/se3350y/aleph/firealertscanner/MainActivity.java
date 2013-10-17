@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
 	
 	public void scanActionSelected(View view) {
 		// Create intent to call scanner activity
-		Intent intent = new Intent (this, ScanCodeDemo.class);
+		Intent intent = new Intent (this, XMLDisplay.class);
 		startActivity(intent);
 	}
 

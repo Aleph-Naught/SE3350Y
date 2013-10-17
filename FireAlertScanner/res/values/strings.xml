@@ -12,11 +12,16 @@
     <string name="rooms_textview">Rooms:</string>
     <string name="equiptment_textview">Equiptment:</string>
     <string name="enter_button">Enter</string>
+
     <string-array name="spinner_example_content">
         <item>Tom</item>
         <item>Likes</item>
         <item>Men</item>
         <item>.jpg</item>
     </string-array>
+
+    <string name="title_activity_xml__display">XML_Display</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_xmldisplay">XMLDisplay</string>
 
 </resources>
