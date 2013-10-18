@@ -1,5 +1,9 @@
 package se3350y.aleph.firealertscanner;
 
+import java.io.FileNotFoundException;
+
+import javax.xml.xpath.XPathExpressionException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -11,6 +15,8 @@ import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
+
+import se3350y.aleph.firealertscanner.XMLParse;
 
 public class MainDataEntry extends Activity {
 
@@ -80,7 +86,12 @@ public class MainDataEntry extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void getDataInput(View view) {
+	public void getDataInput(View view) throws XPathExpressionException, FileNotFoundException {
+		
+		XMLParse parser = new XMLParse();
+		
+		parser.parse();
+		
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
