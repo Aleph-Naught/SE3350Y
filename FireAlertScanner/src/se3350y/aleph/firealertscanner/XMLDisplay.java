@@ -19,16 +19,41 @@ public class XMLDisplay extends Activity {
 	
 	public String name;
 	
+	public String id;
+	
 	private TextView xmldata;
+	
+	private TextView xmlequipType;
+	private TextView xmllocation;
+	private TextView xmlsize;
+	private TextView xmltype;
+	private TextView xmlmodel;
+	private TextView xmlserialNo;
+	
+	private String equipType;
+	private String location;
+	private String size;
+	private String type;
+	private	String model;
+	private String serialNo;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_xmldisplay);
 		
-		xmldata = (TextView) findViewById(R.id.textView1);
 		
-		xmldata.setText("meow");
+		xmlequipType = (TextView) findViewById(R.id.equipType);
+		xmllocation = (TextView) findViewById(R.id.location);
+		xmlsize = (TextView) findViewById(R.id.size);
+		xmltype = (TextView) findViewById(R.id.type);
+		xmlmodel = (TextView) findViewById(R.id.model);
+		xmlserialNo = (TextView) findViewById(R.id.SerialNo);
+		
+		
+		id = "33101";
 		
 		
 
@@ -66,14 +91,50 @@ public class XMLDisplay extends Activity {
 		int eventType = parser.getEventType();
 		
 		name = null;
+		
 
 		while (eventType != XmlPullParser.END_DOCUMENT){
             
             switch (eventType){
             
             case XmlPullParser.START_TAG:
-            	name = parser.getName();
-            	break;
+            	
+            	
+            	if(parser.getName().equals("Room")){
+            		//Found Room
+            		
+            		eventType = parser.nextTag();
+            		
+            		while(!parser.getName().equals("Room")){ //While room end tag is not found
+            			
+	            		switch(eventType){
+	            		
+	            		
+	            		case XmlPullParser.START_TAG:
+	            			if(parser.getAttributeCount() > 2 && parser.getAttributeName(0).equals("id") && parser.getAttributeValue(0).equals(id)){
+	            				name = parser.getName();
+	            				equipType = parser.getName();
+	            				location = parser.getAttributeValue(1);
+	            				size = parser.getAttributeValue(2);
+	            				type = parser.getAttributeValue(3);
+	            				model = parser.getAttributeValue(4);
+	            				serialNo = parser.getAttributeValue(5);
+	            				
+	            				break; //Break room loop
+	            			}
+	            			
+	            			
+	     
+	            		}
+	            		
+	            		if(!name.equals(null))
+	            		
+	            		eventType = parser.nextTag();
+	            			
+            		}
+            		//break; //Done searching Room
+            	}
+            	
             }
             
             if(!(name==null))
@@ -85,7 +146,14 @@ public class XMLDisplay extends Activity {
 		
 		
 		
-		xmldata.setText(name);
+		
+		xmlequipType.setText(equipType);
+		xmllocation.setText(location);
+		xmlsize.setText(size);
+		xmltype.setText(type);
+		xmlmodel.setText(model);
+		xmlserialNo.setText(serialNo);
+		
 		
 		
 
