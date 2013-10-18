@@ -48,9 +48,9 @@ public final class R {
         public static final int roomsSpinner=0x7f09000d;
         public static final int scan_button=0x7f090007;
         public static final int sign_in_button=0x7f090006;
-        public static final int textView1=0x7f090014;
         public static final int tv_getdata_from_edittext=0x7f090011;
         public static final int tv_getdata_from_scanner=0x7f090013;
+        public static final int xml_textview=0x7f090014;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -68,33 +68,34 @@ public final class R {
         public static final int xmldisplay=0x7f080005;
     }
     public static final class string {
-        public static final int action_forgot_password=0x7f050013;
+        public static final int action_forgot_password=0x7f050014;
         public static final int action_settings=0x7f050001;
-        public static final int action_sign_in_register=0x7f050011;
-        public static final int action_sign_in_short=0x7f050012;
+        public static final int action_sign_in_register=0x7f050012;
+        public static final int action_sign_in_short=0x7f050013;
         public static final int app_name=0x7f050000;
         public static final int clients_textview=0x7f050006;
         public static final int enter_button=0x7f05000a;
         public static final int equiptment_textview=0x7f050009;
-        public static final int error_field_required=0x7f050018;
-        public static final int error_incorrect_password=0x7f050017;
-        public static final int error_invalid_email=0x7f050015;
-        public static final int error_invalid_password=0x7f050016;
-        public static final int hello_world=0x7f05000c;
+        public static final int error_field_required=0x7f050019;
+        public static final int error_incorrect_password=0x7f050018;
+        public static final int error_invalid_email=0x7f050016;
+        public static final int error_invalid_password=0x7f050017;
         public static final int locations_textview=0x7f050007;
-        public static final int login_progress_signing_in=0x7f050014;
+        public static final int login_progress_signing_in=0x7f050015;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f05000f;
-        public static final int prompt_password=0x7f050010;
+        public static final int prompt_email=0x7f050010;
+        public static final int prompt_password=0x7f050011;
         public static final int rooms_textview=0x7f050008;
         public static final int scan_button=0x7f050004;
         public static final int str_data=0x7f050002;
         public static final int str_wait_data=0x7f050003;
-        public static final int title_activity_login=0x7f05000e;
+        public static final int title_activity_login=0x7f05000f;
         public static final int title_activity_main_data_entry=0x7f050005;
         public static final int title_activity_xml__display=0x7f05000b;
-        public static final int title_activity_xmldisplay=0x7f05000d;
+        public static final int title_activity_xmldisplay=0x7f05000e;
+        public static final int xml_button=0x7f05000d;
+        public static final int xml_data=0x7f05000c;
     }
     public static final class style {
         /** 

@@ -9,20 +9,19 @@
     tools:context=".XMLDisplay" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/xml_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:text="@string/xml_data" />
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="108dp"
+        android:layout_marginBottom="22dp"
         android:minWidth="150dip"
-        android:onClick="parse"
-        android:text="DO STUFF" />
+        android:text="@string/xml_button" />
 
 </RelativeLayout>
