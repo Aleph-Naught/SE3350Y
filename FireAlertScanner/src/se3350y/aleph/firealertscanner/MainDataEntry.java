@@ -89,29 +89,34 @@ public class MainDataEntry extends Activity {
 	
 	private void populate(String expression, Spinner spinner) throws XPathExpressionException{
 		
-		
-		
+		//An array of strings to hold the names
 		ArrayList<String> options=new ArrayList<String>();
 		
+		//An xpath instance
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		
+		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		in = getResources().openRawResource(R.raw.inspectiondata);
-		
 		InputSource is = new InputSource(in);
 		
+		//Performs xpath and returns list of nodes
 		NodeList nodes = (NodeList) xpath.evaluate(expression, is, XPathConstants.NODESET);
 		
 		
+		//An element node to hold the current working node
 		Element franchisee = null;
 		
 		for (int i = 0; i < nodes.getLength(); i++) {
+			//Add node attribute to string array
 		      franchisee = (Element) nodes.item(i);
 		      options.add(franchisee.getAttribute("name"));
 		}
 		
+		//Create array adapter to change spinner
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,options);
 		
+		//Sets spinner
 		spinner.setAdapter(adapter);
 		
 	}
