@@ -9,7 +9,7 @@ package se3350y.aleph.firealertscanner;
 
 public final class R {
     public static final class array {
-        public static final int spinner_example_content=0x7f060000;
+        public static final int spinner_example_content=0x7f080000;
     }
     public static final class attr {
     }
@@ -20,35 +20,35 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f090014;
-        public static final int action_settings=0x7f090015;
-        public static final int clientSpinner=0x7f090009;
-        public static final int clients=0x7f090008;
-        public static final int editText=0x7f090012;
-        public static final int email=0x7f090003;
-        public static final int enterButton=0x7f090010;
-        public static final int equiptment=0x7f09000e;
-        public static final int equiptmentSpinner=0x7f09000f;
-        public static final int locations=0x7f09000a;
-        public static final int locationsSpinner=0x7f09000b;
-        public static final int login=0x7f090005;
-        public static final int login_form=0x7f090002;
-        public static final int login_status=0x7f090000;
-        public static final int login_status_message=0x7f090001;
-        public static final int password=0x7f090004;
-        public static final int rooms=0x7f09000c;
-        public static final int roomsSpinner=0x7f09000d;
-        public static final int scan_button=0x7f090007;
-        public static final int sign_in_button=0x7f090006;
-        public static final int tv_getdata_from_edittext=0x7f090011;
-        public static final int tv_getdata_from_scanner=0x7f090013;
+        public static final int action_forgot_password=0x7f0b0014;
+        public static final int action_settings=0x7f0b0015;
+        public static final int clientSpinner=0x7f0b0009;
+        public static final int clients=0x7f0b0008;
+        public static final int editText=0x7f0b0012;
+        public static final int email=0x7f0b0003;
+        public static final int enterButton=0x7f0b0010;
+        public static final int equiptment=0x7f0b000e;
+        public static final int equiptmentSpinner=0x7f0b000f;
+        public static final int locations=0x7f0b000a;
+        public static final int locationsSpinner=0x7f0b000b;
+        public static final int login=0x7f0b0005;
+        public static final int login_form=0x7f0b0002;
+        public static final int login_status=0x7f0b0000;
+        public static final int login_status_message=0x7f0b0001;
+        public static final int password=0x7f0b0004;
+        public static final int rooms=0x7f0b000c;
+        public static final int roomsSpinner=0x7f0b000d;
+        public static final int scan_button=0x7f0b0007;
+        public static final int sign_in_button=0x7f0b0006;
+        public static final int tv_getdata_from_edittext=0x7f0b0011;
+        public static final int tv_getdata_from_scanner=0x7f0b0013;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -57,36 +57,39 @@ public final class R {
         public static final int activity_scan_code_demo=0x7f030003;
     }
     public static final class menu {
-        public static final int login=0x7f080000;
-        public static final int main=0x7f080001;
-        public static final int main_data_entry=0x7f080002;
-        public static final int scan_code_demo=0x7f080003;
+        public static final int login=0x7f0a0000;
+        public static final int main=0x7f0a0001;
+        public static final int main_data_entry=0x7f0a0002;
+        public static final int scan_code_demo=0x7f0a0003;
+    }
+    public static final class raw {
+        public static final int inspectiondata=0x7f050000;
     }
     public static final class string {
-        public static final int action_forgot_password=0x7f050010;
-        public static final int action_settings=0x7f050001;
-        public static final int action_sign_in_register=0x7f05000e;
-        public static final int action_sign_in_short=0x7f05000f;
-        public static final int app_name=0x7f050000;
-        public static final int clients_textview=0x7f050006;
-        public static final int enter_button=0x7f05000a;
-        public static final int equiptment_textview=0x7f050009;
-        public static final int error_field_required=0x7f050015;
-        public static final int error_incorrect_password=0x7f050014;
-        public static final int error_invalid_email=0x7f050012;
-        public static final int error_invalid_password=0x7f050013;
-        public static final int locations_textview=0x7f050007;
-        public static final int login_progress_signing_in=0x7f050011;
+        public static final int action_forgot_password=0x7f070010;
+        public static final int action_settings=0x7f070001;
+        public static final int action_sign_in_register=0x7f07000e;
+        public static final int action_sign_in_short=0x7f07000f;
+        public static final int app_name=0x7f070000;
+        public static final int clients_textview=0x7f070006;
+        public static final int enter_button=0x7f07000a;
+        public static final int equiptment_textview=0x7f070009;
+        public static final int error_field_required=0x7f070015;
+        public static final int error_incorrect_password=0x7f070014;
+        public static final int error_invalid_email=0x7f070012;
+        public static final int error_invalid_password=0x7f070013;
+        public static final int locations_textview=0x7f070007;
+        public static final int login_progress_signing_in=0x7f070011;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f05000c;
-        public static final int prompt_password=0x7f05000d;
-        public static final int rooms_textview=0x7f050008;
-        public static final int scan_button=0x7f050004;
-        public static final int str_data=0x7f050002;
-        public static final int str_wait_data=0x7f050003;
-        public static final int title_activity_login=0x7f05000b;
-        public static final int title_activity_main_data_entry=0x7f050005;
+        public static final int prompt_email=0x7f07000c;
+        public static final int prompt_password=0x7f07000d;
+        public static final int rooms_textview=0x7f070008;
+        public static final int scan_button=0x7f070004;
+        public static final int str_data=0x7f070002;
+        public static final int str_wait_data=0x7f070003;
+        public static final int title_activity_login=0x7f07000b;
+        public static final int title_activity_main_data_entry=0x7f070005;
     }
     public static final class style {
         /** 
@@ -110,11 +113,14 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
-        public static final int LoginFormContainer=0x7f070002;
+        public static final int AppTheme=0x7f090001;
+        public static final int LoginFormContainer=0x7f090002;
+    }
+    public static final class xml {
+        public static final int inspectiondata=0x7f040000;
     }
 }
