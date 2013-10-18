@@ -4,7 +4,9 @@
       <ServiceAddress id="S1" address="123 Sesame Street" postalCode="N6G 2P4" contact="" city="London" province="Ontario" country="Canada" InspectorID="ID001" testTimeStamp="20131009 09:49PM">
         <Floor name="First Floor">
           <Room id="R1" No="">
-            <Extinguisher id="33101" location="East Stair" size="10" type="ABC" model="Amerex" serialNo="s123">
+            <Extinguisher id="33101" location="East Stair" size="10" type="ABC" model="Amerex" serialNo="s123" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of the following elements can be Pass or Fail. -->
+              <!-- testNote becomes amondantory field if the testResult is Fail. -->
               <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
               <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
               <inspectionElement_3 name="Weight" testResult="" testNote=""/>
@@ -27,14 +29,19 @@
               <inspectionElement_9 name="Hose" testResult="" testNote=""/>
             </Extinguisher>
             
-            <FireHoseCabinet id="77207" location="Staircase D">
+            <FireHoseCabinet id="77207" location="Staircase D" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of "Cabinet Condition" can be Good, Poor, or N/A -->
               <inspectionElement_1 name="Cabinet Condition" testResult="" testNote=""/>
-              <inspectionElement_2 name="Valve Condition" testResult="" testNote=""/>
+              <!-- testResult of "Nozzle Condition" can be Good, Poor , or N/A -->
+              <inspectionElement_2 name="Nozzle Condition" testResult="" testNote=""/>
+              <!-- testResult of "Hose Re-Rack" can be Yes or No. Do not use numeric value -->
               <inspectionElement_3 name="Hose Re-Rack" testResult="" testNote=""/>
-              <inspectionElement_4 name="HT Due" testResult="" testNote=""/>
+              <!-- testResult of "Hydrostatic Test Due" can be Yes or No. -->
+              <inspectionElement_4 name="Hydrostatic Test Due" testResult="" testNote=""/>
             </FireHoseCabinet>        
             
             <EmergencyLight id="88103" location="Some where" model="2341" make="Chubb" numHeads="4" totalPower="10W" voltage="10V">
+              <!-- testResult of the following elements can be Yes or No. -->
               <inspectionElement_1 name="Requires Service or Repair" testResult="" testNote=""/>
               <inspectionElement_2 name="Operation Confirmed" testResult="" testNote=""/>
             </EmergencyLight>
