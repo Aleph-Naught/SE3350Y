@@ -1,5 +1,19 @@
 package se3350y.aleph.firealertscanner;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
@@ -10,7 +24,10 @@ import android.widget.Spinner;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Build;
+
+import se3350y.aleph.firealertscanner.XMLParse;
 
 public class MainDataEntry extends Activity {
 
@@ -21,6 +38,29 @@ public class MainDataEntry extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
+		
+		Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
+		
+		
+		try {
+			populate("/Franchisee/*", spinner);
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		spinner = (Spinner) findViewById(R.id.locationsSpinner);
+		
+		try {
+			populate("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/Extinguisher/*", spinner);
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		
+		/**
 		Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
 				android.R.layout.simple_spinner_item);
@@ -44,6 +84,41 @@ public class MainDataEntry extends Activity {
 				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinner.setAdapter(adapter);
+		**/
+	}
+	
+	private void populate(String expression, Spinner spinner) throws XPathExpressionException{
+		
+		//An array of strings to hold the names
+		ArrayList<String> options=new ArrayList<String>();
+		
+		//An xpath instance
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		
+		//Creates an InputStream and opens the file, then casts to InputSource
+		InputStream in=null;
+		in = getResources().openRawResource(R.raw.inspectiondata);
+		InputSource is = new InputSource(in);
+		
+		//Performs xpath and returns list of nodes
+		NodeList nodes = (NodeList) xpath.evaluate(expression, is, XPathConstants.NODESET);
+		
+		
+		//An element node to hold the current working node
+		Element franchisee = null;
+		
+		for (int i = 0; i < nodes.getLength(); i++) {
+			//Add node attribute to string array
+		      franchisee = (Element) nodes.item(i);
+		      options.add(franchisee.getAttribute("name"));
+		}
+		
+		//Create array adapter to change spinner
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,options);
+		
+		//Sets spinner
+		spinner.setAdapter(adapter);
+		
 	}
 
 	/**
@@ -80,7 +155,8 @@ public class MainDataEntry extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void getDataInput(View view) {
+	public void getDataInput(View view) throws XPathExpressionException, IOException {
+		
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
