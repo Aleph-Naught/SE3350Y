@@ -14,6 +14,7 @@
     <string name="franchisee_textview">Franchisee: </string>
     <string name="client_contract_textview">Client Contract: </string>
     <string name="floor_textview">Floor: </string>
+    <string name="element_textview">Element: </string>
     <string name="enter_button">Enter</string>
 
 </resources>

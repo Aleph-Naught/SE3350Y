@@ -85,6 +85,17 @@
             android:id="@+id/equiptmentSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        
+        <TextView
+            android:id="@+id/element"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/element_textview" />
+
+        <Spinner
+            android:id="@+id/elementSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/enterButton"

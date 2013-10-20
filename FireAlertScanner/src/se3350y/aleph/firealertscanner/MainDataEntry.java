@@ -24,7 +24,7 @@ import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 
 public class MainDataEntry extends Activity {
@@ -40,18 +40,37 @@ public class MainDataEntry extends Activity {
 		TextView tv = (TextView) findViewById(R.id.Franchisee);
 		try {
 			tv.setText("Franchisee: " + getValues("/*", "name").get(0));
+			tv.setTypeface(null, Typeface.BOLD);
+			
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
-		//Create array adapter to change spinner
-		ArrayAdapter<String> adapter;
 		try {
-			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*", "name"));
+			//Create array adapter to change spinner
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*", "name"));
 			Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
 			//Sets spinner
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/*", "id"));
+			spinner = (Spinner) findViewById(R.id.clientContractSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/*", "address"));
+			spinner = (Spinner) findViewById(R.id.serviceAddressSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/*", "name"));
+			spinner = (Spinner) findViewById(R.id.floorSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/*", "id"));
+			spinner = (Spinner) findViewById(R.id.roomsSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*", "location"));
+			spinner = (Spinner) findViewById(R.id.equiptmentSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*/*", "name"));
+			spinner = (Spinner) findViewById(R.id.elementSpinner);
 			spinner.setAdapter(adapter);
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
