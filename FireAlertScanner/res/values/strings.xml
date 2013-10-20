@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Fire Alert Scanner</string>
+    <string name="app_name">Fire-Alert Scanner</string>
     <string name="action_settings">Settings</string>
     <string name="str_data">Read data :</string>
     <string name="str_wait_data">Waiting data&#8230;</string>
     <string name="scan_button">Scan</string>
     <string name="title_activity_main_data_entry">Data Input</string>
     <string name="clients_textview">Clients:</string>
-    <string name="locations_textview">Locations:</string>
+    <string name="service_address_textview">Service Address: </string>
     <string name="rooms_textview">Rooms:</string>
     <string name="equiptment_textview">Equiptment:</string>
+    <string name="franchisee_textview">Franchisee: </string>
+    <string name="client_contract_textview">Client Contract: </string>
+    <string name="floor_textview">Floor: </string>
     <string name="enter_button">Enter</string>
-    <string-array name="spinner_example_content">
-        <item>Tom</item>
-        <item>Likes</item>
-        <item>Men</item>
-        <item>.jpg</item>
-    </string-array>
 
 </resources>

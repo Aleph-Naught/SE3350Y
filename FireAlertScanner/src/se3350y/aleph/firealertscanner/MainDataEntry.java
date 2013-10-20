@@ -1,6 +1,5 @@
 package se3350y.aleph.firealertscanner;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -21,13 +20,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
-
-import se3350y.aleph.firealertscanner.XMLParse;
 
 public class MainDataEntry extends Activity {
 
@@ -39,58 +37,33 @@ public class MainDataEntry extends Activity {
 		setupActionBar();
 		
 		
-		Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
-		
-		
+		TextView tv = (TextView) findViewById(R.id.Franchisee);
 		try {
-			populate("/Franchisee/*", spinner);
+			tv.setText("Franchisee: " + getValues("/*", "name").get(0));
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		spinner = (Spinner) findViewById(R.id.locationsSpinner);
 		
+		//Create array adapter to change spinner
+		ArrayAdapter<String> adapter;
 		try {
-			populate("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/Extinguisher/*", spinner);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*", "name"));
+			Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
+			//Sets spinner
+			spinner.setAdapter(adapter);
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
 		
-		/**
-		Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		
-		spinner = (Spinner) findViewById(R.id.locationsSpinner);
-		adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		
-		spinner = (Spinner) findViewById(R.id.roomsSpinner);
-		adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		
-		spinner = (Spinner) findViewById(R.id.equiptmentSpinner);
-		adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		**/
 	}
 	
-	private void populate(String expression, Spinner spinner) throws XPathExpressionException{
+	private ArrayList<String> getValues(String expression, String attribute) throws XPathExpressionException{
 		
 		//An array of strings to hold the names
-		ArrayList<String> options=new ArrayList<String>();
+		ArrayList<String> ar = new ArrayList<String>();
 		
 		//An xpath instance
 		XPath xpath = XPathFactory.newInstance().newXPath();
@@ -105,19 +78,15 @@ public class MainDataEntry extends Activity {
 		
 		
 		//An element node to hold the current working node
-		Element franchisee = null;
+		Element element = null;
 		
 		for (int i = 0; i < nodes.getLength(); i++) {
 			//Add node attribute to string array
-		      franchisee = (Element) nodes.item(i);
-		      options.add(franchisee.getAttribute("name"));
+		      element = (Element) nodes.item(i);
+		      ar.add(element.getAttribute(attribute));
 		}
 		
-		//Create array adapter to change spinner
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,options);
-		
-		//Sets spinner
-		spinner.setAdapter(adapter);
+		return ar;
 		
 	}
 
