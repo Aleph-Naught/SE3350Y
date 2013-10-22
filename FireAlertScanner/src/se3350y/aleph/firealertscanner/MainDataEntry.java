@@ -39,7 +39,7 @@ public class MainDataEntry extends Activity {
 		
 		TextView tv = (TextView) findViewById(R.id.Franchisee);
 		try {
-			tv.setText("Franchisee: " + getValues("/*", "name").get(0));
+			tv.setText("Franchisee: " + getValues("/*", "name").get(0) + ", ID: " + getValues("/*", "id").get(0));
 			tv.setTypeface(null, Typeface.BOLD);
 			
 		} catch (XPathExpressionException e) {
