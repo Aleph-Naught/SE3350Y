@@ -94,9 +94,9 @@ public class MainDataEntry extends Activity {
 		
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
-		//in = getResources().openRawResource(R.raw.inspectiondata);
 		try {
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+			Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
