@@ -1,5 +1,8 @@
 package se3350y.aleph.firealertscanner;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +25,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -89,7 +94,13 @@ public class MainDataEntry extends Activity {
 		
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
-		in = getResources().openRawResource(R.raw.inspectiondata);
+		//in = getResources().openRawResource(R.raw.inspectiondata);
+		try {
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+		} catch (FileNotFoundException e) {
+			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		}
 		InputSource is = new InputSource(in);
 		
 		//Performs xpath and returns list of nodes

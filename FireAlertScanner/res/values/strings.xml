@@ -6,6 +6,7 @@
     <string name="str_data">Read data :</string>
     <string name="str_wait_data">Waiting data&#8230;</string>
     <string name="scan_button">Scan</string>
+    <string name="record_button">Record Results</string>
     <string name="title_activity_main_data_entry">Data Input</string>
     <string name="clients_textview">Clients:</string>
     <string name="service_address_textview">Service Address: </string>
