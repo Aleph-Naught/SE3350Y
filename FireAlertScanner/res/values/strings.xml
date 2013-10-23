@@ -17,5 +17,7 @@
     <string name="floor_textview">Floor: </string>
     <string name="element_textview">Element: </string>
     <string name="enter_button">Enter</string>
+    <string name="title_activity_scan">ScanActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

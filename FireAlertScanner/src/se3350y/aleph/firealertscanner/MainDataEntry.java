@@ -96,7 +96,7 @@ public class MainDataEntry extends Activity {
 		InputStream in=null;
 		try {
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
-			Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
+			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
@@ -156,7 +156,7 @@ public class MainDataEntry extends Activity {
 	
 	public void getDataInput(View view) throws XPathExpressionException, IOException {
 		
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(this, ScanActivity.class);
 		startActivity(intent);
 	}
 
