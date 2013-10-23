@@ -81,15 +81,15 @@ public final class R {
         public static final int equiptment_textview=0x7f05000a;
         public static final int error_field_required=0x7f05001a;
         public static final int error_incorrect_password=0x7f050019;
-        public static final int error_invalid_email=0x7f050017;
         public static final int error_invalid_password=0x7f050018;
+        public static final int error_invalid_username=0x7f050017;
         public static final int floor_textview=0x7f05000d;
         public static final int franchisee_textview=0x7f05000b;
         public static final int login_progress_signing_in=0x7f050016;
+        public static final int prompt_password=0x7f050012;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f050011;
-        public static final int prompt_password=0x7f050012;
+        public static final int prompt_username=0x7f050011;
         public static final int record_button=0x7f050005;
         public static final int rooms_textview=0x7f050009;
         public static final int scan_button=0x7f050004;
