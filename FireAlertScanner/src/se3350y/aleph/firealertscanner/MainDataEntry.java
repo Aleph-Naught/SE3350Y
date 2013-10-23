@@ -1,15 +1,35 @@
 package se3350y.aleph.firealertscanner;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
 import android.os.Bundle;
+import android.os.Environment;
 import android.app.Activity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Build;
 
 public class MainDataEntry extends Activity {
@@ -21,29 +41,83 @@ public class MainDataEntry extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
 		
-		spinner = (Spinner) findViewById(R.id.locationsSpinner);
-		adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
+		TextView tv = (TextView) findViewById(R.id.Franchisee);
+		try {
+			tv.setText("Franchisee: " + getValues("/*", "name").get(0) + ", ID: " + getValues("/*", "id").get(0));
+			tv.setTypeface(null, Typeface.BOLD);
+			
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		spinner = (Spinner) findViewById(R.id.roomsSpinner);
-		adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
 		
-		spinner = (Spinner) findViewById(R.id.equiptmentSpinner);
-		adapter = ArrayAdapter.createFromResource(this, R.array.spinner_example_content,
-				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
+		try {
+			//Create array adapter to change spinner
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*", "name"));
+			Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
+			//Sets spinner
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/*", "id"));
+			spinner = (Spinner) findViewById(R.id.clientContractSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/*", "address"));
+			spinner = (Spinner) findViewById(R.id.serviceAddressSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/*", "name"));
+			spinner = (Spinner) findViewById(R.id.floorSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/*", "id"));
+			spinner = (Spinner) findViewById(R.id.roomsSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*", "location"));
+			spinner = (Spinner) findViewById(R.id.equiptmentSpinner);
+			spinner.setAdapter(adapter);
+			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*/*", "name"));
+			spinner = (Spinner) findViewById(R.id.elementSpinner);
+			spinner.setAdapter(adapter);
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	private ArrayList<String> getValues(String expression, String attribute) throws XPathExpressionException{
+		
+		//An array of strings to hold the names
+		ArrayList<String> ar = new ArrayList<String>();
+		
+		//An xpath instance
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		
+		//Creates an InputStream and opens the file, then casts to InputSource
+		InputStream in=null;
+		//in = getResources().openRawResource(R.raw.inspectiondata);
+		try {
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+		} catch (FileNotFoundException e) {
+			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		}
+		InputSource is = new InputSource(in);
+		
+		//Performs xpath and returns list of nodes
+		NodeList nodes = (NodeList) xpath.evaluate(expression, is, XPathConstants.NODESET);
+		
+		
+		//An element node to hold the current working node
+		Element element = null;
+		
+		for (int i = 0; i < nodes.getLength(); i++) {
+			//Add node attribute to string array
+		      element = (Element) nodes.item(i);
+		      ar.add(element.getAttribute(attribute));
+		}
+		
+		return ar;
+		
 	}
 
 	/**
@@ -80,7 +154,8 @@ public class MainDataEntry extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 	
-	public void getDataInput(View view) {
+	public void getDataInput(View view) throws XPathExpressionException, IOException {
+		
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}

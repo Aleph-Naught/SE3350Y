@@ -16,5 +16,13 @@
         android:layout_centerVertical="true"
         android:text="@string/scan_button"
         android:onClick="scanActionSelected" />
+    <Button
+        android:id="@+id/record_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scan_button"
+        android:layout_centerHorizontal="true"
+        android:text="@string/record_button"
+        android:onClick="recordResults" />
 
 </RelativeLayout>
