@@ -27,6 +27,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -88,15 +89,10 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
-<<<<<<< HEAD
 
-		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
-=======
 		try {
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
 			Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
->>>>>>> 277a8a5c8490f30e1de673c0102e31f93e8b2533
 		} catch (FileNotFoundException e) {
 			Log.i("Main data entry", "Can't read info from SD Card");
 			e.printStackTrace();
