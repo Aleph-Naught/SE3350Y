@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.RadioGroup;
 import android.widget.TextView;
  
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -48,10 +49,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_item, null);
         }
  
+        //Gets child-local textview
         TextView txtListChild = (TextView) convertView
                 .findViewById(R.id.inspectionElement);
  
+        //This sets the text of the inspectionElement textview
         txtListChild.setText(childText);
+        
+        RadioGroup radiogroup = (RadioGroup) convertView.findViewById(R.id.radioGroup1);
+        
+        String group = (String) getGroup(groupPosition);
+        
+        //if(!group.equals("Extinguisher"))
+        	//radiogroup.setVisibility(View.GONE);
+        
         return convertView;
     }
  
