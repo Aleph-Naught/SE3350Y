@@ -15,6 +15,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -38,8 +39,6 @@ public class ScanActivity extends Activity {
 	ExpandableListView expListView;
 	List<String> listDataHeader;
 	HashMap<String, List<String>> listDataChild;
-	
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +46,14 @@ public class ScanActivity extends Activity {
 		setContentView(R.layout.activity_scan);
 		
 		 
-		
+		/**
 		try {
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
 			Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
-		}
+		}**/
 		
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
 		populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
@@ -132,14 +131,96 @@ public class ScanActivity extends Activity {
 	}
 	
 	 private void prepareListData() {
-	        listDataHeader = new ArrayList<String>();
-	        listDataChild = new HashMap<String, List<String>>();
-	 
-	        // Adding child data
-	        listDataHeader.add("Top 250");
-	        listDataHeader.add("Now Showing");
-	        listDataHeader.add("Coming Soon..");
-	 
+		 
+		 listDataHeader = new ArrayList<String>();
+	       
+		 listDataChild = new HashMap<String, List<String>>();
+		 
+		 
+		//An array of strings to hold the names
+	        ArrayList<String> options=new ArrayList<String>();
+	        
+	        //An xpath instance
+	        XPath xpath = XPathFactory.newInstance().newXPath();
+	        
+	        //Creates an InputStream and opens the file, then casts to InputSource
+	        InputStream in=null;
+			try {
+				in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+				//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
+			} catch (FileNotFoundException e) {
+				Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
+				e.printStackTrace();
+			}
+			InputSource is = new InputSource(in);
+	        
+	        //Performs xpath and returns list of nodes
+	        NodeList nodes = null;
+	        
+			try {
+				nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*", is, XPathConstants.NODESET);
+			} catch (XPathExpressionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+	        
+	        
+	      //An element node to hold the current working node
+			Element element = null;
+			Element attrElement = null;
+			List<String>  inspectionElement = new ArrayList<String>();
+			
+			NodeList attrNodes = null;
+			
+			
+			//For each piece of equipment
+			for (int i = 0; i < nodes.getLength(); i++) {
+				
+				inspectionElement = new ArrayList<String>();
+				
+				//Add node attribute to string array
+			      element = (Element) nodes.item(i);
+			      
+			      //Add Equipment
+			      listDataHeader.add(element.getNodeName());
+			      
+			    //Find Inspection Element Nodes
+					try {
+						attrNodes = (NodeList) xpath.evaluate("./*", element, XPathConstants.NODESET);
+					} catch (XPathExpressionException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				
+			      
+			    int fail = 0;
+			     
+			      
+			      //get inspection element names
+			      for(int j=0; j < attrNodes.getLength(); j++){
+			    	  attrElement = (Element) attrNodes.item(j);
+			    	  
+			    	  String name = null;
+			    	  fail = attrNodes.getLength();
+			    	  
+			    	  try{
+			    	  name = attrElement.getAttribute("name");
+			    	  }
+			    	  catch(NullPointerException e){
+			    		  e.printStackTrace();
+			    	  }
+			    	  
+			    	  inspectionElement.add(name);
+			      }
+			      
+			      
+			      listDataChild.put(listDataHeader.get(i),inspectionElement ); // Header
+			      
+			      
+			}
+			
+			/**
 	        // Adding child data
 	        List<String> top250 = new ArrayList<String>();
 	        top250.add("The Shawshank Redemption");
@@ -168,6 +249,7 @@ public class ScanActivity extends Activity {
 	        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
 	        listDataChild.put(listDataHeader.get(1), nowShowing);
 	        listDataChild.put(listDataHeader.get(2), comingSoon);
+	        **/
 	    }
 	
 
