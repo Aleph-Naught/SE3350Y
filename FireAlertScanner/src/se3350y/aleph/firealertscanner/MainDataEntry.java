@@ -3,7 +3,6 @@ package se3350y.aleph.firealertscanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -19,20 +18,26 @@ import org.xml.sax.InputSource;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 
-public class MainDataEntry extends Activity {
+public class MainDataEntry extends Activity implements OnItemSelectedListener{
+
+	//Flag to stop onCreate() from auto populating spinners
+	private boolean spinner_flag = false;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,84 +45,75 @@ public class MainDataEntry extends Activity {
 		setContentView(R.layout.activity_main_data_entry);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
-		
-		TextView tv = (TextView) findViewById(R.id.Franchisee);
+
 		try {
-			tv.setText("Franchisee: " + getValues("/*", "name").get(0) + ", ID: " + getValues("/*", "id").get(0));
+			//Sets up the textview with the name and id of the franchisee logged in
+			//Displayed in bold style
+			TextView tv = (TextView) findViewById(R.id.Franchisee);
+			tv.setText("Franchisee: " + getValues("/*[@name]", "name") + ", ID: " + getValues("/*[@id]", "id"));
 			tv.setTypeface(null, Typeface.BOLD);
-			
-		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		try {
-			//Create array adapter to change spinner
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*", "name"));
+			Log.i("Main Data Entry", "Franchisee TextView set");
+
+			//Create array adapter to change spinners
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*[@name]", "name"));
+			//Find the client spinner
 			Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
-			//Sets spinner
+			//Set spinner text and sets item changed listener to wait for user selections
 			spinner.setAdapter(adapter);
-			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/*", "id"));
+			spinner.setOnItemSelectedListener(this);
+			Log.i("Main Data Entry", "Client spinner adapter and listener set");
+			//Sets client contract spinner with a listener
 			spinner = (Spinner) findViewById(R.id.clientContractSpinner);
-			spinner.setAdapter(adapter);
-			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/*", "address"));
-			spinner = (Spinner) findViewById(R.id.serviceAddressSpinner);
-			spinner.setAdapter(adapter);
-			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/*", "name"));
-			spinner = (Spinner) findViewById(R.id.floorSpinner);
-			spinner.setAdapter(adapter);
-			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/*", "id"));
-			spinner = (Spinner) findViewById(R.id.roomsSpinner);
-			spinner.setAdapter(adapter);
-			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*", "location"));
-			spinner = (Spinner) findViewById(R.id.equiptmentSpinner);
-			spinner.setAdapter(adapter);
-			adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*/*", "name"));
-			spinner = (Spinner) findViewById(R.id.elementSpinner);
-			spinner.setAdapter(adapter);
+			spinner.setOnItemSelectedListener(this);
+			Log.i("Main Data Entry", "Client contract spinner adapter and listener set");
+
+			//Catch all errors from xpath parsing
 		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
+	//xpath parsing function
+	//Takes expressions and attribute as parameters and returns an array list with attribute value
 	private ArrayList<String> getValues(String expression, String attribute) throws XPathExpressionException{
-		
-		//An array of strings to hold the names
+
+		Log.i("Main Data Entry", "getValues() xPath parser called");
+
+		//An array of strings to hold the attribute values
 		ArrayList<String> ar = new ArrayList<String>();
-		
+
 		//An xpath instance
 		XPath xpath = XPathFactory.newInstance().newXPath();
-		
+
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
-		//in = getResources().openRawResource(R.raw.inspectiondata);
+
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 		} catch (FileNotFoundException e) {
-			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
+			Log.i("Main data entry", "Can't read info from SD Card");
 			e.printStackTrace();
 		}
+
 		InputSource is = new InputSource(in);
-		
+		Log.i("Main Data Entry", "Sucessfully read from SD Card");
+
 		//Performs xpath and returns list of nodes
 		NodeList nodes = (NodeList) xpath.evaluate(expression, is, XPathConstants.NODESET);
-		
-		
-		//An element node to hold the current working node
 		Element element = null;
-		
-		for (int i = 0; i < nodes.getLength(); i++) {
-			//Add node attribute to string array
-		      element = (Element) nodes.item(i);
-		      ar.add(element.getAttribute(attribute));
+
+		//List of nodes stored in element data type
+		for (int i = 0; i < nodes.getLength(); i++){
+			element = (Element) nodes.item(i);
+			//String of attribute values stored in array list
+			ar.add(element.getAttribute(attribute));
 		}
-		
+
+		Log.i("Main Data Entry", "Parsing completed");
+		//Return the attribute values
 		return ar;
-		
+
 	}
 
 	/**
@@ -153,11 +149,69 @@ public class MainDataEntry extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	public void getDataInput(View view) throws XPathExpressionException, IOException {
-		
+
+	//Connects "Enter" button to the next activity
+	public void getDataInput(View view)  {
+		// TODO Need to add message to carry XML data to next activity
+		Log.i("Main Data Entry", "Enter button pressed");
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
+	}
+
+	//Spinner listener
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		//Value chosen in spinner that event happened at
+		String spinnerValue = (String) parent.getItemAtPosition(pos);
+		//Stores child spinner so that child spinners can be updated in a chain reaction
+		Spinner spinner_child = null;
+
+		//check flag so that onCreate() doesn't populate everything right away
+		if (spinner_flag == false){
+			spinner_flag = true;
+			Log.i("Main Data Entry", "Spinner_flag triggered");
+		} else {
+
+			//Reference to parent spinner
+			Spinner spinner = (Spinner) parent;
+			//Check to see what spinner event occured at
+			if(spinner.getId() == R.id.clientSpinner)
+			{	
+				Log.i("Main Data Entry", "Client spinner event triggered");
+				//get child spinner  
+				spinner_child = (Spinner) findViewById(R.id.clientContractSpinner);
+				try{
+					//update child spinner data
+					ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client[@name='" + spinnerValue + "']/*[@id]", "id"));
+					spinner_child.setAdapter(adapter);
+					Log.i("Main Data Entry", "Client contract spinner updated");
+				} catch (XPathExpressionException e) {
+					e.printStackTrace();
+				}
+
+			}
+			else if(spinner.getId() == R.id.clientContractSpinner)
+			{
+				Log.i("Main Data Entry", "Client contract spinner triggered");
+				//get child spinner
+				spinner_child = (Spinner) findViewById(R.id.serviceAddressSpinner);
+				try{
+					//update child spinner data
+					ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract[@id='" + spinnerValue + "']/*[@address]", "address"));
+					spinner_child.setAdapter(adapter);
+					Log.i("Main Data Entry", "Service address spinner updated");
+				} catch (XPathExpressionException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		//Report when nothing has been selected in spinner
+		Log.i("Main Data Entry", "Nothing selected called");
 	}
 
 }

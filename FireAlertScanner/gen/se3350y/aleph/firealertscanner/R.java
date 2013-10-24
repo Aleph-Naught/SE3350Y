@@ -25,36 +25,28 @@ public final class R {
     }
     public static final class id {
         public static final int Franchisee=0x7f09000a;
-        public static final int action_forgot_password=0x7f09001d;
-        public static final int action_settings=0x7f09001e;
+        public static final int action_forgot_password=0x7f090015;
+        public static final int action_settings=0x7f090016;
         public static final int client=0x7f09000b;
         public static final int clientContractSpinner=0x7f09000e;
         public static final int clientSpinner=0x7f09000c;
         public static final int client_contract=0x7f09000d;
-        public static final int editText=0x7f09001b;
-        public static final int element=0x7f090017;
-        public static final int elementSpinner=0x7f090018;
+        public static final int editText=0x7f090013;
         public static final int email=0x7f090003;
-        public static final int enterButton=0x7f090019;
-        public static final int equiptment=0x7f090015;
-        public static final int equiptmentSpinner=0x7f090016;
-        public static final int floor=0x7f090011;
-        public static final int floorSpinner=0x7f090012;
+        public static final int enterButton=0x7f090011;
         public static final int login=0x7f090005;
         public static final int login_form=0x7f090002;
         public static final int login_status=0x7f090000;
         public static final int login_status_message=0x7f090001;
         public static final int password=0x7f090004;
         public static final int record_button=0x7f090008;
-        public static final int rooms=0x7f090013;
-        public static final int roomsSpinner=0x7f090014;
         public static final int scan_button=0x7f090007;
         public static final int scroll_view=0x7f090009;
         public static final int serviceAddressSpinner=0x7f090010;
         public static final int service_address=0x7f09000f;
         public static final int sign_in_button=0x7f090006;
-        public static final int tv_getdata_from_edittext=0x7f09001a;
-        public static final int tv_getdata_from_scanner=0x7f09001c;
+        public static final int tv_getdata_from_edittext=0x7f090012;
+        public static final int tv_getdata_from_scanner=0x7f090014;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
