@@ -9,15 +9,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+
+import com.dataInput.samplescanner.ScanCodeDemo;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -131,8 +138,45 @@ public class ScanActivity extends Activity {
 	}
 	
 	public void launchScan(View view){
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(this, ScanCodeDemo.class);
 		startActivity(intent);
+	}
+	
+	public void manual(View view){
+		// COPIED DIRECTLY FROM MAINACTIVITY
+		// TODO It seems that MainActivity has become redundant. Should revise.
+		try {
+			Document doc = DOM.getDOM(getBaseContext());
+			
+			// Root node; in this case, Franchisee
+			Node firstNode = doc.getFirstChild();
+
+			DOM.setPassFail("33101", "Hose", "Fail", firstNode);
+			DOM.setPassFail("33101", "Hydro Test", "Pass", firstNode);
+			DOM.setPassFail("88103", "Requires Service or Repair", "Yes", firstNode);
+			
+			// Write result
+			DOM.writeDOMResults(doc, getBaseContext());
+
+			Toast.makeText(getBaseContext(), "Output file written.", Toast.LENGTH_SHORT).show();
+			
+			// SO MANY EXCEPTIONS
+			} catch(IOException e){
+				Toast.makeText(getApplicationContext(),"IOException occurred.",Toast.LENGTH_LONG).show();
+				e.printStackTrace();
+			} catch (SAXException e){
+				Toast.makeText(getApplicationContext(),"SAXException occurred.",Toast.LENGTH_LONG).show();
+			} catch (ParserConfigurationException e){
+				Toast.makeText(getApplicationContext(),"ParserConfigurationException occurred.",Toast.LENGTH_LONG).show();
+			} catch (TransformerConfigurationException e){
+				Toast.makeText(getApplicationContext(),"TransformerConfigurationException occurred.",Toast.LENGTH_LONG).show();
+			} catch (TransformerException e){
+				Toast.makeText(getApplicationContext(),"TransformerException occurred.",Toast.LENGTH_LONG).show();
+				e.printStackTrace();
+			} catch (XPathExpressionException e){
+				Toast.makeText(getApplicationContext(),"XPathExpressionException occurred.",Toast.LENGTH_LONG).show();
+				e.printStackTrace();
+			}
 	}
 	
 	 private void prepareListData() {
