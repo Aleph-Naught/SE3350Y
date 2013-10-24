@@ -75,10 +75,10 @@ public class MainActivity extends Activity {
 		return doc;
 	}
 	
-	public static void writeDOMResults(Document doc, Context context) throws TransformerException{
+	public static void writeDOMResults(Document doc, Context context) throws TransformerException, FileNotFoundException{
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
-		File modifiedFile = new File(Environment.getExternalStorageState(),"/Modified.xml");
+		File modifiedFile = new File(Environment.getExternalStorageDirectory(),"/Modified.xml");
 		
 		if(modifiedFile.exists())
 			modifiedFile.delete();
@@ -86,6 +86,7 @@ public class MainActivity extends Activity {
         	modifiedFile.createNewFile();
 		} catch (IOException e) {
 			Toast.makeText(context,"Error creating file!",Toast.LENGTH_LONG).show();
+			e.printStackTrace();
 		}
 		
 		StreamResult result = new StreamResult(modifiedFile);
@@ -93,40 +94,17 @@ public class MainActivity extends Activity {
 	}
 	
 	public void recordResults(View view){
-		// if SD card is not available
-//		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-//			Toast.makeText(getBaseContext(), "SD card not available.", Toast.LENGTH_SHORT).show();
-//			return;
-//		}
-//		
 		try {
-//		File workingDir = Environment.getExternalStorageDirectory();
-//		File file = new File(workingDir,"/InspectionData.xml");
-//		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = getDOM(getBaseContext());
 		
 		// Root node; in this case, Franchisee
 		Node firstNode = doc.getFirstChild();
 
-		setPassFail("33101", "6 Year Insp", "Fail", firstNode);
-		setPassFail("33101", "Pull Pin", "Fail", firstNode);
-		setPassFail("77207", "Cabinet Condition", "Good", firstNode);
+		setPassFail("33101", "Weight", "Pass", firstNode);
+		setPassFail("33101", "Collar", "Fail", firstNode);
+		setPassFail("88103", "Requires Service or Repair", "Yes", firstNode);
 		
 		// Write result
-//		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-//		DOMSource source = new DOMSource(doc);
-//		File modifiedFile = new File(workingDir,"/Modified.xml");
-//		
-//		if(modifiedFile.exists())
-//			modifiedFile.delete();
-//		try {
-//        	modifiedFile.createNewFile();
-//		} catch (IOException e) {
-//			Toast.makeText(getApplicationContext(),"Error creating file!",Toast.LENGTH_LONG).show();
-//		}
-//		
-//		StreamResult result = new StreamResult(modifiedFile);
-//		transformer.transform(source, result);
 		writeDOMResults(doc, getBaseContext());
 
 		Toast.makeText(getBaseContext(), "Output file written.", Toast.LENGTH_SHORT).show();
@@ -142,8 +120,9 @@ public class MainActivity extends Activity {
 			Toast.makeText(getApplicationContext(),"TransformerConfigurationException occurred.",Toast.LENGTH_LONG).show();
 		} catch (TransformerException e){
 			Toast.makeText(getApplicationContext(),"TransformerException occurred.",Toast.LENGTH_LONG).show();
+			e.printStackTrace();
 		} catch (XPathExpressionException e){
-			
+			e.printStackTrace();
 		}
 	}
 	
