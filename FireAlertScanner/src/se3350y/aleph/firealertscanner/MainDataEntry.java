@@ -39,7 +39,6 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 	//Flag to stop onCreate() from auto populating spinners
 	private boolean spinner_flag = false;
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,8 +90,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		InputStream in=null;
 
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
-			Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 		} catch (FileNotFoundException e) {
 			Log.i("Main data entry", "Can't read info from SD Card");
 			e.printStackTrace();
@@ -157,6 +155,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		// TODO Need to add message to carry XML data to next activity
 		Log.i("Main Data Entry", "Enter button pressed");
 		Intent intent = new Intent(this, MainActivity.class);
+		//intent.putExtra("se3350y.aleph.firealertscanner.MainActivity.nodes", nodes);
 		startActivity(intent);
 	}
 
