@@ -5,7 +5,6 @@ import android.os.Environment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
@@ -26,12 +25,7 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
+import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
 import com.dataInput.samplescanner.ScanCodeDemo;
@@ -59,6 +53,14 @@ public class MainActivity extends Activity {
 
 	/* RECORD RESULTS */
 	
+	public static void setPassFail(String equipmentID, String inspectionElementID, String passOrFail, Node rootNode) throws XPathExpressionException{
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		String path = "//*[@id='" + equipmentID + "']/*[@name='" + inspectionElementID + "']/@testResult";
+		NodeList list = (NodeList) xpath.evaluate(path,
+				rootNode, XPathConstants.NODESET);
+		list.item(0).setTextContent(passOrFail);
+	}
+	
 	public void recordResults(View view){
 		// if SD card is not available
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
@@ -74,47 +76,30 @@ public class MainActivity extends Activity {
 		
 		// Root node; in this case, Franchisee
 		Node firstNode = doc.getFirstChild();
-		XPath xpath = XPathFactory.newInstance().newXPath();
-		NodeList list = (NodeList) xpath.evaluate("./Client/clientContract/ServiceAddress/Floor/Room/Extinguisher[@id='33101']/*[@name='Weight']/@testResult",
-				firstNode, XPathConstants.NODESET);
-		list.item(0).setTextContent("Pass");
+//		XPath xpath = XPathFactory.newInstance().newXPath();
+//		NodeList list = (NodeList) xpath.evaluate("//*[@id='33101']/*[@name='Signage']/@testResult",
+//				firstNode, XPathConstants.NODESET);
+//		list.item(0).setTextContent("Fail");
+		setPassFail("33101", "6 Year Insp", "Fail", firstNode);
+		setPassFail("33101", "Pull Pin", "Fail", firstNode);
+		setPassFail("77207", "Cabinet Condition", "Good", firstNode);
 		
 		// Write result
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
 		File modifiedFile = new File(workingDir,"/Modified.xml");
 		
-		if(!modifiedFile.exists()) {
-			try {
-            	file.createNewFile();
-			} catch (IOException e) {
-				Toast.makeText(getApplicationContext(),"Error creating file!",Toast.LENGTH_LONG).show();
-			}
+		if(modifiedFile.exists())
+			modifiedFile.delete();
+		try {
+        	file.createNewFile();
+		} catch (IOException e) {
+			Toast.makeText(getApplicationContext(),"Error creating file!",Toast.LENGTH_LONG).show();
 		}
 		
 		StreamResult result = new StreamResult(modifiedFile);
 		transformer.transform(source, result);
-		
-		
-//		File workingDir = Environment.getExternalStorageDirectory();
-//		File file = new File(workingDir,"/output.xml");
-//		
-//		if(!file.exists()) {
-//			try {
-//            	file.createNewFile();
-//			} catch (IOException e) {
-//				Toast.makeText(getApplicationContext(),"Error creating file!",Toast.LENGTH_LONG).show();
-//			}
-//		}
-//		
-//		try {
-//			FileWriter fw = new FileWriter(file);
-//			BufferedWriter bw = new BufferedWriter(fw);
-//			bw.write("<Tom><Likes><Men><.jpg></.jpg></Men></Likes></Tom>");
-//			bw.close();
-//		} catch (IOException e) {
-//	             Toast.makeText(getApplicationContext(),"Error writing file!",Toast.LENGTH_LONG).show();
-//	     }
+
 		Toast.makeText(getBaseContext(), "Output file written.", Toast.LENGTH_SHORT).show();
 		
 		} catch(IOException e){
