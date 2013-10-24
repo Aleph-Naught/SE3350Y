@@ -33,7 +33,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 
 public class MainDataEntry extends Activity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -95,10 +94,9 @@ public class MainDataEntry extends Activity {
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
-			Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 		} catch (FileNotFoundException e) {
-			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 		InputSource is = new InputSource(in);
@@ -157,6 +155,7 @@ public class MainDataEntry extends Activity {
 	public void getDataInput(View view) throws XPathExpressionException, IOException {
 		
 		Intent intent = new Intent(this, MainActivity.class);
+		//intent.putExtra("se3350y.aleph.firealertscanner.MainActivity.nodes", nodes);
 		startActivity(intent);
 	}
 

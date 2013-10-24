@@ -5,11 +5,34 @@ import android.os.Environment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
 
 import java.io.*;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.dataInput.samplescanner.ScanCodeDemo;
 
@@ -43,11 +66,24 @@ public class MainActivity extends Activity {
 			return;
 		}
 		
-		Toast.makeText(getBaseContext(), "SD card is available! Ten outta ten", Toast.LENGTH_SHORT).show();
+		try {
 		File workingDir = Environment.getExternalStorageDirectory();
-		File file = new File(workingDir,"/output.xml");
+		File file = new File(workingDir,"/InspectionData.xml");
+		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		// TODO: This is currently throwing an IOException
+		Document doc = builder.parse(file);
 		
-		if(!file.exists()) {
+		NodeList list = doc.getElementsByTagName("Client");
+		Node client = list.item(0);
+		Node id = client.getAttributes().getNamedItem("id");
+		id.setTextContent("1001-05");
+		
+		// Write result
+		Transformer transformer = TransformerFactory.newInstance().newTransformer();
+		DOMSource source = new DOMSource(doc);
+		File modifiedFile = new File(workingDir,"/Modified.xml");
+		
+		if(!modifiedFile.exists()) {
 			try {
             	file.createNewFile();
 			} catch (IOException e) {
@@ -55,14 +91,43 @@ public class MainActivity extends Activity {
 			}
 		}
 		
-		try {
-			FileWriter fw = new FileWriter(file);
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write("<Tom><Likes><Men><.jpg></.jpg></Men></Likes></Tom>");
-			bw.close();
-		} catch (IOException e) {
-	             Toast.makeText(getApplicationContext(),"Error writing file!",Toast.LENGTH_LONG).show();
-	     }
+		StreamResult result = new StreamResult(modifiedFile);
+		transformer.transform(source, result);
+		
+		
+//		File workingDir = Environment.getExternalStorageDirectory();
+//		File file = new File(workingDir,"/output.xml");
+//		
+//		if(!file.exists()) {
+//			try {
+//            	file.createNewFile();
+//			} catch (IOException e) {
+//				Toast.makeText(getApplicationContext(),"Error creating file!",Toast.LENGTH_LONG).show();
+//			}
+//		}
+//		
+//		try {
+//			FileWriter fw = new FileWriter(file);
+//			BufferedWriter bw = new BufferedWriter(fw);
+//			bw.write("<Tom><Likes><Men><.jpg></.jpg></Men></Likes></Tom>");
+//			bw.close();
+//		} catch (IOException e) {
+//	             Toast.makeText(getApplicationContext(),"Error writing file!",Toast.LENGTH_LONG).show();
+//	     }
+		Toast.makeText(getBaseContext(), "Output file written.", Toast.LENGTH_SHORT).show();
+		
+		} catch(IOException e){
+			Toast.makeText(getApplicationContext(),"IOException occurred.",Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		} catch (SAXException e){
+			Toast.makeText(getApplicationContext(),"SAXException occurred.",Toast.LENGTH_LONG).show();
+		} catch (ParserConfigurationException e){
+			Toast.makeText(getApplicationContext(),"ParserConfigurationException occurred.",Toast.LENGTH_LONG).show();
+		} catch (TransformerConfigurationException e){
+			Toast.makeText(getApplicationContext(),"TransformerConfigurationException occurred.",Toast.LENGTH_LONG).show();
+		} catch (TransformerException e){
+			Toast.makeText(getApplicationContext(),"TransformerException occurred.",Toast.LENGTH_LONG).show();
+		}
 	}
 	
 }
