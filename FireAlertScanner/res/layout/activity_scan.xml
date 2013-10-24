@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ScanActivity" >
+
+    <LinearLayout
+	        android:id="@+id/SelectorLayout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal" >
+	        
+	    <LinearLayout
+	        android:id="@+id/FloorField"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:orientation="vertical" >
+	
+	        <TextView
+	            android:id="@+id/textView1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Floor" />
+	
+	        <Spinner
+	            android:id="@+id/floorSpinner"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	
+	    </LinearLayout>
+	    
+	    <LinearLayout
+	        android:id="@+id/RoomField"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:orientation="vertical" >
+	
+	        <TextView
+	            android:id="@+id/textView2"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Room" />
+	
+	        <Spinner
+	            android:id="@+id/roomSpinner"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content" />
+	
+	    </LinearLayout>
+	    
+	</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ContentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/EquipmentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical" >
+
+            <ExpandableListView
+                android:id="@+id/expandableEquipmentList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ExpandableListView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/OperationsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Scan" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Manual" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
