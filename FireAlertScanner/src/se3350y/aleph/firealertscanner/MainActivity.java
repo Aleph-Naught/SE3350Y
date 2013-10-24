@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Environment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
@@ -61,44 +62,72 @@ public class MainActivity extends Activity {
 		list.item(0).setTextContent(passOrFail);
 	}
 	
-	public void recordResults(View view){
-		// if SD card is not available
+	public static Document getDOM(Context context) throws SAXException, IOException, ParserConfigurationException{
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-			Toast.makeText(getBaseContext(), "SD card not available.", Toast.LENGTH_SHORT).show();
-			return;
+			Toast.makeText(context, "SD card not available.", Toast.LENGTH_SHORT).show();
+			return null;
 		}
 		
-		try {
 		File workingDir = Environment.getExternalStorageDirectory();
 		File file = new File(workingDir,"/InspectionData.xml");
 		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = builder.parse(file);
+		return doc;
+	}
+	
+	public static void writeDOMResults(Document doc, Context context) throws TransformerException{
+		Transformer transformer = TransformerFactory.newInstance().newTransformer();
+		DOMSource source = new DOMSource(doc);
+		File modifiedFile = new File(Environment.getExternalStorageState(),"/Modified.xml");
+		
+		if(modifiedFile.exists())
+			modifiedFile.delete();
+		try {
+        	modifiedFile.createNewFile();
+		} catch (IOException e) {
+			Toast.makeText(context,"Error creating file!",Toast.LENGTH_LONG).show();
+		}
+		
+		StreamResult result = new StreamResult(modifiedFile);
+		transformer.transform(source, result);
+	}
+	
+	public void recordResults(View view){
+		// if SD card is not available
+//		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+//			Toast.makeText(getBaseContext(), "SD card not available.", Toast.LENGTH_SHORT).show();
+//			return;
+//		}
+//		
+		try {
+//		File workingDir = Environment.getExternalStorageDirectory();
+//		File file = new File(workingDir,"/InspectionData.xml");
+//		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		Document doc = getDOM(getBaseContext());
 		
 		// Root node; in this case, Franchisee
 		Node firstNode = doc.getFirstChild();
-//		XPath xpath = XPathFactory.newInstance().newXPath();
-//		NodeList list = (NodeList) xpath.evaluate("//*[@id='33101']/*[@name='Signage']/@testResult",
-//				firstNode, XPathConstants.NODESET);
-//		list.item(0).setTextContent("Fail");
+
 		setPassFail("33101", "6 Year Insp", "Fail", firstNode);
 		setPassFail("33101", "Pull Pin", "Fail", firstNode);
 		setPassFail("77207", "Cabinet Condition", "Good", firstNode);
 		
 		// Write result
-		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-		DOMSource source = new DOMSource(doc);
-		File modifiedFile = new File(workingDir,"/Modified.xml");
-		
-		if(modifiedFile.exists())
-			modifiedFile.delete();
-		try {
-        	file.createNewFile();
-		} catch (IOException e) {
-			Toast.makeText(getApplicationContext(),"Error creating file!",Toast.LENGTH_LONG).show();
-		}
-		
-		StreamResult result = new StreamResult(modifiedFile);
-		transformer.transform(source, result);
+//		Transformer transformer = TransformerFactory.newInstance().newTransformer();
+//		DOMSource source = new DOMSource(doc);
+//		File modifiedFile = new File(workingDir,"/Modified.xml");
+//		
+//		if(modifiedFile.exists())
+//			modifiedFile.delete();
+//		try {
+//        	modifiedFile.createNewFile();
+//		} catch (IOException e) {
+//			Toast.makeText(getApplicationContext(),"Error creating file!",Toast.LENGTH_LONG).show();
+//		}
+//		
+//		StreamResult result = new StreamResult(modifiedFile);
+//		transformer.transform(source, result);
+		writeDOMResults(doc, getBaseContext());
 
 		Toast.makeText(getBaseContext(), "Output file written.", Toast.LENGTH_SHORT).show();
 		
