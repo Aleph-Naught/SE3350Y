@@ -70,13 +70,14 @@ public class MainActivity extends Activity {
 		File workingDir = Environment.getExternalStorageDirectory();
 		File file = new File(workingDir,"/InspectionData.xml");
 		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-		// TODO: This is currently throwing an IOException
 		Document doc = builder.parse(file);
 		
-		NodeList list = doc.getElementsByTagName("Client");
-		Node client = list.item(0);
-		Node id = client.getAttributes().getNamedItem("id");
-		id.setTextContent("1001-05");
+		// Root node; in this case, Franchisee
+		Node firstNode = doc.getFirstChild();
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		NodeList list = (NodeList) xpath.evaluate("./Client/clientContract/ServiceAddress/Floor/Room/Extinguisher[@id='33101']/*[@name='Weight']/@testResult",
+				firstNode, XPathConstants.NODESET);
+		list.item(0).setTextContent("Pass");
 		
 		// Write result
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
@@ -127,6 +128,8 @@ public class MainActivity extends Activity {
 			Toast.makeText(getApplicationContext(),"TransformerConfigurationException occurred.",Toast.LENGTH_LONG).show();
 		} catch (TransformerException e){
 			Toast.makeText(getApplicationContext(),"TransformerException occurred.",Toast.LENGTH_LONG).show();
+		} catch (XPathExpressionException e){
+			
 		}
 	}
 	
