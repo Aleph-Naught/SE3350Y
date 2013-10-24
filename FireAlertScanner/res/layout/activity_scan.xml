@@ -91,7 +91,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Scan" />
+                android:text="Scan"
+                android:onClick="launchScan" />
 
             <Button
                 android:id="@+id/button2"

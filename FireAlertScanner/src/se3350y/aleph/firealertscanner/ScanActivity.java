@@ -130,6 +130,11 @@ public class ScanActivity extends Activity {
         
 	}
 	
+	public void launchScan(View view){
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+	}
+	
 	 private void prepareListData() {
 		 
 		 listDataHeader = new ArrayList<String>();

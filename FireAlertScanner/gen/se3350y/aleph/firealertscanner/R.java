@@ -24,73 +24,47 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int ContentLayout=0x7f080020;
-        public static final int EquipmentView=0x7f080021;
-        public static final int FloorField=0x7f08001b;
+        public static final int ContentLayout=0x7f080019;
+        public static final int EquipmentView=0x7f08001a;
+        public static final int FloorField=0x7f080013;
         public static final int Franchisee=0x7f08000a;
-<<<<<<< HEAD
-        public static final int action_forgot_password=0x7f080015;
-        public static final int action_settings=0x7f080016;
-=======
-        public static final int OperationsLayout=0x7f080023;
-        public static final int RoomField=0x7f08001d;
-        public static final int SelectorLayout=0x7f08001a;
-        public static final int action_forgot_password=0x7f08002e;
-        public static final int action_settings=0x7f08002f;
-        public static final int button1=0x7f080024;
-        public static final int button2=0x7f080025;
->>>>>>> origin/InspectionPage
+        public static final int OperationsLayout=0x7f08001c;
+        public static final int RoomField=0x7f080016;
+        public static final int SelectorLayout=0x7f080012;
+        public static final int action_forgot_password=0x7f080027;
+        public static final int action_settings=0x7f080028;
+        public static final int button1=0x7f08001d;
+        public static final int button2=0x7f08001e;
         public static final int client=0x7f08000b;
         public static final int clientContractSpinner=0x7f08000e;
         public static final int clientSpinner=0x7f08000c;
         public static final int client_contract=0x7f08000d;
-<<<<<<< HEAD
-        public static final int editText=0x7f080013;
+        public static final int editText=0x7f080020;
         public static final int email=0x7f080003;
         public static final int enterButton=0x7f080011;
-=======
-        public static final int editText=0x7f080027;
-        public static final int element=0x7f080017;
-        public static final int elementSpinner=0x7f080018;
-        public static final int email=0x7f080003;
-        public static final int enterButton=0x7f080019;
-        public static final int equiptment=0x7f080015;
-        public static final int equiptmentSpinner=0x7f080016;
-        public static final int expandableEquipmentList=0x7f080022;
-        public static final int floor=0x7f080011;
-        public static final int floorSpinner=0x7f080012;
-        public static final int inspectionElement=0x7f08002a;
-        public static final int lblListHeader=0x7f080029;
->>>>>>> origin/InspectionPage
+        public static final int expandableEquipmentList=0x7f08001b;
+        public static final int floorSpinner=0x7f080015;
+        public static final int inspectionElement=0x7f080023;
+        public static final int lblListHeader=0x7f080022;
         public static final int login=0x7f080005;
         public static final int login_form=0x7f080002;
         public static final int login_status=0x7f080000;
         public static final int login_status_message=0x7f080001;
         public static final int password=0x7f080004;
-        public static final int radio0=0x7f08002c;
-        public static final int radio1=0x7f08002d;
-        public static final int radioGroup1=0x7f08002b;
+        public static final int radio0=0x7f080025;
+        public static final int radio1=0x7f080026;
+        public static final int radioGroup1=0x7f080024;
         public static final int record_button=0x7f080008;
-<<<<<<< HEAD
-=======
-        public static final int roomSpinner=0x7f08001f;
-        public static final int rooms=0x7f080013;
-        public static final int roomsSpinner=0x7f080014;
->>>>>>> origin/InspectionPage
+        public static final int roomSpinner=0x7f080018;
         public static final int scan_button=0x7f080007;
         public static final int scroll_view=0x7f080009;
         public static final int serviceAddressSpinner=0x7f080010;
         public static final int service_address=0x7f08000f;
         public static final int sign_in_button=0x7f080006;
-<<<<<<< HEAD
-        public static final int tv_getdata_from_edittext=0x7f080012;
-        public static final int tv_getdata_from_scanner=0x7f080014;
-=======
-        public static final int textView1=0x7f08001c;
-        public static final int textView2=0x7f08001e;
-        public static final int tv_getdata_from_edittext=0x7f080026;
-        public static final int tv_getdata_from_scanner=0x7f080028;
->>>>>>> origin/InspectionPage
+        public static final int textView1=0x7f080014;
+        public static final int textView2=0x7f080017;
+        public static final int tv_getdata_from_edittext=0x7f08001f;
+        public static final int tv_getdata_from_scanner=0x7f080021;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
