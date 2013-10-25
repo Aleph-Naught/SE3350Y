@@ -213,7 +213,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
         InputStream in=null;
 		try {
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
-			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
@@ -255,15 +254,41 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	public void manual(View view){
 		// COPIED DIRECTLY FROM MAINACTIVITY
 		// TODO It seems that MainActivity has become redundant. Should revise.
+		String extinguisherID = "33101";
+		Equipment testEquip = ExpListItems.get(0);
+		inspectionElement testElement = testEquip.getItems().get(0);
+		String passFail = null;
+		String inspectName = testElement.getName();
+		if (testElement.getClass().equals(ExtinguisherPassFailElement.class)){
+			int x = ((ExtinguisherPassFailElement) testElement).getPassFail();
+			if (x > 0){
+				passFail = "Pass";
+			}
+			else if (x < 0){
+				passFail = "Fail";
+			}
+			else passFail = "none";
+		}
+		else {
+			int x = ((FireHoseCabinetGoodPoorElement) testElement).getGoodPoor();
+			if (x > 0){
+				passFail = "Good";
+			}
+			else if (x < 0){
+				passFail = "Poor";
+			}
+			else passFail = "none";
+		}
+		
+		//Toast.makeText(getBaseContext(), passFail, Toast.LENGTH_SHORT).show();
+		
 		try {
 			Document doc = DOM.getDOM(getBaseContext());
 			
 			// Root node; in this case, Franchisee
 			Node firstNode = doc.getFirstChild();
 
-			DOM.setPassFail("33101", "Hose", "Fail", firstNode);
-			DOM.setPassFail("33101", "Hydro Test", "Pass", firstNode);
-			DOM.setPassFail("88103", "Requires Service or Repair", "Yes", firstNode);
+			DOM.setPassFail("33101", inspectName, passFail, firstNode);
 			
 			// Write result
 			DOM.writeDOMResults(doc, getBaseContext());
@@ -330,7 +355,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 	
