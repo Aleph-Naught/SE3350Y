@@ -150,12 +150,6 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	//Connects "Enter" button to the next activity
-	// public void getDataInput(View view)  {
-	// 	// TODO Need to add message to carry XML data to next activity
-	// 	Log.i("Main Data Entry", "Enter button pressed");
-	// 	Intent intent = new Intent(this, MainActivity.class);
-	// 	//intent.putExtra("se3350y.aleph.firealertscanner.MainActivity.nodes", nodes);
 	
 	public void getDataInput(View view) throws XPathExpressionException, IOException {
 		

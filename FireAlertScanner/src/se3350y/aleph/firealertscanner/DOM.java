@@ -29,22 +29,21 @@ import android.widget.Toast;
 /**
  * A class to store the static DOM-related files for reading, editing, and writing XML.
  * @author Ben
- *
  */
 public class DOM {
 	
 	/**
-	 * Set "Pass", "Fail", or other applicable values to the XML document.
+	 * Set "Pass", "Fail", or other applicable values to an inspectionElement node.
 	 * @param 	equipmentID The ID of the equipment containing the inspectionElement.
 	 * @param 	inspectionElementName The name attribute of the target inspectionElement.
-	 * @param 	passOrFail A string representing pass or fail (may be other things like "Yes" and "No".
+	 * @param 	passOrFail A string representing pass or fail (may be other things like "Yes" and "No").
 	 * @param 	rootNode The root node of the document. In our case, Franchisee. getFirstChild() can be used on the {@link Document} to obtain this.
 	 * @throws 	XPathExpressionException In the case that the XPath expression is invalid.
 	 */
 	public static void setPassFail(String equipmentID, String inspectionElementName, String passOrFail, Node rootNode) throws XPathExpressionException{
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		
-		// Take the String values passed as agruments and put them into the XPath String.
+		// Take the String values passed as arguments and put them into the XPath String.
 		String path = "//*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testResult";
 		NodeList list = (NodeList) xpath.evaluate(path,
 				rootNode, XPathConstants.NODESET);
@@ -83,7 +82,7 @@ public class DOM {
 	public static void writeDOMResults(Document doc, Context context) throws TransformerException, FileNotFoundException{
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
-		// TODO: Might change this to a different name, or pass the filename as a method argument.
+		// TODO Might change this to a different name, or pass the filename as a method argument.
 		File modifiedFile = new File(Environment.getExternalStorageDirectory(),"/Modified.xml");
 		
 		if(modifiedFile.exists())
