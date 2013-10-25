@@ -47,6 +47,230 @@
             </EmergencyLight>
             
           </Room>
+	<Room id="R2" No="">
+            <Extinguisher id="33101" location="East Stair" size="10" type="ABC" model="Amerex" serialNo="s123" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of the following elements can be Pass or Fail. -->
+              <!-- testNote becomes amondantory field if the testResult is Fail. -->
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            <Extinguisher id="33102" location="Elev Lobby" size="10" type="ABC" model="Amerex" serialNo="s123">
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            
+            <FireHoseCabinet id="77207" location="Staircase D" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of "Cabinet Condition" can be Good, Poor, or N/A -->
+              <inspectionElement_1 name="Cabinet Condition" testResult="" testNote=""/>
+              <!-- testResult of "Nozzle Condition" can be Good, Poor , or N/A -->
+              <inspectionElement_2 name="Nozzle Condition" testResult="" testNote=""/>
+              <!-- testResult of "Hose Re-Rack" can be Yes or No. Do not use numeric value -->
+              <inspectionElement_3 name="Hose Re-Rack" testResult="" testNote=""/>
+              <!-- testResult of "Hydrostatic Test Due" can be Yes or No. -->
+              <inspectionElement_4 name="Hydrostatic Test Due" testResult="" testNote=""/>
+            </FireHoseCabinet>        
+            
+            <EmergencyLight id="88103" location="Some where" model="2341" make="Chubb" numHeads="4" totalPower="10W" voltage="10V">
+              <!-- testResult of the following elements can be Yes or No. -->
+              <inspectionElement_1 name="Requires Service or Repair" testResult="" testNote=""/>
+              <inspectionElement_2 name="Operation Confirmed" testResult="" testNote=""/>
+            </EmergencyLight>
+            
+          </Room>
+        </Floor>
+	<Floor name="Second Floor">
+          <Room id="R1" No="">
+            <Extinguisher id="33101" location="East Stair" size="10" type="ABC" model="Amerex" serialNo="s123" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of the following elements can be Pass or Fail. -->
+              <!-- testNote becomes amondantory field if the testResult is Fail. -->
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            <Extinguisher id="33102" location="Elev Lobby" size="10" type="ABC" model="Amerex" serialNo="s123">
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            
+            <FireHoseCabinet id="77207" location="Staircase D" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of "Cabinet Condition" can be Good, Poor, or N/A -->
+              <inspectionElement_1 name="Cabinet Condition" testResult="" testNote=""/>
+              <!-- testResult of "Nozzle Condition" can be Good, Poor , or N/A -->
+              <inspectionElement_2 name="Nozzle Condition" testResult="" testNote=""/>
+              <!-- testResult of "Hose Re-Rack" can be Yes or No. Do not use numeric value -->
+              <inspectionElement_3 name="Hose Re-Rack" testResult="" testNote=""/>
+              <!-- testResult of "Hydrostatic Test Due" can be Yes or No. -->
+              <inspectionElement_4 name="Hydrostatic Test Due" testResult="" testNote=""/>
+            </FireHoseCabinet>        
+            
+            <EmergencyLight id="88103" location="Some where" model="2341" make="Chubb" numHeads="4" totalPower="10W" voltage="10V">
+              <!-- testResult of the following elements can be Yes or No. -->
+              <inspectionElement_1 name="Requires Service or Repair" testResult="" testNote=""/>
+              <inspectionElement_2 name="Operation Confirmed" testResult="" testNote=""/>
+            </EmergencyLight>
+            
+          </Room>
+	<Room id="Basement" No="">
+            <Extinguisher id="33101" location="East Stair" size="10" type="ABC" model="Amerex" serialNo="s123" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of the following elements can be Pass or Fail. -->
+              <!-- testNote becomes amondantory field if the testResult is Fail. -->
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            <Extinguisher id="33102" location="Elev Lobby" size="10" type="ABC" model="Amerex" serialNo="s123">
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            
+            <FireHoseCabinet id="77207" location="Staircase D" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of "Cabinet Condition" can be Good, Poor, or N/A -->
+              <inspectionElement_1 name="Cabinet Condition" testResult="" testNote=""/>
+              <!-- testResult of "Nozzle Condition" can be Good, Poor , or N/A -->
+              <inspectionElement_2 name="Nozzle Condition" testResult="" testNote=""/>
+              <!-- testResult of "Hose Re-Rack" can be Yes or No. Do not use numeric value -->
+              <inspectionElement_3 name="Hose Re-Rack" testResult="" testNote=""/>
+              <!-- testResult of "Hydrostatic Test Due" can be Yes or No. -->
+              <inspectionElement_4 name="Hydrostatic Test Due" testResult="" testNote=""/>
+            </FireHoseCabinet>        
+            
+            <EmergencyLight id="88103" location="Some where" model="2341" make="Chubb" numHeads="4" totalPower="10W" voltage="10V">
+              <!-- testResult of the following elements can be Yes or No. -->
+              <inspectionElement_1 name="Requires Service or Repair" testResult="" testNote=""/>
+              <inspectionElement_2 name="Operation Confirmed" testResult="" testNote=""/>
+            </EmergencyLight>
+            
+          </Room>
+        </Floor>
+	<Floor name="Third Floor">
+	<Room id="Bathroom" No="">
+            <Extinguisher id="33101" location="East Stair" size="10" type="ABC" model="Amerex" serialNo="s123" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of the following elements can be Pass or Fail. -->
+              <!-- testNote becomes amondantory field if the testResult is Fail. -->
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            <Extinguisher id="33102" location="Elev Lobby" size="10" type="ABC" model="Amerex" serialNo="s123">
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            
+            <FireHoseCabinet id="77207" location="Staircase D" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of "Cabinet Condition" can be Good, Poor, or N/A -->
+              <inspectionElement_1 name="Cabinet Condition" testResult="" testNote=""/>
+              <!-- testResult of "Nozzle Condition" can be Good, Poor , or N/A -->
+              <inspectionElement_2 name="Nozzle Condition" testResult="" testNote=""/>
+              <!-- testResult of "Hose Re-Rack" can be Yes or No. Do not use numeric value -->
+              <inspectionElement_3 name="Hose Re-Rack" testResult="" testNote=""/>
+              <!-- testResult of "Hydrostatic Test Due" can be Yes or No. -->
+              <inspectionElement_4 name="Hydrostatic Test Due" testResult="" testNote=""/>
+            </FireHoseCabinet>        
+            
+            <EmergencyLight id="88103" location="Some where" model="2341" make="Chubb" numHeads="4" totalPower="10W" voltage="10V">
+              <!-- testResult of the following elements can be Yes or No. -->
+              <inspectionElement_1 name="Requires Service or Repair" testResult="" testNote=""/>
+              <inspectionElement_2 name="Operation Confirmed" testResult="" testNote=""/>
+            </EmergencyLight>
+            
+          </Room>
+          <Room id="R1" No="">
+            <Extinguisher id="33101" location="East Stair" size="10" type="ABC" model="Amerex" serialNo="s123" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of the following elements can be Pass or Fail. -->
+              <!-- testNote becomes amondantory field if the testResult is Fail. -->
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            <Extinguisher id="33102" location="Elev Lobby" size="10" type="ABC" model="Amerex" serialNo="s123">
+              <inspectionElement_1 name="Hydro Test" testResult="" testNote=""/>
+              <inspectionElement_2 name="6 Year Insp" testResult="" testNote=""/>
+              <inspectionElement_3 name="Weight" testResult="" testNote=""/>
+              <inspectionElement_4 name="Bracket" testResult="" testNote=""/>
+              <inspectionElement_5 name="Gauge" testResult="" testNote=""/>
+              <inspectionElement_6 name="Pull Pin" testResult="" testNote=""/>
+              <inspectionElement_7 name="Signage" testResult="" testNote=""/>
+              <inspectionElement_8 name="Collar" testResult="" testNote=""/>
+              <inspectionElement_9 name="Hose" testResult="" testNote=""/>
+            </Extinguisher>
+            
+            <FireHoseCabinet id="77207" location="Staircase D" manufacturingDate="dd/mm/yyyy">
+              <!-- testResult of "Cabinet Condition" can be Good, Poor, or N/A -->
+              <inspectionElement_1 name="Cabinet Condition" testResult="" testNote=""/>
+              <!-- testResult of "Nozzle Condition" can be Good, Poor , or N/A -->
+              <inspectionElement_2 name="Nozzle Condition" testResult="" testNote=""/>
+              <!-- testResult of "Hose Re-Rack" can be Yes or No. Do not use numeric value -->
+              <inspectionElement_3 name="Hose Re-Rack" testResult="" testNote=""/>
+              <!-- testResult of "Hydrostatic Test Due" can be Yes or No. -->
+              <inspectionElement_4 name="Hydrostatic Test Due" testResult="" testNote=""/>
+            </FireHoseCabinet>        
+            
+            <EmergencyLight id="88103" location="Some where" model="2341" make="Chubb" numHeads="4" totalPower="10W" voltage="10V">
+              <!-- testResult of the following elements can be Yes or No. -->
+              <inspectionElement_1 name="Requires Service or Repair" testResult="" testNote=""/>
+              <inspectionElement_2 name="Operation Confirmed" testResult="" testNote=""/>
+            </EmergencyLight>
+            
+          </Room>
         </Floor>
       </ServiceAddress>
     </clientContract>

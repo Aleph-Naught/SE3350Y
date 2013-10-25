@@ -58,7 +58,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
 			ViewGroup parent) {
     	
-    	//Used to do stuff I dunno it's hard to explain
+    	//Used to do stuff, I dunno it's hard to explain
     	View view = null;
     	
     	//Gets a reference to the current child
