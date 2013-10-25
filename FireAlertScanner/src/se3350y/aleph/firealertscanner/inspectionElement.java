@@ -7,16 +7,10 @@ import android.widget.RadioGroup;
 public class inspectionElement {
 	
 
-		private String Name;
-		private int passFail;
+		String Name;
 		private String Tag;
 		
-		public void setPassFail(int i){
-			passFail = i;
-		}
-		public int getPassFail(){
-			return passFail;
-		}
+		
 	
 		public String getName() {
 			return Name;
