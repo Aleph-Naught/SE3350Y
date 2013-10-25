@@ -7,66 +7,64 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ScanActivity" >
-	
-	        <TextView
-	            android:id="@+id/floorTextView"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="Floor"
-	            tools:ignore="HardcodedText" />
-	
-	        <Spinner
-	            android:id="@+id/floorSpinner"
-	            android:layout_height="wrap_content"
-	            android:layout_width="225dp"
-	            android:layout_below="@id/floorTextView" />
-	
-	
-	        <TextView
-	            android:id="@+id/roomTextView"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:text="Room"
-	            android:layout_toRightOf="@id/floorSpinner" />
-	
-	        <Spinner
-	            android:id="@+id/roomSpinner"
-	            android:layout_width="225dp"
-	            android:layout_height="wrap_content"
-	            android:layout_toRightOf="@id/floorSpinner"
-	            android:layout_below="@id/roomTextView"  />
-	        
-            <ExpandableListView
-                android:id="@+id/expandableEquipmentList"
-                android:layout_width="match_parent"
-            	android:layout_height="match_parent"
-            	android:layout_weight="5"
-            	android:layout_below="@id/roomSpinner"
-            	android:layout_above="@+id/OperationsLayout" />
 
+    <TextView
+        android:id="@+id/floorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Floor"
+        tools:ignore="HardcodedText" />
 
-        <LinearLayout
-            android:id="@id/OperationsLayout"
+    <Spinner
+        android:id="@+id/floorSpinner"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/floorTextView" />
+
+    <TextView
+        android:id="@+id/roomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/floorSpinner"
+        android:text="Room" />
+
+    <Spinner
+        android:id="@+id/roomSpinner"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/roomTextView"
+        android:layout_toRightOf="@id/floorSpinner" />
+
+    <ExpandableListView
+        android:id="@+id/expandableEquipmentList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/OperationsLayout"
+        android:layout_below="@id/roomSpinner"
+        android:layout_weight="5" />
+
+    <LinearLayout
+        android:id="@id/OperationsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/scanButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true" >
+            android:layout_weight="1"
+            android:onClick="onScanClick"
+            android:text="Scan" />
 
-            <Button
-                android:id="@+id/scanButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="onScanClick"
-                android:text="Scan" />
-
-            <Button
-                android:id="@+id/manButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Manual" />
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/manButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onManClick"
+            android:text="Manual" />
+    </LinearLayout>
 
 </RelativeLayout>
