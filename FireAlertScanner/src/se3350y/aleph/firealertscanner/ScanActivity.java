@@ -138,11 +138,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		      
 		      
 		      tempEquipment.setName(element.getNodeName());
-		      
-		      if(element.getNodeName().equals("Extinguisher"))
-		    	  temp = new ExtinguisherPassFailElement();
-		      else if(element.getNodeName().equals("FireHoseCabinet"))
-	    		  temp = new FireHoseCabinetGoodPoorElement(ScanActivity.this);
+		      tempEquipment.setId(element.getAttribute("id"));
+		     
 		      
 		    //Find Inspection Element Nodes
 				try {
@@ -294,6 +291,27 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void onScanClick(View view){
+		Log.i("ScaActivity","Scan Button Clicked");
+		
+		Equipment temp = new Equipment();
+		
+		int groupPos = 0;
+		
+		for(int i = 0; i < ExpListItems.size(); i++)
+			ExpandList.collapseGroup(i);
+		
+		for(int i = 0; i < ExpListItems.size(); i++){
+			temp = ExpListItems.get(i);
+			if(temp.getId().equals("77207")){
+				groupPos = i;
+				break;
+			}
+		}
+		
+		ExpandList.expandGroup(groupPos);
 	}
 	
 	

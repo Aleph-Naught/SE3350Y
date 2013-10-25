@@ -9,8 +9,6 @@ public class inspectionElement {
 
 		String Name;
 		private String Tag;
-		
-		
 	
 		public String getName() {
 			return Name;
