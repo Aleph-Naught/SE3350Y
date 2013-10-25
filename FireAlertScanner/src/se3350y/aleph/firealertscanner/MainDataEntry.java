@@ -3,6 +3,7 @@ package se3350y.aleph.firealertscanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -27,7 +28,6 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -35,9 +35,6 @@ import android.graphics.Typeface;
 import android.os.Build;
 
 public class MainDataEntry extends Activity implements OnItemSelectedListener{
-
-	//Flag to stop onCreate() from auto populating spinners
-	private boolean spinner_flag = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -149,13 +146,10 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	//Connects "Enter" button to the next activity
-	public void getDataInput(View view)  {
-		// TODO Need to add message to carry XML data to next activity
-		Log.i("Main Data Entry", "Enter button pressed");
-		Intent intent = new Intent(this, MainActivity.class);
-		//intent.putExtra("se3350y.aleph.firealertscanner.MainActivity.nodes", nodes);
+	
+	public void getDataInput(View view) throws XPathExpressionException, IOException {
+		
+		Intent intent = new Intent(this, ScanActivity.class);
 		startActivity(intent);
 	}
 
@@ -168,44 +162,40 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		//Stores child spinner so that child spinners can be updated in a chain reaction
 		Spinner spinner_child = null;
 
-		//check flag so that onCreate() doesn't populate everything right away
-		if (spinner_flag == false){
-			spinner_flag = true;
-			Log.i("Main Data Entry", "Spinner_flag triggered");
-		} else {
 
-			//Reference to parent spinner
-			Spinner spinner = (Spinner) parent;
-			//Check to see what spinner event occured at
-			if(spinner.getId() == R.id.clientSpinner)
-			{	
-				Log.i("Main Data Entry", "Client spinner event triggered");
-				//get child spinner  
-				spinner_child = (Spinner) findViewById(R.id.clientContractSpinner);
-				try{
-					//update child spinner data
-					ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client[@name='" + spinnerValue + "']/*[@id]", "id"));
-					spinner_child.setAdapter(adapter);
-					Log.i("Main Data Entry", "Client contract spinner updated");
-				} catch (XPathExpressionException e) {
-					e.printStackTrace();
-				}
 
+		//Reference to parent spinner
+		Spinner spinner = (Spinner) parent;
+		//Check to see what spinner event occured at
+		if(spinner.getId() == R.id.clientSpinner)
+		{	
+			Log.i("Main Data Entry", "Client spinner event triggered");
+			//get child spinner  
+			spinner_child = (Spinner) findViewById(R.id.clientContractSpinner);
+			try{
+				//update child spinner data
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client[@name='" + spinnerValue + "']/*[@id]", "id"));
+				spinner_child.setAdapter(adapter);
+				Log.i("Main Data Entry", "Client contract spinner updated");
+			} catch (XPathExpressionException e) {
+				e.printStackTrace();
 			}
-			else if(spinner.getId() == R.id.clientContractSpinner)
-			{
-				Log.i("Main Data Entry", "Client contract spinner triggered");
-				//get child spinner
-				spinner_child = (Spinner) findViewById(R.id.serviceAddressSpinner);
-				try{
-					//update child spinner data
-					ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract[@id='" + spinnerValue + "']/*[@address]", "address"));
-					spinner_child.setAdapter(adapter);
-					Log.i("Main Data Entry", "Service address spinner updated");
-				} catch (XPathExpressionException e) {
-					e.printStackTrace();
-				}
+
+		}
+		else if(spinner.getId() == R.id.clientContractSpinner)
+		{
+			Log.i("Main Data Entry", "Client contract spinner triggered");
+			//get child spinner
+			spinner_child = (Spinner) findViewById(R.id.serviceAddressSpinner);
+			try{
+				//update child spinner data
+				ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract[@id='" + spinnerValue + "']/*[@address]", "address"));
+				spinner_child.setAdapter(adapter);
+				Log.i("Main Data Entry", "Service address spinner updated");
+			} catch (XPathExpressionException e) {
+				e.printStackTrace();
 			}
+
 		}
 	}
 
