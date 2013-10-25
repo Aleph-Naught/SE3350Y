@@ -58,72 +58,30 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
 			ViewGroup parent) {
     	
+    	
     	//Used to do stuff, I dunno it's hard to explain
     	View view = null;
     	
+    	Object child = null;
+    	
+    	final Equipment groupParent = (Equipment) getGroup(groupPosition);
+    	
+    	
     	//Gets a reference to the current child
-		final inspectionElement child = (inspectionElement) getChild(groupPosition, childPosition);
 		
-		//Inflates XML
-		if (convertView == null) {
-			LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-			view = infalInflater.inflate(R.layout.list_item, null);
-			
-			//For Radio Button state holding
-			final passFailViewHolder viewHolder = new passFailViewHolder();
-			
-			//Set ViewHolder's RadioGroup to the one in the row
-			viewHolder.VH_radioGroupPassFail = (RadioGroup) view.findViewById(R.id.extinguisherRadioGroup);
-			
-			//OnClick Listener
-			viewHolder.VH_radioGroupPassFail
-	          .setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-				@Override
-				public void onCheckedChanged(RadioGroup group, int checkedId) {
-					// TODO Auto-generated method stub
-					
-					inspectionElement element = (inspectionElement) viewHolder.VH_radioGroupPassFail.getTag();
-					
-					//Sets Model
-					if(checkedId == R.id.radioPass)
-						element.setPassFail(1);
-					else if(checkedId == R.id.radioFail)
-						element.setPassFail(-1);
-					else if(checkedId == R.id.radioNone)
-						element.setPassFail(0);
-					
-				}
-	          });
-			
-			//Sets view to ViewHolder or something I don't know really
-			view.setTag(viewHolder);
-		    viewHolder.VH_radioGroupPassFail.setTag(child);
-
-
-		}
-		else {
-			//If it's already been opened you don't need to rebuild it
-		      view = convertView;
-		      ((passFailViewHolder) view.getTag()).VH_radioGroupPassFail.setTag(child);
-		    }
-		
-		passFailViewHolder holder = (passFailViewHolder) view.getTag();
-		
-		//Read the model and set the radio buttons appropriately
-		if(child.getPassFail() == 1)
-			holder.VH_radioGroupPassFail.check(R.id.radioPass);
-		else if(child.getPassFail() == -1)
-			holder.VH_radioGroupPassFail.check(R.id.radioFail);
-		else if(child.getPassFail() == 0)
-			holder.VH_radioGroupPassFail.check(R.id.radioNone);
-
-
+    	if(groupParent.getName().equals("Extinguisher")){
+    		child = (ExtinguisherPassFailElement) getChild(groupPosition, childPosition);
+    		view = ((ExtinguisherPassFailElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    	}
+    	else if(groupParent.getName().equals("FireHoseCabinet")){
+    		child = (FireHoseCabinetGoodPoorElement) getChild(groupPosition, childPosition);
+    		view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    	}
 		
 		//Sets Text
 		TextView tv = (TextView) view.findViewById(R.id.inspectionElement);
-		tv.setText(child.getName().toString());
-		tv.setTag(child.getTag());
+		tv.setText(((inspectionElement) child).getName().toString());
+		tv.setTag(((inspectionElement) child).getTag());
 
 		return view;
 	}

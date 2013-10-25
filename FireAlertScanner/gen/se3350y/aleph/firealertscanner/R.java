@@ -47,21 +47,21 @@ public final class R {
         public static final int equiptment=0x7f080015;
         public static final int equiptmentSpinner=0x7f080016;
         public static final int expandableEquipmentList=0x7f080022;
-        public static final int extinguisherRadioGroup=0x7f08002d;
+        public static final int extinguisherRadioGroup=0x7f08002c;
         public static final int floor=0x7f080011;
         public static final int floorSpinner=0x7f080012;
-        public static final int id_num=0x7f08002c;
-        public static final int inspectionElement=0x7f08002b;
-        public static final int item_layout=0x7f08002a;
-        public static final int lblListHeader=0x7f080029;
+        public static final int id_num=0x7f08002b;
+        public static final int inspectionElement=0x7f08002a;
+        public static final int item_layout=0x7f080029;
+        public static final int lblListHeader=0x7f080030;
         public static final int login=0x7f080005;
         public static final int login_form=0x7f080002;
         public static final int login_status=0x7f080000;
         public static final int login_status_message=0x7f080001;
         public static final int password=0x7f080004;
-        public static final int radioFail=0x7f08002f;
-        public static final int radioNone=0x7f080030;
-        public static final int radioPass=0x7f08002e;
+        public static final int radioFail=0x7f08002e;
+        public static final int radioNone=0x7f08002f;
+        public static final int radioPass=0x7f08002d;
         public static final int record_button=0x7f080008;
         public static final int roomSpinner=0x7f08001f;
         public static final int rooms=0x7f080013;
@@ -82,8 +82,9 @@ public final class R {
         public static final int activity_main_data_entry=0x7f030002;
         public static final int activity_scan=0x7f030003;
         public static final int activity_scan_code_demo=0x7f030004;
-        public static final int list_group=0x7f030005;
-        public static final int list_item=0x7f030006;
+        public static final int extinguisher_item=0x7f030005;
+        public static final int firehosecabinet_goodpoor_item=0x7f030006;
+        public static final int list_group=0x7f030007;
     }
     public static final class menu {
         public static final int login=0x7f070000;

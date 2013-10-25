@@ -90,7 +90,12 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
     	ArrayList<inspectionElement> tempInspectionElements = new ArrayList<inspectionElement>();
     	Equipment tempEquipment;
-    	inspectionElement temp;
+    	
+    	Object temp = null;
+    	
+    	//Sets up temp objects
+    	ExtinguisherPassFailElement tempExtinguisher;
+    	FireHoseCabinetGoodPoorElement tempFireHoseCabinetGoodPoor;
     	
     	//An xpath instance
         XPath xpath = XPathFactory.newInstance().newXPath();
@@ -138,6 +143,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		      
 		      tempEquipment.setName(element.getNodeName());
 		      
+		      if(element.getNodeName().equals("Extinguisher"))
+		    	  temp = new ExtinguisherPassFailElement();
+		      else if(element.getNodeName().equals("FireHoseCabinet"))
+	    		  temp = new FireHoseCabinetGoodPoorElement();
+		      
 		    //Find Inspection Element Nodes
 				try {
 					attrNodes = (NodeList) xpath.evaluate("./*", element, XPathConstants.NODESET);
@@ -151,13 +161,18 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		      for(int j=0; j < attrNodes.getLength(); j++){
 		    	  attrElement = (Element) attrNodes.item(j);
 		    	  
-		    	  temp = new inspectionElement();
+		    	  //Sees what object type it needs to be
+		    	  if(element.getNodeName().equals("Extinguisher"))
+			    	  temp = new ExtinguisherPassFailElement();
+		    	  else if(element.getNodeName().equals("FireHoseCabinet"))
+		    		  temp = new FireHoseCabinetGoodPoorElement();
+		    	  else
+		    		  temp = null;
 		    	  
-		    	  temp.setName(attrElement.getAttribute("name"));
-		    	  
-		    	  temp.setPassFail(0);
-		    	 
-		    	  tempInspectionElements.add(temp);
+		    	  if (temp!=null){
+			    	  ((inspectionElement) temp).setName(attrElement.getAttribute("name"));
+			    	  tempInspectionElements.add((inspectionElement) temp);
+		    	  }
 		    	  
 		      }
 		      
