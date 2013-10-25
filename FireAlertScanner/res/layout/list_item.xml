@@ -41,8 +41,7 @@
             android:id="@+id/radioPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pass"
-            android:onClick="radioPassClick"/>
+            android:text="Pass"/>
 
         <RadioButton
             android:id="@+id/radioFail"
