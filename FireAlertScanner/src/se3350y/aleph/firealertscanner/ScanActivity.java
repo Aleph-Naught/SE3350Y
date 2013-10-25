@@ -35,6 +35,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -42,10 +43,10 @@ public class ScanActivity extends Activity {
 	
 	InputStream in=null;
 	
-	ExpandableListAdapter listAdapter;
-	ExpandableListView expListView;
-	List<String> listDataHeader;
-	HashMap<String, List<String>> listDataChild;
+	private ExpandableListAdapter ExpAdapter;
+	private ArrayList<Equipment> ExpListItems;
+	private ExpandableListView ExpandList;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +72,110 @@ public class ScanActivity extends Activity {
 		 //STUFF TO DO WITH EXPANDABLE LIST
 		 
 		// get the listview
-	     expListView = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
+	     ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
+	     ExpListItems = SetStandarGroups();
+	     ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
+	     ExpandList.setAdapter(ExpAdapter);
 	     
 	     // preparing list data
-	     prepareListData();
+	     //prepareListData();
 	     
-	     listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+	     //listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 	     
 	     // setting list adapter
-	     expListView.setAdapter(listAdapter);
+	     //expListView.setAdapter(listAdapter);
 		
+	}
+
+	private ArrayList<Equipment> SetStandarGroups() {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Equipment> list = new ArrayList<Equipment>();
+    	ArrayList<inspectionElement> tempInspectionElements = new ArrayList<inspectionElement>();
+    	Equipment tempEquipment;
+    	inspectionElement temp;
+    	
+    	//An xpath instance
+        XPath xpath = XPathFactory.newInstance().newXPath();
+        
+        //Creates an InputStream and opens the file, then casts to InputSource
+        InputStream in=null;
+		try {
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
+		} catch (FileNotFoundException e) {
+			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
+			e.printStackTrace();
+		}
+		InputSource is = new InputSource(in);
+        
+        //Performs xpath and returns list of nodes
+        NodeList nodes = null;
+        
+		try {
+			nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*", is, XPathConstants.NODESET);
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+        
+        
+      //An element node to hold the current working node
+		Element element = null;
+		Element attrElement = null;
+		
+		NodeList attrNodes = null;
+		
+		
+		//For each piece of equipment
+		for (int i = 0; i < nodes.getLength(); i++) {
+			
+			tempInspectionElements = new ArrayList<inspectionElement>();
+			
+			tempEquipment = new Equipment();
+			
+			//Add node attribute to string array
+		      element = (Element) nodes.item(i);
+		      
+		      
+		      tempEquipment.setName(element.getNodeName());
+		      
+		    //Find Inspection Element Nodes
+				try {
+					attrNodes = (NodeList) xpath.evaluate("./*", element, XPathConstants.NODESET);
+				} catch (XPathExpressionException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			     
+		      
+		      //get inspection element names
+		      for(int j=0; j < attrNodes.getLength(); j++){
+		    	  attrElement = (Element) attrNodes.item(j);
+		    	  
+		    	  temp = new inspectionElement();
+		    	  
+		    	  temp.setName(attrElement.getAttribute("name"));
+		    	  
+		    	  temp.setPassFail(0);
+		    	 
+		    	  tempInspectionElements.add(temp);
+		    	  
+		      }
+		      
+		      
+		      
+		      tempEquipment.setItems(tempInspectionElements);
+		      
+		      list.add(tempEquipment);
+		      
+		      
+		}
+
+		
+		
+		return list;
 	}
 
 	@Override
@@ -136,7 +231,7 @@ public class ScanActivity extends Activity {
         spinner.setAdapter(adapter);
         
 	}
-	
+
 	public void launchScan(View view){
 		Intent intent = new Intent(this, ScanCodeDemo.class);
 		startActivity(intent);
@@ -177,96 +272,96 @@ public class ScanActivity extends Activity {
 				Toast.makeText(getApplicationContext(),"XPathExpressionException occurred.",Toast.LENGTH_LONG).show();
 				e.printStackTrace();
 			}
-	}
+	// }
 	
-	 private void prepareListData() {
+	//  private void prepareListData() {
 		 
-		 listDataHeader = new ArrayList<String>();
+	// 	 listDataHeader = new ArrayList<String>();
 	       
-		 listDataChild = new HashMap<String, List<String>>();
+	// 	 listDataChild = new HashMap<String, List<String>>();
 		 
 		 
-		//An array of strings to hold the names
-	        ArrayList<String> options=new ArrayList<String>();
+	// 	//An array of strings to hold the names
+	//         ArrayList<String> options=new ArrayList<String>();
 	        
-	        //An xpath instance
-	        XPath xpath = XPathFactory.newInstance().newXPath();
+	//         //An xpath instance
+	//         XPath xpath = XPathFactory.newInstance().newXPath();
 	        
-	        //Creates an InputStream and opens the file, then casts to InputSource
-	        InputStream in=null;
-			try {
-				in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
-			} catch (FileNotFoundException e) {
-				Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
-				e.printStackTrace();
-			}
-			InputSource is = new InputSource(in);
+	//         //Creates an InputStream and opens the file, then casts to InputSource
+	//         InputStream in=null;
+	// 		try {
+	// 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+	// 		} catch (FileNotFoundException e) {
+	// 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
+	// 			e.printStackTrace();
+	// 		}
+	// 		InputSource is = new InputSource(in);
 	        
-	        //Performs xpath and returns list of nodes
-	        NodeList nodes = null;
+	//         //Performs xpath and returns list of nodes
+	//         NodeList nodes = null;
 	        
-			try {
-				nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*", is, XPathConstants.NODESET);
-			} catch (XPathExpressionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	// 		try {
+	// 			nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*", is, XPathConstants.NODESET);
+	// 		} catch (XPathExpressionException e) {
+	// 			// TODO Auto-generated catch block
+	// 			e.printStackTrace();
+	// 		}
 			
 	        
 	        
-	      //An element node to hold the current working node
-			Element element = null;
-			Element attrElement = null;
-			List<String>  inspectionElement = new ArrayList<String>();
+	//       //An element node to hold the current working node
+	// 		Element element = null;
+	// 		Element attrElement = null;
+	// 		List<String>  inspectionElement = new ArrayList<String>();
 			
-			NodeList attrNodes = null;
+	// 		NodeList attrNodes = null;
 			
 			
-			//For each piece of equipment
-			for (int i = 0; i < nodes.getLength(); i++) {
+	// 		//For each piece of equipment
+	// 		for (int i = 0; i < nodes.getLength(); i++) {
 				
-				inspectionElement = new ArrayList<String>();
+	// 			inspectionElement = new ArrayList<String>();
 				
-				//Add node attribute to string array
-			      element = (Element) nodes.item(i);
+	// 			//Add node attribute to string array
+	// 		      element = (Element) nodes.item(i);
 			      
-			      //Add Equipment
-			      listDataHeader.add(element.getNodeName());
+	// 		      //Add Equipment
+	// 		      listDataHeader.add(element.getNodeName());
 			      
-			    //Find Inspection Element Nodes
-					try {
-						attrNodes = (NodeList) xpath.evaluate("./*", element, XPathConstants.NODESET);
-					} catch (XPathExpressionException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+	// 		    //Find Inspection Element Nodes
+	// 				try {
+	// 					attrNodes = (NodeList) xpath.evaluate("./*", element, XPathConstants.NODESET);
+	// 				} catch (XPathExpressionException e1) {
+	// 					// TODO Auto-generated catch block
+	// 					e1.printStackTrace();
+	// 				}
 				
 			      
-			    int fail = 0;
+	// 		    int fail = 0;
 			     
 			      
-			      //get inspection element names
-			      for(int j=0; j < attrNodes.getLength(); j++){
-			    	  attrElement = (Element) attrNodes.item(j);
+	// 		      //get inspection element names
+	// 		      for(int j=0; j < attrNodes.getLength(); j++){
+	// 		    	  attrElement = (Element) attrNodes.item(j);
 			    	  
-			    	  String name = null;
-			    	  fail = attrNodes.getLength();
+	// 		    	  String name = null;
+	// 		    	  fail = attrNodes.getLength();
 			    	  
-			    	  try{
-			    	  name = attrElement.getAttribute("name");
-			    	  }
-			    	  catch(NullPointerException e){
-			    		  e.printStackTrace();
-			    	  }
+	// 		    	  try{
+	// 		    	  name = attrElement.getAttribute("name");
+	// 		    	  }
+	// 		    	  catch(NullPointerException e){
+	// 		    		  e.printStackTrace();
+	// 		    	  }
 			    	  
-			    	  inspectionElement.add(name);
-			      }
+	// 		    	  inspectionElement.add(name);
+	// 		      }
 			      
 			      
-			      listDataChild.put(listDataHeader.get(i),inspectionElement ); // Header
+	// 		      listDataChild.put(listDataHeader.get(i),inspectionElement ); // Header
 			      
 			      
-			}
+	// 		}
 			
 			/*
 	        // Adding child data
@@ -299,6 +394,10 @@ public class ScanActivity extends Activity {
 	        listDataChild.put(listDataHeader.get(2), comingSoon);
 	        */
 	    }
+	    
+	public void radioPassClick(View view){
+		
+	}
 	
 
 }
