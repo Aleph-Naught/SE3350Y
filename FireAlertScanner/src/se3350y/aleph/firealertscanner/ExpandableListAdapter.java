@@ -74,8 +74,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     		view = ((ExtinguisherPassFailElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
     	}
     	else if(groupParent.getName().equals("FireHoseCabinet")){
-    		child = (FireHoseCabinetGoodPoorElement) getChild(groupPosition, childPosition);
-    		view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    		
+    		//There's too different input methods here
+    		child = (inspectionElement) getChild(groupPosition, childPosition);
+    		
+    		if( ((inspectionElement) child).getName().equals("Hose Re-Rack") || ((inspectionElement) child).getName().equals("Hydrostatic Test Due"))
+    			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    		else
+    			view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    		
+    	}
+    	else if(groupParent.getName().equals("EmergencyLight")){
+    		child = (EmergencyLightYesNoElement) getChild(groupPosition, childPosition);
+    		view = ((EmergencyLightYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
     	}
 		
 		//Sets Text

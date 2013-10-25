@@ -99,10 +99,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
     	
     	Object temp = null;
     	
-    	//Sets up temp objects
-    	ExtinguisherPassFailElement tempExtinguisher;
-    	FireHoseCabinetGoodPoorElement tempFireHoseCabinetGoodPoor;
-    	
     	//An xpath instance
         XPath xpath = XPathFactory.newInstance().newXPath();
         
@@ -147,11 +143,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		      
 		      
 		      tempEquipment.setName(element.getNodeName());
-		      
-		      if(element.getNodeName().equals("Extinguisher"))
-		    	  temp = new ExtinguisherPassFailElement();
-		      else if(element.getNodeName().equals("FireHoseCabinet"))
-	    		  temp = new FireHoseCabinetGoodPoorElement();
+		      tempEquipment.setId(element.getAttribute("id"));
+		     
 		      
 		    //Find Inspection Element Nodes
 				try {
@@ -168,8 +161,19 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		    	  //Sees what object type it needs to be
 		    	  if(element.getNodeName().equals("Extinguisher"))
 			    	  temp = new ExtinguisherPassFailElement();
-		    	  else if(element.getNodeName().equals("FireHoseCabinet"))
-		    		  temp = new FireHoseCabinetGoodPoorElement();
+		    	  else if(element.getNodeName().equals("FireHoseCabinet")){
+		    		  
+		    		  //There's two different input options for this one
+		    		  if(attrElement.getAttribute("name").equals("Hose Re-Rack") || attrElement.getAttribute("name").equals("Hydrostatic Test Due"))
+		    			  temp = new FireHoseCabinetYesNoElement();
+		    		  else
+		    			  temp = new FireHoseCabinetGoodPoorElement(ScanActivity.this);
+		    	  }
+		    	  else if(element.getNodeName().equals("EmergencyLight")){
+		    		  
+		    		 temp = new EmergencyLightYesNoElement();
+		    		 
+		    	  }
 		    	  else
 		    		  temp = null;
 		    	  
@@ -374,6 +378,27 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		
+	}
+
+	public void onScanClick(View view){
+		Log.i("ScaActivity","Scan Button Clicked");
+		
+		Equipment temp = new Equipment();
+		
+		int groupPos = 0;
+		
+		for(int i = 0; i < ExpListItems.size(); i++)
+			ExpandList.collapseGroup(i);
+		
+		for(int i = 0; i < ExpListItems.size(); i++){
+			temp = ExpListItems.get(i);
+			if(temp.getId().equals("77207")){
+				groupPos = i;
+				break;
+			}
+		}
+		
+		ExpandList.expandGroup(groupPos);
 	}
 	
 
