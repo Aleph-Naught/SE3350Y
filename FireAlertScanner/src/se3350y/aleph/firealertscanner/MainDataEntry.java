@@ -86,12 +86,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		InputStream in=null;
 
 		try {
-<<<<<<< HEAD
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
-=======
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
-			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
->>>>>>> InspectionPage
 		} catch (FileNotFoundException e) {
 			Log.i("Main data entry", "Can't read info from SD Card");
 			e.printStackTrace();
@@ -150,20 +145,13 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
-<<<<<<< HEAD
 
 	//Connects "Enter" button to the next activity
 	public void getDataInput(View view)  {
 		// TODO Need to add message to carry XML data to next activity
 		Log.i("Main Data Entry", "Enter button pressed");
-		Intent intent = new Intent(this, MainActivity.class);
-		//intent.putExtra("se3350y.aleph.firealertscanner.MainActivity.nodes", nodes);
-=======
-	
-	public void getDataInput(View view) throws XPathExpressionException, IOException {
-		
 		Intent intent = new Intent(this, ScanActivity.class);
->>>>>>> InspectionPage
+		//intent.putExtra("se3350y.aleph.firealertscanner.MainActivity.nodes", nodes);
 		startActivity(intent);
 	}
 
