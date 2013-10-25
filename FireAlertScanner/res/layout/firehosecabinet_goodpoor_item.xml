@@ -6,21 +6,22 @@
     
     <TextView
         android:id="@+id/inspectionElement"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
+        android:layout_weight="1"
         android:paddingBottom="5dp"
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
         android:paddingTop="5dp"
         android:text="name"
         android:textSize="17dip" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/goodPoorSpinner"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:entries="@array/goodPoor_arrays"
         android:layout_weight="2"
-        android:gravity="right"
-        android:text="Hello" />
+        android:gravity="right" />
 
 </LinearLayout>

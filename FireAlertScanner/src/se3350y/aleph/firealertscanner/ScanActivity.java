@@ -93,10 +93,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
     	
     	Object temp = null;
     	
-    	//Sets up temp objects
-    	ExtinguisherPassFailElement tempExtinguisher;
-    	FireHoseCabinetGoodPoorElement tempFireHoseCabinetGoodPoor;
-    	
     	//An xpath instance
         XPath xpath = XPathFactory.newInstance().newXPath();
         
@@ -146,7 +142,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		      if(element.getNodeName().equals("Extinguisher"))
 		    	  temp = new ExtinguisherPassFailElement();
 		      else if(element.getNodeName().equals("FireHoseCabinet"))
-	    		  temp = new FireHoseCabinetGoodPoorElement();
+	    		  temp = new FireHoseCabinetGoodPoorElement(ScanActivity.this);
 		      
 		    //Find Inspection Element Nodes
 				try {
@@ -165,7 +161,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		    	  if(element.getNodeName().equals("Extinguisher"))
 			    	  temp = new ExtinguisherPassFailElement();
 		    	  else if(element.getNodeName().equals("FireHoseCabinet"))
-		    		  temp = new FireHoseCabinetGoodPoorElement();
+		    		  temp = new FireHoseCabinetGoodPoorElement(ScanActivity.this);
 		    	  else
 		    		  temp = null;
 		    	  
