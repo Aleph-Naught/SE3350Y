@@ -3,21 +3,18 @@ package se3350y.aleph.firealertscanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import com.dataInput.samplescanner.ScanCodeDemo;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -32,10 +29,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -45,6 +40,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	InputStream in=null;
 
 	private String m_Text = null;
+	private String message = null;
 
 	private ExpandableListAdapter ExpAdapter;
 	private ArrayList<Equipment> ExpListItems;
@@ -58,6 +54,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
+		
+		Intent intent = getIntent();
+		message = intent.getStringExtra(ScanCodeDemo.EXTRA_MESSAGE);
 
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
@@ -301,6 +300,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 	public void onScanClick(View view){
 		Log.i("ScanActivity","Scan Button Clicked");
+		
+		Intent intent = new Intent (this, ScanCodeDemo.class);
+		startActivity(intent);
 
 		Equipment temp = new Equipment();
 
@@ -311,7 +313,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 		for(int i = 0; i < ExpListItems.size(); i++){
 			temp = ExpListItems.get(i);
-			if(temp.getId().equals("77207")){
+			if(temp.getId().equals(message)){
 				groupPos = i;
 				break;
 			}
@@ -362,8 +364,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 			}
 		});
 		builder.show();
-
-
 
 	}
 

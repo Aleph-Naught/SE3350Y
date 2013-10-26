@@ -8,18 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class ScanCodeDemo extends Activity {
 
 	private String ACTION_CONTENT_NOTIFY = "android.intent.action.CONTENT_NOTIFY";
+	public final static String EXTRA_MESSAGE = "Sse3350y.aleph.firealertscanner.MESSAGE";
 	private DataReceiver dataScanner = new DataReceiver();
-	private TextView tv_getdata_from_scanner;
-	private TextView tv_getdata_from_edittext;
-	private EditText editText;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +31,6 @@ public class ScanCodeDemo extends Activity {
     @Override
 	protected void onResume() {
     	registerScanner();
-    	initialComponent();
 		super.onResume();
 	}
 
@@ -47,14 +40,7 @@ public class ScanCodeDemo extends Activity {
 		super.onDestroy();
 	}
 	
-	private void initialComponent() {
-		tv_getdata_from_scanner = (TextView)findViewById(R.id.tv_getdata_from_scanner);
-		tv_getdata_from_edittext  = (TextView)findViewById(R.id.tv_getdata_from_edittext);
-		editText = (EditText)findViewById(R.id.editText);
-		editText.addTextChangedListener(textWatcher);
-	}
-	
-	private void registerScanner() {
+	public void registerScanner() {
 		dataScanner = new DataReceiver();
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction(ACTION_CONTENT_NOTIFY);
@@ -63,25 +49,21 @@ public class ScanCodeDemo extends Activity {
 	
 	private void unregisterReceiver() {
 		if (dataScanner != null) unregisterReceiver(dataScanner);
-	}
-	
-	private TextWatcher textWatcher =  new TextWatcher(){
-        public void onTextChanged(CharSequence s, int start, int before, int count){}
-        public void beforeTextChanged(CharSequence s, int start, int count, int after){}
-    	public void afterTextChanged(Editable s){
-    		tv_getdata_from_edittext.setText("Get data from EditText : " + editText.getText().toString());
-    	}
-    }; 
+	}; 
     
 	private class DataReceiver extends BroadcastReceiver {
 		String content = "";
 		@Override
+		
+		//TODO redo the onrecieve so that it can be used in the scan activity. may need to remake the scan code demo class. hurr 
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(ACTION_CONTENT_NOTIFY)) {
 				Bundle bundle = new Bundle();
 				bundle  = intent.getExtras();
 				content = bundle.getString("CONTENT");
-				tv_getdata_from_scanner.setText("Get data from Scanner : " + content);
+				Intent intent1 = new Intent(ScanCodeDemo.this, ScanActivity.class);
+				intent.putExtra(EXTRA_MESSAGE, content);
+				startActivity(intent1);
 			}
 				
 		}
