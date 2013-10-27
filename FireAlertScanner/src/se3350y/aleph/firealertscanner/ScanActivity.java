@@ -55,8 +55,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
 		
-		Intent intent = getIntent();
-		message = intent.getStringExtra(ScanCodeDemo.EXTRA_MESSAGE);
 
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
@@ -87,6 +85,13 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		// setting list adapter
 		//expListView.setAdapter(listAdapter);
 
+	}
+	
+	public void onResume(){
+		super.onResume();
+		
+		Intent intent = getIntent();
+		message = intent.getStringExtra(ScanCodeDemo.EXTRA_MESSAGE);
 	}
 
 	private ArrayList<Equipment> SetStandarGroups() {
