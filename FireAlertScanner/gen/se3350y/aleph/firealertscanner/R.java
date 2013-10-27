@@ -78,37 +78,36 @@ public final class R {
 >>>>>>> d5ff8e9e1974b457e4a104d4848bc5bf271211da
         public static final int Franchisee=0x7f09000a;
         public static final int OperationsLayout=0x7f090017;
-        public static final int action_forgot_password=0x7f09002a;
-        public static final int action_settings=0x7f09002b;
+        public static final int action_forgot_password=0x7f090028;
+        public static final int action_settings=0x7f090029;
         public static final int client=0x7f09000b;
         public static final int clientContractSpinner=0x7f09000e;
         public static final int clientSpinner=0x7f09000c;
         public static final int client_contract=0x7f09000d;
-        public static final int editText=0x7f09001b;
         public static final int email=0x7f090003;
-        public static final int emergencyLightRadioGroup=0x7f09001e;
+        public static final int emergencyLightRadioGroup=0x7f09001c;
         public static final int enterButton=0x7f090011;
         public static final int expandableEquipmentList=0x7f090016;
-        public static final int extinguisherRadioGroup=0x7f090024;
-        public static final int fireHoseCabinetRadioGroup=0x7f090028;
+        public static final int extinguisherRadioGroup=0x7f090022;
+        public static final int fireHoseCabinetRadioGroup=0x7f090026;
         public static final int floorSpinner=0x7f090013;
         public static final int floorTextView=0x7f090012;
-        public static final int goodPoorSpinner=0x7f090027;
-        public static final int id_num=0x7f090023;
-        public static final int inspectionElement=0x7f09001d;
-        public static final int item_layout=0x7f090022;
-        public static final int lblListHeader=0x7f090029;
+        public static final int goodPoorSpinner=0x7f090025;
+        public static final int id_num=0x7f090021;
+        public static final int inspectionElement=0x7f09001b;
+        public static final int item_layout=0x7f090020;
+        public static final int lblListHeader=0x7f090027;
         public static final int login=0x7f090005;
         public static final int login_form=0x7f090002;
         public static final int login_status=0x7f090000;
         public static final int login_status_message=0x7f090001;
         public static final int manButton=0x7f090019;
         public static final int password=0x7f090004;
-        public static final int radioFail=0x7f090026;
-        public static final int radioNo=0x7f090020;
-        public static final int radioNone=0x7f090021;
-        public static final int radioPass=0x7f090025;
-        public static final int radioYes=0x7f09001f;
+        public static final int radioFail=0x7f090024;
+        public static final int radioNo=0x7f09001e;
+        public static final int radioNone=0x7f09001f;
+        public static final int radioPass=0x7f090023;
+        public static final int radioYes=0x7f09001d;
         public static final int record_button=0x7f090008;
         public static final int roomSpinner=0x7f090015;
         public static final int roomTextView=0x7f090014;
@@ -119,6 +118,7 @@ public final class R {
         public static final int service_address=0x7f09000f;
         public static final int sign_in_button=0x7f090006;
 <<<<<<< HEAD
+<<<<<<< HEAD
         public static final int tv_getdata_from_edittext=0x7f090021;
         public static final int tv_getdata_from_scanner=0x7f090023;
 >>>>>>> InspectionPage
@@ -126,6 +126,9 @@ public final class R {
         public static final int tv_getdata_from_edittext=0x7f09001a;
         public static final int tv_getdata_from_scanner=0x7f09001c;
 >>>>>>> d5ff8e9e1974b457e4a104d4848bc5bf271211da
+=======
+        public static final int tv_getdata_from_scanner=0x7f09001a;
+>>>>>>> Scanner-Integration
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;

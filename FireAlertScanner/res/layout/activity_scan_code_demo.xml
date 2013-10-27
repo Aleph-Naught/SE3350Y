@@ -5,22 +5,6 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/tv_getdata_from_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_data"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
         android:id="@+id/tv_getdata_from_scanner"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
