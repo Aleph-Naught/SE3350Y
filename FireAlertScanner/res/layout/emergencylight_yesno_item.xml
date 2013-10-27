@@ -6,7 +6,7 @@
     
      <TextView
         android:id="@+id/inspectionElement"
-        android:layout_width="wrap_content"
+        android:layout_width="120dip"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_weight="1"
@@ -14,7 +14,7 @@
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
         android:paddingTop="5dp"
         android:text="name"
-        android:textSize="17dip" />
+        android:textSize="12dip" />
     
      <RadioGroup
         android:id="@+id/emergencyLightRadioGroup"
@@ -22,19 +22,22 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:gravity="right"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:textSize="12dip" >
 
         <RadioButton
             android:id="@+id/radioYes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yes"/>
+            android:text="Yes"
+            android:textSize="12dip"/>
 
         <RadioButton
             android:id="@+id/radioNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No" />
+            android:text="No"
+            android:textSize="12dip" />
         
         <RadioButton
             android:id="@+id/radioNone"

@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:text="Title" />
 
 </LinearLayout>

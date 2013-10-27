@@ -64,10 +64,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 
 
-		/**
-		spinner = (Spinner) findViewById(R.id.roomSpinner);
-		 populate("/Franchisee/Client/clientContract/ServiceAddress/Floor/*", spinner, "id");
-		 **/
 
 		//STUFF TO DO WITH EXPANDABLE LIST
 
@@ -77,13 +73,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
 
-		// preparing list data
-		//prepareListData();
-
-		//listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-
-		// setting list adapter
-		//expListView.setAdapter(listAdapter);
 
 	}
 	
@@ -121,7 +110,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		NodeList nodes = null;
 
 		try {
-			nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor/Room/*", is, XPathConstants.NODESET);
+			nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='First Floor']/Room[@id='R1']/*", is, XPathConstants.NODESET);
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

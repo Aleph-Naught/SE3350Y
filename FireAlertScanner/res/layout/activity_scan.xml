@@ -17,7 +17,7 @@
 
     <Spinner
         android:id="@+id/floorSpinner"
-        android:layout_width="225dp"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/floorTextView" />
 
