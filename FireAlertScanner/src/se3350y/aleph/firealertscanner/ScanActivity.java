@@ -258,11 +258,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		//Stores child spinner so that child spinners can be updated in a chain reaction
 		Spinner spinner_child = null;
 
-		//check flag so that onCreate() doesn't populate everything right away
-		if (spinner_flag == false){
-			spinner_flag = true;
-			Log.i("Main Data Entry", "Spinner_flag triggered");
-		} else {
 
 			Log.i("ScanActivity", "Got into else");
 
@@ -277,12 +272,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 				//update child spinner data
 				populate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
 				Log.i("Main Data Entry", "floor contract spinner updated");
-
-			}
-			else
-			{
-
-			}
 		}
 	}
 
@@ -302,8 +291,10 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 		int groupPos = 0;
 
-		for(int i = 0; i < ExpListItems.size(); i++)
+		for(int i = 0; i < ExpListItems.size(); i++){
 			ExpandList.collapseGroup(i);
+			ExpandList.setSelection(i);
+		}
 
 		for(int i = 0; i < ExpListItems.size(); i++){
 			temp = ExpListItems.get(i);
