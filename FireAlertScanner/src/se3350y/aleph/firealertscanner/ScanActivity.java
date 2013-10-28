@@ -40,7 +40,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	InputStream in=null;
 
 	private String m_Text = null;
-	private String message = null;
+	//private String message = null;
 
 	private ExpandableListAdapter ExpAdapter;
 	private ArrayList<Equipment> ExpListItems;
@@ -54,6 +54,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
+		
+	
 		
 
 		//Populate Floor Spinner
@@ -72,16 +74,16 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		ExpListItems = SetStandarGroups();
 		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
+		
+		Bundle b = getIntent().getExtras();
+		if( b != null) {
+			String message = b.getString("EXTRA_MESSAGE");
+			expandGroup(message);
+		}
 
 
 	}
 	
-	public void onResume(){
-		super.onResume();
-		
-		Intent intent = getIntent();
-		message = intent.getStringExtra(ScanCodeDemo.EXTRA_MESSAGE);
-	}
 
 	private ArrayList<Equipment> SetStandarGroups() {
 		// TODO Auto-generated method stub
@@ -280,13 +282,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		// TODO Auto-generated method stub
 
 	}
-
-	public void onScanClick(View view){
-		Log.i("ScanActivity","Scan Button Clicked");
+	
+	public void expandGroup(String _group){
 		
-		Intent intent = new Intent (this, ScanCodeDemo.class);
-		startActivity(intent);
-
+		String group = _group.substring(0,5);
+		
 		Equipment temp = new Equipment();
 
 		int groupPos = -1;
@@ -295,7 +295,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 		for(int i = 0; i < ExpListItems.size(); i++){
 			temp = ExpListItems.get(i);
-			if(temp.getId().equals(message)){
+			if(temp.getId().equals(group)){
 				groupPos = i;
 				break;
 			}
@@ -312,6 +312,14 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 			ExpandList.expandGroup(groupPos);
 			ExpandList.setSelection(groupPos);
 		}
+		
+	}
+
+	public void onScanClick(View view){
+		Log.i("ScanActivity","Scan Button Clicked");
+		
+		Intent intent = new Intent (this, ScanCodeDemo.class);
+		startActivity(intent);
 
 	}
 
