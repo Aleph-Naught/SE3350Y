@@ -98,7 +98,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
@@ -211,7 +211,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
@@ -312,6 +312,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 			ExpandList.expandGroup(groupPos);
 			ExpandList.setSelection(groupPos);
 		}
+
 	}
 
 	public void onManClick(View view){
@@ -347,6 +348,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 				}
 
 				ExpandList.expandGroup(groupPos);
+				ExpandList.setSelection(groupPos);
 			}
 		});
 		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
