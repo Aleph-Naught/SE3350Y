@@ -289,12 +289,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 		Equipment temp = new Equipment();
 
-		int groupPos = 0;
+		int groupPos = -1;
 
-		for(int i = 0; i < ExpListItems.size(); i++){
-			ExpandList.collapseGroup(i);
-			ExpandList.setSelection(i);
-		}
+		
 
 		for(int i = 0; i < ExpListItems.size(); i++){
 			temp = ExpListItems.get(i);
@@ -304,7 +301,17 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 			}
 		}
 
-		ExpandList.expandGroup(groupPos);
+		//if scanner returned something
+		if(groupPos!=-1)
+		{
+			
+			for(int i = 0; i < ExpListItems.size(); i++){
+				ExpandList.collapseGroup(i);
+			}
+			
+			ExpandList.expandGroup(groupPos);
+			ExpandList.setSelection(groupPos);
+		}
 	}
 
 	public void onManClick(View view){
