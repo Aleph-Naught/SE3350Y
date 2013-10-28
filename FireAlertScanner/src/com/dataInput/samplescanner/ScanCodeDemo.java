@@ -49,7 +49,7 @@ public class ScanCodeDemo extends Activity {
 	
 	private void unregisterReceiver() {
 		if (dataScanner != null) unregisterReceiver(dataScanner);
-	}; 
+	} 
     
 	private class DataReceiver extends BroadcastReceiver {
 		String content = "";

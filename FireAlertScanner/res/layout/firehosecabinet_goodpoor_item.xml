@@ -12,11 +12,11 @@
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
         android:paddingTop="5dp"
         android:text="name"
-        android:textSize="12dip" />
+        android:textSize="@dimen/childTextSize" />
 
     <Spinner
         android:id="@+id/goodPoorSpinner"
-        android:layout_width="100dp"
+        android:layout_width="@dimen/scanActivity_childSpinnerWidth"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="false"
         android:layout_alignParentLeft="false"
