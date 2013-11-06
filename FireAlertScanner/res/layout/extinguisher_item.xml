@@ -14,7 +14,7 @@
         android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
         android:paddingTop="5dp"
         android:text="name"
-        android:textSize="12dip" />
+        android:textSize="@dimen/childTextSize" />
     
     <TextView
         android:id="@+id/id_num"
@@ -36,21 +36,21 @@
         android:layout_weight="2"
         android:gravity="right"
         android:orientation="horizontal"
-        android:textSize="12dip" >
+        android:textSize="@dimen/childTextSize" >
 
         <RadioButton
             android:id="@+id/radioPass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pass"
-            android:textSize="12dip"/>
+            android:textSize="@dimen/childTextSize"/>
 
         <RadioButton
             android:id="@+id/radioFail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fail" 
-            android:textSize="12dip"/>
+            android:textSize="@dimen/childTextSize"/>
         
         <RadioButton
             android:id="@+id/radioNone"

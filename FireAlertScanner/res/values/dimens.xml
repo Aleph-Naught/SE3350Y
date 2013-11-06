@@ -3,5 +3,9 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="scanActivity_spinnerWidth">175dp</dimen>
+    <dimen name="groupTextSize">15dp</dimen>
+    <dimen name="childTextSize">12dip</dimen>
+    <dimen name="scanActivity_childSpinnerWidth">100dp</dimen>
 
 </resources>

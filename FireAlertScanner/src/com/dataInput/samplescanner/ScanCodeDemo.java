@@ -12,7 +12,6 @@ import android.os.Bundle;
 public class ScanCodeDemo extends Activity {
 
 	private String ACTION_CONTENT_NOTIFY = "android.intent.action.CONTENT_NOTIFY";
-	public final static String EXTRA_MESSAGE = "Sse3350y.aleph.firealertscanner.MESSAGE";
 	private DataReceiver dataScanner = new DataReceiver();
 	
 	@Override
@@ -49,7 +48,7 @@ public class ScanCodeDemo extends Activity {
 	
 	private void unregisterReceiver() {
 		if (dataScanner != null) unregisterReceiver(dataScanner);
-	}; 
+	} 
     
 	private class DataReceiver extends BroadcastReceiver {
 		String content = "";
@@ -61,8 +60,8 @@ public class ScanCodeDemo extends Activity {
 				Bundle bundle = new Bundle();
 				bundle  = intent.getExtras();
 				content = bundle.getString("CONTENT");
-				Intent intent1 = new Intent(ScanCodeDemo.this, ScanActivity.class);
-				intent.putExtra(EXTRA_MESSAGE, content);
+				Intent intent1 = new Intent(getApplicationContext(), ScanActivity.class);
+				intent1.putExtra("EXTRA_MESSAGE", content);
 				startActivity(intent1);
 			}
 				

@@ -40,7 +40,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	InputStream in=null;
 
 	private String m_Text = null;
-	private String message = null;
+	//private String message = null;
 
 	private ExpandableListAdapter ExpAdapter;
 	private ArrayList<Equipment> ExpListItems;
@@ -62,16 +62,16 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		ExpListItems = SetStandarGroups();
 		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
+		
+		Bundle b = getIntent().getExtras();
+		if( b != null) {
+			String message = b.getString("EXTRA_MESSAGE");
+			expandGroup(message);
+		}
 
 
 	}
 	
-	public void onResume(){
-		super.onResume();
-		
-		Intent intent = getIntent();
-		message = intent.getStringExtra(ScanCodeDemo.EXTRA_MESSAGE);
-	}
 
 	private ArrayList<Equipment> SetStandarGroups() {
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
@@ -86,7 +86,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
@@ -263,6 +263,38 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	public void onNothingSelected(AdapterView<?> arg0) {
 
 	}
+	
+	public void expandGroup(String _group){
+		
+		String group = _group.substring(0,5);
+		
+		Equipment temp = new Equipment();
+
+		int groupPos = -1;
+
+		
+
+		for(int i = 0; i < ExpListItems.size(); i++){
+			temp = ExpListItems.get(i);
+			if(temp.getId().equals(group)){
+				groupPos = i;
+				break;
+			}
+		}
+
+		//if scanner returned something
+		if(groupPos!=-1)
+		{
+			
+			for(int i = 0; i < ExpListItems.size(); i++){
+				ExpandList.collapseGroup(i);
+			}
+			
+			ExpandList.expandGroup(groupPos);
+			ExpandList.setSelection(groupPos);
+		}
+		
+	}
 
 	public void onScanClick(View view){
 		Log.i("ScanActivity","Scan Button Clicked");
@@ -270,24 +302,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		Intent intent = new Intent (this, ScanCodeDemo.class);
 		startActivity(intent);
 
-		Equipment temp = new Equipment();
-
-		int groupPos = 0;
-
-		for(int i = 0; i < ExpListItems.size(); i++){
-			ExpandList.collapseGroup(i);
-			ExpandList.setSelection(i);
-		}
-
-		for(int i = 0; i < ExpListItems.size(); i++){
-			temp = ExpListItems.get(i);
-			if(temp.getId().equals(message)){
-				groupPos = i;
-				break;
-			}
-		}
-
-		ExpandList.expandGroup(groupPos);
 	}
 
 	public void onManClick(View view){
@@ -323,6 +337,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 				}
 
 				ExpandList.expandGroup(groupPos);
+				ExpandList.setSelection(groupPos);
 			}
 		});
 		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
