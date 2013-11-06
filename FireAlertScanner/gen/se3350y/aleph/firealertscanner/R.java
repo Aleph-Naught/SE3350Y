@@ -27,55 +27,6 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-<<<<<<< HEAD
-<<<<<<< HEAD
-        public static final int ContentLayout=0x7f080019;
-        public static final int EquipmentView=0x7f08001a;
-        public static final int FloorField=0x7f080013;
-        public static final int Franchisee=0x7f08000a;
-        public static final int OperationsLayout=0x7f08001c;
-        public static final int RoomField=0x7f080016;
-        public static final int SelectorLayout=0x7f080012;
-        public static final int action_forgot_password=0x7f08002a;
-        public static final int action_settings=0x7f08002b;
-        public static final int button1=0x7f08001d;
-        public static final int button2=0x7f08001e;
-        public static final int client=0x7f08000b;
-        public static final int clientContractSpinner=0x7f08000e;
-        public static final int clientSpinner=0x7f08000c;
-        public static final int client_contract=0x7f08000d;
-        public static final int editText=0x7f080020;
-        public static final int email=0x7f080003;
-        public static final int enterButton=0x7f080011;
-        public static final int expandableEquipmentList=0x7f08001b;
-        public static final int extinguisherRadioGroup=0x7f080025;
-        public static final int floorSpinner=0x7f080015;
-        public static final int id_num=0x7f080024;
-        public static final int inspectionElement=0x7f080023;
-        public static final int item_layout=0x7f080022;
-        public static final int lblListHeader=0x7f080029;
-        public static final int login=0x7f080005;
-        public static final int login_form=0x7f080002;
-        public static final int login_status=0x7f080000;
-        public static final int login_status_message=0x7f080001;
-        public static final int password=0x7f080004;
-        public static final int radioFail=0x7f080027;
-        public static final int radioNone=0x7f080028;
-        public static final int radioPass=0x7f080026;
-        public static final int record_button=0x7f080008;
-        public static final int roomSpinner=0x7f080018;
-        public static final int scan_button=0x7f080007;
-        public static final int scroll_view=0x7f080009;
-        public static final int serviceAddressSpinner=0x7f080010;
-        public static final int service_address=0x7f08000f;
-        public static final int sign_in_button=0x7f080006;
-        public static final int textView1=0x7f080014;
-        public static final int textView2=0x7f080017;
-        public static final int tv_getdata_from_edittext=0x7f08001f;
-        public static final int tv_getdata_from_scanner=0x7f080021;
-=======
-=======
->>>>>>> d5ff8e9e1974b457e4a104d4848bc5bf271211da
         public static final int Franchisee=0x7f09000a;
         public static final int OperationsLayout=0x7f090017;
         public static final int action_forgot_password=0x7f09002a;
@@ -118,14 +69,8 @@ public final class R {
         public static final int serviceAddressSpinner=0x7f090010;
         public static final int service_address=0x7f09000f;
         public static final int sign_in_button=0x7f090006;
-<<<<<<< HEAD
-        public static final int tv_getdata_from_edittext=0x7f090021;
-        public static final int tv_getdata_from_scanner=0x7f090023;
->>>>>>> InspectionPage
-=======
         public static final int tv_getdata_from_edittext=0x7f09001a;
         public static final int tv_getdata_from_scanner=0x7f09001c;
->>>>>>> d5ff8e9e1974b457e4a104d4848bc5bf271211da
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;

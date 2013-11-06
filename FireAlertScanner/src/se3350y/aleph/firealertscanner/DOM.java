@@ -3,6 +3,7 @@ package se3350y.aleph.firealertscanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -28,9 +29,77 @@ import android.widget.Toast;
 
 /**
  * A class to store the static DOM-related files for reading, editing, and writing XML.
- * @author Ben
+ * @author Benjamin Schubert
  */
 public class DOM {
+	
+	/**
+	 * One static function to write the inspection results from the Radio Buttons and Spinners to an XML file.<br>
+	 * For now, the XML is written to {@link getExternalStorageDirectory()}.
+	 * @param list The list of Equipment items to be written.
+	 * @param context Currently used for {@link Toast}. May be removed at a later time.
+	 * @throws XPathExpressionException
+	 * @throws SAXException
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 * @throws TransformerException
+	 */
+	public static void saveXML(ArrayList<Equipment> list, Context context) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException{
+		Document doc = DOM.getDOM(context);
+		
+		// Root node; in this case, Franchisee
+		Node firstNode = doc.getFirstChild();
+		
+		for (int j=0; j<list.size(); j++){
+			// Get the Equipment
+			Equipment currEquip = list.get(j);
+			
+			// Have to hardcode the IDs for now
+			String[] IDs = {"33101", "33102", "77207", "88103"};
+			String currID = IDs[j];
+			ArrayList<inspectionElement> elementList = currEquip.getItems();
+			
+			// Get the inspectionElement within each Equipment
+			for (int k=0; k<elementList.size(); k++){
+				inspectionElement currElement = elementList.get(k);
+				String passFail = null;
+				String inspectName = currElement.getName();
+				
+				if (currElement.getClass().equals(ExtinguisherPassFailElement.class)){
+					int x = ((ExtinguisherPassFailElement) currElement).getPassFail();
+					if (x > 0){
+						passFail = "Pass";
+					}
+					else if (x < 0){
+						passFail = "Fail";
+					}
+					else passFail = "none";
+				}
+				
+				else if (currElement.getClass().equals(FireHoseCabinetGoodPoorElement.class)) {
+					int x = ((FireHoseCabinetGoodPoorElement) currElement).getGoodPoor();
+					if (x > 0){
+						passFail = "Good";
+					}
+					else if (x < 0){
+						passFail = "Poor";
+					}
+					else passFail = "none";
+				}
+				
+				// EmerencyLight not done yet
+				else {
+					passFail = "not yet";
+				}
+				
+				// Modify the underlying node
+				DOM.setPassFail(currID, inspectName, passFail, firstNode);
+
+				// Write result
+				DOM.writeDOMResults(doc, context);
+			}
+		}
+	}
 	
 	/**
 	 * Set "Pass", "Fail", or other applicable values to an inspectionElement node.

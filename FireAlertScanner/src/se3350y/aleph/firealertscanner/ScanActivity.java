@@ -260,61 +260,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		// TODO It seems that MainActivity has become redundant. Should revise.
 		
 		try {
-			Document doc = DOM.getDOM(getBaseContext());
 			
-			// Root node; in this case, Franchisee
-			Node firstNode = doc.getFirstChild();
-			
-			for (int j=0; j<ExpListItems.size(); j++){
-				// Get the Equipment
-				Equipment currEquip = ExpListItems.get(j);
-				
-				// Have to hardcode the IDs for now
-				String[] IDs = {"33101", "33102", "77207", "88103"};
-				String currID = IDs[j];
-				ArrayList<inspectionElement> elementList = currEquip.getItems();
-				
-				// Get the inspectionElement within each Equipment
-				for (int k=0; k<elementList.size(); k++){
-					inspectionElement currElement = elementList.get(k);
-					String passFail = null;
-					String inspectName = currElement.getName();
-					
-					if (currElement.getClass().equals(ExtinguisherPassFailElement.class)){
-						int x = ((ExtinguisherPassFailElement) currElement).getPassFail();
-						if (x > 0){
-							passFail = "Pass";
-						}
-						else if (x < 0){
-							passFail = "Fail";
-						}
-						else passFail = "none";
-					}
-					
-					else if (currElement.getClass().equals(FireHoseCabinetGoodPoorElement.class)) {
-						int x = ((FireHoseCabinetGoodPoorElement) currElement).getGoodPoor();
-						if (x > 0){
-							passFail = "Good";
-						}
-						else if (x < 0){
-							passFail = "Poor";
-						}
-						else passFail = "none";
-					}
-					
-					// EmerencyLight not done yet
-					else {
-						passFail = "not yet";
-					}
-					
-					// Modify the underlying node
-					DOM.setPassFail(currID, inspectName, passFail, firstNode);
-				}
-			}
-			
-			// Write result
-			DOM.writeDOMResults(doc, getBaseContext());
-
+			DOM.saveXML(ExpListItems, getBaseContext());
 			Toast.makeText(getBaseContext(), "Output file written.", Toast.LENGTH_SHORT).show();
 			
 			// SO MANY EXCEPTIONS
