@@ -46,26 +46,16 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	private ArrayList<Equipment> ExpListItems;
 	private ExpandableListView ExpandList;
 
-	//Flag to stop onCreate() from auto populating spinners
-	private boolean spinner_flag = false;
-
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
-		
 
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
 		populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
 
 		spinner.setOnItemSelectedListener(this);
-
-
-
-
-		//STUFF TO DO WITH EXPANDABLE LIST
 
 		// get the listview
 		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
@@ -84,8 +74,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	}
 
 	private ArrayList<Equipment> SetStandarGroups() {
-		// TODO Auto-generated method stub
-
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
 		ArrayList<inspectionElement> tempInspectionElements = new ArrayList<inspectionElement>();
 		Equipment tempEquipment;
@@ -112,7 +100,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		try {
 			nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='First Floor']/Room[@id='R1']/*", is, XPathConstants.NODESET);
 		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -167,7 +154,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 				else if(element.getNodeName().equals("EmergencyLight")){
 
 					temp = new EmergencyLightYesNoElement();
-
 				}
 				else
 					temp = null;
@@ -212,7 +198,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		InputStream in=null;
 		try {
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
-			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
@@ -225,7 +210,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		try {
 			nodes = (NodeList) xpath.evaluate(expression, is, XPathConstants.NODESET);
 		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -277,7 +261,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
 
 	}
 

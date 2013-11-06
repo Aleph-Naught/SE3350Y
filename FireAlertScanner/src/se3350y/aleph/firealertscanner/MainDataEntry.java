@@ -3,6 +3,7 @@ package se3350y.aleph.firealertscanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -145,13 +146,10 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	//Connects "Enter" button to the next activity
-	public void getDataInput(View view)  {
-		// TODO Need to add message to carry XML data to next activity
-		Log.i("Main Data Entry", "Enter button pressed");
+	
+	public void getDataInput(View view) throws XPathExpressionException, IOException {
+		
 		Intent intent = new Intent(this, ScanActivity.class);
-		//intent.putExtra("se3350y.aleph.firealertscanner.MainActivity.nodes", nodes);
 		startActivity(intent);
 	}
 
