@@ -1,16 +1,12 @@
 package se3350y.aleph.firealertscanner;
 
-import se3350y.aleph.firealertscanner.ExtinguisherPassFailElement.passFailViewHolder;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class FireHoseCabinetGoodPoorElement extends inspectionElement {
 	

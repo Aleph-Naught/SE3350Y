@@ -1,19 +1,12 @@
 package se3350y.aleph.firealertscanner;
  
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
- 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
  
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -71,7 +64,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		
     	if(groupParent.getName().equals("Extinguisher")){
     		child = (ExtinguisherPassFailElement) getChild(groupPosition, childPosition);
-    		view = ((ExtinguisherPassFailElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    		view = ((ExtinguisherPassFailElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     	}
     	else if(groupParent.getName().equals("FireHoseCabinet")){
     		
@@ -79,14 +72,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     		child = (inspectionElement) getChild(groupPosition, childPosition);
     		
     		if( ((inspectionElement) child).getName().equals("Hose Re-Rack") || ((inspectionElement) child).getName().equals("Hydrostatic Test Due"))
-    			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     		else
-    			view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    			view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     		
     	}
     	else if(groupParent.getName().equals("EmergencyLight")){
     		child = (EmergencyLightYesNoElement) getChild(groupPosition, childPosition);
-    		view = ((EmergencyLightYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    		view = ((EmergencyLightYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     	}
 		
 		//Sets Text
@@ -124,7 +117,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			ViewGroup parent) {
 		Equipment group = (Equipment) getGroup(groupPosition);
 		if (view == null) {
-			LayoutInflater inf = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inf.inflate(R.layout.list_group, null);
 		}
 		TextView tv = (TextView) view.findViewById(R.id.lblListHeader);

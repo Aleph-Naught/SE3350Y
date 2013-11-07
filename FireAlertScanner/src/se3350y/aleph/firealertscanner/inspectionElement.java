@@ -1,9 +1,5 @@
 package se3350y.aleph.firealertscanner;
 
-import android.content.Context;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-
 public class inspectionElement {
 	
 
