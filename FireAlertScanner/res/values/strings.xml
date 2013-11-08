@@ -20,7 +20,7 @@
 	<string name="element_textview">Element: </string>
 	<string name="enter_button">Enter</string>
 	<string name="title_activity_scan">ScanActivity</string>
-	<string name="get_barcode_button_text">Get Barcode</string>
+	<string name="get_barcode_button_text">Enter Barcode Manually</string>
 
 	<string-array name="goodPoor_arrays">
 		<item>Good</item>

@@ -50,6 +50,12 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
+		
+		Intent intent = getIntent();
+		String client = intent.getExtras().getString("client"),
+				serviceAddress = intent.getExtras().getString("serviceAddress");
+		
+		setTitle(client + ": " + serviceAddress);
 
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
@@ -330,7 +336,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 	}
 
-	public void listExpansion (String equipmentNo) {
+	private void listExpansion (String equipmentNo) {
 		Equipment temp = new Equipment();
 
 		int groupPos = 0;
@@ -350,7 +356,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		ExpandList.setSelection(groupPos);
 	}
 
-	public void registerScanner() {
+	private void registerScanner() {
 		IntentFilter intentFilter = new IntentFilter();
 		intentFilter.addAction(ACTION_CONTENT_NOTIFY);
 		registerReceiver(dataScanner, intentFilter);
@@ -370,10 +376,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 				Bundle bundle = new Bundle();
 				bundle  = intent.getExtras();
 				content = bundle.getString("CONTENT");
-				if(!input.equals(null)){
-					input.setText(null);
-					input.setText(content);
-				}
+				listExpansion(content);
 			}
 		}		
 	}
