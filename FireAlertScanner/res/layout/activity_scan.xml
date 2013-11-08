@@ -50,20 +50,13 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/scanButton"
+            android:id="@+id/getBarcodeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onScanClick"
-            android:text="@string/scan_button_text" />
+            android:onClick="barcodeGetter"
+            android:text="@string/get_barcode_button_text" />
 
-        <Button
-            android:id="@+id/manButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onManClick"
-            android:text="@string/manual_button_text" />
+
     </LinearLayout>
 
 </RelativeLayout>

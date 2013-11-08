@@ -14,14 +14,15 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import com.dataInput.samplescanner.ScanCodeDemo;
-
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -37,14 +38,13 @@ import android.widget.Toast;
 
 public class ScanActivity extends Activity implements OnItemSelectedListener {
 
-	InputStream in=null;
-
-	private String m_Text = null;
-	//private String message = null;
-
-	private ExpandableListAdapter ExpAdapter;
-	private ArrayList<Equipment> ExpListItems;
-	private ExpandableListView ExpandList;
+	String barcode = null;
+	String ACTION_CONTENT_NOTIFY = "android.intent.action.CONTENT_NOTIFY";
+	ExpandableListAdapter ExpAdapter;
+	ArrayList<Equipment> ExpListItems;
+	ExpandableListView ExpandList;
+	DataReceiver dataScanner = new DataReceiver();
+	EditText input = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,16 +62,19 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		ExpListItems = SetStandarGroups();
 		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
-		
-		Bundle b = getIntent().getExtras();
-		if( b != null) {
-			String message = b.getString("EXTRA_MESSAGE");
-			expandGroup(message);
-		}
-
-
 	}
-	
+
+	@Override
+	protected void onResume() {
+		registerScanner();
+		super.onResume();
+	}
+
+	@Override
+	protected void onDestroy() {
+		unregisterScanner();
+		super.onDestroy();
+	}
 
 	private ArrayList<Equipment> SetStandarGroups() {
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
@@ -243,19 +246,19 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		Spinner spinner_child = null;
 
 
-			Log.i("ScanActivity", "Got into else");
+		Log.i("ScanActivity", "Got into else");
 
-			//Reference to parent spinner
-			Spinner spinner = (Spinner) parent;
-			//Check to see what spinner event occured at
-			if(spinner.getId() == R.id.floorSpinner)
-			{        
-				Log.i("Main Data Entry", "floor spinner event triggered");
-				//get child spinner  
-				spinner_child = (Spinner) findViewById(R.id.roomSpinner);
-				//update child spinner data
-				populate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
-				Log.i("Main Data Entry", "floor contract spinner updated");
+		//Reference to parent spinner
+		Spinner spinner = (Spinner) parent;
+		//Check to see what spinner event occured at
+		if(spinner.getId() == R.id.floorSpinner)
+		{        
+			Log.i("Main Data Entry", "floor spinner event triggered");
+			//get child spinner  
+			spinner_child = (Spinner) findViewById(R.id.roomSpinner);
+			//update child spinner data
+			populate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
+			Log.i("Main Data Entry", "floor contract spinner updated");
 		}
 	}
 
@@ -263,16 +266,16 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 	public void onNothingSelected(AdapterView<?> arg0) {
 
 	}
-	
+
 	public void expandGroup(String _group){
-		
+
 		String group = _group.substring(0,5);
-		
+
 		Equipment temp = new Equipment();
 
 		int groupPos = -1;
 
-		
+
 
 		for(int i = 0; i < ExpListItems.size(); i++){
 			temp = ExpListItems.get(i);
@@ -285,33 +288,26 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		//if scanner returned something
 		if(groupPos!=-1)
 		{
-			
+
 			for(int i = 0; i < ExpListItems.size(); i++){
 				ExpandList.collapseGroup(i);
 			}
-			
+
 			ExpandList.expandGroup(groupPos);
 			ExpandList.setSelection(groupPos);
 		}
-		
-	}
-
-	public void onScanClick(View view){
-		Log.i("ScanActivity","Scan Button Clicked");
-		
-		Intent intent = new Intent (this, ScanCodeDemo.class);
-		startActivity(intent);
 
 	}
 
-	public void onManClick(View view){
-		Log.i("Scan Activity", "Manual Button Click");
+
+	public void barcodeGetter(View view){
+		Log.i("Scan Activity", "Get Barcode clicked");
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Enter barcode:");
+		builder.setTitle("Enter Barcode or Scan");
 
 		// Set up the input
-		final EditText input = new EditText(this);
+		input = new EditText(this);
 		// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
 		input.setInputType(InputType.TYPE_CLASS_TEXT);
 		builder.setView(input);
@@ -320,24 +316,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				m_Text = input.getText().toString();
-				Equipment temp = new Equipment();
-
-				int groupPos = 0;
-
-				for(int i = 0; i < ExpListItems.size(); i++)
-					ExpandList.collapseGroup(i);
-
-				for(int i = 0; i < ExpListItems.size(); i++){
-					temp = ExpListItems.get(i);
-					if(temp.getId().equals(m_Text)){
-						groupPos = i;
-						break;
-					}
-				}
-
-				ExpandList.expandGroup(groupPos);
-				ExpandList.setSelection(groupPos);
+				barcode = input.getText().toString();
+				listExpansion(barcode);
 			}
 		});
 		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -350,4 +330,51 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 	}
 
+	public void listExpansion (String equipmentNo) {
+		Equipment temp = new Equipment();
+
+		int groupPos = 0;
+
+		for(int i = 0; i < ExpListItems.size(); i++)
+			ExpandList.collapseGroup(i);
+
+		for(int i = 0; i < ExpListItems.size(); i++){
+			temp = ExpListItems.get(i);
+			if(temp.getId().equals(equipmentNo)){
+				groupPos = i;
+				break;
+			}
+		}
+
+		ExpandList.expandGroup(groupPos);
+		ExpandList.setSelection(groupPos);
+	}
+
+	public void registerScanner() {
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(ACTION_CONTENT_NOTIFY);
+		registerReceiver(dataScanner, intentFilter);
+	}
+
+	private void unregisterScanner() {
+		if (dataScanner != null) unregisterReceiver(dataScanner);
+	}
+
+	private class DataReceiver extends BroadcastReceiver {
+
+		private String content = null;
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (intent.getAction().equals(ACTION_CONTENT_NOTIFY)) {
+				Bundle bundle = new Bundle();
+				bundle  = intent.getExtras();
+				content = bundle.getString("CONTENT");
+				if(!input.equals(null)){
+					input.setText(null);
+					input.setText(content);
+				}
+			}
+		}		
+	}
 }

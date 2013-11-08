@@ -11,6 +11,7 @@
 	<string name="clients_textview">Clients:</string>
 	<string name="service_address_textview">Service Address: </string>
 	<string name="rooms_textview">Rooms:</string>
+	<string name="title_text">Title</string>
 	<string name="room_textview">Room</string>
 	<string name="equiptment_textview">Equiptment:</string>
 	<string name="franchisee_textview">Franchisee: </string>
@@ -19,8 +20,7 @@
 	<string name="element_textview">Element: </string>
 	<string name="enter_button">Enter</string>
 	<string name="title_activity_scan">ScanActivity</string>
-	<string name="scan_button_text">Scan</string>
-	<string name="manual_button_text">Manual</string>
+	<string name="get_barcode_button_text">Get Barcode</string>
 
 	<string-array name="goodPoor_arrays">
 		<item>Good</item>

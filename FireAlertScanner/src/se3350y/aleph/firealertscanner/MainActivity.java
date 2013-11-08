@@ -18,8 +18,6 @@ import javax.xml.xpath.XPathExpressionException;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
-import com.dataInput.samplescanner.ScanCodeDemo;
-
 public class MainActivity extends Activity {
 
 	@Override
@@ -37,7 +35,7 @@ public class MainActivity extends Activity {
 	
 	public void scanActionSelected(View view) {
 		// Create intent to call scanner activity
-		Intent intent = new Intent (this, ScanCodeDemo.class);
+		Intent intent = new Intent (this, MainDataEntry.class);
 		startActivity(intent);
 	}
 	
