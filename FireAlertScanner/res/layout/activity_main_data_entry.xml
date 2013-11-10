@@ -1,64 +1,23 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scroll_view"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainDataEntry" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/Franchisee"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context=".MainDataEntry" >
+        android:text="@string/franchisee_textview" />
 
-        <TextView
-            android:id="@+id/Franchisee"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/franchisee_textview" />
-        
-        <TextView
-            android:id="@+id/client"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/clients_textview" />
+    <ExpandableListView 
+        android:id="@+id/expandableClientList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/Franchisee"/>
 
-        <Spinner
-            android:id="@+id/clientSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        
-        <TextView
-            android:id="@+id/client_contract"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/client_contract_textview" />
-
-        <Spinner
-            android:id="@+id/clientContractSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/service_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/service_address_textview" />
-
-        <Spinner
-            android:id="@+id/serviceAddressSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/enterButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="getDataInput"
-            android:text="@string/enter_button" />
-    </LinearLayout>
-
-</ScrollView>
+</RelativeLayout>

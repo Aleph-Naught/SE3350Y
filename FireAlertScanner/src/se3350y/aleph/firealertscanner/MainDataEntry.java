@@ -5,7 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -26,6 +30,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
@@ -34,7 +39,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 
-public class MainDataEntry extends Activity implements OnItemSelectedListener{
+public class MainDataEntry extends Activity{
+
+	ClientExpandableListAdapter listAdapter;
+	ExpandableListView expListView;
+	List<String> listDataHeader;
+	HashMap<String, List<String>> listDataChild;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,35 +56,62 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		try {
 			//Sets up the textview with the name and id of the franchisee logged in
 			//Displayed in bold style
-//			TextView tv = (TextView) findViewById(R.id.Franchisee);
-//			tv.setText("Franchisee: " + getValues("/*[@name]", "name") + ", ID: " + getValues("/*[@id]", "id"));
-//			tv.setTypeface(null, Typeface.BOLD);
-//			Log.i("Main Data Entry", "Franchisee TextView set");
-			//TODO ask group what they think about this
-			setTitle("Franchisee: " + getValues("/*[@name]", "name") + ", ID: " + getValues("/*[@id]", "id"));
-
-			//Create array adapter to change spinners
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*[@name]", "name"));
-			//Find the client spinner
-			Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
-			//Set spinner text and sets item changed listener to wait for user selections
-			spinner.setAdapter(adapter);
-			spinner.setOnItemSelectedListener(this);
-			Log.i("Main Data Entry", "Client spinner adapter and listener set");
-			//Sets client contract spinner with a listener
-			spinner = (Spinner) findViewById(R.id.clientContractSpinner);
-			spinner.setOnItemSelectedListener(this);
-			Log.i("Main Data Entry", "Client contract spinner adapter and listener set");
-
+			TextView tv = (TextView) findViewById(R.id.Franchisee);
+			tv.setText("Franchisee: " + getValues("/*[@name]", "name") + ", ID: " + getValues("/*[@id]", "id"));
+			tv.setTypeface(null, Typeface.BOLD);
+			Log.i("Main Data Entry", "Franchisee TextView set");
 			//Catch all errors from xpath parsing
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
 
+		// get the listview
+		expListView = (ExpandableListView) findViewById(R.id.expandableClientList);
+
+		// preparing list data
+		prepareListData();
+
+		listAdapter = new ClientExpandableListAdapter(this, listDataHeader, listDataChild);
+
+		// setting list adapter
+		expListView.setAdapter(listAdapter);
+
 	}
 
-	//xpath parsing function
-	//Takes expressions and attribute as parameters and returns an array list with attribute value
+	/**
+	 * Set up the {@link android.app.ActionBar}, if the API is available.
+	 */
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	private void setupActionBar() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+			getActionBar().setDisplayHomeAsUpEnabled(true);	
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main_data_entry, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
 	private ArrayList<String> getValues(String expression, String attribute) throws XPathExpressionException{
 
 		Log.i("Main Data Entry", "getValues() xPath parser called");
@@ -115,103 +152,60 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 
 	}
 
-	/**
-	 * Set up the {@link android.app.ActionBar}, if the API is available.
-	 */
-	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
-	private void setupActionBar() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-			getActionBar().setDisplayHomeAsUpEnabled(true);
-		}
-	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main_data_entry, menu);
-		return true;
-	}
+	private void prepareListData() {
+		listDataHeader = new ArrayList<String>();
+		listDataChild = new HashMap<String, List<String>>();
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-	
-	public void getDataInput(View view) throws XPathExpressionException, IOException {
+		ArrayList<String> clientId= new ArrayList<String>();
+		ArrayList<String> clientName= new ArrayList<String>();
 		
-		Spinner client = (Spinner) findViewById(R.id.clientSpinner),
-				serviceAddress = (Spinner) findViewById(R.id.serviceAddressSpinner);
-		String clientSelection = client.getSelectedItem().toString(),
-				serviceAddressSelection = serviceAddress.getSelectedItem().toString();
-		
-		Intent intent = new Intent(this, ScanActivity.class);
-		intent.putExtra("client", clientSelection);
-		intent.putExtra("serviceAddress", serviceAddressSelection);
-		startActivity(intent);
-	}
-
-	//Spinner listener
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int pos,
-			long id) {
-		//Value chosen in spinner that event happened at
-		String spinnerValue = (String) parent.getItemAtPosition(pos);
-		//Stores child spinner so that child spinners can be updated in a chain reaction
-		Spinner spinner_child = null;
+		Log.i("MainDataEntry.java", "prepare list reached");
 
 
-
-		//Reference to parent spinner
-		Spinner spinner = (Spinner) parent;
-		//Check to see what spinner event occured at
-		if(spinner.getId() == R.id.clientSpinner)
-		{	
-			Log.i("Main Data Entry", "Client spinner event triggered");
-			//get child spinner  
-			spinner_child = (Spinner) findViewById(R.id.clientContractSpinner);
-			try{
-				//update child spinner data
-				ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client[@name='" + spinnerValue + "']/*[@id]", "id"));
-				spinner_child.setAdapter(adapter);
-				Log.i("Main Data Entry", "Client contract spinner updated");
-			} catch (XPathExpressionException e) {
-				e.printStackTrace();
-			}
-
+		try {
+			clientId = getValues("/Franchisee*[@id]", "id");
+			clientName = getValues("/Franchisee*[@name]", "name");
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else if(spinner.getId() == R.id.clientContractSpinner)
-		{
-			Log.i("Main Data Entry", "Client contract spinner triggered");
-			//get child spinner
-			spinner_child = (Spinner) findViewById(R.id.serviceAddressSpinner);
-			try{
-				//update child spinner data
-				ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract[@id='" + spinnerValue + "']/*[@address]", "address"));
-				spinner_child.setAdapter(adapter);
-				Log.i("Main Data Entry", "Service address spinner updated");
-			} catch (XPathExpressionException e) {
-				e.printStackTrace();
-			}
 
+		for(int i = 0; i < clientId.size(); i++){
+			listDataHeader.add(clientId.get(i));
+			listDataHeader.add(clientName.get(i));
 		}
+
+
+		// Adding child data
+		List<String> top250 = new ArrayList<String>();
+		top250.add("The Shawshank Redemption");
+		top250.add("The Godfather");
+		top250.add("The Godfather: Part II");
+		top250.add("Pulp Fiction");
+		top250.add("The Good, the Bad and the Ugly");
+		top250.add("The Dark Knight");
+		top250.add("12 Angry Men");
+
+		List<String> nowShowing = new ArrayList<String>();
+		nowShowing.add("The Conjuring");
+		nowShowing.add("Despicable Me 2");
+		nowShowing.add("Turbo");
+		nowShowing.add("Grown Ups 2");
+		nowShowing.add("Red 2");
+		nowShowing.add("The Wolverine");
+
+		List<String> comingSoon = new ArrayList<String>();
+		comingSoon.add("2 Guns");
+		comingSoon.add("The Smurfs 2");
+		comingSoon.add("The Spectacular Now");
+		comingSoon.add("The Canyons");
+		comingSoon.add("Europa Report");
+
+		listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
+		listDataChild.put(listDataHeader.get(1), nowShowing);
+		listDataChild.put(listDataHeader.get(2), comingSoon);
 	}
 
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		//Report when nothing has been selected in spinner
-		Log.i("Main Data Entry", "Nothing selected called");
-	}
 
 }
