@@ -157,6 +157,7 @@ public class MainDataEntry extends Activity{
 		listDataHeader = new ArrayList<String>();
 		listDataChild = new HashMap<String, List<String>>();
 
+
 		ArrayList<String> clientId= new ArrayList<String>();
 		ArrayList<String> clientName= new ArrayList<String>();
 		
@@ -164,16 +165,16 @@ public class MainDataEntry extends Activity{
 
 
 		try {
-			clientId = getValues("/Franchisee*[@id]", "id");
-			clientName = getValues("/Franchisee*[@name]", "name");
+			clientId = getValues("/Franchisee/*[@id]", "id");
+			clientName = getValues("/Franchisee/*[@name]", "name");
 		} catch (XPathExpressionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		for(int i = 0; i < clientId.size(); i++){
-			listDataHeader.add(clientId.get(i));
-			listDataHeader.add(clientName.get(i));
+			listDataHeader.add(clientName.get(i) + ": " + clientId.get(i));
+			
 		}
 
 
@@ -195,16 +196,8 @@ public class MainDataEntry extends Activity{
 		nowShowing.add("Red 2");
 		nowShowing.add("The Wolverine");
 
-		List<String> comingSoon = new ArrayList<String>();
-		comingSoon.add("2 Guns");
-		comingSoon.add("The Smurfs 2");
-		comingSoon.add("The Spectacular Now");
-		comingSoon.add("The Canyons");
-		comingSoon.add("Europa Report");
-
 		listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
 		listDataChild.put(listDataHeader.get(1), nowShowing);
-		listDataChild.put(listDataHeader.get(2), comingSoon);
 	}
 
 
