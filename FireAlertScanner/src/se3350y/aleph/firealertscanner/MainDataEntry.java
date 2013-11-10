@@ -158,47 +158,33 @@ public class MainDataEntry extends Activity{
 		listDataChild = new HashMap<String, List<String>>();
 
 
-		ArrayList<String> clientId= new ArrayList<String>();
-		ArrayList<String> clientName= new ArrayList<String>();
-		
-		Log.i("MainDataEntry.java", "prepare list reached");
+//		ArrayList<String> clientId= new ArrayList<String>();
+//		ArrayList<String> clientName= new ArrayList<String>();
+//		ArrayList<String> clientContractId= new ArrayList<String>();
+//
+//
+//		Log.i("MainDataEntry.java", "prepare list reached");
+//
+//
+//		try {
+//			clientId = getValues("/Franchisee/*[@id]", "id");
+//			clientName = getValues("/Franchisee/*[@name]", "name");
+//			clientContractId= getValues("/Franchisee/Client/*[@id]", "id");
+//
+//
+//		} catch (XPathExpressionException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		for(int i = 0; i < clientId.size(); i++){
+//			listDataHeader.add(clientName.get(i) + ": " + clientId.get(i));
+//		}
+//
+//		for(int i = 0; i < clientId.size(); i++) {
+//			listDataChild.put(listDataHeader.get(i), clientContractId);
+//		}
 
 
-		try {
-			clientId = getValues("/Franchisee/*[@id]", "id");
-			clientName = getValues("/Franchisee/*[@name]", "name");
-		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		for(int i = 0; i < clientId.size(); i++){
-			listDataHeader.add(clientName.get(i) + ": " + clientId.get(i));
-			
-		}
-
-
-		// Adding child data
-		List<String> top250 = new ArrayList<String>();
-		top250.add("The Shawshank Redemption");
-		top250.add("The Godfather");
-		top250.add("The Godfather: Part II");
-		top250.add("Pulp Fiction");
-		top250.add("The Good, the Bad and the Ugly");
-		top250.add("The Dark Knight");
-		top250.add("12 Angry Men");
-
-		List<String> nowShowing = new ArrayList<String>();
-		nowShowing.add("The Conjuring");
-		nowShowing.add("Despicable Me 2");
-		nowShowing.add("Turbo");
-		nowShowing.add("Grown Ups 2");
-		nowShowing.add("Red 2");
-		nowShowing.add("The Wolverine");
-
-		listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-		listDataChild.put(listDataHeader.get(1), nowShowing);
 	}
-
-
 }
