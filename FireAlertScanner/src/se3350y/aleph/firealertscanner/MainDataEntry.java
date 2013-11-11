@@ -154,37 +154,70 @@ public class MainDataEntry extends Activity{
 
 
 	private void prepareListData() {
+		ArrayList<Client> headerList = new ArrayList<Client>();
+		ArrayList<ClientContract> tempClientContractList = new ArrayList<ClientContract>();
+		XPath xpathInstance = XPathFactory.newInstance().newXPath();
+		InputStream iStream = null;
+		InputSource iSource = null;
+		NodeList nodes = null, attributeNodes = null;
+		Element element = null, attribute = null;
 		listDataHeader = new ArrayList<String>();
 		listDataChild = new HashMap<String, List<String>>();
-
-
-//		ArrayList<String> clientId= new ArrayList<String>();
-//		ArrayList<String> clientName= new ArrayList<String>();
-//		ArrayList<String> clientContractId= new ArrayList<String>();
-//
-//
-//		Log.i("MainDataEntry.java", "prepare list reached");
-//
-//
-//		try {
-//			clientId = getValues("/Franchisee/*[@id]", "id");
-//			clientName = getValues("/Franchisee/*[@name]", "name");
-//			clientContractId= getValues("/Franchisee/Client/*[@id]", "id");
-//
-//
-//		} catch (XPathExpressionException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		for(int i = 0; i < clientId.size(); i++){
-//			listDataHeader.add(clientName.get(i) + ": " + clientId.get(i));
-//		}
-//
-//		for(int i = 0; i < clientId.size(); i++) {
-//			listDataChild.put(listDataHeader.get(i), clientContractId);
-//		}
-
-
+		
+		try {
+			iStream = new FileInputStream(new File (Environment.getExternalStorageDirectory(), "/InspectionData.xml"));
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		iSource = new InputSource(iStream);
+		
+		try {
+			nodes = (NodeList) xpathInstance.evaluate("/Franchisee/*", iSource, XPathConstants.NODESET);
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < nodes.getLength(); i++){
+			element = (Element) nodes.item(i);
+			Client tempClient = new Client();
+			tempClient.setName(element.getAttribute("name"));
+			tempClient.setId(element.getAttribute("id"));
+			tempClient.setAddress(element.getAttribute("address"));
+			
+			try {
+				attributeNodes = (NodeList) xpathInstance.evaluate("./*", element, XPathConstants.NODESET);
+			} catch (XPathExpressionException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			for(int j = 0; j < attributeNodes.getLength(); j++){
+				attribute = (Element) attributeNodes.item(j);
+				ClientContract tempClientContract = new ClientContract();
+				tempClientContract.setContractId(attribute.getAttribute("id"));
+				tempClientContract.setContractNo(attribute.getAttribute("No"));
+				tempClientContract.setContractStartDate(attribute.getAttribute("startDate"));
+				tempClientContract.setContractEndDate(attribute.getAttribute("endDate"));
+				tempClientContract.setContractTerms(attribute.getAttribute("terms"));
+				
+				tempClient.setClientContract(tempClientContract);
+			}
+			
+			headerList.add(tempClient);
+		}
+		
+		for(int i = 0; i < headerList.size(); i++) {
+			listDataHeader.add(headerList.get(i).getName() + ": " + headerList.get(i).getId());
+		}
+		
+		for(int i = 0; i < headerList.size(); i++) {
+			ArrayList<String> clientContractInflater = new ArrayList<String>();
+			for(int j = 0; j < headerList.get(i).getClientContract().size(); j++){
+				clientContractInflater.add(headerList.get(i).getClientContract().get(j).getContractId());
+			}
+			listDataChild.put(listDataHeader.get(i), clientContractInflater);
+		}
 	}
 }
