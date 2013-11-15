@@ -46,5 +46,8 @@ public class ClientContract {
 	public void setServiceAddress(ArrayList<ServiceAddress> serviceAddress) {
 		this.serviceAddress = serviceAddress;
 	}
+	public void setServiceAddress(ServiceAddress serviceAddressInstance){
+		this.serviceAddress.add(serviceAddressInstance);
+	}
 	
 }

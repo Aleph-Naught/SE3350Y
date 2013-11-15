@@ -155,7 +155,6 @@ public class MainDataEntry extends Activity{
 
 	private void prepareListData() {
 		ArrayList<Client> headerList = new ArrayList<Client>();
-		ArrayList<ClientContract> tempClientContractList = new ArrayList<ClientContract>();
 		XPath xpathInstance = XPathFactory.newInstance().newXPath();
 		InputStream iStream = null;
 		InputSource iSource = null;
@@ -163,55 +162,61 @@ public class MainDataEntry extends Activity{
 		Element element = null, attribute = null;
 		listDataHeader = new ArrayList<String>();
 		listDataChild = new HashMap<String, List<String>>();
-		
+
 		try {
 			iStream = new FileInputStream(new File (Environment.getExternalStorageDirectory(), "/InspectionData.xml"));
-			
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 		iSource = new InputSource(iStream);
-		
+
 		try {
 			nodes = (NodeList) xpathInstance.evaluate("/Franchisee/*", iSource, XPathConstants.NODESET);
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
-		
+
 		for (int i = 0; i < nodes.getLength(); i++){
 			element = (Element) nodes.item(i);
 			Client tempClient = new Client();
 			tempClient.setName(element.getAttribute("name"));
 			tempClient.setId(element.getAttribute("id"));
 			tempClient.setAddress(element.getAttribute("address"));
-			
+
 			try {
 				attributeNodes = (NodeList) xpathInstance.evaluate("./*", element, XPathConstants.NODESET);
 			} catch (XPathExpressionException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
+
 			for(int j = 0; j < attributeNodes.getLength(); j++){
 				attribute = (Element) attributeNodes.item(j);
 				ClientContract tempClientContract = new ClientContract();
 				tempClientContract.setContractId(attribute.getAttribute("id"));
-				tempClientContract.setContractNo(attribute.getAttribute("No"));
-				tempClientContract.setContractStartDate(attribute.getAttribute("startDate"));
-				tempClientContract.setContractEndDate(attribute.getAttribute("endDate"));
-				tempClientContract.setContractTerms(attribute.getAttribute("terms"));
-				
+
+				NodeList serviceAddressNodeList = (NodeList) attribute.getChildNodes();
+				for(int k = 0; k < serviceAddressNodeList.getLength(); k++){
+					Element serviceAddressElement = (Element) serviceAddressNodeList.item(k);
+					ServiceAddress tempServiceAddress = new ServiceAddress();
+					tempServiceAddress.setAddress(serviceAddressElement.getAttribute("address"));
+					
+					tempClientContract.setServiceAddress(tempServiceAddress);
+
+				}
+
 				tempClient.setClientContract(tempClientContract);
+
+				headerList.add(tempClient);
 			}
-			
-			headerList.add(tempClient);
 		}
-		
+
 		for(int i = 0; i < headerList.size(); i++) {
 			listDataHeader.add(headerList.get(i).getName() + ": " + headerList.get(i).getId());
 		}
-		
+
 		for(int i = 0; i < headerList.size(); i++) {
 			ArrayList<String> clientContractInflater = new ArrayList<String>();
 			for(int j = 0; j < headerList.get(i).getClientContract().size(); j++){
