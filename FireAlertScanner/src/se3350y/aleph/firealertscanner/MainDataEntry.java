@@ -28,6 +28,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
@@ -35,6 +36,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 
 public class MainDataEntry extends Activity implements OnItemSelectedListener{
+	TCPController _tcpController = new TCPController(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +147,16 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void launchTCP(View view){
+//		Intent intent = new Intent (this, ClientView.class);
+//		startActivity(intent);
+		_tcpController.Send();
+	}
+	
+	public void makeToast(String text, int duration){
+		Toast.makeText(getBaseContext(), text, duration).show();
 	}
 	
 	public void getDataInput(View view) throws XPathExpressionException, IOException {

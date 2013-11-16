@@ -21,6 +21,7 @@ import org.xml.sax.SAXException;
 import com.dataInput.samplescanner.ScanCodeDemo;
 
 public class MainActivity extends Activity {
+	//DOMWriter dom = new DOMWriter();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +42,20 @@ public class MainActivity extends Activity {
 		startActivity(intent);
 	}
 	
-	// A test to verify XML reads, edits, and writes successfully.
+	/*// A test to verify XML reads, edits, and writes successfully.
 	public void recordResults(View view){
 		try {
-		Document doc = DOM.getDOM(getBaseContext());
+		Document doc = dom.getDOM(getBaseContext());
 		
 		// Root node; in this case, Franchisee
 		Node firstNode = doc.getFirstChild();
 
-		DOM.setPassFail("33101", "Weight", "Pass", firstNode);
-		DOM.setPassFail("33101", "Collar", "Fail", firstNode);
-		DOM.setPassFail("88103", "Requires Service or Repair", "Yes", firstNode);
+		dom.setPassFail("33101", "Weight", "Pass", firstNode);
+		dom.setPassFail("33101", "Collar", "Fail", firstNode);
+		dom.setPassFail("88103", "Requires Service or Repair", "Yes", firstNode);
 		
 		// Write result
-		DOM.writeDOMResults(doc, getBaseContext());
+		dom.writeDOMResults(doc, getBaseContext());
 
 		Toast.makeText(getBaseContext(), "Output file written.", Toast.LENGTH_SHORT).show();
 		
@@ -75,6 +76,6 @@ public class MainActivity extends Activity {
 			Toast.makeText(getApplicationContext(),"XPathExpressionException occurred.",Toast.LENGTH_LONG).show();
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 }

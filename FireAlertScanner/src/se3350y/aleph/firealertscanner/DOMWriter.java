@@ -23,6 +23,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
@@ -31,7 +32,13 @@ import android.widget.Toast;
  * A class to store the static DOM-related files for reading, editing, and writing XML.
  * @author Benjamin Schubert
  */
-public class DOM {
+public class DOMWriter {
+	MainDataEntry _activity;
+	
+	
+	public DOMWriter(MainDataEntry a){
+		_activity = a;
+	}
 	
 	/**
 	 * One static function to write the inspection results from the Radio Buttons and Spinners to an XML file.<br>
@@ -44,8 +51,8 @@ public class DOM {
 	 * @throws ParserConfigurationException
 	 * @throws TransformerException
 	 */
-	public static void saveXML(ArrayList<Equipment> list, Context context) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException{
-		Document doc = DOM.getDOM(context);
+	public void saveXML(ArrayList<Equipment> list) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException{
+		Document doc = getDOM();
 		
 		// Root node; in this case, Franchisee
 		Node firstNode = doc.getFirstChild();
@@ -93,10 +100,10 @@ public class DOM {
 				}
 				
 				// Modify the underlying node
-				DOM.setPassFail(currID, inspectName, passFail, firstNode);
+				setPassFail(currID, inspectName, passFail, firstNode);
 
 				// Write result
-				DOM.writeDOMResults(doc, context);
+				writeDOMResults(doc);
 			}
 		}
 	}
@@ -109,7 +116,7 @@ public class DOM {
 	 * @param 	rootNode The root node of the document. In our case, Franchisee. getFirstChild() can be used on the {@link Document} to obtain this.
 	 * @throws 	XPathExpressionException In the case that the XPath expression is invalid.
 	 */
-	public static void setPassFail(String equipmentID, String inspectionElementName, String passOrFail, Node rootNode) throws XPathExpressionException{
+	public void setPassFail(String equipmentID, String inspectionElementName, String passOrFail, Node rootNode) throws XPathExpressionException{
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		
 		// Take the String values passed as arguments and put them into the XPath String.
@@ -127,15 +134,29 @@ public class DOM {
 	 * @throws IOException
 	 * @throws ParserConfigurationException
 	 */
-	public static Document getDOM(Context context) throws SAXException, IOException, ParserConfigurationException{
+	public Document getDOM() throws SAXException, IOException, ParserConfigurationException{
 		// Check SD card status
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-			Toast.makeText(context, "SD card not available.", Toast.LENGTH_SHORT).show();
+			_activity.makeToast("SD card not available.", Toast.LENGTH_SHORT);
 			return null;
 		}
 		
 		File workingDir = Environment.getExternalStorageDirectory();
 		File file = new File(workingDir,"/InspectionData.xml");
+		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		Document doc = builder.parse(file);
+		return doc;
+	}
+	
+	public Document getModifiedDOM() throws SAXException, IOException, ParserConfigurationException{
+		// Check SD card status
+		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+			_activity.makeToast("SD card not available.", Toast.LENGTH_SHORT);
+			return null;
+		}
+		
+		File workingDir = Environment.getExternalStorageDirectory();
+		File file = new File(workingDir,"/Modified.xml");
 		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = builder.parse(file);
 		return doc;
@@ -148,7 +169,7 @@ public class DOM {
 	 * @throws TransformerException
 	 * @throws FileNotFoundException
 	 */
-	public static void writeDOMResults(Document doc, Context context) throws TransformerException, FileNotFoundException{
+	public void writeDOMResults(Document doc) throws TransformerException, FileNotFoundException{
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
 		// TODO Might change this to a different name, or pass the filename as a method argument.
@@ -160,7 +181,7 @@ public class DOM {
 		try {
         	modifiedFile.createNewFile();
 		} catch (IOException e) {
-			Toast.makeText(context,"Error creating file!",Toast.LENGTH_LONG).show();
+			_activity.makeToast("Error creating file!",Toast.LENGTH_LONG);
 			e.printStackTrace();
 		}
 		

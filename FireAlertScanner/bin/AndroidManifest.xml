@@ -51,6 +51,12 @@
             android:parentActivityName="se3350y.aleph.firealertscanner.MainDataEntry"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="se3350y.aleph.firealertscanner.ClientView"
+            android:label="@string/title_activity_client_view"
+            android:parentActivityName="se3350y.aleph.firealertscanner.MainDataEntry"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
