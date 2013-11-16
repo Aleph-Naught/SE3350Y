@@ -29,7 +29,7 @@
     <string name="lable2">Server IP Address</string>
     <string name="lable3">Enter XML message here:</string>
     <string name="port">3000</string>
-    <string name="ip">10.0.2.2</string>
+    <string name="ip">192.168.0.17</string>
     <string name="BtnConnect">Connect</string>
     <string name="BtnSend">Send</string>
     <string name="BtnClose">Disconnect</string>

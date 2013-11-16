@@ -32,6 +32,8 @@ public class TCPController {
 		Resources res = _view.getResources();
 		ServerPort = Integer.parseInt(res.getString(R.string.port));
 		ServerIP = res.getString(R.string.ip);
+		Log.i("TCPController", Integer.toString(ServerPort));
+		Log.i("TCPController", ServerIP);
 		try {
 			_TCPmodel = new TCPmodel(ServerIP, ServerPort);
 
