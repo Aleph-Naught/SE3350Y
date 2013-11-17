@@ -125,6 +125,7 @@ public final class R {
         public static final int title_activity_main_data_entry=0x7f050006;
         public static final int title_activity_scan=0x7f050012;
         public static final int title_text=0x7f05000a;
+        public static final int user_registered=0x7f050020;
     }
     public static final class style {
         /** 

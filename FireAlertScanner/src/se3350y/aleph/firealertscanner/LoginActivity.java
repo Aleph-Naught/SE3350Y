@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -208,7 +210,7 @@ public class LoginActivity extends Activity {
 			}
 		}
 		else {
-			
+			registerUser(userHash,passHash);
 		}
 		}
 
@@ -228,8 +230,20 @@ public class LoginActivity extends Activity {
 		}
 	}
 	
-	private void registerUser() {
-		
+	private void registerUser(int user, int pass) {
+		try {
+			PrintWriter pw = new PrintWriter(in);
+			String toWrite = user+":"+pass;
+			for (int i=0; i<userHashCodes.length; i++) {
+				toWrite+=":"+userHashCodes[i]+":"+passwordHashCodes[i];
+			}
+			pw.write(toWrite);
+			pw.close();
+			Toast.makeText(getBaseContext(), getString(R.string.user_registered), Toast.LENGTH_SHORT).show();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
