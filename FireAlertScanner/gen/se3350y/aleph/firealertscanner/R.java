@@ -103,8 +103,9 @@ public final class R {
         public static final int equiptment_textview=0x7f05000c;
         public static final int error_field_required=0x7f05001e;
         public static final int error_incorrect_password=0x7f05001d;
-        public static final int error_invalid_password=0x7f05001c;
+        public static final int error_invalid_password=0x7f05001f;
         public static final int error_invalid_username=0x7f05001b;
+        public static final int error_short_password=0x7f05001c;
         public static final int floor_textview=0x7f05000f;
         public static final int franchisee_textview=0x7f05000d;
         public static final int get_barcode_button_text=0x7f050013;
