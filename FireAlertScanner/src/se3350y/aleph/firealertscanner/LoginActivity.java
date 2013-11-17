@@ -1,5 +1,10 @@
 package se3350y.aleph.firealertscanner;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -8,7 +13,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
@@ -113,6 +120,16 @@ public class LoginActivity extends Activity {
 		// Store values at the time of the login attempt.
 		mUsername = mUsernameView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
+		
+		//TODO: decide format for usename/password file, get reading+writing working, authenticate login data
+		InputStream in=null;
+
+		try {
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/UserAccounts.txt"));
+		} catch (FileNotFoundException e) {
+			Log.i("Main data entry", "Can't read info from SD Card");
+			e.printStackTrace();
+		}
 
 		boolean cancel = false;
 		View focusView = null;
