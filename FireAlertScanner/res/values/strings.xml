@@ -20,13 +20,16 @@
     <string name="title_activity_scan">ScanActivity</string>
     <string name="title_activity_client_view">Send Results</string>
     <string name="hello_world">Hello world!</string>
+    <string name="ok_label">Ok</string>
     
     <!-- TCP Strings -->
     
     <string name="hello">Hello!</string>
     <!-- <string name="app_name">Sample TCP Sender</string> -->
-    <string name="lable1">Server Port #</string>
-    <string name="lable2">Server IP Address</string>
+    <string name="port_hint">Port</string>
+    <string name="ip_hint">IP Address</string>
+    <string name="port_label">Server Port #</string>
+    <string name="ip_label">Server IP Address</string>
     <string name="lable3">Enter XML message here:</string>
     <string name="port">3000</string>
     <string name="ip">192.168.0.17</string>

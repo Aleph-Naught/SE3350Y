@@ -19,13 +19,18 @@ import org.xml.sax.InputSource;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
+import android.app.Dialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -152,11 +157,33 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 	public void launchTCP(View view){
 //		Intent intent = new Intent (this, ClientView.class);
 //		startActivity(intent);
-		_tcpController.Send();
+		final Dialog dialog = new Dialog(MainDataEntry.this);
+		dialog.setTitle("Send Results");
+		dialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_tcp, null));
+		dialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		dialog.show();
+		
+		Button okButton = (Button) dialog.findViewById(R.id.tcpOkButton);
+		okButton.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+				// Retrieve the data from the Dialog
+				String port = ((EditText)dialog.findViewById(R.id.portInput)).getText().toString();
+				String ip = ((EditText)dialog.findViewById(R.id.ipInput)).getText().toString();
+				_tcpController.Send(port, ip);
+				dialog.dismiss();
+			}
+		});
+		
+		Button cancelButton = (Button) dialog.findViewById(R.id.tcpCancelButton);
+		cancelButton.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
 	}
 	
 	public void makeToast(String text, int duration){
-		Toast.makeText(getBaseContext(), text, duration).show();
+		Toast.makeText(MainDataEntry.this, text, duration).show();
 	}
 	
 	public void getDataInput(View view) throws XPathExpressionException, IOException {

@@ -28,10 +28,9 @@ public class TCPController {
 	}
 
 	// connect button click function
-	public void Send() {
-		Resources res = _view.getResources();
-		ServerPort = Integer.parseInt(res.getString(R.string.port));
-		ServerIP = res.getString(R.string.ip);
+	public void Send(String port, String ip) {
+		ServerPort = Integer.parseInt(port);
+		ServerIP = ip;
 		Log.i("TCPController", Integer.toString(ServerPort));
 		Log.i("TCPController", ServerIP);
 		try {
@@ -53,10 +52,11 @@ public class TCPController {
 	        _TCPmodel.RTSPSend(txt);
 			
 			_TCPmodel.close();
+			_view.makeToast("Results sent successfully.", Toast.LENGTH_SHORT);
 
 		} catch (Exception e) {
 			Log.d("Error in ConnectBtnClick", e.toString());
-			Toast.makeText(_view.getBaseContext(), "TCP failed to connect.", Toast.LENGTH_SHORT).show();
+			_view.makeToast("TCP failed to connect.", Toast.LENGTH_SHORT);;
 			
 		}
 	}
