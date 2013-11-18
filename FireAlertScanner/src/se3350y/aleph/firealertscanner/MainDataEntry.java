@@ -189,6 +189,19 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 	public void getDataInput(View view) throws XPathExpressionException, IOException {
 		
 		Intent intent = new Intent(this, ScanActivity.class);
+		String path = "/Franchisee/Client[@name='";
+		Spinner clientSpinner = (Spinner) findViewById(R.id.clientSpinner);
+		path += clientSpinner.getItemAtPosition(clientSpinner.getSelectedItemPosition());
+		path += "']/clientContract[@id='";
+		Spinner clientContractSpinner = (Spinner) findViewById(R.id.clientContractSpinner);
+		path += clientContractSpinner.getItemAtPosition(clientContractSpinner.getSelectedItemPosition());
+		path += "']/ServiceAddress[@address='";
+		Spinner serviceAddressSpinner = (Spinner) findViewById(R.id.serviceAddressSpinner);
+		path += serviceAddressSpinner.getItemAtPosition(serviceAddressSpinner.getSelectedItemPosition());
+		path += "']";
+		
+		intent.putExtra("se3350y.aleph.firealertscanner.dataentry", path);
+		Log.i("Main Data Entry","Put path: "+path);
 		startActivity(intent);
 	}
 

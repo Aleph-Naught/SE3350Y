@@ -15,6 +15,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -44,6 +45,8 @@ import android.widget.Toast;
 
 public class ScanActivity extends Activity implements OnItemSelectedListener, DOMActivity {
 	DOMWriter dom = new DOMWriter(this);
+	Node fromNode = null;
+	String path = "";
 
 	InputStream in=null;
 
@@ -59,9 +62,28 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
 
+		Bundle b = getIntent().getExtras();
+		path = b.getString("se3350y.aleph.firealertscanner.dataentry");
+		Log.i("ScanActivity", "Received path: "+path);
+		
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
-		populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
+		//populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
+		populate(path+"/*", spinner, "name");
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		try {
+			fromNode = ((NodeList) xpath.evaluate(path, dom.getDOM(), XPathConstants.NODESET)).item(0);
+			if (fromNode == null) Log.i("ScanActivity", "Node is null.");
+			else Log.i("ScanActivity", "Node is not null.");
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
 
 		spinner.setOnItemSelectedListener(this);
 
@@ -71,18 +93,28 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
 		
-		Bundle b = getIntent().getExtras();
+		/*Bundle b = getIntent().getExtras();
 		if( b != null) {
 			String message = b.getString("EXTRA_MESSAGE");
 			expandGroup(message);
-		}
+		}*/
 
 
 	}
 	
 	public void saveResults(View view){
 		try {
-			dom.saveXML(ExpListItems);
+			Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
+			String newPath = path+"/Floor[@name='";
+			newPath += floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition());
+			newPath += "']/Room[@id='";
+			Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
+			newPath += roomSpinner.getItemAtPosition(roomSpinner.getSelectedItemPosition());
+			newPath += "']";
+			Log.i("ScanActivity", "Using path: "+newPath);
+			XPath xpath = XPathFactory.newInstance().newXPath();
+			Node roomNode = ((NodeList) xpath.evaluate(newPath, fromNode, XPathConstants.NODESET)).item(0);
+			dom.saveXML(ExpListItems, newPath);
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {

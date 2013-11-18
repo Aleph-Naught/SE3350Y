@@ -24,6 +24,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
@@ -48,12 +49,14 @@ public class DOMWriter {
 	 * @throws ParserConfigurationException
 	 * @throws TransformerException
 	 */
-	public void saveXML(ArrayList<Equipment> list) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException{
+	public void saveXML(ArrayList<Equipment> list, String fromPath) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException{
 		Document doc = getDOM();
 		
 		// Root node; in this case, Franchisee
-		Node firstNode = doc.getFirstChild();
+		//Node firstNode = doc.getFirstChild();
 		
+		int outerCounter = 0;
+		int innerCounter = 0;
 		for (int j=0; j<list.size(); j++){
 			// Get the Equipment
 			Equipment currEquip = list.get(j);
@@ -114,10 +117,17 @@ public class DOMWriter {
 				}
 				
 				// Modify the underlying node
-				setPassFail(currID, inspectName, passFail, firstNode);
-				setNotes(currID, inspectName, currElement.getNotes(), firstNode);
+				XPath xpath = XPathFactory.newInstance().newXPath();
+				Node roomNode = ((NodeList)xpath.evaluate(fromPath, doc, XPathConstants.NODESET)).item(0);
+				setPassFail(currID, inspectName, passFail, roomNode);
+				setNotes(currID, inspectName, currElement.getNotes(), roomNode);
+				innerCounter++;
 			}
+			outerCounter++;
 		}
+		
+		Log.i("DOMWriter", "Outer Counter:"+String.valueOf(outerCounter));
+		Log.i("DOMWriter", "Inner Counter:"+String.valueOf(innerCounter));
 		
 		// Write result
 		writeDOMResults(doc);
@@ -127,7 +137,7 @@ public class DOMWriter {
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		
 		// Take the String values passed as arguments and put them into the XPath String.
-		String path = "//*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testNote";
+		String path = "./*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testNote";
 		NodeList list = (NodeList) xpath.evaluate(path,
 				rootNode, XPathConstants.NODESET);
 		list.item(0).setTextContent(notes);
@@ -145,7 +155,7 @@ public class DOMWriter {
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		
 		// Take the String values passed as arguments and put them into the XPath String.
-		String path = "//*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testResult";
+		String path = "./*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testResult";
 		NodeList list = (NodeList) xpath.evaluate(path,
 				rootNode, XPathConstants.NODESET);
 		list.item(0).setTextContent(passOrFail);

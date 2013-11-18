@@ -97,33 +97,6 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 		return _view;
 		
 	}
-
-	public void makeNotesDialog(){
-		AlertDialog.Builder builder = new AlertDialog.Builder(_view.getContext());
-		builder.setTitle("Enter note:");
-
-		// Set up the input
-		final EditText input = new EditText(_view.getContext());
-		input.setHint("Reason for fail");
-		input.setInputType(InputType.TYPE_CLASS_TEXT);
-		input.setText(getNotes());
-		builder.setView(input);
-
-		// Set up the buttons
-		Resources res = _view.getResources();
-		builder.setPositiveButton(res.getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				Log.i("ExtinguisherPassFailElement","OK button clicked.");
-				setNotes(input.getText().toString());
-			}
-		});
-		builder.setNegativeButton(res.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-			}
-		});
-		builder.show();
-	}
 	
 	public void setPassFail(int i) {
 		// TODO Auto-generated method stub
