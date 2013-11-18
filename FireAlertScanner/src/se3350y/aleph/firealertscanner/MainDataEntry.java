@@ -17,6 +17,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -141,9 +142,11 @@ public class MainDataEntry extends Activity{
 
 		//List of nodes stored in element data type
 		for (int i = 0; i < nodes.getLength(); i++){
+			if (nodes.item(i).getNodeType()==Node.ELEMENT_NODE) {
 			element = (Element) nodes.item(i);
 			//String of attribute values stored in array list
 			ar.add(element.getAttribute(attribute));
+			}
 		}
 
 		Log.i("Main Data Entry", "Parsing completed");
@@ -179,6 +182,7 @@ public class MainDataEntry extends Activity{
 		}
 
 		for (int i = 0; i < nodes.getLength(); i++){
+			if (nodes.item(i).getNodeType()==Node.ELEMENT_NODE) {
 			element = (Element) nodes.item(i);
 			Client tempClient = new Client();
 			tempClient.setName(element.getAttribute("name"));
@@ -193,24 +197,26 @@ public class MainDataEntry extends Activity{
 			}
 
 			for(int j = 0; j < attributeNodes.getLength(); j++){
+				if (attributeNodes.item(i).getNodeType()==Node.ELEMENT_NODE) {
 				attribute = (Element) attributeNodes.item(j);
 				ClientContract tempClientContract = new ClientContract();
 				tempClientContract.setContractId(attribute.getAttribute("id"));
 
 				NodeList serviceAddressNodeList = (NodeList) attribute.getChildNodes();
 				for(int k = 0; k < serviceAddressNodeList.getLength(); k++){
+					if (serviceAddressNodeList.item(i).getNodeType()==Node.ELEMENT_NODE) {
 					Element serviceAddressElement = (Element) serviceAddressNodeList.item(k);
 					ServiceAddress tempServiceAddress = new ServiceAddress();
 					tempServiceAddress.setAddress(serviceAddressElement.getAttribute("address"));
 					
 					tempClientContract.setServiceAddress(tempServiceAddress);
-
+					}
 				}
 
 				tempClient.setClientContract(tempClientContract);
 
 				headerList.add(tempClient);
-			}
+			}}}
 		}
 
 		for(int i = 0; i < headerList.size(); i++) {
@@ -219,10 +225,19 @@ public class MainDataEntry extends Activity{
 
 		for(int i = 0; i < headerList.size(); i++) {
 			ArrayList<String> clientContractInflater = new ArrayList<String>();
+			if (headerList.get(i).getClientContract()!=null) {
 			for(int j = 0; j < headerList.get(i).getClientContract().size(); j++){
 				clientContractInflater.add(headerList.get(i).getClientContract().get(j).getContractId());
-			}
+				ArrayList<String> serviceAddressInflater = new ArrayList<String>();
+				if (headerList.get(i).getClientContract().get(j).getServiceAddress()!=null) {
+				for (int k=0; k<headerList.get(i).getClientContract().get(j).getServiceAddress().size(); k++) {
+					serviceAddressInflater.add(headerList.get(i).getClientContract().get(j).getServiceAddress().get(k).getAddress());
+				}
+				listDataChild.put(clientContractInflater.get(j), serviceAddressInflater);
+				}
+			}}
 			listDataChild.put(listDataHeader.get(i), clientContractInflater);
+			
 		}
 	}
 }
