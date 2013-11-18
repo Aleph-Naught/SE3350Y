@@ -115,11 +115,22 @@ public class DOMWriter {
 				
 				// Modify the underlying node
 				setPassFail(currID, inspectName, passFail, firstNode);
+				setNotes(currID, inspectName, currElement.getNotes(), firstNode);
 			}
 		}
 		
 		// Write result
 		writeDOMResults(doc);
+	}
+	
+	public void setNotes(String equipmentID, String inspectionElementName, String notes, Node rootNode) throws XPathExpressionException{
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		
+		// Take the String values passed as arguments and put them into the XPath String.
+		String path = "//*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testNote";
+		NodeList list = (NodeList) xpath.evaluate(path,
+				rootNode, XPathConstants.NODESET);
+		list.item(0).setTextContent(notes);
 	}
 	
 	/**

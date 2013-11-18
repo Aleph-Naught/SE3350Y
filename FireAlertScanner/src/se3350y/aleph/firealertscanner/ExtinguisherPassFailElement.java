@@ -1,11 +1,22 @@
 package se3350y.aleph.firealertscanner;
 
 import se3350y.aleph.firealertscanner.ExpandableListAdapter.passFailViewHolder;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.res.Resources;
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
+import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.RadioButton;
 
 public class ExtinguisherPassFailElement extends inspectionElement {
 	
@@ -14,22 +25,24 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 	//Holds the view for the RadioButtons
 	static class passFailViewHolder {
         protected RadioGroup VH_radioGroupPassFail;
-      }
+    }
 	
 	//Creates the row on the page
 	public View XMLInflator(View convertView, ViewGroup parent, Object context){
 		
-		View view = null;
+		_view = null;
 		
 		if (convertView == null || convertView.getTag() != this.getTag()) {
 			LayoutInflater infalInflater = (LayoutInflater) context;
-			view = infalInflater.inflate(R.layout.extinguisher_item, null);
+			_view = infalInflater.inflate(R.layout.extinguisher_item, null);
+			
+			
 			
 			//For Radio Button state holding
 			final passFailViewHolder viewHolder = new passFailViewHolder();
 			
 			//Set ViewHolder's RadioGroup to the one in the row
-			viewHolder.VH_radioGroupPassFail = (RadioGroup) view.findViewById(R.id.extinguisherRadioGroup);
+			viewHolder.VH_radioGroupPassFail = (RadioGroup) _view.findViewById(R.id.extinguisherRadioGroup);
 			
 			//OnClick Listener
 			viewHolder.VH_radioGroupPassFail
@@ -53,16 +66,24 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 	          });
 			
 			//Sets view to ViewHolder or something I don't know really
-			view.setTag(viewHolder);
+			_view.setTag(viewHolder);
 		    viewHolder.VH_radioGroupPassFail.setTag(this);
 		}
 		else {
 			//If it's already been opened you don't need to rebuild it
-		      view = convertView;
-		      ((passFailViewHolder) view.getTag()).VH_radioGroupPassFail.setTag(this);
-		    }
+		      _view = convertView;
+		      ((passFailViewHolder) _view.getTag()).VH_radioGroupPassFail.setTag(this);
+		}
 		
-		passFailViewHolder holder = (passFailViewHolder) view.getTag();
+		// A note must be entered if Fail is selected
+		RadioButton rb = (RadioButton) _view.findViewById(R.id.radioFail);
+		rb.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+				makeNotesDialog();
+			}
+		});
+		
+		passFailViewHolder holder = (passFailViewHolder) _view.getTag();
 		
 		//Read the model and set the radio buttons appropriately
 		if(this.getPassFail() == 1)
@@ -73,10 +94,37 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 			holder.VH_radioGroupPassFail.check(R.id.radioNone);
 		
 		
-		return view;
+		return _view;
 		
 	}
 
+	public void makeNotesDialog(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(_view.getContext());
+		builder.setTitle("Enter note:");
+
+		// Set up the input
+		final EditText input = new EditText(_view.getContext());
+		input.setHint("Reason for fail");
+		input.setInputType(InputType.TYPE_CLASS_TEXT);
+		input.setText(getNotes());
+		builder.setView(input);
+
+		// Set up the buttons
+		Resources res = _view.getResources();
+		builder.setPositiveButton(res.getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				Log.i("ExtinguisherPassFailElement","OK button clicked.");
+				setNotes(input.getText().toString());
+			}
+		});
+		builder.setNegativeButton(res.getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+		});
+		builder.show();
+	}
+	
 	public void setPassFail(int i) {
 		// TODO Auto-generated method stub
 		passFail = i;
