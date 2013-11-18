@@ -92,13 +92,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		ExpListItems = SetStandarGroups();
 		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
-		
-		/*Bundle b = getIntent().getExtras();
-		if( b != null) {
-			String message = b.getString("EXTRA_MESSAGE");
-			expandGroup(message);
-		}*/
-
 
 	}
 	
@@ -112,8 +105,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			newPath += roomSpinner.getItemAtPosition(roomSpinner.getSelectedItemPosition());
 			newPath += "']";
 			Log.i("ScanActivity", "Using path: "+newPath);
-			XPath xpath = XPathFactory.newInstance().newXPath();
-			Node roomNode = ((NodeList) xpath.evaluate(newPath, fromNode, XPathConstants.NODESET)).item(0);
 			dom.saveXML(ExpListItems, newPath);
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
@@ -155,9 +146,17 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		//Performs xpath and returns list of nodes
 		NodeList nodes = null;
+		
+		Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
+		Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
 
 		try {
-			nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='First Floor']/Room[@id='R1']/*", is, XPathConstants.NODESET);
+			// needs to be populated before we make the nodelist
+			populate(path+"/Floor[@name='" + floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition()) + "']/*",roomSpinner,"id");
+			nodes = (NodeList) xpath.evaluate(path+"/Floor[@name='"+floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition())
+					+"']/Room[@id='"+roomSpinner.getItemAtPosition(roomSpinner.getSelectedItemPosition())+"']/*", is, XPathConstants.NODESET);
+			Log.i("ScanActivity", (String)(floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition())));
+			String roomString = (String) roomSpinner.getItemAtPosition(roomSpinner.getSelectedItemPosition());
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
@@ -231,7 +230,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 			list.add(tempEquipment);
 
-
 		}
 
 
@@ -257,7 +255,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
@@ -314,7 +312,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 				//get child spinner  
 				spinner_child = (Spinner) findViewById(R.id.roomSpinner);
 				//update child spinner data
-				populate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
+				populate(path+"/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
 				Log.i("Main Data Entry", "floor contract spinner updated");
 		}
 	}
