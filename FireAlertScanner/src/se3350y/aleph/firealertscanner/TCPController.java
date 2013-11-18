@@ -1,6 +1,7 @@
 package se3350y.aleph.firealertscanner;
 
 import java.io.StringWriter;
+import java.net.SocketTimeoutException;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
@@ -35,6 +36,7 @@ public class TCPController {
 		Log.i("TCPController", ServerIP);
 		try {
 			_TCPmodel = new TCPmodel(ServerIP, ServerPort);
+			Log.i("TCP Stuff", "Made new TCP model");
 
 //			_view.setConnectBtnFalse();
 //			_view.setSendBtnTrue();
@@ -49,11 +51,15 @@ public class TCPController {
 	        Transformer transformer = tf.newTransformer();
 	        transformer.transform(domSource, result);
 	        String txt = writer.toString();
+	        Log.i("TCP Stuff", "Just about to send");
 	        _TCPmodel.RTSPSend(txt);
 			
 			_TCPmodel.close();
 			_view.makeToast("Results sent successfully.", Toast.LENGTH_SHORT);
 
+		} catch (SocketTimeoutException e){
+			Log.d("Error in ConnectBtnClick", e.toString());
+			_view.makeToast("Connection timed out.", Toast.LENGTH_SHORT);
 		} catch (Exception e) {
 			Log.d("Error in ConnectBtnClick", e.toString());
 			_view.makeToast("TCP failed to connect.", Toast.LENGTH_SHORT);;

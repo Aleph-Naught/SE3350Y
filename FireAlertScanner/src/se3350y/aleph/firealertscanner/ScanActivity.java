@@ -3,8 +3,12 @@ package se3350y.aleph.firealertscanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -13,6 +17,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.dataInput.samplescanner.ScanCodeDemo;
 
@@ -35,7 +40,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
-public class ScanActivity extends Activity implements OnItemSelectedListener {
+public class ScanActivity extends Activity implements OnItemSelectedListener, DOMActivity {
+	DOMWriter dom = new DOMWriter(this);
 
 	InputStream in=null;
 
@@ -72,6 +78,25 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 	}
 	
+	public void saveResults(View view){
+		try {
+			dom.saveXML(ExpListItems);
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void makeToast(String text, int duration){
+		Toast.makeText(ScanActivity.this, text, duration).show();
+	}
 
 	private ArrayList<Equipment> SetStandarGroups() {
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
@@ -323,7 +348,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 				m_Text = input.getText().toString();
 				Equipment temp = new Equipment();
 
-				int groupPos = 0;
+				// -1 so that we can see whether it doesn't match any
+				int groupPos = -1;
 
 				for(int i = 0; i < ExpListItems.size(); i++)
 					ExpandList.collapseGroup(i);
@@ -335,9 +361,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 						break;
 					}
 				}
-
-				ExpandList.expandGroup(groupPos);
-				ExpandList.setSelection(groupPos);
+				if (groupPos >= 0){
+					ExpandList.expandGroup(groupPos);
+					ExpandList.setSelection(groupPos);
+				}
+				else Toast.makeText(ScanActivity.this, "No matches found.", Toast.LENGTH_SHORT).show();
 			}
 		});
 		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

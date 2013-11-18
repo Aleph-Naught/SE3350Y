@@ -23,8 +23,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Environment;
 import android.widget.Toast;
 
@@ -33,18 +31,17 @@ import android.widget.Toast;
  * @author Benjamin Schubert
  */
 public class DOMWriter {
-	MainDataEntry _activity;
+	DOMActivity _activity;
 	
 	
-	public DOMWriter(MainDataEntry a){
+	public DOMWriter(DOMActivity a){
 		_activity = a;
 	}
 	
 	/**
-	 * One static function to write the inspection results from the Radio Buttons and Spinners to an XML file.<br>
+	 * One function to write the inspection results from the Radio Buttons and Spinners to an XML file.<br>
 	 * For now, the XML is written to {@link getExternalStorageDirectory()}.
 	 * @param list The list of Equipment items to be written.
-	 * @param context Currently used for {@link Toast}. May be removed at a later time.
 	 * @throws XPathExpressionException
 	 * @throws SAXException
 	 * @throws IOException
@@ -62,8 +59,8 @@ public class DOMWriter {
 			Equipment currEquip = list.get(j);
 			
 			// Have to hardcode the IDs for now
-			String[] IDs = {"33101", "33102", "77207", "88103"};
-			String currID = IDs[j];
+			//String[] IDs = {"33101", "33102", "77207", "88103"};
+			String currID = currEquip.getId();
 			ArrayList<inspectionElement> elementList = currEquip.getItems();
 			
 			// Get the inspectionElement within each Equipment
@@ -85,27 +82,44 @@ public class DOMWriter {
 				
 				else if (currElement.getClass().equals(FireHoseCabinetGoodPoorElement.class)) {
 					int x = ((FireHoseCabinetGoodPoorElement) currElement).getGoodPoor();
-					if (x > 0){
+					if (x == 0){
 						passFail = "Good";
 					}
-					else if (x < 0){
+					else if (x == 1){
 						passFail = "Poor";
+					}
+					else passFail = "N/A";
+				}
+				
+				else if (currElement.getClass().equals(FireHoseCabinetYesNoElement.class)) {
+					int x = ((FireHoseCabinetYesNoElement) currElement).getYesNo();
+					if (x > 0){
+						passFail = "Yes";
+					}
+					else if (x < 0){
+						passFail = "No";
 					}
 					else passFail = "none";
 				}
 				
-				// EmerencyLight not done yet
-				else {
-					passFail = "not yet";
+				else if (currElement.getClass().equals(EmergencyLightYesNoElement.class)) {
+					int x = ((EmergencyLightYesNoElement) currElement).getYesNo();
+					if (x > 0){
+						passFail = "Yes";
+					}
+					else if (x < 0){
+						passFail = "No";
+					}
+					else passFail = "none";
 				}
 				
 				// Modify the underlying node
 				setPassFail(currID, inspectName, passFail, firstNode);
-
-				// Write result
-				writeDOMResults(doc);
 			}
 		}
+		
+		// Write result
+		writeDOMResults(doc);
 	}
 	
 	/**
@@ -128,8 +142,7 @@ public class DOMWriter {
 	
 	/**
 	 * Gets a {@link Document} object that represents the XML for editing.
-	 * @param context Needed for Toast (might remove this because of redundancy).
-	 * @return	Returns a {@link Document} representing the XML document.
+	 * @return	A {@link Document} representing the XML document.
 	 * @throws SAXException
 	 * @throws IOException
 	 * @throws ParserConfigurationException
@@ -148,6 +161,13 @@ public class DOMWriter {
 		return doc;
 	}
 	
+	/**
+	 * Same as {@link getDOM()} except it returns the modified XML file saved by the inspection results.
+	 * @return A {@link Document} representing the modified XML document.
+	 * @throws SAXException
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 */
 	public Document getModifiedDOM() throws SAXException, IOException, ParserConfigurationException{
 		// Check SD card status
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
@@ -187,5 +207,7 @@ public class DOMWriter {
 		
 		StreamResult result = new StreamResult(modifiedFile);
 		transformer.transform(source, result);
+		
+		_activity.makeToast("File saved.", Toast.LENGTH_SHORT);
 	}
 }

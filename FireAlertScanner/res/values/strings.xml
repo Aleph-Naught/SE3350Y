@@ -20,7 +20,8 @@
     <string name="title_activity_scan">ScanActivity</string>
     <string name="title_activity_client_view">Send Results</string>
     <string name="hello_world">Hello world!</string>
-    <string name="ok_label">Ok</string>
+    <string name="manual_button">Manual</string>
+    <string name="save_button">Save</string>
     
     <!-- TCP Strings -->
     

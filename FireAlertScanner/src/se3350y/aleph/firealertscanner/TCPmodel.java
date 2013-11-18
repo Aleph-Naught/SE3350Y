@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
 import android.util.Log;
@@ -17,10 +19,12 @@ public class TCPmodel {
 	int RTSP_PORT;
 
 	//RTSPmodel constructor
-	public TCPmodel(String IP, int ServerPort) throws IOException {
+	public TCPmodel(String IP, int ServerPort) throws IOException, SocketTimeoutException {
 		try {
 			ServerIPAdd = InetAddress.getByName(IP);
-			RTSPsocket = new Socket(ServerIPAdd, ServerPort);
+			RTSPsocket = new Socket();
+			// Set a timeout of 5 seconds
+			RTSPsocket.connect(new InetSocketAddress(ServerIPAdd, ServerPort), 5000);
 		}
 		catch (UnknownHostException e)
 		{

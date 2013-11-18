@@ -40,7 +40,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 
-public class MainDataEntry extends Activity implements OnItemSelectedListener{
+public class MainDataEntry extends Activity implements OnItemSelectedListener, DOMActivity{
 	TCPController _tcpController = new TCPController(this);
 
 	@Override
