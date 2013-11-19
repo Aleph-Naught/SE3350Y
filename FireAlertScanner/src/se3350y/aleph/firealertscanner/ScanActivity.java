@@ -70,6 +70,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
 		//populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
 		populate(path+"/*", spinner, "name");
+		Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
+		populate(path+"/Floor[@name='" + spinner.getSelectedItem() + "']/*",roomSpinner,"id");
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		try {
 			fromNode = ((NodeList) xpath.evaluate(path, dom.getDOM(), XPathConstants.NODESET)).item(0);
@@ -86,6 +88,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		}
 
 		spinner.setOnItemSelectedListener(this);
+		((Spinner) findViewById(R.id.roomSpinner)).setOnItemSelectedListener(this);
 
 		// get the listview
 		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
@@ -152,11 +155,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		try {
 			// needs to be populated before we make the nodelist
-			populate(path+"/Floor[@name='" + floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition()) + "']/*",roomSpinner,"id");
-			nodes = (NodeList) xpath.evaluate(path+"/Floor[@name='"+floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition())
-					+"']/Room[@id='"+roomSpinner.getItemAtPosition(roomSpinner.getSelectedItemPosition())+"']/*", is, XPathConstants.NODESET);
-			Log.i("ScanActivity", (String)(floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition())));
-			String roomString = (String) roomSpinner.getItemAtPosition(roomSpinner.getSelectedItemPosition());
+			nodes = (NodeList) xpath.evaluate(path+"/Floor[@name='"+floorSpinner.getSelectedItem()
+					+"']/Room[@id='"+roomSpinner.getSelectedItem()+"']/*", is, XPathConstants.NODESET);
+			Log.i("ScanActivity","Using room: "+roomSpinner.getSelectedItem());
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
@@ -300,20 +301,23 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		//Stores child spinner so that child spinners can be updated in a chain reaction
 		Spinner spinner_child = null;
 
-
-			Log.i("ScanActivity", "Got into else");
-
-			//Reference to parent spinner
-			Spinner spinner = (Spinner) parent;
-			//Check to see what spinner event occured at
-			if(spinner.getId() == R.id.floorSpinner)
-			{        
-				Log.i("Main Data Entry", "floor spinner event triggered");
-				//get child spinner  
-				spinner_child = (Spinner) findViewById(R.id.roomSpinner);
-				//update child spinner data
-				populate(path+"/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
-				Log.i("Main Data Entry", "floor contract spinner updated");
+		//Reference to parent spinner
+		Spinner spinner = (Spinner) parent;
+		//Check to see what spinner event occured at
+		if(spinner.getId() == R.id.floorSpinner)
+		{        
+			Log.i("Main Data Entry", "floor spinner event triggered");
+			//get child spinner  
+			spinner_child = (Spinner) findViewById(R.id.roomSpinner);
+			//update child spinner data
+			populate(path+"/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
+			Log.i("Main Data Entry", "floor contract spinner updated");
+		}
+		else if (spinner.getId() == R.id.roomSpinner){
+			// reset the expandable list based on the new floor/room
+			ExpListItems = SetStandarGroups();
+			ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
+			ExpandList.setAdapter(ExpAdapter);
 		}
 	}
 
