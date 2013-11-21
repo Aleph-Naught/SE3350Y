@@ -22,6 +22,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="manual_button">Manual</string>
     <string name="save_button">Save</string>
+    <string name="room_label">Room</string>
     
     <!-- TCP Strings -->
     
