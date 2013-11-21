@@ -59,6 +59,14 @@
             android:layout_height="wrap_content"
             android:onClick="getDataInput"
             android:text="@string/enter_button" />
+        
+        <Button
+            android:id="@+id/TCPTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="launchTCP"
+            android:text="Send Results" />
+        
     </LinearLayout>
 
 </ScrollView>

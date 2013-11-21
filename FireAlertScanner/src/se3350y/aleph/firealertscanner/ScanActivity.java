@@ -3,16 +3,22 @@ package se3350y.aleph.firealertscanner;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import com.dataInput.samplescanner.ScanCodeDemo;
 
@@ -26,16 +32,21 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 
-public class ScanActivity extends Activity implements OnItemSelectedListener {
+public class ScanActivity extends Activity implements OnItemSelectedListener, DOMActivity {
+	DOMWriter dom = new DOMWriter(this);
+	Node fromNode = null;
+	String path = "";
 
 	InputStream in=null;
 
@@ -51,27 +62,69 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
 
+		Bundle b = getIntent().getExtras();
+		path = b.getString("se3350y.aleph.firealertscanner.dataentry");
+		Log.i("ScanActivity", "Received path: "+path);
+		
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
-		populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
+		//populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
+		populate(path+"/*", spinner, "name");
+		Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
+		populate(path+"/Floor[@name='" + spinner.getSelectedItem() + "']/*",roomSpinner,"id");
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		try {
+			fromNode = ((NodeList) xpath.evaluate(path, dom.getDOM(), XPathConstants.NODESET)).item(0);
+			if (fromNode == null) Log.i("ScanActivity", "Node is null.");
+			else Log.i("ScanActivity", "Node is not null.");
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
 
 		spinner.setOnItemSelectedListener(this);
+		((Spinner) findViewById(R.id.roomSpinner)).setOnItemSelectedListener(this);
 
 		// get the listview
 		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
 		ExpListItems = SetStandarGroups();
 		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
-		
-		Bundle b = getIntent().getExtras();
-		if( b != null) {
-			String message = b.getString("EXTRA_MESSAGE");
-			expandGroup(message);
-		}
-
 
 	}
 	
+	public void saveResults(View view){
+		try {
+			Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
+			String newPath = path+"/Floor[@name='";
+			newPath += floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition());
+			newPath += "']/Room[@id='";
+			Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
+			newPath += roomSpinner.getItemAtPosition(roomSpinner.getSelectedItemPosition());
+			newPath += "']";
+			Log.i("ScanActivity", "Using path: "+newPath);
+			dom.saveXML(ExpListItems, newPath);
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void makeToast(String text, int duration){
+		Toast.makeText(ScanActivity.this, text, duration).show();
+	}
 
 	private ArrayList<Equipment> SetStandarGroups() {
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
@@ -96,9 +149,15 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 		//Performs xpath and returns list of nodes
 		NodeList nodes = null;
+		
+		Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
+		Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
 
 		try {
-			nodes = (NodeList) xpath.evaluate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='First Floor']/Room[@id='R1']/*", is, XPathConstants.NODESET);
+			// needs to be populated before we make the nodelist
+			nodes = (NodeList) xpath.evaluate(path+"/Floor[@name='"+floorSpinner.getSelectedItem()
+					+"']/Room[@id='"+roomSpinner.getSelectedItem()+"']/*", is, XPathConstants.NODESET);
+			Log.i("ScanActivity","Using room: "+roomSpinner.getSelectedItem());
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
@@ -141,8 +200,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 				attrElement = (Element) attrNodes.item(j);
 
 				//Sees what object type it needs to be
-				if(element.getNodeName().equals("Extinguisher"))
+				if(element.getNodeName().equals("Extinguisher")){
 					temp = new ExtinguisherPassFailElement();
+				}
 				else if(element.getNodeName().equals("FireHoseCabinet")){
 
 					//There's two different input options for this one
@@ -171,7 +231,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 
 			list.add(tempEquipment);
 
-
 		}
 
 
@@ -197,7 +256,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/inspectiondata.xml"));
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();
@@ -242,20 +301,23 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 		//Stores child spinner so that child spinners can be updated in a chain reaction
 		Spinner spinner_child = null;
 
-
-			Log.i("ScanActivity", "Got into else");
-
-			//Reference to parent spinner
-			Spinner spinner = (Spinner) parent;
-			//Check to see what spinner event occured at
-			if(spinner.getId() == R.id.floorSpinner)
-			{        
-				Log.i("Main Data Entry", "floor spinner event triggered");
-				//get child spinner  
-				spinner_child = (Spinner) findViewById(R.id.roomSpinner);
-				//update child spinner data
-				populate("/Franchisee/Client/clientContract/ServiceAddress/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
-				Log.i("Main Data Entry", "floor contract spinner updated");
+		//Reference to parent spinner
+		Spinner spinner = (Spinner) parent;
+		//Check to see what spinner event occured at
+		if(spinner.getId() == R.id.floorSpinner)
+		{        
+			Log.i("Main Data Entry", "floor spinner event triggered");
+			//get child spinner  
+			spinner_child = (Spinner) findViewById(R.id.roomSpinner);
+			//update child spinner data
+			populate(path+"/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
+			Log.i("Main Data Entry", "floor contract spinner updated");
+		}
+		else if (spinner.getId() == R.id.roomSpinner){
+			// reset the expandable list based on the new floor/room
+			ExpListItems = SetStandarGroups();
+			ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
+			ExpandList.setAdapter(ExpAdapter);
 		}
 	}
 
@@ -323,7 +385,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 				m_Text = input.getText().toString();
 				Equipment temp = new Equipment();
 
-				int groupPos = 0;
+				// -1 so that we can see whether it doesn't match any
+				int groupPos = -1;
 
 				for(int i = 0; i < ExpListItems.size(); i++)
 					ExpandList.collapseGroup(i);
@@ -335,9 +398,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener {
 						break;
 					}
 				}
-
-				ExpandList.expandGroup(groupPos);
-				ExpandList.setSelection(groupPos);
+				if (groupPos >= 0){
+					ExpandList.expandGroup(groupPos);
+					ExpandList.setSelection(groupPos);
+				}
+				else Toast.makeText(ScanActivity.this, "No matches found.", Toast.LENGTH_SHORT).show();
 			}
 		});
 		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

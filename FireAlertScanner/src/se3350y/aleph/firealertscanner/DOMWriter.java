@@ -23,40 +23,47 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 /**
  * A class to store the static DOM-related files for reading, editing, and writing XML.
  * @author Benjamin Schubert
  */
-public class DOM {
+public class DOMWriter {
+	DOMActivity _activity;
+	
+	
+	public DOMWriter(DOMActivity a){
+		_activity = a;
+	}
 	
 	/**
-	 * One static function to write the inspection results from the Radio Buttons and Spinners to an XML file.<br>
+	 * One function to write the inspection results from the Radio Buttons and Spinners to an XML file.<br>
 	 * For now, the XML is written to {@link getExternalStorageDirectory()}.
 	 * @param list The list of Equipment items to be written.
-	 * @param context Currently used for {@link Toast}. May be removed at a later time.
 	 * @throws XPathExpressionException
 	 * @throws SAXException
 	 * @throws IOException
 	 * @throws ParserConfigurationException
 	 * @throws TransformerException
 	 */
-	public static void saveXML(ArrayList<Equipment> list, Context context) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException{
-		Document doc = DOM.getDOM(context);
+	public void saveXML(ArrayList<Equipment> list, String fromPath) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException{
+		Document doc = getDOM();
 		
 		// Root node; in this case, Franchisee
-		Node firstNode = doc.getFirstChild();
+		//Node firstNode = doc.getFirstChild();
 		
+		int outerCounter = 0;
+		int innerCounter = 0;
 		for (int j=0; j<list.size(); j++){
 			// Get the Equipment
 			Equipment currEquip = list.get(j);
 			
 			// Have to hardcode the IDs for now
-			String[] IDs = {"33101", "33102", "77207", "88103"};
-			String currID = IDs[j];
+			//String[] IDs = {"33101", "33102", "77207", "88103"};
+			String currID = currEquip.getId();
 			ArrayList<inspectionElement> elementList = currEquip.getItems();
 			
 			// Get the inspectionElement within each Equipment
@@ -78,27 +85,62 @@ public class DOM {
 				
 				else if (currElement.getClass().equals(FireHoseCabinetGoodPoorElement.class)) {
 					int x = ((FireHoseCabinetGoodPoorElement) currElement).getGoodPoor();
-					if (x > 0){
+					if (x == 0){
 						passFail = "Good";
 					}
-					else if (x < 0){
+					else if (x == 1){
 						passFail = "Poor";
+					}
+					else passFail = "N/A";
+				}
+				
+				else if (currElement.getClass().equals(FireHoseCabinetYesNoElement.class)) {
+					int x = ((FireHoseCabinetYesNoElement) currElement).getYesNo();
+					if (x > 0){
+						passFail = "Yes";
+					}
+					else if (x < 0){
+						passFail = "No";
 					}
 					else passFail = "none";
 				}
 				
-				// EmerencyLight not done yet
-				else {
-					passFail = "not yet";
+				else if (currElement.getClass().equals(EmergencyLightYesNoElement.class)) {
+					int x = ((EmergencyLightYesNoElement) currElement).getYesNo();
+					if (x > 0){
+						passFail = "Yes";
+					}
+					else if (x < 0){
+						passFail = "No";
+					}
+					else passFail = "none";
 				}
 				
 				// Modify the underlying node
-				DOM.setPassFail(currID, inspectName, passFail, firstNode);
-
-				// Write result
-				DOM.writeDOMResults(doc, context);
+				XPath xpath = XPathFactory.newInstance().newXPath();
+				Node roomNode = ((NodeList)xpath.evaluate(fromPath, doc, XPathConstants.NODESET)).item(0);
+				setPassFail(currID, inspectName, passFail, roomNode);
+				setNotes(currID, inspectName, currElement.getNotes(), roomNode);
+				innerCounter++;
 			}
+			outerCounter++;
 		}
+		
+		Log.i("DOMWriter", "Outer Counter:"+String.valueOf(outerCounter));
+		Log.i("DOMWriter", "Inner Counter:"+String.valueOf(innerCounter));
+		
+		// Write result
+		writeDOMResults(doc);
+	}
+	
+	public void setNotes(String equipmentID, String inspectionElementName, String notes, Node rootNode) throws XPathExpressionException{
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		
+		// Take the String values passed as arguments and put them into the XPath String.
+		String path = "./*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testNote";
+		NodeList list = (NodeList) xpath.evaluate(path,
+				rootNode, XPathConstants.NODESET);
+		list.item(0).setTextContent(notes);
 	}
 	
 	/**
@@ -109,11 +151,11 @@ public class DOM {
 	 * @param 	rootNode The root node of the document. In our case, Franchisee. getFirstChild() can be used on the {@link Document} to obtain this.
 	 * @throws 	XPathExpressionException In the case that the XPath expression is invalid.
 	 */
-	public static void setPassFail(String equipmentID, String inspectionElementName, String passOrFail, Node rootNode) throws XPathExpressionException{
+	public void setPassFail(String equipmentID, String inspectionElementName, String passOrFail, Node rootNode) throws XPathExpressionException{
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		
 		// Take the String values passed as arguments and put them into the XPath String.
-		String path = "//*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testResult";
+		String path = "./*[@id='" + equipmentID + "']/*[@name='" + inspectionElementName + "']/@testResult";
 		NodeList list = (NodeList) xpath.evaluate(path,
 				rootNode, XPathConstants.NODESET);
 		list.item(0).setTextContent(passOrFail);
@@ -121,21 +163,41 @@ public class DOM {
 	
 	/**
 	 * Gets a {@link Document} object that represents the XML for editing.
-	 * @param context Needed for Toast (might remove this because of redundancy).
-	 * @return	Returns a {@link Document} representing the XML document.
+	 * @return	A {@link Document} representing the XML document.
 	 * @throws SAXException
 	 * @throws IOException
 	 * @throws ParserConfigurationException
 	 */
-	public static Document getDOM(Context context) throws SAXException, IOException, ParserConfigurationException{
+	public Document getDOM() throws SAXException, IOException, ParserConfigurationException{
 		// Check SD card status
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-			Toast.makeText(context, "SD card not available.", Toast.LENGTH_SHORT).show();
+			_activity.makeToast("SD card not available.", Toast.LENGTH_SHORT);
 			return null;
 		}
 		
 		File workingDir = Environment.getExternalStorageDirectory();
 		File file = new File(workingDir,"/InspectionData.xml");
+		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		Document doc = builder.parse(file);
+		return doc;
+	}
+	
+	/**
+	 * Same as {@link getDOM()} except it returns the modified XML file saved by the inspection results.
+	 * @return A {@link Document} representing the modified XML document.
+	 * @throws SAXException
+	 * @throws IOException
+	 * @throws ParserConfigurationException
+	 */
+	public Document getModifiedDOM() throws SAXException, IOException, ParserConfigurationException{
+		// Check SD card status
+		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+			_activity.makeToast("SD card not available.", Toast.LENGTH_SHORT);
+			return null;
+		}
+		
+		File workingDir = Environment.getExternalStorageDirectory();
+		File file = new File(workingDir,"/Modified.xml");
 		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = builder.parse(file);
 		return doc;
@@ -148,7 +210,7 @@ public class DOM {
 	 * @throws TransformerException
 	 * @throws FileNotFoundException
 	 */
-	public static void writeDOMResults(Document doc, Context context) throws TransformerException, FileNotFoundException{
+	public void writeDOMResults(Document doc) throws TransformerException, FileNotFoundException{
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
 		// TODO Might change this to a different name, or pass the filename as a method argument.
@@ -160,11 +222,13 @@ public class DOM {
 		try {
         	modifiedFile.createNewFile();
 		} catch (IOException e) {
-			Toast.makeText(context,"Error creating file!",Toast.LENGTH_LONG).show();
+			_activity.makeToast("Error creating file!",Toast.LENGTH_LONG);
 			e.printStackTrace();
 		}
 		
 		StreamResult result = new StreamResult(modifiedFile);
 		transformer.transform(source, result);
+		
+		_activity.makeToast("File saved.", Toast.LENGTH_SHORT);
 	}
 }

@@ -10,6 +10,7 @@
         android:targetSdkVersion="17" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -48,6 +49,12 @@
         <activity
             android:name="se3350y.aleph.firealertscanner.ScanActivity"
             android:label="@string/title_activity_scan"
+            android:parentActivityName="se3350y.aleph.firealertscanner.MainDataEntry"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="se3350y.aleph.firealertscanner.ClientView"
+            android:label="@string/title_activity_client_view"
             android:parentActivityName="se3350y.aleph.firealertscanner.MainDataEntry"
             android:screenOrientation="portrait" >
         </activity>

@@ -19,22 +19,29 @@ import org.xml.sax.InputSource;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
+import android.app.Dialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 
-public class MainDataEntry extends Activity implements OnItemSelectedListener{
+public class MainDataEntry extends Activity implements OnItemSelectedListener, DOMActivity{
+	TCPController _tcpController = new TCPController(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -147,9 +154,54 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener{
 		return super.onOptionsItemSelected(item);
 	}
 	
+	public void launchTCP(View view){
+//		Intent intent = new Intent (this, ClientView.class);
+//		startActivity(intent);
+		final Dialog dialog = new Dialog(MainDataEntry.this);
+		dialog.setTitle("Send Results");
+		dialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_tcp, null));
+		dialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		dialog.show();
+		
+		Button okButton = (Button) dialog.findViewById(R.id.tcpOkButton);
+		okButton.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+				// Retrieve the data from the Dialog
+				String port = ((EditText)dialog.findViewById(R.id.portInput)).getText().toString();
+				String ip = ((EditText)dialog.findViewById(R.id.ipInput)).getText().toString();
+				_tcpController.Send(port, ip);
+				dialog.dismiss();
+			}
+		});
+		
+		Button cancelButton = (Button) dialog.findViewById(R.id.tcpCancelButton);
+		cancelButton.setOnClickListener(new OnClickListener(){
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
+	}
+	
+	public void makeToast(String text, int duration){
+		Toast.makeText(MainDataEntry.this, text, duration).show();
+	}
+	
 	public void getDataInput(View view) throws XPathExpressionException, IOException {
 		
 		Intent intent = new Intent(this, ScanActivity.class);
+		String path = "/Franchisee/Client[@name='";
+		Spinner clientSpinner = (Spinner) findViewById(R.id.clientSpinner);
+		path += clientSpinner.getItemAtPosition(clientSpinner.getSelectedItemPosition());
+		path += "']/clientContract[@id='";
+		Spinner clientContractSpinner = (Spinner) findViewById(R.id.clientContractSpinner);
+		path += clientContractSpinner.getItemAtPosition(clientContractSpinner.getSelectedItemPosition());
+		path += "']/ServiceAddress[@address='";
+		Spinner serviceAddressSpinner = (Spinner) findViewById(R.id.serviceAddressSpinner);
+		path += serviceAddressSpinner.getItemAtPosition(serviceAddressSpinner.getSelectedItemPosition());
+		path += "']";
+		
+		intent.putExtra("se3350y.aleph.firealertscanner.dataentry", path);
+		Log.i("Main Data Entry","Put path: "+path);
 		startActivity(intent);
 	}
 
