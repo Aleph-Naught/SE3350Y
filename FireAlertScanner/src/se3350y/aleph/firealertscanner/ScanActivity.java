@@ -220,14 +220,49 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 				else if(element.getNodeName().equals("FireHoseCabinet")){
 
 					//There's two different input options for this one
-					if(attrElement.getAttribute("name").equals("Hose Re-Rack") || attrElement.getAttribute("name").equals("Hydrostatic Test Due"))
+					if(attrElement.getAttribute("name").equals("Hose Re-Rack") || attrElement.getAttribute("name").equals("Hydrostatic Test Due")){
 						temp = new FireHoseCabinetYesNoElement();
-					else
+						
+						//Sets the yesno if it's already been written to the file
+						String testResult = attrElement.getAttribute("testResult");
+						
+						if(testResult.equals("Yes")){
+							((FireHoseCabinetYesNoElement) temp).setYesNo(1);
+						}
+						else if(testResult.equals("No")){
+							((FireHoseCabinetYesNoElement) temp).setYesNo(-1);
+						}
+						
+						
+					}
+					else{
 						temp = new FireHoseCabinetGoodPoorElement(ScanActivity.this);
+						
+						//Sets the goodPoor if it's already been written to the file
+						String testResult = attrElement.getAttribute("testResult");
+						
+						if(testResult.equals("Good")){
+							((FireHoseCabinetGoodPoorElement) temp).setGoodPoor(0);
+						}
+						else if(testResult.equals("Poor")){
+							((FireHoseCabinetGoodPoorElement) temp).setGoodPoor(1);
+						}
+					}
 				}
 				else if(element.getNodeName().equals("EmergencyLight")){
 
 					temp = new EmergencyLightYesNoElement();
+					
+					//Sets the goodPoor if it's already been written to the file
+					String testResult = attrElement.getAttribute("testResult");
+					
+					if(testResult.equals("Yes")){
+						((EmergencyLightYesNoElement) temp).setYesNo(1);
+					}
+					else if(testResult.equals("No")){
+						((EmergencyLightYesNoElement) temp).setYesNo(-1);
+					}
+					
 				}
 				else
 					temp = null;
