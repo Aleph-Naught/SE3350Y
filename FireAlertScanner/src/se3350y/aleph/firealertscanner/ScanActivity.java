@@ -15,6 +15,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -202,6 +203,19 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 				//Sees what object type it needs to be
 				if(element.getNodeName().equals("Extinguisher")){
 					temp = new ExtinguisherPassFailElement();
+					
+					//Sets the passfail if it's already been written to the file
+					String testResult = attrElement.getAttribute("testResult");
+					
+					if(testResult.equals("Pass")){
+						((ExtinguisherPassFailElement) temp).setPassFail(1);
+					}
+					else if(testResult.equals("Fail")){
+						((ExtinguisherPassFailElement) temp).setPassFail(-1);
+					}
+	
+				
+					
 				}
 				else if(element.getNodeName().equals("FireHoseCabinet")){
 

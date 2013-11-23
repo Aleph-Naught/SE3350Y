@@ -214,7 +214,7 @@ public class DOMWriter {
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
 		// TODO Might change this to a different name, or pass the filename as a method argument.
-		File modifiedFile = new File(Environment.getExternalStorageDirectory(),"/Modified.xml");
+		File modifiedFile = new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml");
 		
 		if(modifiedFile.exists())
 			// For now, we're overwriting.
