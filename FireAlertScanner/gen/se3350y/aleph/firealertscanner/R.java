@@ -35,8 +35,8 @@ public final class R {
         public static final int OperationsLayout=0x7f090021;
         public static final int TCPTest=0x7f09001b;
         public static final int TextView01=0x7f090005;
-        public static final int action_forgot_password=0x7f090038;
-        public static final int action_settings=0x7f090039;
+        public static final int action_forgot_password=0x7f090039;
+        public static final int action_settings=0x7f09003a;
         public static final int button1=0x7f090004;
         public static final int button2=0x7f090007;
         public static final int button3=0x7f090008;
@@ -62,6 +62,7 @@ public final class R {
         public static final int ipLabel=0x7f090027;
         public static final int item_layout=0x7f090030;
         public static final int lblListHeader=0x7f090037;
+        public static final int location=0x7f090038;
         public static final int login=0x7f09000e;
         public static final int login_form=0x7f09000b;
         public static final int login_status=0x7f090009;

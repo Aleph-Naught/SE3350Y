@@ -12,5 +12,13 @@
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
         android:textSize="@dimen/groupTextSize"
         android:text="Title" />
+    
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="@dimen/groupTextSize"
+        android:text="Location" />
 
 </LinearLayout>

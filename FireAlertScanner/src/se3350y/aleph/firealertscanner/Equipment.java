@@ -8,6 +8,7 @@ public class Equipment {
 		private String id;
 		private ArrayList<inspectionElement> Items;
 		
+		
 		public String getName() {
 			return Name;
 		}
