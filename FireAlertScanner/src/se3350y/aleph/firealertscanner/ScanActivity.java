@@ -15,7 +15,6 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -59,6 +58,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	private ExpandableListAdapter ExpAdapter;
 	private ArrayList<Equipment> ExpListItems;
 	private ExpandableListView ExpandList;
+	
+	public int currentFloor;
+	public int currentRoom;
+	
+	
 	
 	
 
@@ -110,6 +114,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 				Log.i("Scan Activity","Inspection Change Made");
 				changesMade = true;
 		}});
+		
+		currentFloor = spinner.getSelectedItemPosition();
+		currentRoom = roomSpinner.getSelectedItemPosition();
 
 
 	}
@@ -121,10 +128,10 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		try {
 			Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
 			String newPath = path+"/Floor[@name='";
-			newPath += floorSpinner.getItemAtPosition(floorSpinner.getSelectedItemPosition());
+			newPath += floorSpinner.getItemAtPosition(currentFloor);
 			newPath += "']/Room[@id='";
 			Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
-			newPath += roomSpinner.getItemAtPosition(roomSpinner.getSelectedItemPosition());
+			newPath += roomSpinner.getItemAtPosition(currentRoom);
 			newPath += "']";
 			Log.i("ScanActivity", "Using path: "+newPath);
 			dom.saveXML(ExpListItems, newPath);
@@ -303,8 +310,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		}
 
-
-
 		return list;
 	}
 
@@ -409,6 +414,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			//update child spinner data
 			populate(path+"/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
 			Log.i("Main Data Entry", "floor contract spinner updated");
+			
+			currentFloor = spinner.getSelectedItemPosition();
+			
 		}
 		else if (spinner.getId() == R.id.roomSpinner){
 			// reset the expandable list based on the new floor/room
@@ -425,7 +433,10 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 					changesMade = true;
 			}});
 			
+			currentRoom = spinner.getSelectedItemPosition();
+			
 		}
+		 
 		
 	}
 
