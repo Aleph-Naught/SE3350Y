@@ -3,7 +3,10 @@ package se3350y.aleph.firealertscanner;
 import se3350y.aleph.firealertscanner.ExtinguisherPassFailElement.passFailViewHolder;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -68,16 +71,24 @@ public class FireHoseCabinetGoodPoorElement extends inspectionElement {
 					
 					element.setGoodPoor(posSelected);
 					
-					//OnElementChangeMade();
-					
 				}
+				
 
 				@Override
 				public void onNothingSelected(AdapterView<?> arg0) {
 					// TODO Auto-generated method stub
 				}
-
             });
+			
+			viewHolder.VH_spinner.setOnTouchListener(new OnTouchListener(){
+
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					// TODO Auto-generated method stub
+					OnElementChangeMade();
+					
+					return false;
+				}});
 			
 			view.setTag(viewHolder);
 		    viewHolder.VH_spinner.setTag(this);

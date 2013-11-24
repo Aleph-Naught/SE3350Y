@@ -35,14 +35,11 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -362,12 +359,39 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		spinner.setAdapter(adapter);
 
 	}
+	
+	public void promptSave(final AdapterView<?> parent, final View view, final int pos,
+			final long id){
+		
+		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        switch (which){
+		        case DialogInterface.BUTTON_POSITIVE:
+		            //Yes button clicked
+		        	saveResults(new View(getBaseContext()));
+		        	loadRoom(parent, view, pos, id);
+		            break;
 
-	//Spinner listener
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int pos,
-			long id) {
+		        case DialogInterface.BUTTON_NEGATIVE:
+		            //No button clicked
+		        	loadRoom(parent, view, pos, id);
+		            break;
+		        }
+		    }
+		};
 
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("There are unsaved changes for this room, do you want to save?").setPositiveButton("Yes", dialogClickListener)
+		    .setNegativeButton("No", dialogClickListener).show();
+
+		
+		changesMade = false;
+	}
+	
+	public void loadRoom(AdapterView<?> parent, View view, int pos,
+			long id){
+		
 		Log.i("ScanActivity","OnItemSelected Triggered");
 		//Value chosen in spinner that event happened at
 		String spinnerValue = (String) parent.getItemAtPosition(pos);
@@ -402,6 +426,22 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			}});
 			
 		}
+		
+	}
+
+	//Spinner listener
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		
+		if(changesMade){
+			promptSave(parent, view, pos, id);
+		}
+		else{
+			loadRoom(parent, view, pos, id);
+		}
+
+		
 	}
 
 	@Override
