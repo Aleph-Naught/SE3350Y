@@ -67,12 +67,14 @@ public class FireHoseCabinetGoodPoorElement extends inspectionElement {
 					FireHoseCabinetGoodPoorElement element = (FireHoseCabinetGoodPoorElement) viewHolder.VH_spinner.getTag();
 					
 					element.setGoodPoor(posSelected);
+					
+					OnElementChangeMade();
+					
 				}
 
 				@Override
 				public void onNothingSelected(AdapterView<?> arg0) {
 					// TODO Auto-generated method stub
-					
 				}
 
             });

@@ -3,9 +3,13 @@ package se3350y.aleph.firealertscanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import se3350y.aleph.Listeners.OnElementChangedListener;
+import se3350y.aleph.Listeners.OnInspectionChangedListener;
  
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +25,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
     private Context context;
     private ArrayList<Equipment> groups;
-
     
+    OnInspectionChangedListener onInspectionChangedListener = null;
+	
+	public void setOnInspectionChangedListener(OnInspectionChangedListener listener) {
+		onInspectionChangedListener = listener;
+	}
+	
+	// This function is called after the check was complete
+	public void OnInspectionChangeMade(){
+	    // Check if the Listener was set, otherwise we'll get an Exception when we try to call it
+	    if(onInspectionChangedListener!=null) {
+	        onInspectionChangedListener.onInspectionChanged();
+	    }
+	}
+        
  
     public ExpandableListAdapter(Context context, ArrayList<Equipment> groups) {
         this.context = context;
@@ -50,10 +67,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return childPosition;
     }
     
-    static class passFailViewHolder {
-        protected RadioGroup VH_radioGroupPassFail;
-        protected int VH_passFail;
-      }
  
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
 			ViewGroup parent) {
@@ -93,6 +106,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		TextView tv = (TextView) view.findViewById(R.id.inspectionElement);
 		tv.setText(((inspectionElement) child).getName().toString());
 		tv.setTag(((inspectionElement) child).getTag());
+		
+		((inspectionElement) child).setOnElementChangedListener(new OnElementChangedListener(){
+			@Override
+			public void onElementChanged() {
+				// TODO Auto-generated method stub
+				Log.i("ExpandableListAdapter","Element Change Made");
+				OnInspectionChangeMade();
+			}
+		});
+		
+		
 
 		return view;
 	}
@@ -142,4 +166,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
+
+	
 }

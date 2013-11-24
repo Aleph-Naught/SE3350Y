@@ -1,6 +1,5 @@
 package se3350y.aleph.firealertscanner;
 
-import se3350y.aleph.firealertscanner.ExpandableListAdapter.passFailViewHolder;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -8,8 +7,10 @@ import android.content.res.Resources;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.webkit.WebView.FindListener;
 import android.widget.EditText;
@@ -24,13 +25,16 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 	
 	//Holds the view for the RadioButtons
 	static class passFailViewHolder {
+		
         protected RadioGroup VH_radioGroupPassFail;
+        
+        
     }
 	
 	//Creates the row on the page
 	public View XMLInflator(View convertView, ViewGroup parent, Object context){
 		
-		_view = null;
+		//_view = null;
 		
 		if (convertView == null || convertView.getTag() != this.getTag()) {
 			LayoutInflater infalInflater = (LayoutInflater) context;
@@ -40,6 +44,9 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 			
 			//For Radio Button state holding
 			final passFailViewHolder viewHolder = new passFailViewHolder();
+			
+			final RadioButton pass = (RadioButton) _view.findViewById(R.id.radioPass);
+			final RadioButton fail = (RadioButton) _view.findViewById(R.id.radioFail);
 			
 			//Set ViewHolder's RadioGroup to the one in the row
 			viewHolder.VH_radioGroupPassFail = (RadioGroup) _view.findViewById(R.id.extinguisherRadioGroup);
@@ -65,6 +72,38 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 				}
 	          });
 			
+			
+			//Checks to see if changes have been made
+			pass.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					
+					
+					OnElementChangeMade();
+					
+				}
+
+				});
+			
+			fail.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					
+					OnElementChangeMade();
+					makeNotesDialog();
+					
+				}
+
+				});
+		
+
+			
+			
+			
 			//Sets view to ViewHolder or something I don't know really
 			_view.setTag(viewHolder);
 		    viewHolder.VH_radioGroupPassFail.setTag(this);
@@ -75,13 +114,7 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 		      ((passFailViewHolder) _view.getTag()).VH_radioGroupPassFail.setTag(this);
 		}
 		
-		// A note must be entered if Fail is selected
-		RadioButton rb = (RadioButton) _view.findViewById(R.id.radioFail);
-		rb.setOnClickListener(new OnClickListener(){
-			public void onClick(View v) {
-				makeNotesDialog();
-			}
-		});
+		
 		
 		passFailViewHolder holder = (passFailViewHolder) _view.getTag();
 		

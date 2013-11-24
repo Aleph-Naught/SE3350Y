@@ -4,6 +4,8 @@ import se3350y.aleph.firealertscanner.ExtinguisherPassFailElement.passFailViewHo
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
@@ -32,6 +34,9 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 				//Set ViewHolder's RadioGroup to the one in the row
 				viewHolder.VH_radioGroupYesNo = (RadioGroup) view.findViewById(R.id.fireHoseCabinetRadioGroup);
 				
+				final RadioButton yes = (RadioButton) _view.findViewById(R.id.radioYes);
+				final RadioButton no = (RadioButton) _view.findViewById(R.id.radioNo);
+				
 				//OnClick Listener
 				viewHolder.VH_radioGroupYesNo
 		          .setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -50,8 +55,37 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 						else if(checkedId == R.id.radioNone)
 							element.setYesNo(0);
 						
+						
+						
 					}
 		          });
+				
+				//Checks to see if changes have been made
+				yes.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						
+						
+						OnElementChangeMade();
+						
+					}
+
+					});
+				
+				no.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						
+						OnElementChangeMade();
+						makeNotesDialog();
+						
+					}
+
+					});
 				
 				//Sets view to ViewHolder or something I don't know really
 				view.setTag(viewHolder);

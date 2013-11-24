@@ -21,6 +21,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import se3350y.aleph.Listeners.OnInspectionChangedListener;
+
 import com.dataInput.samplescanner.ScanCodeDemo;
 
 import android.os.Bundle;
@@ -39,6 +41,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -48,6 +51,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	DOMWriter dom = new DOMWriter(this);
 	Node fromNode = null;
 	String path = "";
+	
+	Boolean changesMade = false;
 
 	InputStream in=null;
 
@@ -57,6 +62,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	private ExpandableListAdapter ExpAdapter;
 	private ArrayList<Equipment> ExpListItems;
 	private ExpandableListView ExpandList;
+	
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +103,22 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		ExpListItems = SetStandarGroups();
 		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 		ExpandList.setAdapter(ExpAdapter);
+		
+		ExpandList.setClickable(true);
+		
+		ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
+			@Override
+			public void onInspectionChanged() {
+				// TODO Auto-generated method stub
+				Log.i("Scan Activity","Inspection Change Made");
+				changesMade = true;
+		}});
+
 
 	}
+	
+	
+
 	
 	public void saveResults(View view){
 		try {
@@ -121,6 +142,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
+		
+		changesMade = false;
+		
 	}
 	
 	public void makeToast(String text, int duration){
@@ -367,6 +391,16 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			ExpListItems = SetStandarGroups();
 			ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
 			ExpandList.setAdapter(ExpAdapter);
+			changesMade = false;
+			
+			ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
+				@Override
+				public void onInspectionChanged() {
+					// TODO Auto-generated method stub
+					Log.i("Scan Activity","Inspection Change Made");
+					changesMade = true;
+			}});
+			
 		}
 	}
 
