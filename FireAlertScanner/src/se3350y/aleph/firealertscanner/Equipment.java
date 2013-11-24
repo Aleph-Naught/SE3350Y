@@ -6,6 +6,7 @@ public class Equipment {
 	 
 		private String Name;
 		private String id;
+		private String location;
 		private ArrayList<inspectionElement> Items;
 		
 		
@@ -26,6 +27,12 @@ public class Equipment {
 		}
 		public void setItems(ArrayList<inspectionElement> Items) {
 			this.Items = Items;
+		}
+		public String getLocation() {
+			return location;
+		}
+		public void setLocation(String location) {
+			this.location = location;
 		}
 
 }

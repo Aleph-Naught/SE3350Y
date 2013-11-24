@@ -213,6 +213,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 			tempEquipment.setName(element.getNodeName());
 			tempEquipment.setId(element.getAttribute("id"));
+			tempEquipment.setLocation(element.getAttribute("location"));
 
 
 			//Find Inspection Element Nodes

@@ -18,7 +18,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:textSize="@dimen/groupTextSize"
+        android:textSize="12sp"
+        android:textColor="#c0c0c0"
         android:text="Location" />
 
 </LinearLayout>

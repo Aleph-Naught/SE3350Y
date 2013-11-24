@@ -151,6 +151,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 		TextView tv = (TextView) view.findViewById(R.id.lblListHeader);
 		tv.setText(group.getName());
+		tv = (TextView) view.findViewById(R.id.location);
+		tv.setText(group.getLocation());
 		// TODO Auto-generated method stub
 		return view;
 	}
