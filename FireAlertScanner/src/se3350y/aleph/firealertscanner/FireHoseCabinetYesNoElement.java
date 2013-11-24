@@ -22,17 +22,17 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 		//Creates the row on the page
 		public View XMLInflator(View convertView, ViewGroup parent, Object context){
 			
-			View view = null;
+			//View view = null;
 			
 			if (convertView == null || convertView.getTag() != this.getTag()) {
 				LayoutInflater infalInflater = (LayoutInflater) context;
-				view = infalInflater.inflate(R.layout.firehosecabinet_yesno_item, null);
+				_view = infalInflater.inflate(R.layout.firehosecabinet_yesno_item, null);
 				
 				//For Radio Button state holding
 				final yesNoViewHolder viewHolder = new yesNoViewHolder();
 				
 				//Set ViewHolder's RadioGroup to the one in the row
-				viewHolder.VH_radioGroupYesNo = (RadioGroup) view.findViewById(R.id.fireHoseCabinetRadioGroup);
+				viewHolder.VH_radioGroupYesNo = (RadioGroup) _view.findViewById(R.id.fireHoseCabinetRadioGroup);
 				
 				final RadioButton yes = (RadioButton) _view.findViewById(R.id.radioYes);
 				final RadioButton no = (RadioButton) _view.findViewById(R.id.radioNo);
@@ -54,8 +54,6 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 							element.setYesNo(-1);
 						else if(checkedId == R.id.radioNone)
 							element.setYesNo(0);
-						
-						
 						
 					}
 		          });
@@ -88,16 +86,16 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 					});
 				
 				//Sets view to ViewHolder or something I don't know really
-				view.setTag(viewHolder);
+				_view.setTag(viewHolder);
 			    viewHolder.VH_radioGroupYesNo.setTag(this);
 			}
 			else {
 				//If it's already been opened you don't need to rebuild it
-			      view = convertView;
-			      ((yesNoViewHolder) view.getTag()).VH_radioGroupYesNo.setTag(this);
+			      _view = convertView;
+			      ((yesNoViewHolder) _view.getTag()).VH_radioGroupYesNo.setTag(this);
 			    }
 			
-			yesNoViewHolder holder = (yesNoViewHolder) view.getTag();
+			yesNoViewHolder holder = (yesNoViewHolder) _view.getTag();
 			
 			//Read the model and set the radio buttons appropriately
 			if(this.getYesNo() == 1)
@@ -108,7 +106,7 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 				holder.VH_radioGroupYesNo.check(R.id.radioNone);
 			
 			
-			return view;
+			return _view;
 			
 		}
 		

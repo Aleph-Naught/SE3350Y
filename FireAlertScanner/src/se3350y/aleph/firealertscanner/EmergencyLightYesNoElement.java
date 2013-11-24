@@ -4,6 +4,8 @@ import se3350y.aleph.firealertscanner.FireHoseCabinetYesNoElement.yesNoViewHolde
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
@@ -20,17 +22,20 @@ public int yesNo;
 		//Creates the row on the page
 		public View XMLInflator(View convertView, ViewGroup parent, Object context){
 			
-			View view = null;
+			//View view = null;
 			
 			if (convertView == null || convertView.getTag() != this.getTag()) {
 				LayoutInflater infalInflater = (LayoutInflater) context;
-				view = infalInflater.inflate(R.layout.emergencylight_yesno_item, null);
+				_view = infalInflater.inflate(R.layout.emergencylight_yesno_item, null);
 				
 				//For Radio Button state holding
 				final yesNoViewHolder viewHolder = new yesNoViewHolder();
 				
 				//Set ViewHolder's RadioGroup to the one in the row
-				viewHolder.VH_radioGroupYesNo = (RadioGroup) view.findViewById(R.id.emergencyLightRadioGroup);
+				viewHolder.VH_radioGroupYesNo = (RadioGroup) _view.findViewById(R.id.emergencyLightRadioGroup);
+				
+				final RadioButton yes = (RadioButton) _view.findViewById(R.id.radioYes);
+				final RadioButton no = (RadioButton) _view.findViewById(R.id.radioNo);
 				
 				//OnClick Listener
 				viewHolder.VH_radioGroupYesNo
@@ -52,17 +57,44 @@ public int yesNo;
 					}
 		          });
 				
+				//Checks to see if changes have been made
+				yes.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						
+						
+						OnElementChangeMade();
+						
+					}
+
+					});
+				
+				no.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						
+						OnElementChangeMade();
+						makeNotesDialog();
+						
+					}
+
+					});
+				
 				//Sets view to ViewHolder or something I don't know really
-				view.setTag(viewHolder);
+				_view.setTag(viewHolder);
 			    viewHolder.VH_radioGroupYesNo.setTag(this);
 			}
 			else {
 				//If it's already been opened you don't need to rebuild it
-			      view = convertView;
-			      ((yesNoViewHolder) view.getTag()).VH_radioGroupYesNo.setTag(this);
+			      _view = convertView;
+			      ((yesNoViewHolder) _view.getTag()).VH_radioGroupYesNo.setTag(this);
 			    }
 			
-			yesNoViewHolder holder = (yesNoViewHolder) view.getTag();
+			yesNoViewHolder holder = (yesNoViewHolder) _view.getTag();
 			
 			//Read the model and set the radio buttons appropriately
 			if(this.getYesNo() == 1)
@@ -73,7 +105,7 @@ public int yesNo;
 				holder.VH_radioGroupYesNo.check(R.id.radioNone);
 			
 			
-			return view;
+			return _view;
 			
 		}
 		

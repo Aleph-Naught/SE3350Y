@@ -68,7 +68,7 @@ public class FireHoseCabinetGoodPoorElement extends inspectionElement {
 					
 					element.setGoodPoor(posSelected);
 					
-					OnElementChangeMade();
+					//OnElementChangeMade();
 					
 				}
 
