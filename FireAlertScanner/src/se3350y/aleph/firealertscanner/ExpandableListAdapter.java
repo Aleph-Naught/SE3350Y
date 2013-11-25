@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
@@ -71,6 +72,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public Object getChild(int groupPosition, int childPosition) {
     	ArrayList<inspectionElement> chList = groups.get(groupPosition).getItems();
 		return chList.get(childPosition);
+    }
+    
+    public Object getParent(int groupPosition){
+    	Equipment group = (Equipment) getGroup(groupPosition);
+    	
+    	return group;
     }
  
     @Override
@@ -217,9 +224,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		tv.setText(group.getName());
 		tv.setTextColor(group.getColor());
 		
-		
-		
 		// TODO Auto-generated method stub
+
+		tv = (TextView) view.findViewById(R.id.location);
+		tv.setText(group.getLocation());
+		
+
 		return view;
 	}
  
