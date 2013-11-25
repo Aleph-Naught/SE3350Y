@@ -53,12 +53,15 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		try {
 			//Sets up the textview with the name and id of the franchisee logged in
 			//Displayed in bold style
-//			TextView tv = (TextView) findViewById(R.id.Franchisee);
-//			tv.setText("Franchisee: " + getValues("/*[@name]", "name") + ", ID: " + getValues("/*[@id]", "id"));
-//			tv.setTypeface(null, Typeface.BOLD);
-//			Log.i("Main Data Entry", "Franchisee TextView set");
+			TextView tv = (TextView) findViewById(R.id.Franchisee);
+			String name = getValues("/*[@name]", "name").toString(), id = getValues("/*[@id]", "id").toString();
+			name = name.substring(1, name.length() - 1);
+			id = id.substring(1, id.length() - 1);
+			tv.setText("Franchisee: " + name + ", ID: " + id);
+			tv.setTypeface(null, Typeface.BOLD);
+			Log.i("Main Data Entry", "Franchisee TextView set");
 			//TODO ask group what they think about this
-			setTitle("Franchisee: " + getValues("/*[@name]", "name") + ", ID: " + getValues("/*[@id]", "id"));
+			setTitle("Please Select...");
 
 			//Create array adapter to change spinners
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*[@name]", "name"));
