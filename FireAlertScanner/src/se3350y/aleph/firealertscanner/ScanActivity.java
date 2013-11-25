@@ -138,8 +138,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	                
 	                Log.i("Scan Activity", tempEquip.getName());
 	                
-	                String message = tempEquip.getId() + "\n" +
-	                				tempEquip.getLocation() + "\n";
+	                String message = "ID: " + tempEquip.getId() + "\n" +
+	                				"Location: " + tempEquip.getLocation() + "\n";
 	                
 	                AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
 	                
