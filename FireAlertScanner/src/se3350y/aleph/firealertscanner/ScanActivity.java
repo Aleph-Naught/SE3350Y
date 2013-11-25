@@ -26,8 +26,11 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -56,23 +59,18 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	public int currentFloor;
 	public int currentRoom;
 	
-<<<<<<< HEAD
 	//Stuff for barcode scanner
 	String barcode = null;
 	String ACTION_CONTENT_NOTIFY = "android.intent.action.CONTENT_NOTIFY";
 	DataReceiver dataScanner = new DataReceiver();
-	EditText input = null;
-=======
->>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
+	//EditText input = null;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
-<<<<<<< HEAD
-		
-=======
->>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
+
 
 		Bundle b = getIntent().getExtras();
 		path = b.getString("se3350y.aleph.firealertscanner.dataentry");
@@ -157,7 +155,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		Toast.makeText(ScanActivity.this, text, duration).show();
 	}
 
-<<<<<<< HEAD
 
 	@Override
 	protected void onResume() {
@@ -170,8 +167,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		unregisterScanner();
 		super.onDestroy();
 	}
-=======
->>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
+
 
 	private ArrayList<Equipment> SetStandarGroups() {
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
@@ -505,10 +501,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		}
 		else{
 			loadRoom(parent, view, pos, id);
-<<<<<<< HEAD
-
-=======
->>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
 		}
 
 		
@@ -595,8 +587,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 	}
 
-
-<<<<<<< HEAD
 	private void listExpansion (String equipmentNo) {
 		Equipment temp = new Equipment();
 
@@ -641,6 +631,4 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			}
 		}		
 	}
-=======
->>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
 }

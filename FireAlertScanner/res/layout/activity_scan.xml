@@ -27,10 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/floorSpinner"
         android:text="@string/room_label" />
-<<<<<<< HEAD
-
-=======
->>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
 
     <Spinner
         android:id="@+id/roomSpinner"
@@ -45,10 +41,6 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/OperationsLayout"
         android:layout_below="@id/roomSpinner" />
-<<<<<<< HEAD
-
-=======
->>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
 
     <LinearLayout
         android:id="@id/OperationsLayout"
@@ -57,10 +49,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal" >
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
         <Button
             android:id="@+id/manButton"
             android:layout_width="match_parent"
