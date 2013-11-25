@@ -100,6 +100,7 @@ public final class R {
         public static final int firehosecabinet_goodpoor_item=0x7f030008;
         public static final int firehosecabinet_yesno_item=0x7f030009;
         public static final int list_group=0x7f03000a;
+        public static final int simple_spinner_dropdown_item=0x7f03000b;
     }
     public static final class menu {
         public static final int login=0x7f080000;
