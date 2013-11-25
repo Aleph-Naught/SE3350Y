@@ -494,7 +494,12 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		    		Spinner spinner = (Spinner) parent;
 		    		//Check to see what spinner event occured at
 		    		if(spinner.getId() == R.id.floorSpinner){
+		    			loadDone = 1;
 		    			spinner.setSelection(currentFloor);
+		    			spinner = (Spinner) findViewById(R.id.roomSpinner);
+		    			loadDone = 0;
+		    			spinner.setSelection(currentRoom);
+		    			
 		    		}
 		    		else if(spinner.getId() == R.id.roomSpinner){
 		    			spinner.setSelection(currentRoom);
