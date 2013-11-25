@@ -138,7 +138,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				OnInspectionChangeMade();
 				if (!((String) tv.getText()).contains("*")) {
 					((inspectionElement) childFinal).setChanged(true);
-					tv.setText("*"+tv.getText());}
+					tv.setText("*"+tv.getText());
+				}
 			}
 		});
 		
@@ -147,14 +148,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		((inspectionElement) child).setOnInspectionElementCompletedListener(new OnInspectionElementCompletedListener(){
 			@Override
 			public void onInspectionElementComplete() {
-				tv.setTextColor(0x33CC5500);
+				tv.setTextColor(Color.GREEN);
 				
 				
 			}
 		});
 		
 		if(((inspectionElement) child).getCompleted()){
-			tv.setTextColor(0x33CC5500);
+			tv.setTextColor(Color.GREEN);
 			
 		}
 		
@@ -175,8 +176,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     		if(test == false){
     			return false;
     		}
-    		
-    		
     		
     	}
     	

@@ -170,6 +170,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	            return false;
 	        }
 	    });
+		
+		
 
 		currentFloor = spinner.getSelectedItemPosition();
 		currentRoom = roomSpinner.getSelectedItemPosition();
@@ -201,6 +203,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
+		
+		if(changesMade)
+			ExpAdapter.notifyDataSetChanged();
 
 		changesMade = false;
 
