@@ -87,7 +87,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     		//There's too different input methods here
     		child = (inspectionElement) getChild(groupPosition, childPosition);
     		
-    		if( ((inspectionElement) child).getName().equals("Hose Re-Rack") || ((inspectionElement) child).getName().equals("Hydrostatic Test Due"))
+    		if( ((inspectionElement) child).getName().contains("Hose Re-Rack") || ((inspectionElement) child).getName().contains("Hydrostatic Test Due"))
     			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
     		else
     			view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
@@ -101,7 +101,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		//Sets Text
 		final TextView tv = (TextView) view.findViewById(R.id.inspectionElement);
 		tv.setText(((inspectionElement) child).getName().toString());
+		if (((inspectionElement) child).getChanged()) {
+			tv.setText("*"+tv.getText());
+		}
 		tv.setTag(((inspectionElement) child).getTag());
+		final Object childFinal = child;
 		
 		((inspectionElement) child).setOnElementChangedListener(new OnElementChangedListener(){
 			@Override
@@ -109,6 +113,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				// TODO Auto-generated method stub
 				Log.i("ExpandableListAdapter","Element Change Made");
 				OnInspectionChangeMade();
+				if (!((String) tv.getText()).contains("*")) {
+					((inspectionElement) childFinal).setChanged(true);
+					tv.setText("*"+tv.getText());}
 			}
 		});
 		

@@ -122,6 +122,7 @@ public class DOMWriter {
 				setPassFail(currID, inspectName, passFail, roomNode);
 				setNotes(currID, inspectName, currElement.getNotes(), roomNode);
 				innerCounter++;
+				currElement.setChanged(false);
 			}
 			outerCounter++;
 		}
