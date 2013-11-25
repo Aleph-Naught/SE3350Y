@@ -28,6 +28,7 @@
         android:layout_toRightOf="@id/floorSpinner"
         android:text="@string/room_label" />
 
+
     <Spinner
         android:id="@+id/roomSpinner"
         android:layout_width="@dimen/scanActivity_spinnerWidth"
@@ -41,7 +42,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/OperationsLayout"
         android:layout_below="@id/roomSpinner" />
-        <!-- android:layout_weight="5" /> -->
+
 
     <LinearLayout
         android:id="@id/OperationsLayout"
@@ -50,13 +51,6 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal" >
 
-        <!--<Button
-            android:id="@+id/scanButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onScanClick"
-            android:text="Scan" />-->
 
         <Button
             android:id="@+id/manButton"

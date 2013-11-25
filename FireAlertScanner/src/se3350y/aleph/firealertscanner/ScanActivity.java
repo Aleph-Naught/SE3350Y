@@ -22,14 +22,15 @@ import org.xml.sax.SAXException;
 
 import se3350y.aleph.Listeners.OnInspectionChangedListener;
 
-import com.dataInput.samplescanner.ScanCodeDemo;
-
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -62,14 +63,17 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	public int currentFloor;
 	public int currentRoom;
 	
-	
-	
-	
+	//Stuff for barcode scanner
+	String barcode = null;
+	String ACTION_CONTENT_NOTIFY = "android.intent.action.CONTENT_NOTIFY";
+	DataReceiver dataScanner = new DataReceiver();
+	EditText input = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
+		
 
 		Bundle b = getIntent().getExtras();
 		path = b.getString("se3350y.aleph.firealertscanner.dataentry");
@@ -152,6 +156,19 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	
 	public void makeToast(String text, int duration){
 		Toast.makeText(ScanActivity.this, text, duration).show();
+	}
+
+
+	@Override
+	protected void onResume() {
+		registerScanner();
+		super.onResume();
+	}
+
+	@Override
+	protected void onDestroy() {
+		unregisterScanner();
+		super.onDestroy();
 	}
 
 	private ArrayList<Equipment> SetStandarGroups() {
@@ -486,6 +503,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		}
 		else{
 			loadRoom(parent, view, pos, id);
+
 		}
 
 		
@@ -539,16 +557,16 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	public void onNothingSelected(AdapterView<?> arg0) {
 
 	}
-	
+
 	public void expandGroup(String _group){
-		
+
 		String group = _group.substring(0,5);
-		
+
 		Equipment temp = new Equipment();
 
 		int groupPos = -1;
 
-		
+
 
 		for(int i = 0; i < ExpListItems.size(); i++){
 			temp = ExpListItems.get(i);
@@ -561,72 +579,60 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		//if scanner returned something
 		if(groupPos!=-1)
 		{
-			
+
 			for(int i = 0; i < ExpListItems.size(); i++){
 				ExpandList.collapseGroup(i);
 			}
-			
+
 			ExpandList.expandGroup(groupPos);
 			ExpandList.setSelection(groupPos);
 		}
-		
-	}
-
-	public void onScanClick(View view){
-		Log.i("ScanActivity","Scan Button Clicked");
-		
-		Intent intent = new Intent (this, ScanCodeDemo.class);
-		startActivity(intent);
 
 	}
 
-	public void onManClick(View view){
-		Log.i("Scan Activity", "Manual Button Click");
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Enter barcode:");
+	private void listExpansion (String equipmentNo) {
+		Equipment temp = new Equipment();
 
-		// Set up the input
-		final EditText input = new EditText(this);
-		// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-		input.setInputType(InputType.TYPE_CLASS_TEXT);
-		builder.setView(input);
+		int groupPos = 0;
 
-		// Set up the buttons
-		builder.setPositiveButton("OK", new DialogInterface.OnClickListener() { 
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				m_Text = input.getText().toString();
-				Equipment temp = new Equipment();
+		for(int i = 0; i < ExpListItems.size(); i++)
+			ExpandList.collapseGroup(i);
 
-				// -1 so that we can see whether it doesn't match any
-				int groupPos = -1;
-
-				for(int i = 0; i < ExpListItems.size(); i++)
-					ExpandList.collapseGroup(i);
-
-				for(int i = 0; i < ExpListItems.size(); i++){
-					temp = ExpListItems.get(i);
-					if(temp.getId().equals(m_Text)){
-						groupPos = i;
-						break;
-					}
-				}
-				if (groupPos >= 0){
-					ExpandList.expandGroup(groupPos);
-					ExpandList.setSelection(groupPos);
-				}
-				else Toast.makeText(ScanActivity.this, "No matches found.", Toast.LENGTH_SHORT).show();
+		for(int i = 0; i < ExpListItems.size(); i++){
+			temp = ExpListItems.get(i);
+			if(temp.getId().equals(equipmentNo)){
+				groupPos = i;
+				break;
 			}
-		});
-		builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.cancel();
-			}
-		});
-		builder.show();
+		}
 
+		ExpandList.expandGroup(groupPos);
+		ExpandList.setSelection(groupPos);
 	}
 
+	private void registerScanner() {
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(ACTION_CONTENT_NOTIFY);
+		registerReceiver(dataScanner, intentFilter);
+	}
+
+	private void unregisterScanner() {
+		if (dataScanner != null) unregisterReceiver(dataScanner);
+	}
+
+	private class DataReceiver extends BroadcastReceiver {
+
+		private String content = null;
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (intent.getAction().equals(ACTION_CONTENT_NOTIFY)) {
+				Bundle bundle = new Bundle();
+				bundle  = intent.getExtras();
+				content = bundle.getString("CONTENT");
+				listExpansion(content);
+			}
+		}		
+	}
 }
