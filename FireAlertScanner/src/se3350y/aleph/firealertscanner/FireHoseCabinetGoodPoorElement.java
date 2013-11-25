@@ -71,6 +71,8 @@ public class FireHoseCabinetGoodPoorElement extends inspectionElement {
 					
 					element.setGoodPoor(posSelected);
 					
+					setCompleted(true);
+					
 				}
 				
 

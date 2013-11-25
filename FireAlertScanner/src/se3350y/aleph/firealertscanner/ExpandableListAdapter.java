@@ -1,23 +1,19 @@
 package se3350y.aleph.firealertscanner;
  
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+
 
 import se3350y.aleph.Listeners.OnElementChangedListener;
 import se3350y.aleph.Listeners.OnInspectionChangedListener;
+import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
  
 import android.content.Context;
-import android.graphics.Typeface;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
  
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -68,7 +64,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     }
     
  
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView,
+    public View getChildView(final int groupPosition, int childPosition, boolean isLastChild, View convertView,
 			ViewGroup parent) {
     	
     	
@@ -103,7 +99,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     	}
 		
 		//Sets Text
-		TextView tv = (TextView) view.findViewById(R.id.inspectionElement);
+		final TextView tv = (TextView) view.findViewById(R.id.inspectionElement);
 		tv.setText(((inspectionElement) child).getName().toString());
 		tv.setTag(((inspectionElement) child).getTag());
 		
@@ -116,8 +112,48 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			}
 		});
 		
+		
+		
+		((inspectionElement) child).setOnInspectionElementCompletedListener(new OnInspectionElementCompletedListener(){
+			@Override
+			public void onInspectionElementComplete() {
+				tv.setTextColor(Color.GREEN);
+				
+				
+			}
+		});
+		
+		if(((inspectionElement) child).getCompleted()){
+			tv.setTextColor(Color.GREEN);
+			
+		}
+		
 		return view;
 	}
+    
+    public boolean isGroupCompleted(int groupPosition){
+    	
+    	boolean test = true;
+    	inspectionElement child;
+    	
+    	for(int i = 0; i < getChildrenCount(groupPosition); i++){
+    		
+    		child = (inspectionElement) getChild(groupPosition, i);
+    		
+    		test = child.getCompleted();
+    		
+    		if(test == false){
+    			return false;
+    		}
+    		
+    		
+    		
+    	}
+    	
+    
+    	return true;
+    	
+    }
  
     public int getChildrenCount(int groupPosition) {
 		// TODO Auto-generated method stub
@@ -144,13 +180,30 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
     public View getGroupView(int groupPosition, boolean isLastChild, View view,
 			ViewGroup parent) {
+    	
 		Equipment group = (Equipment) getGroup(groupPosition);
+		
 		if (view == null) {
 			LayoutInflater inf = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 			view = inf.inflate(R.layout.list_group, null);
 		}
+		
+		if(isGroupCompleted(groupPosition)){
+			group.setCompleted(true);
+		}
+		
+		if(group.getCompleted()){
+			group.setColor(Color.GREEN);
+		}
+		else
+			group.setColor(Color.BLACK);
+		
 		TextView tv = (TextView) view.findViewById(R.id.lblListHeader);
 		tv.setText(group.getName());
+		tv.setTextColor(group.getColor());
+		
+		
+		
 		// TODO Auto-generated method stub
 		return view;
 	}

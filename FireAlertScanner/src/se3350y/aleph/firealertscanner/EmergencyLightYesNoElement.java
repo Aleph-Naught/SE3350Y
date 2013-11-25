@@ -47,10 +47,14 @@ public int yesNo;
 						EmergencyLightYesNoElement element = (EmergencyLightYesNoElement) viewHolder.VH_radioGroupYesNo.getTag();
 						
 						//Sets Model
-						if(checkedId == R.id.radioYes)
+						if(checkedId == R.id.radioYes){
 							element.setYesNo(1);
-						else if(checkedId == R.id.radioNo)
+							setCompleted(true);
+						}
+						else if(checkedId == R.id.radioNo){
 							element.setYesNo(-1);
+							setCompleted(true);
+						}
 						else if(checkedId == R.id.radioNone)
 							element.setYesNo(0);
 						

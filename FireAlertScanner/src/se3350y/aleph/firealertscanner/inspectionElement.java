@@ -1,6 +1,7 @@
 package se3350y.aleph.firealertscanner;
 
 import se3350y.aleph.Listeners.OnElementChangedListener;
+import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
@@ -16,6 +17,32 @@ public class inspectionElement {
 		private String Tag;
 		private String notes = "";
 		View _view;
+		boolean completed = false;
+		
+		
+		public void setCompleted(boolean _completed){
+			completed = _completed;
+			OnInspectionElementCompleted();
+		}
+		
+		public boolean getCompleted(){
+			return completed;
+		}
+		
+		OnInspectionElementCompletedListener onInspectionElementCompletedListener = null;
+		
+		public void setOnInspectionElementCompletedListener(OnInspectionElementCompletedListener listener) {
+			onInspectionElementCompletedListener = listener;
+		}
+		
+		// This function is called after the check was complete
+		public void OnInspectionElementCompleted(){
+		    // Check if the Listener was set, otherwise we'll get an Exception when we try to call it
+		    if(onInspectionElementCompletedListener!=null) {
+		    	onInspectionElementCompletedListener.onInspectionElementComplete();
+		    }
+		}
+		
 		
 		OnElementChangedListener onElementChangedListener = null;
 		

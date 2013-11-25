@@ -48,12 +48,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	Node fromNode = null;
 	String path = "";
 	
-	Boolean changesMade = false;
+	boolean changesMade = false;
 
 	InputStream in=null;
 
 	private String m_Text = null;
-	//private String message = null;
 
 	private ExpandableListAdapter ExpAdapter;
 	private ArrayList<Equipment> ExpListItems;
@@ -235,11 +234,14 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 					//Sets the passfail if it's already been written to the file
 					String testResult = attrElement.getAttribute("testResult");
 					
+					
 					if(testResult.equals("Pass")){
 						((ExtinguisherPassFailElement) temp).setPassFail(1);
+						((inspectionElement) temp).setCompleted(true);
 					}
 					else if(testResult.equals("Fail")){
 						((ExtinguisherPassFailElement) temp).setPassFail(-1);
+						((inspectionElement) temp).setCompleted(true);
 					}
 	
 				
@@ -256,9 +258,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 						
 						if(testResult.equals("Yes")){
 							((FireHoseCabinetYesNoElement) temp).setYesNo(1);
+							((inspectionElement) temp).setCompleted(true);
 						}
 						else if(testResult.equals("No")){
 							((FireHoseCabinetYesNoElement) temp).setYesNo(-1);
+							((inspectionElement) temp).setCompleted(true);
 						}
 						
 						
@@ -271,9 +275,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 						
 						if(testResult.equals("Good")){
 							((FireHoseCabinetGoodPoorElement) temp).setGoodPoor(0);
+							((inspectionElement) temp).setCompleted(true);
 						}
 						else if(testResult.equals("Poor")){
 							((FireHoseCabinetGoodPoorElement) temp).setGoodPoor(1);
+							((inspectionElement) temp).setCompleted(true);
 						}
 					}
 				}
@@ -286,9 +292,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 					
 					if(testResult.equals("Yes")){
 						((EmergencyLightYesNoElement) temp).setYesNo(1);
+						((inspectionElement) temp).setCompleted(true);
 					}
 					else if(testResult.equals("No")){
 						((EmergencyLightYesNoElement) temp).setYesNo(-1);
+						((inspectionElement) temp).setCompleted(true);
 					}
 					
 				}

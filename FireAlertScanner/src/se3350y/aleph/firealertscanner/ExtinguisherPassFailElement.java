@@ -62,10 +62,14 @@ public class ExtinguisherPassFailElement extends inspectionElement {
 					ExtinguisherPassFailElement element = (ExtinguisherPassFailElement) viewHolder.VH_radioGroupPassFail.getTag();
 					
 					//Sets Model
-					if(checkedId == R.id.radioPass)
+					if(checkedId == R.id.radioPass){
 						element.setPassFail(1);
-					else if(checkedId == R.id.radioFail)
+						setCompleted(true);
+					}
+					else if(checkedId == R.id.radioFail){
 						element.setPassFail(-1);
+						setCompleted(true);
+					}
 					else if(checkedId == R.id.radioNone)
 						element.setPassFail(0);
 					
