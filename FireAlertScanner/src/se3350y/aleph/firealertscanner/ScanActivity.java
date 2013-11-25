@@ -136,6 +136,26 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	                // return true as we are handling the event.
 	                Equipment tempEquip = (Equipment) ExpAdapter.getParent(groupPosition);
 	                
+	                Log.i("Scan Activity", tempEquip.getName());
+	                
+	                String message = tempEquip.getId() + "\n" +
+	                				tempEquip.getLocation() + "\n";
+	                
+	                AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
+	                
+	                builder.setTitle(tempEquip.getName());
+	                builder.setMessage(message);
+	                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+						
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							dialog.cancel();
+						}
+					});
+	                
+	                AlertDialog alertDialog = builder.create();
+	                alertDialog.show();
 	                
 	                return true;
 	            }
