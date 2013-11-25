@@ -204,7 +204,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			e.printStackTrace();
 		}
 		
-		ExpAdapter.notifyDataSetChanged();
+		if(changesMade)
+			ExpAdapter.notifyDataSetChanged();
 
 		changesMade = false;
 
