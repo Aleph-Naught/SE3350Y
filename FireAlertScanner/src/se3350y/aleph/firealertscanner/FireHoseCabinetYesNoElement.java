@@ -1,6 +1,5 @@
 package se3350y.aleph.firealertscanner;
 
-import se3350y.aleph.firealertscanner.ExtinguisherPassFailElement.passFailViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -97,7 +97,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		
     	if(groupParent.getName().equals("Extinguisher")){
     		child = (ExtinguisherPassFailElement) getChild(groupPosition, childPosition);
-    		view = ((ExtinguisherPassFailElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    		view = ((ExtinguisherPassFailElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     	}
     	else if(groupParent.getName().equals("FireHoseCabinet")){
     		
@@ -105,14 +105,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     		child = (inspectionElement) getChild(groupPosition, childPosition);
     		
     		if( ((inspectionElement) child).getName().equals("Hose Re-Rack") || ((inspectionElement) child).getName().equals("Hydrostatic Test Due"))
-    			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     		else
-    			view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    			view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     		
     	}
     	else if(groupParent.getName().equals("EmergencyLight")){
     		child = (EmergencyLightYesNoElement) getChild(groupPosition, childPosition);
-    		view = ((EmergencyLightYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    		view = ((EmergencyLightYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     	}
 		
 		//Sets Text
@@ -201,7 +201,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		Equipment group = (Equipment) getGroup(groupPosition);
 		
 		if (view == null) {
-			LayoutInflater inf = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+			LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = inf.inflate(R.layout.list_group, null);
 		}
 		

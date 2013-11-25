@@ -1,5 +1,6 @@
 package se3350y.aleph.firealertscanner;
 
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;

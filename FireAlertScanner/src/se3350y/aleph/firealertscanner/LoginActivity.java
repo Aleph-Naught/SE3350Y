@@ -1,5 +1,13 @@
 package se3350y.aleph.firealertscanner;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -8,13 +16,16 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -36,6 +47,10 @@ public class LoginActivity extends Activity {
 	/**
 	 * Keep track of the login task to ensure we can cancel it if requested.
 	 */
+	
+	private static int [] userHashCodes;
+	private static int [] passwordHashCodes;
+	private static File in;
 	private UserLoginTask mAuthTask = null;
 
 	// Values for username and password at the time of the login attempt.
@@ -87,6 +102,16 @@ public class LoginActivity extends Activity {
 						attemptLogin();
 					}
 				});
+		//TODO: decide format for usename/password file, get reading+writing working, authenticate login data
+				in=null;
+
+				in = new File(Environment.getExternalStorageDirectory(),"/UserAccounts.txt");
+				try {
+					getCredentials(in);
+				} catch (FileNotFoundException e) {
+					Log.i("Login", "Can't read info from SD Card");
+					e.printStackTrace();
+				}
 	}
 
 	@Override
@@ -94,6 +119,25 @@ public class LoginActivity extends Activity {
 		super.onCreateOptionsMenu(menu);
 		getMenuInflater().inflate(R.menu.login, menu);
 		return true;
+	}
+	
+	public void getCredentials(File userFile) throws FileNotFoundException {
+		ArrayList<String> users = new ArrayList<String>();
+		ArrayList<String> passwords = new ArrayList<String>();
+		Scanner input = new Scanner(userFile);
+		String raw = input.next();
+		input.close();
+		String [] rawArray = raw.split(":");
+		for (int i=0; i<rawArray.length; i+=2) {
+			users.add(rawArray[i]);
+			passwords.add(rawArray[i+1]);
+		}
+		userHashCodes = new int [users.size()];
+		passwordHashCodes = new int [passwords.size()];
+		for (int i=0; i<users.size(); i++) {
+			userHashCodes[i] = Integer.parseInt(users.get(i));
+			passwordHashCodes[i] = Integer.parseInt(passwords.get(i));
+		}
 	}
 
 	/**
@@ -113,8 +157,12 @@ public class LoginActivity extends Activity {
 		// Store values at the time of the login attempt.
 		mUsername = mUsernameView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
+		
+		int userHash = mUsername.hashCode();
+		int passHash = mPassword.hashCode();
 
 		boolean cancel = false;
+		boolean create = true;
 		View focusView = null;
 
 		// Check for a valid password.
@@ -123,25 +171,47 @@ public class LoginActivity extends Activity {
 			focusView = mPasswordView;
 			cancel = true;
 		} else if (mPassword.length() < 4) {
-			mPasswordView.setError(getString(R.string.error_invalid_password));
+			mPasswordView.setError(getString(R.string.error_short_password));
 			focusView = mPasswordView;
 			cancel = true;
-		} else if (!mPassword.equals("password")) {
-			mPasswordView.setError(getString(R.string.error_incorrect_password));
+		} else if (mPassword.contains(":")) {
+			mPasswordView.setError(getString(R.string.error_invalid_password));
 			focusView = mPasswordView;
 			cancel = true;
 		}
 		
 
-		// Check for a valid email address.
+		// Check for a valid username.
 		if (TextUtils.isEmpty(mUsername)) {
 			mUsernameView.setError(getString(R.string.error_field_required));
 			focusView = mUsernameView;
 			cancel = true;
-		} else if (!mUsername.equals("user")) {
+		} else if (mUsername.contains(":")) {
 			mUsernameView.setError(getString(R.string.error_invalid_username));
 			focusView = mUsernameView;
 			cancel = true;
+		}
+		if (!cancel) {
+			int userIndex = 0;
+		for (int i=0; i<userHashCodes.length; i++) {
+			if (userHashCodes[i]==userHash) {
+				create=false;
+				userIndex=i;
+			}
+		}
+		if (!create) {
+			boolean found = false;
+			if (passwordHashCodes[userIndex]==passHash)
+				found=true;
+			if (!found) {
+				mPasswordView.setError(getString(R.string.error_incorrect_password));
+				focusView = mPasswordView;
+				cancel=true;
+			}
+		}
+		else {
+			registerUser(userHash,passHash);
+		}
 		}
 
 		if (cancel) {
@@ -157,6 +227,22 @@ public class LoginActivity extends Activity {
 			mAuthTask.execute((Void) null);
 			Intent intent = new Intent(this, MainDataEntry.class);
 			startActivity(intent);
+		}
+	}
+	
+	private void registerUser(int user, int pass) {
+		try {
+			PrintWriter pw = new PrintWriter(in);
+			String toWrite = user+":"+pass;
+			for (int i=0; i<userHashCodes.length; i++) {
+				toWrite+=":"+userHashCodes[i]+":"+passwordHashCodes[i];
+			}
+			pw.write(toWrite);
+			pw.close();
+			Toast.makeText(getBaseContext(), getString(R.string.user_registered), Toast.LENGTH_SHORT).show();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
