@@ -49,6 +49,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	String path = "";
 	
 	boolean changesMade = false;
+	int loadDone = 0;
 
 	InputStream in=null;
 
@@ -116,8 +117,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		
 		currentFloor = spinner.getSelectedItemPosition();
 		currentRoom = roomSpinner.getSelectedItemPosition();
-
-
+		
 	}
 	
 	
@@ -318,6 +318,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		}
 
+		
 		return list;
 	}
 
@@ -443,6 +444,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			
 			currentRoom = spinner.getSelectedItemPosition();
 			
+			
 		}
 		 
 		
@@ -453,8 +455,17 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
 		
+		loadDone++;
+		
+		boolean roomFinished = false;
+		
+		roomFinished = ExpAdapter.groupsCompleted();
+		
 		if(changesMade){
 			promptSave(parent, view, pos, id);
+		}
+		else if(!roomFinished && loadDone > 3){
+			promptImcomplete(parent, view, pos, id);
 		}
 		else{
 			loadRoom(parent, view, pos, id);
@@ -462,6 +473,45 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		
 	}
+
+	private void promptImcomplete(final AdapterView<?> parent, final View view, final int pos,
+			final long id) {
+		// TODO Auto-generated method stub
+		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+		    @Override
+		    public void onClick(DialogInterface dialog, int which) {
+		        switch (which){
+		        case DialogInterface.BUTTON_POSITIVE:
+		            //Yes button clicked
+		        	saveResults(new View(getBaseContext()));
+		        	loadRoom(parent, view, pos, id);
+		            break;
+
+		        case DialogInterface.BUTTON_NEGATIVE:
+		            //No button clicked
+		        	loadDone = 2;
+		        	//Reference to parent spinner
+		    		Spinner spinner = (Spinner) parent;
+		    		//Check to see what spinner event occured at
+		    		if(spinner.getId() == R.id.floorSpinner){
+		    			spinner.setSelection(currentFloor);
+		    		}
+		    		else if(spinner.getId() == R.id.roomSpinner){
+		    			spinner.setSelection(currentRoom);
+		    		}
+		            break;
+		        }
+		    }
+		};
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Equipment in this room has not been inspected. Do you want to continue?").setPositiveButton("Yes and Save", dialogClickListener)
+		    .setNegativeButton("No", dialogClickListener).show();
+		
+	}
+
+
+
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {

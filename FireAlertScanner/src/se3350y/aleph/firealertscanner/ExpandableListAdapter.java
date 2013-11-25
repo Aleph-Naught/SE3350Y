@@ -28,6 +28,23 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		onInspectionChangedListener = listener;
 	}
 	
+	public boolean groupsCompleted(){
+		
+		Equipment group;
+		
+		for(int i = 0; i < getGroupCount(); i++){
+			
+			group = (Equipment) getGroup(i);
+			
+			if(!group.getCompleted()){
+				return false;
+			}
+			
+		}
+		
+		return false;
+	}
+	
 	// This function is called after the check was complete
 	public void OnInspectionChangeMade(){
 	    // Check if the Listener was set, otherwise we'll get an Exception when we try to call it
