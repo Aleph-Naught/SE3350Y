@@ -31,23 +31,4 @@
         android:hint="@string/ip_hint"
         android:inputType="text"
         android:text="@string/ip" />
-    
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
-        
-        <Button
-            android:id="@+id/tcpCancelButton"
-            android:layout_width="110sp"
-            android:layout_height="wrap_content"
-            android:text="@android:string/cancel" />
-        <Button
-            android:id="@+id/tcpOkButton"
-            android:layout_width="110sp"
-            android:layout_height="wrap_content"
-            android:text="@android:string/ok" />
-        
-    </LinearLayout>
-
 </LinearLayout>
