@@ -138,7 +138,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				OnInspectionChangeMade();
 				if (!((String) tv.getText()).contains("*")) {
 					((inspectionElement) childFinal).setChanged(true);
-					tv.setText("*"+tv.getText());}
+					tv.setText("*"+tv.getText());
+				}
 			}
 		});
 		
@@ -175,8 +176,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     		if(test == false){
     			return false;
     		}
-    		
-    		
     		
     	}
     	
