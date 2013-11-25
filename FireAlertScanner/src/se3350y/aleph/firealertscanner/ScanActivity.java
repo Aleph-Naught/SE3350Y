@@ -443,6 +443,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		//Create array adapter to change spinner
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,options);
+		adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 
 		//Sets spinner
 		spinner.setAdapter(adapter);

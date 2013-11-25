@@ -67,6 +67,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 
 			//Create array adapter to change spinners
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*[@name]", "name"));
+			adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 			//Find the client spinner
 			Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
 			//Set spinner text and sets item changed listener to wait for user selections
@@ -262,6 +263,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			try{
 				//update child spinner data
 				ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client[@name='" + spinnerValue + "']/*[@id]", "id"));
+				adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 				spinner_child.setAdapter(adapter);
 				Log.i("Main Data Entry", "Client contract spinner updated");
 			} catch (XPathExpressionException e) {
@@ -277,6 +279,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			try{
 				//update child spinner data
 				ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract[@id='" + spinnerValue + "']/*[@address]", "address"));
+				adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 				spinner_child.setAdapter(adapter);
 				Log.i("Main Data Entry", "Service address spinner updated");
 			} catch (XPathExpressionException e) {
