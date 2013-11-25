@@ -48,61 +48,34 @@ public final class R {
         public static final int editText2=0x7f090003;
         public static final int editText3=0x7f090006;
         public static final int email=0x7f09000c;
-<<<<<<< HEAD
-        public static final int emergencyLightRadioGroup=0x7f09002b;
+        public static final int emergencyLightRadioGroup=0x7f090029;
         public static final int enterButton=0x7f09001a;
         public static final int expandableEquipmentList=0x7f090020;
-        public static final int extinguisherRadioGroup=0x7f090031;
-        public static final int fireHoseCabinetRadioGroup=0x7f090035;
+        public static final int extinguisherRadioGroup=0x7f09002f;
+        public static final int fireHoseCabinetRadioGroup=0x7f090033;
         public static final int floorSpinner=0x7f09001d;
         public static final int floorTextView=0x7f09001c;
-        public static final int goodPoorSpinner=0x7f090034;
-        public static final int id_num=0x7f090030;
-        public static final int inspectionElement=0x7f09002a;
+        public static final int goodPoorSpinner=0x7f090032;
+        public static final int id_num=0x7f09002e;
+        public static final int inspectionElement=0x7f090028;
         public static final int ipInput=0x7f090027;
         public static final int ipLabel=0x7f090026;
-        public static final int item_layout=0x7f09002f;
-        public static final int lblListHeader=0x7f090036;
-        public static final int location=0x7f090037;
-=======
-        public static final int emergencyLightRadioGroup=0x7f09002a;
-        public static final int enterButton=0x7f09001a;
-        public static final int expandableEquipmentList=0x7f090020;
-        public static final int extinguisherRadioGroup=0x7f090030;
-        public static final int fireHoseCabinetRadioGroup=0x7f090034;
-        public static final int floorSpinner=0x7f09001d;
-        public static final int floorTextView=0x7f09001c;
-        public static final int goodPoorSpinner=0x7f090033;
-        public static final int id_num=0x7f09002f;
-        public static final int inspectionElement=0x7f090029;
-        public static final int ipInput=0x7f090028;
-        public static final int ipLabel=0x7f090027;
-        public static final int item_layout=0x7f09002e;
-        public static final int lblListHeader=0x7f090035;
->>>>>>> TCPStuff
+        public static final int item_layout=0x7f09002d;
+        public static final int lblListHeader=0x7f090034;
+        public static final int location=0x7f090035;
         public static final int login=0x7f09000e;
         public static final int login_form=0x7f09000b;
         public static final int login_status=0x7f090009;
         public static final int login_status_message=0x7f09000a;
         public static final int manButton=0x7f090022;
         public static final int password=0x7f09000d;
-<<<<<<< HEAD
         public static final int portInput=0x7f090025;
         public static final int portLabel=0x7f090024;
-        public static final int radioFail=0x7f090033;
-        public static final int radioNo=0x7f09002d;
-        public static final int radioNone=0x7f09002e;
-        public static final int radioPass=0x7f090032;
-        public static final int radioYes=0x7f09002c;
-=======
-        public static final int portInput=0x7f090026;
-        public static final int portLabel=0x7f090025;
-        public static final int radioFail=0x7f090032;
-        public static final int radioNo=0x7f09002c;
-        public static final int radioNone=0x7f09002d;
-        public static final int radioPass=0x7f090031;
-        public static final int radioYes=0x7f09002b;
->>>>>>> TCPStuff
+        public static final int radioFail=0x7f090031;
+        public static final int radioNo=0x7f09002b;
+        public static final int radioNone=0x7f09002c;
+        public static final int radioPass=0x7f090030;
+        public static final int radioYes=0x7f09002a;
         public static final int record_button=0x7f090011;
         public static final int roomSpinner=0x7f09001f;
         public static final int roomTextView=0x7f09001e;
@@ -112,11 +85,6 @@ public final class R {
         public static final int serviceAddressSpinner=0x7f090019;
         public static final int service_address=0x7f090018;
         public static final int sign_in_button=0x7f09000f;
-<<<<<<< HEAD
-        public static final int tcpCancelButton=0x7f090028;
-        public static final int tcpOkButton=0x7f090029;
-=======
->>>>>>> TCPStuff
         public static final int textView1=0x7f090000;
         public static final int textView2=0x7f090001;
     }

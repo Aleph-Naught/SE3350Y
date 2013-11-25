@@ -9,8 +9,7 @@
         android:id="@+id/portLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/port_label"
-        android:textColor="@android:color/primary_text_dark" />
+        android:text="@string/port_label" />
     <EditText
         android:id="@+id/portInput"
         android:layout_width="fill_parent"
@@ -22,8 +21,7 @@
         android:id="@+id/ipLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ip_label"
-        android:textColor="@android:color/primary_text_dark" />
+        android:text="@string/ip_label" />
     <EditText
         android:id="@+id/ipInput"
         android:layout_width="fill_parent"
