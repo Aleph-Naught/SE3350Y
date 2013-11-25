@@ -18,6 +18,7 @@ public class inspectionElement {
 		private String notes = "";
 		View _view;
 		boolean completed = false;
+		boolean changed = false;
 		
 		
 		public void setCompleted(boolean _completed){
@@ -27,6 +28,14 @@ public class inspectionElement {
 		
 		public boolean getCompleted(){
 			return completed;
+		}
+		
+		public void setChanged (boolean _changed) {
+			changed = _changed;
+		}
+		
+		public boolean getChanged() {
+			return changed;
 		}
 		
 		OnInspectionElementCompletedListener onInspectionElementCompletedListener = null;
