@@ -147,14 +147,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		((inspectionElement) child).setOnInspectionElementCompletedListener(new OnInspectionElementCompletedListener(){
 			@Override
 			public void onInspectionElementComplete() {
-				tv.setTextColor(Color.GREEN);
+				tv.setTextColor(0x33CC5500);
 				
 				
 			}
 		});
 		
 		if(((inspectionElement) child).getCompleted()){
-			tv.setTextColor(Color.GREEN);
+			tv.setTextColor(0x33CC5500);
 			
 		}
 		
