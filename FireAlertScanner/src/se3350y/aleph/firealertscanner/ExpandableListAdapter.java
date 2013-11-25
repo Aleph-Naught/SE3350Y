@@ -1,6 +1,11 @@
 package se3350y.aleph.firealertscanner;
  
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 029f5f1db83cfe7312b973d642248e61ea31deb5
 import se3350y.aleph.Listeners.OnElementChangedListener;
 import se3350y.aleph.Listeners.OnInspectionChangedListener;
 import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
