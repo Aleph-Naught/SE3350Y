@@ -42,7 +42,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			
 		}
 		
-		return false;
+		return true;
 	}
 	
 	// This function is called after the check was complete

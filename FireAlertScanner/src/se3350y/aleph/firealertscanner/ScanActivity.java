@@ -423,8 +423,25 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			//update child spinner data
 			populate(path+"/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
 			Log.i("Main Data Entry", "floor contract spinner updated");
+		
+			loadDone = 1;
+			
+			// reset the expandable list based on the new floor/room
+			ExpListItems = SetStandarGroups();
+			ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
+			ExpandList.setAdapter(ExpAdapter);
+			changesMade = false;
+
+			ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
+				@Override
+				public void onInspectionChanged() {
+					// TODO Auto-generated method stub
+					Log.i("Scan Activity","Inspection Change Made");
+					changesMade = true;
+				}});
 			
 			currentFloor = spinner.getSelectedItemPosition();
+			currentRoom = spinner_child.getSelectedItemPosition();
 			
 		}
 		else if (spinner.getId() == R.id.roomSpinner){
