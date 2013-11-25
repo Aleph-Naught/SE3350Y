@@ -15,6 +15,7 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -145,9 +146,12 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	                Equipment tempEquip = (Equipment) ExpAdapter.getParent(groupPosition);
 	                
 	                Log.i("Scan Activity", tempEquip.getName());
+	                String details = new String();
+	                for(int i = 0; i < tempEquip.getDetails().size(); i++){
+	                	details = details + tempEquip.getDetails().get(i);
+	                }
 	                
-	                String message = "ID: " + tempEquip.getId() + "\n" +
-	                				"Location: " + tempEquip.getLocation() + "\n";
+	                String message = details;
 	                
 	                AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
 	                
@@ -289,7 +293,13 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			tempEquipment.setId(element.getAttribute("id"));
 			tempEquipment.setLocation(element.getAttribute("location"));
 			
-			
+
+			NamedNodeMap map = element.getAttributes();
+			ArrayList<String> attributes = new ArrayList<String>();
+			for(int j = 0; j < map.getLength(); j++){
+				attributes.add(map.item(j).getNodeName().toUpperCase() + ": " + map.item(j).getNodeValue() + "\n");
+			}
+			tempEquipment.setDetails(attributes);
 
 
 			//Find Inspection Element Nodes
