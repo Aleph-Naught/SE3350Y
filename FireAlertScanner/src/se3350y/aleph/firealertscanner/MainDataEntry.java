@@ -19,6 +19,7 @@ import org.xml.sax.InputSource;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.util.Log;
 import android.view.Menu;
@@ -36,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -157,7 +159,30 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 	public void launchTCP(View view){
 //		Intent intent = new Intent (this, ClientView.class);
 //		startActivity(intent);
-		final Dialog dialog = new Dialog(MainDataEntry.this);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Send Results");
+		View dialogView = getLayoutInflater().inflate(R.layout.dialog_tcp, null);
+		final EditText portView = (EditText) dialogView.findViewById(R.id.portInput);
+		final EditText ipView = (EditText) dialogView.findViewById(R.id.ipInput);
+		builder.setView(dialogView);
+		
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog, int which) {
+				// Retrieve the data from the Dialog
+				String port = portView.getText().toString();
+				String ip = ipView.getText().toString();
+				_tcpController.Send(port, ip);
+			}
+		});
+		builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+			}
+		});
+		builder.show();
+		
+		
+		/*final Dialog dialog = new Dialog(MainDataEntry.this);
 		dialog.setTitle("Send Results");
 		dialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_tcp, null));
 		dialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
@@ -179,7 +204,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			public void onClick(View v) {
 				dialog.dismiss();
 			}
-		});
+		});*/
 	}
 	
 	public void makeToast(String text, int duration){
