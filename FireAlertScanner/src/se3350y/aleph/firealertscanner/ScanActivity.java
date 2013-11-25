@@ -71,6 +71,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
+		
+		setTitle("Ready to Scan...");
 
 		Bundle b = getIntent().getExtras();
 		path = b.getString("se3350y.aleph.firealertscanner.dataentry");
