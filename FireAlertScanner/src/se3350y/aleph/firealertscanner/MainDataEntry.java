@@ -37,6 +37,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -105,6 +106,25 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 		} catch (FileNotFoundException e) {
 			Log.i("Main data entry", "Can't read info from SD Card");
+			
+			final Activity a = this;
+			final Context c = getApplicationContext();
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("XML File Not Found");
+			builder.setMessage("InspectionData.xml was not found on the SD card. Place the file on the SD card and restart the application.");
+			builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+				public void onClick(DialogInterface dialog, int which) {
+					a.finish();
+					Intent intent = new Intent(c, LoginActivity.class);
+					
+					// clear the stack
+					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					c.startActivity(intent);
+				}
+			});
+			builder.show();
+			
 			e.printStackTrace();
 		}
 
