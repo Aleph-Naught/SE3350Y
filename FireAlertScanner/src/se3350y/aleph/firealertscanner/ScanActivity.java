@@ -52,6 +52,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	String path = "";
 	
 	boolean changesMade = false;
+	boolean falseTrigger = false;
 	int loadDone = 0;
 
 
@@ -477,7 +478,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 				case DialogInterface.BUTTON_NEGATIVE:
 					//No button clicked
-					loadRoom(parent, view, pos, id);
+					//loadRoom(parent, view, pos, id);
 					break;
 				}
 			}
@@ -566,11 +567,14 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		
 		roomFinished = ExpAdapter.groupsCompleted();
 		
-
-		if(!roomFinished && loadDone > 3){
+		if(falseTrigger){
+			falseTrigger = false;
+			return;
+		}
+		else if(!roomFinished && loadDone > 3){
 			promptImcomplete(parent, view, pos, id);
 		}
-		else if(changesMade){
+		else if(changesMade && loadDone > 3){
 			promptSave(parent, view, pos, id);
 		}
 		else{
@@ -608,6 +612,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		    			
 		    		}
 		    		else if(spinner.getId() == R.id.roomSpinner){
+		    			falseTrigger = true;
 		    			spinner.setSelection(currentRoom);
 		    		}
 		            break;
