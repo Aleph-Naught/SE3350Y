@@ -14,10 +14,12 @@ import android.widget.Spinner;
 public class FireHoseCabinetGoodPoorElement extends inspectionElement {
 	
 	private Spinner goodPoor;
+	private boolean falseTrigger;
 	
 	public FireHoseCabinetGoodPoorElement(Context context){
 		goodPoor = new Spinner(context);
-		goodPoor.setSelection(0);
+		goodPoor.setSelection(2);
+		falseTrigger = true;
 		
 	}
 	
@@ -66,7 +68,11 @@ public class FireHoseCabinetGoodPoorElement extends inspectionElement {
 					
 					element.setGoodPoor(posSelected);
 					
-					setCompleted(true);
+					if(!falseTrigger){
+						setCompleted(true);
+					}
+					
+					falseTrigger = false;
 					
 				}
 				
