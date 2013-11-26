@@ -60,7 +60,8 @@ public class DOMWriter {
 		for (int j=0; j<list.size(); j++){
 			// Get the Equipment
 			Equipment currEquip = list.get(j);
-			
+			if (currEquip.getName().startsWith("*"))
+				currEquip.setName(currEquip.getName().substring(1));
 			// Have to hardcode the IDs for now
 			//String[] IDs = {"33101", "33102", "77207", "88103"};
 			String currID = currEquip.getId();
@@ -125,6 +126,7 @@ public class DOMWriter {
 				currElement.setChanged(false);
 			}
 			outerCounter++;
+			currEquip.setChanged(false);
 		}
 		
 		Log.i("DOMWriter", "Outer Counter:"+String.valueOf(outerCounter));

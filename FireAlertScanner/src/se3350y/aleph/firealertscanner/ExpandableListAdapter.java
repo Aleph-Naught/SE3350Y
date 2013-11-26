@@ -100,11 +100,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     	
     	//Gets a reference to the current child
 		
-    	if(groupParent.getName().equals("Extinguisher")){
+    	if(groupParent.getName().contains("Extinguisher")){
     		child = (ExtinguisherPassFailElement) getChild(groupPosition, childPosition);
     		view = ((ExtinguisherPassFailElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     	}
-    	else if(groupParent.getName().equals("FireHoseCabinet")){
+    	else if(groupParent.getName().contains("FireHoseCabinet")){
     		
     		//There's too different input methods here
     		child = (inspectionElement) getChild(groupPosition, childPosition);
@@ -116,7 +116,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     			view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     		
     	}
-    	else if(groupParent.getName().equals("EmergencyLight")){
+    	else if(groupParent.getName().contains("EmergencyLight")){
     		child = (EmergencyLightYesNoElement) getChild(groupPosition, childPosition);
     		view = ((EmergencyLightYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     	}
@@ -140,6 +140,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 					((inspectionElement) childFinal).setChanged(true);
 					tv.setText("*"+tv.getText());
 				}
+				if (!groupParent.getName().contains("*")) {
+					groupParent.setChanged(true);
+					groupParent.setName("*"+groupParent.getName());
+					notifyDataSetChanged();
+				}
+				
 			}
 		});
 		
