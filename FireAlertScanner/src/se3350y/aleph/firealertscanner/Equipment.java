@@ -15,6 +15,7 @@ public class Equipment {
 	private int color = Color.BLACK;
 
 	private boolean completed = false;
+	private boolean changed = false;
 
 	public void setCompleted(boolean _completed){
 		this.completed = _completed;
@@ -23,6 +24,14 @@ public class Equipment {
 	public boolean getCompleted()
 	{
 		return completed;
+	}
+	
+	public boolean getChanged() {
+		return changed;
+	}
+	
+	public void setChanged(boolean _changed) {
+		this.changed = _changed;
 	}
 
 
