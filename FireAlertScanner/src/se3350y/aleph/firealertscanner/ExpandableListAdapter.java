@@ -143,9 +143,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				if (!groupParent.getName().contains("*")) {
 					groupParent.setChanged(true);
 					groupParent.setName("*"+groupParent.getName());
-					
+					notifyDataSetChanged();
 				}
-				notifyDataSetChanged();
+				
 			}
 		});
 		
