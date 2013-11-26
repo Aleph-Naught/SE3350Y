@@ -507,6 +507,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 					//Yes button clicked
 					saveResults(new View(getBaseContext()));
 					loadRoom(parent, view, pos, id);
+					ExpAdapter.setSaving(true);
 					break;
 
 				case DialogInterface.BUTTON_NEGATIVE:
@@ -628,6 +629,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		            //Yes button clicked
 		        	saveResults(new View(getBaseContext()));
 		        	loadRoom(parent, view, pos, id);
+		        	ExpAdapter.setSaving(true);
 		            break;
 
 		        case DialogInterface.BUTTON_NEGATIVE:
