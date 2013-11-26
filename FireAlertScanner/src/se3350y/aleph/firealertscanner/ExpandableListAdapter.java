@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
  
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -20,6 +22,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
     private Context context;
     private ArrayList<Equipment> groups;
+    
+    boolean saving = false;
+    
+    public void setSaving(boolean _saving){
+    	saving = _saving;
+    }
+    
+    public boolean getSaving()
+    {
+    	return saving;
+    }
     
     OnInspectionChangedListener onInspectionChangedListener = null;
 	
@@ -103,6 +116,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     	if(groupParent.getName().contains("Extinguisher")){
     		child = (ExtinguisherPassFailElement) getChild(groupPosition, childPosition);
     		view = ((ExtinguisherPassFailElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+    		
+    		RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.extinguisherRadioGroup);
+    		
+    		if(saving){
+    			for (int i = 0; i < radioGroup.getChildCount(); i++) {
+    					radioGroup.getChildAt(i).setEnabled(false);
+    			}
+
+    		}
+    		else{
+    			for (int i = 0; i < radioGroup.getChildCount(); i++) {
+					radioGroup.getChildAt(i).setEnabled(true);
+    			}
+    		}
+    		
     	}
     	else if(groupParent.getName().contains("FireHoseCabinet")){
     		
@@ -110,16 +138,62 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     		child = (inspectionElement) getChild(groupPosition, childPosition);
     		
 
-    		if( ((inspectionElement) child).getName().contains("Hose Re-Rack") || ((inspectionElement) child).getName().contains("Hydrostatic Test Due"))
+    		if( ((inspectionElement) child).getName().contains("Hose Re-Rack") || ((inspectionElement) child).getName().contains("Hydrostatic Test Due")){
     			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
-    		else
+    			
+    			RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.fireHoseCabinetRadioGroup);
+    			
+    			if(saving){
+        			for (int i = 0; i < radioGroup.getChildCount(); i++) {
+        					radioGroup.getChildAt(i).setEnabled(false);
+        			}
+
+        		}
+        		else{
+        			for (int i = 0; i < radioGroup.getChildCount(); i++) {
+    					radioGroup.getChildAt(i).setEnabled(true);
+        			}
+        		}
+    			
+    		}
+    		else{
     			view = ((FireHoseCabinetGoodPoorElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+    			
+    			Spinner spinner = (Spinner) view.findViewById(R.id.goodPoorSpinner);
+    			
+    			if(saving){
+        			spinner.setEnabled(false);
+
+        		}
+        		else{
+        			spinner.setEnabled(true);
+        		}
+    			
+    		}
     		
     	}
     	else if(groupParent.getName().contains("EmergencyLight")){
     		child = (EmergencyLightYesNoElement) getChild(groupPosition, childPosition);
     		view = ((EmergencyLightYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+    		
+    		
+    		RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.emergencyLightRadioGroup);
+			
+			if(saving){
+    			for (int i = 0; i < radioGroup.getChildCount(); i++) {
+    					radioGroup.getChildAt(i).setEnabled(false);
+    			}
+
+    		}
+    		else{
+    			for (int i = 0; i < radioGroup.getChildCount(); i++) {
+					radioGroup.getChildAt(i).setEnabled(true);
+    			}
+    		}
+    		
     	}
+    	
+    	
 		
 		//Sets Text
 		final TextView tv = (TextView) view.findViewById(R.id.inspectionElement);

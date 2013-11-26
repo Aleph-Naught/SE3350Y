@@ -22,11 +22,13 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import se3350y.aleph.Listeners.OnInspectionChangedListener;
+import se3350y.aleph.Listeners.OnSavedFinishedListener;
 
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,6 +42,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Spinner;
@@ -47,7 +50,8 @@ import android.widget.Toast;
 
 
 public class ScanActivity extends Activity implements OnItemSelectedListener, DOMActivity {
-	DOMWriter dom = new DOMWriter(this);
+	
+	DOMWriter dom;
 	Node fromNode = null;
 	String path = "";
 	
@@ -86,6 +90,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		path = b.getString("se3350y.aleph.firealertscanner.dataentry");
 		Log.i("ScanActivity", "Received path: "+path);
 
+		dom = new DOMWriter(this);
+		
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
 		//populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
@@ -104,6 +110,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		} catch (SDCardException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -187,27 +196,51 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 
 	public void saveResults(View view){
-		try {
-			Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
+			
+			final Button saveButton = (Button) findViewById(R.id.saveButton);
+			
+			saveButton.setEnabled(false);
+			saveButton.setText("Saving...");
+		
+			final Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
 			String newPath = path+"/Floor[@name='";
 			newPath += floorSpinner.getItemAtPosition(currentFloor);
 			newPath += "']/Room[@id='";
-			Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
+			final Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
 			newPath += roomSpinner.getItemAtPosition(currentRoom);
 			newPath += "']";
 			Log.i("ScanActivity", "Using path: "+newPath);
-			dom.saveXML(ExpListItems, newPath);
-		} catch (XPathExpressionException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			e.printStackTrace();
-		}
+			
+			ExpAdapter.setSaving(true);
+			floorSpinner.setEnabled(false);
+			roomSpinner.setEnabled(false);
+			
+			ExpAdapter.notifyDataSetChanged();
+			
+			
+			dom = new DOMWriter(this);
+			
+			dom.setOnSavedFinishedListener(new OnSavedFinishedListener(){
+
+				@Override
+				public void OnSavedFinished() {
+					// TODO Auto-generated method stub
+					
+					saveButton.setEnabled(true);
+					saveButton.setText("Save");
+					
+					ExpAdapter.setSaving(false);
+					
+					ExpAdapter.notifyDataSetChanged();
+					
+					floorSpinner.setEnabled(true);
+					roomSpinner.setEnabled(true);
+					
+				}
+				
+			});
+			
+			dom.execute(new savePackage(ExpListItems,  newPath));
 		
 		if(changesMade)
 			ExpAdapter.notifyDataSetChanged();

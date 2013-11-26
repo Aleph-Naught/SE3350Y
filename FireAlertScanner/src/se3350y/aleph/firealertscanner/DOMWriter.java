@@ -23,17 +23,22 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
+import se3350y.aleph.Listeners.OnSavedFinishedListener;
+
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
 /**
  * A class to store the static DOM-related files for reading, editing, and writing XML.
- * @author Benjamin Schubert
+ * @author Benjamin Schubert & Nick
  */
-public class DOMWriter {
-	DOMActivity _activity;
+public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 	
+	DOMActivity _activity;
 	
 	public DOMWriter(DOMActivity a){
 		_activity = a;
@@ -48,8 +53,9 @@ public class DOMWriter {
 	 * @throws IOException
 	 * @throws ParserConfigurationException
 	 * @throws TransformerException
+	 * @throws SDCardException 
 	 */
-	public void saveXML(ArrayList<Equipment> list, String fromPath) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException{
+	public void saveXML(ArrayList<Equipment> list, String fromPath) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException, SDCardException{
 		Document doc = getDOM();
 		
 		// Root node; in this case, Franchisee
@@ -134,6 +140,7 @@ public class DOMWriter {
 		
 		// Write result
 		writeDOMResults(doc);
+	
 	}
 	
 	public void setNotes(String equipmentID, String inspectionElementName, String notes, Node rootNode) throws XPathExpressionException{
@@ -170,12 +177,12 @@ public class DOMWriter {
 	 * @throws SAXException
 	 * @throws IOException
 	 * @throws ParserConfigurationException
+	 * @throws SDCardException 
 	 */
-	public Document getDOM() throws SAXException, IOException, ParserConfigurationException{
+	public Document getDOM() throws SAXException, IOException, ParserConfigurationException, SDCardException{
 		// Check SD card status
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-			_activity.makeToast("SD card not available.", Toast.LENGTH_SHORT);
-			return null;
+			throw new SDCardException();
 		}
 		
 		File workingDir = Environment.getExternalStorageDirectory();
@@ -191,12 +198,12 @@ public class DOMWriter {
 	 * @throws SAXException
 	 * @throws IOException
 	 * @throws ParserConfigurationException
+	 * @throws SDCardException 
 	 */
-	public Document getModifiedDOM() throws SAXException, IOException, ParserConfigurationException{
+	public Document getModifiedDOM() throws ParserConfigurationException, SAXException, IOException, SDCardException{
 		// Check SD card status
 		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-			_activity.makeToast("SD card not available.", Toast.LENGTH_SHORT);
-			return null;
+			throw new SDCardException();
 		}
 		
 		File workingDir = Environment.getExternalStorageDirectory();
@@ -211,9 +218,9 @@ public class DOMWriter {
 	 * @param doc The Document representing the XML.
 	 * @param context Needed for Toast (might remove this because of redundancy).
 	 * @throws TransformerException
-	 * @throws FileNotFoundException
+	 * @throws IOException 
 	 */
-	public void writeDOMResults(Document doc) throws TransformerException, FileNotFoundException{
+	public void writeDOMResults(Document doc) throws TransformerException, IOException{
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
 		// TODO Might change this to a different name, or pass the filename as a method argument.
@@ -222,16 +229,67 @@ public class DOMWriter {
 		if(modifiedFile.exists())
 			// For now, we're overwriting.
 			modifiedFile.delete();
-		try {
         	modifiedFile.createNewFile();
-		} catch (IOException e) {
-			_activity.makeToast("Error creating file!",Toast.LENGTH_LONG);
-			e.printStackTrace();
-		}
+			
+	
 		
 		StreamResult result = new StreamResult(modifiedFile);
 		transformer.transform(source, result);
 		
-		_activity.makeToast("File saved.", Toast.LENGTH_SHORT);
 	}
+
+
+	@Override
+	protected String doInBackground(savePackage... params) {
+		// TODO Auto-generated method stub
+		
+		try {
+			saveXML(params[0].getEquipment(), params[0].getPath());
+		} catch (XPathExpressionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "Error reading/writing file.";
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TransformerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SDCardException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "SD Card not available.";
+		}
+		
+		return "File saved.";
+	}
+	
+	@Override
+    // Once the image is downloaded, associates it to the imageView
+	protected void onPostExecute(String result) {
+		_activity.makeToast(result, Toast.LENGTH_SHORT);
+		onSavedFinished();
+	}
+	
+	OnSavedFinishedListener onSavedFinishedListener = null;
+	
+	public void setOnSavedFinishedListener(OnSavedFinishedListener listener) {
+		onSavedFinishedListener = listener;
+	}
+	
+	// This function is called after the check was complete
+	public void onSavedFinished(){
+	    // Check if the Listener was set, otherwise we'll get an Exception when we try to call it
+	    if(onSavedFinishedListener!=null) {
+	    	onSavedFinishedListener.OnSavedFinished();
+	    }
+	}
+	
+	 
 }

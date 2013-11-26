@@ -49,7 +49,6 @@ public class FireHoseCabinetGoodPoorElement extends inspectionElement {
 			
 			final goodPoorViewHolder viewHolder = new goodPoorViewHolder();
 			
-		
 			
 			viewHolder.VH_spinner = (Spinner) view.findViewById(R.id.goodPoorSpinner);
 			
