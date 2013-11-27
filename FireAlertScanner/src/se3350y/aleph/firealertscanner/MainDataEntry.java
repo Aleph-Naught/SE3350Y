@@ -16,6 +16,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
@@ -44,7 +45,45 @@ import android.graphics.Typeface;
 import android.os.Build;
 
 public class MainDataEntry extends Activity implements OnItemSelectedListener, DOMActivity{
+	
 	TCPController _tcpController = new TCPController(this);
+	
+	public class xmlLoader extends AsyncTask<getValuesPackage, Void, ArrayList<String> >{
+
+		private final Spinner spinner;
+		private final Button enterButton;
+		
+		public xmlLoader(Spinner _spinner, Button button){
+			spinner = _spinner;
+			enterButton = button;
+		}
+		
+		@Override
+		protected ArrayList<String> doInBackground(getValuesPackage... params) {
+			// TODO Auto-generated method stub
+			try {
+				return getValues(params[0].getExpression(), params[0].getAttribute());
+			} catch (XPathExpressionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(ArrayList<String> ar ) {
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item, ar);
+			adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
+			spinner.setAdapter(adapter);
+			
+			if(spinner.getId() == R.id.serviceAddressSpinner)
+				enterButton.setEnabled(true);
+			
+			
+			
+		}
+		
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +91,10 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		setContentView(R.layout.activity_main_data_entry);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		
+		Button enterButton = (Button) findViewById(R.id.enterButton);
+		enterButton.setEnabled(false);
+		
 
 		try {
 			//Sets up the textview with the name and id of the franchisee logged in
@@ -65,20 +108,18 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			Log.i("Main Data Entry", "Franchisee TextView set");
 			//TODO ask group what they think about this
 			setTitle("Please Select...");
-
-			//Create array adapter to change spinners
-			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/*[@name]", "name"));
-			adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-			//Find the client spinner
+			
 			Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
-			//Set spinner text and sets item changed listener to wait for user selections
-			spinner.setAdapter(adapter);
+		
+			xmlLoader loader = new xmlLoader(spinner, new Button(this));
+			
+			loader.execute(new getValuesPackage("/Franchisee/*[@name]", "name"));
+
 			spinner.setOnItemSelectedListener(this);
-			Log.i("Main Data Entry", "Client spinner adapter and listener set");
-			//Sets client contract spinner with a listener
+			
 			spinner = (Spinner) findViewById(R.id.clientContractSpinner);
+			
 			spinner.setOnItemSelectedListener(this);
-			Log.i("Main Data Entry", "Client contract spinner adapter and listener set");
 
 			//Catch all errors from xpath parsing
 		} catch (XPathExpressionException e) {
@@ -208,29 +249,6 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		builder.show();
 		
 		
-		/*final Dialog dialog = new Dialog(MainDataEntry.this);
-		dialog.setTitle("Send Results");
-		dialog.setContentView(getLayoutInflater().inflate(R.layout.dialog_tcp, null));
-		dialog.getWindow().setLayout(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-		dialog.show();
-		
-		Button okButton = (Button) dialog.findViewById(R.id.tcpOkButton);
-		okButton.setOnClickListener(new OnClickListener(){
-			public void onClick(View v) {
-				// Retrieve the data from the Dialog
-				String port = ((EditText)dialog.findViewById(R.id.portInput)).getText().toString();
-				String ip = ((EditText)dialog.findViewById(R.id.ipInput)).getText().toString();
-				_tcpController.Send(port, ip);
-				dialog.dismiss();
-			}
-		});
-		
-		Button cancelButton = (Button) dialog.findViewById(R.id.tcpCancelButton);
-		cancelButton.setOnClickListener(new OnClickListener(){
-			public void onClick(View v) {
-				dialog.dismiss();
-			}
-		});*/
 	}
 	
 	public void makeToast(String text, int duration){
@@ -269,9 +287,13 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		String spinnerValue = (String) parent.getItemAtPosition(pos);
 		//Stores child spinner so that child spinners can be updated in a chain reaction
 		Spinner spinner_child = null;
-
-
-
+		
+		xmlLoader loader;
+		
+		Button enterButton = (Button) findViewById(R.id.enterButton);
+		
+		enterButton.setEnabled(false);
+		
 		//Reference to parent spinner
 		Spinner spinner = (Spinner) parent;
 		//Check to see what spinner event occured at
@@ -280,15 +302,11 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			Log.i("Main Data Entry", "Client spinner event triggered");
 			//get child spinner  
 			spinner_child = (Spinner) findViewById(R.id.clientContractSpinner);
-			try{
-				//update child spinner data
-				ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client[@name='" + spinnerValue + "']/*[@id]", "id"));
-				adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-				spinner_child.setAdapter(adapter);
-				Log.i("Main Data Entry", "Client contract spinner updated");
-			} catch (XPathExpressionException e) {
-				e.printStackTrace();
-			}
+			
+			loader = new xmlLoader(spinner_child, enterButton);
+			
+			
+			loader.execute(new getValuesPackage("/Franchisee/Client[@name='" + spinnerValue + "']/*[@id]", "id"));
 
 		}
 		else if(spinner.getId() == R.id.clientContractSpinner)
@@ -296,15 +314,11 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			Log.i("Main Data Entry", "Client contract spinner triggered");
 			//get child spinner
 			spinner_child = (Spinner) findViewById(R.id.serviceAddressSpinner);
-			try{
-				//update child spinner data
-				ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item,getValues("/Franchisee/Client/clientContract[@id='" + spinnerValue + "']/*[@address]", "address"));
-				adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
-				spinner_child.setAdapter(adapter);
-				Log.i("Main Data Entry", "Service address spinner updated");
-			} catch (XPathExpressionException e) {
-				e.printStackTrace();
-			}
+			
+			loader = new xmlLoader(spinner_child, enterButton);
+			
+			
+			loader.execute(new getValuesPackage("/Franchisee/Client/clientContract[@id='" + spinnerValue + "']/*[@address]", "address"));
 
 		}
 	}
