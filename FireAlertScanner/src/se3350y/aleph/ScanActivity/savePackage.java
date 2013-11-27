@@ -1,4 +1,4 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
 import java.util.ArrayList;
 

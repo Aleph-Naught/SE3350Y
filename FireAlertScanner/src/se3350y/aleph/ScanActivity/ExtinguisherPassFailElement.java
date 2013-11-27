@@ -1,5 +1,6 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
+import se3350y.aleph.firealertscanner.R;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RadioButton;
 
-public class ExtinguisherPassFailElement extends inspectionElement {
+public class ExtinguisherPassFailElement extends InspectionElement {
 	
 	private int passFail;
 	

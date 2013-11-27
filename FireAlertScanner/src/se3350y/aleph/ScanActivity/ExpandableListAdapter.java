@@ -1,10 +1,11 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
  
 import java.util.ArrayList;
 
 import se3350y.aleph.Listeners.OnElementChangedListener;
 import se3350y.aleph.Listeners.OnInspectionChangedListener;
 import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
+import se3350y.aleph.firealertscanner.R;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -71,19 +72,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         this.groups = groups;
     }
     
-    public void addItem(inspectionElement item, Equipment group) {
+    public void addItem(InspectionElement item, Equipment group) {
 		if (!groups.contains(group)) {
 			groups.add(group);
 		}
 		int index = groups.indexOf(group);
-		ArrayList<inspectionElement> ch = groups.get(index).getItems();
+		ArrayList<InspectionElement> ch = groups.get(index).getItems();
 		ch.add(item);
 		groups.get(index).setItems(ch);
 	}
  
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-    	ArrayList<inspectionElement> chList = groups.get(groupPosition).getItems();
+    	ArrayList<InspectionElement> chList = groups.get(groupPosition).getItems();
 		return chList.get(childPosition);
     }
     
@@ -135,10 +136,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     	else if(groupParent.getName().contains("FireHoseCabinet")){
     		
     		//There's too different input methods here
-    		child = (inspectionElement) getChild(groupPosition, childPosition);
+    		child = (InspectionElement) getChild(groupPosition, childPosition);
     		
 
-    		if( ((inspectionElement) child).getName().contains("Hose Re-Rack") || ((inspectionElement) child).getName().contains("Hydrostatic Test Due")){
+    		if( ((InspectionElement) child).getName().contains("Hose Re-Rack") || ((InspectionElement) child).getName().contains("Hydrostatic Test Due")){
     			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
     			
     			RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.fireHoseCabinetRadioGroup);
@@ -197,21 +198,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		
 		//Sets Text
 		final TextView tv = (TextView) view.findViewById(R.id.inspectionElement);
-		tv.setText(((inspectionElement) child).getName().toString());
-		if (((inspectionElement) child).getChanged()) {
+		tv.setText(((InspectionElement) child).getName().toString());
+		if (((InspectionElement) child).getChanged()) {
 			tv.setText("*"+tv.getText());
 		}
-		tv.setTag(((inspectionElement) child).getTag());
+		tv.setTag(((InspectionElement) child).getTag());
 		final Object childFinal = child;
 		
-		((inspectionElement) child).setOnElementChangedListener(new OnElementChangedListener(){
+		((InspectionElement) child).setOnElementChangedListener(new OnElementChangedListener(){
 			@Override
 			public void onElementChanged() {
 				// TODO Auto-generated method stub
 				Log.i("ExpandableListAdapter","Element Change Made");
 				OnInspectionChangeMade();
 				if (!((String) tv.getText()).contains("*")) {
-					((inspectionElement) childFinal).setChanged(true);
+					((InspectionElement) childFinal).setChanged(true);
 					tv.setText("*"+tv.getText());
 				}
 				if (!groupParent.getName().contains("*")) {
@@ -225,7 +226,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		
 		
 		
-		((inspectionElement) child).setOnInspectionElementCompletedListener(new OnInspectionElementCompletedListener(){
+		((InspectionElement) child).setOnInspectionElementCompletedListener(new OnInspectionElementCompletedListener(){
 			@Override
 			public void onInspectionElementComplete() {
 				tv.setTextColor(Color.GREEN);
@@ -234,7 +235,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			}
 		});
 		
-		if(((inspectionElement) child).getCompleted()){
+		if(((InspectionElement) child).getCompleted()){
 			tv.setTextColor(Color.GREEN);
 			
 		}
@@ -245,11 +246,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public boolean isGroupCompleted(int groupPosition){
     	
     	boolean test = true;
-    	inspectionElement child;
+    	InspectionElement child;
     	
     	for(int i = 0; i < getChildrenCount(groupPosition); i++){
     		
-    		child = (inspectionElement) getChild(groupPosition, i);
+    		child = (InspectionElement) getChild(groupPosition, i);
     		
     		test = child.getCompleted();
     		
@@ -266,7 +267,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
  
     public int getChildrenCount(int groupPosition) {
 		// TODO Auto-generated method stub
-		ArrayList<inspectionElement> chList = groups.get(groupPosition).getItems();
+		ArrayList<InspectionElement> chList = groups.get(groupPosition).getItems();
 
 		return chList.size();
 

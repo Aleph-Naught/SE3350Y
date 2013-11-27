@@ -1,5 +1,6 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
+import se3350y.aleph.firealertscanner.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class EmergencyLightYesNoElement extends inspectionElement {
-	
-public int yesNo;
+public class FireHoseCabinetYesNoElement extends InspectionElement {
+
+	public int yesNo;
 	
 	//Holds the view for the RadioButtons
 		static class yesNoViewHolder {
@@ -25,13 +26,13 @@ public int yesNo;
 			
 			if (convertView == null || convertView.getTag() != this.getTag()) {
 				LayoutInflater infalInflater = (LayoutInflater) context;
-				_view = infalInflater.inflate(R.layout.emergencylight_yesno_item, null);
+				_view = infalInflater.inflate(R.layout.firehosecabinet_yesno_item, null);
 				
 				//For Radio Button state holding
 				final yesNoViewHolder viewHolder = new yesNoViewHolder();
 				
 				//Set ViewHolder's RadioGroup to the one in the row
-				viewHolder.VH_radioGroupYesNo = (RadioGroup) _view.findViewById(R.id.emergencyLightRadioGroup);
+				viewHolder.VH_radioGroupYesNo = (RadioGroup) _view.findViewById(R.id.fireHoseCabinetRadioGroup);
 				
 				final RadioButton yes = (RadioButton) _view.findViewById(R.id.radioYes);
 				final RadioButton no = (RadioButton) _view.findViewById(R.id.radioNo);
@@ -42,8 +43,9 @@ public int yesNo;
 
 					@Override
 					public void onCheckedChanged(RadioGroup group, int checkedId) {
+						// TODO Auto-generated method stub
 						
-						EmergencyLightYesNoElement element = (EmergencyLightYesNoElement) viewHolder.VH_radioGroupYesNo.getTag();
+						FireHoseCabinetYesNoElement element = (FireHoseCabinetYesNoElement) viewHolder.VH_radioGroupYesNo.getTag();
 						
 						//Sets Model
 						if(checkedId == R.id.radioYes){
@@ -123,5 +125,5 @@ public int yesNo;
 			// 1 is Pass, 0 is no answer, -1 is fail
 			return yesNo;
 		}
-
+	
 }

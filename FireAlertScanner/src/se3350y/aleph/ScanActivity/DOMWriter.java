@@ -1,4 +1,4 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -71,11 +71,11 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 			// Have to hardcode the IDs for now
 			//String[] IDs = {"33101", "33102", "77207", "88103"};
 			String currID = currEquip.getId();
-			ArrayList<inspectionElement> elementList = currEquip.getItems();
+			ArrayList<InspectionElement> elementList = currEquip.getItems();
 			
 			// Get the inspectionElement within each Equipment
 			for (int k=0; k<elementList.size(); k++){
-				inspectionElement currElement = elementList.get(k);
+				InspectionElement currElement = elementList.get(k);
 				String passFail = null;
 				String inspectName = currElement.getName();
 				

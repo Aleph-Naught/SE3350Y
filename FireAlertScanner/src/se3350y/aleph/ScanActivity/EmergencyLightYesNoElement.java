@@ -1,5 +1,6 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
+import se3350y.aleph.firealertscanner.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class FireHoseCabinetYesNoElement extends inspectionElement {
-
-	public int yesNo;
+public class EmergencyLightYesNoElement extends InspectionElement {
+	
+public int yesNo;
 	
 	//Holds the view for the RadioButtons
 		static class yesNoViewHolder {
@@ -25,13 +26,13 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 			
 			if (convertView == null || convertView.getTag() != this.getTag()) {
 				LayoutInflater infalInflater = (LayoutInflater) context;
-				_view = infalInflater.inflate(R.layout.firehosecabinet_yesno_item, null);
+				_view = infalInflater.inflate(R.layout.emergencylight_yesno_item, null);
 				
 				//For Radio Button state holding
 				final yesNoViewHolder viewHolder = new yesNoViewHolder();
 				
 				//Set ViewHolder's RadioGroup to the one in the row
-				viewHolder.VH_radioGroupYesNo = (RadioGroup) _view.findViewById(R.id.fireHoseCabinetRadioGroup);
+				viewHolder.VH_radioGroupYesNo = (RadioGroup) _view.findViewById(R.id.emergencyLightRadioGroup);
 				
 				final RadioButton yes = (RadioButton) _view.findViewById(R.id.radioYes);
 				final RadioButton no = (RadioButton) _view.findViewById(R.id.radioNo);
@@ -42,9 +43,8 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 
 					@Override
 					public void onCheckedChanged(RadioGroup group, int checkedId) {
-						// TODO Auto-generated method stub
 						
-						FireHoseCabinetYesNoElement element = (FireHoseCabinetYesNoElement) viewHolder.VH_radioGroupYesNo.getTag();
+						EmergencyLightYesNoElement element = (EmergencyLightYesNoElement) viewHolder.VH_radioGroupYesNo.getTag();
 						
 						//Sets Model
 						if(checkedId == R.id.radioYes){
@@ -124,5 +124,5 @@ public class FireHoseCabinetYesNoElement extends inspectionElement {
 			// 1 is Pass, 0 is no answer, -1 is fail
 			return yesNo;
 		}
-	
+
 }

@@ -1,4 +1,4 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public class Equipment {
 	private String Name;
 	private String id;
 	private String location;
-	private ArrayList<inspectionElement> Items;
+	private ArrayList<InspectionElement> Items;
 	private ArrayList<String> details;
 
 	private int color = Color.BLACK;
@@ -47,10 +47,10 @@ public class Equipment {
 	public void setId(String _id) {
 		this.id = _id;
 	}
-	public ArrayList<inspectionElement> getItems() {
+	public ArrayList<InspectionElement> getItems() {
 		return Items;
 	}
-	public void setItems(ArrayList<inspectionElement> Items) {
+	public void setItems(ArrayList<InspectionElement> Items) {
 		this.Items = Items;
 	}
 	public String getLocation() {

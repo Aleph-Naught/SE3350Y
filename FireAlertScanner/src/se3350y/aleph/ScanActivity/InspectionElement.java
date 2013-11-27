@@ -1,4 +1,4 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
 import se3350y.aleph.Listeners.OnElementChangedListener;
 import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-public class inspectionElement {
+public class InspectionElement {
 	
 
 		String Name;

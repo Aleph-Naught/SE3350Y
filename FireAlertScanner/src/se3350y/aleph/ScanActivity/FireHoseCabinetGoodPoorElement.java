@@ -1,5 +1,6 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
+import se3350y.aleph.firealertscanner.R;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -11,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Spinner;
 
-public class FireHoseCabinetGoodPoorElement extends inspectionElement {
+public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 	
 	private Spinner goodPoor;
 	private boolean falseTrigger;

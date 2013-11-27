@@ -1,4 +1,4 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.MainDataEntry;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +15,14 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+
+import se3350.aleph.Login.LoginActivity;
+import se3350y.aleph.ScanActivity.DOMActivity;
+import se3350y.aleph.ScanActivity.ScanActivity;
+import se3350y.aleph.firealertscanner.R;
+import se3350y.aleph.firealertscanner.R.id;
+import se3350y.aleph.firealertscanner.R.layout;
+import se3350y.aleph.firealertscanner.R.menu;
 
 import android.os.AsyncTask;
 import android.os.Bundle;

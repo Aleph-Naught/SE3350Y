@@ -1,4 +1,4 @@
-package se3350y.aleph.firealertscanner;
+package se3350.aleph.Login;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,6 +7,13 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import se3350y.aleph.MainDataEntry.MainDataEntry;
+import se3350y.aleph.firealertscanner.R;
+import se3350y.aleph.firealertscanner.R.id;
+import se3350y.aleph.firealertscanner.R.layout;
+import se3350y.aleph.firealertscanner.R.menu;
+import se3350y.aleph.firealertscanner.R.string;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

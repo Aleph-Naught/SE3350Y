@@ -1,4 +1,4 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
 public class SDCardException extends Exception {
 

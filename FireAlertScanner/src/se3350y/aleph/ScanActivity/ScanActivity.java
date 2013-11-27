@@ -1,4 +1,4 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,6 +23,7 @@ import org.xml.sax.SAXException;
 
 import se3350y.aleph.Listeners.OnInspectionChangedListener;
 import se3350y.aleph.Listeners.OnSavedFinishedListener;
+import se3350y.aleph.firealertscanner.R;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -269,7 +270,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 	private ArrayList<Equipment> SetStandarGroups() {
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
-		ArrayList<inspectionElement> tempInspectionElements = new ArrayList<inspectionElement>();
+		ArrayList<InspectionElement> tempInspectionElements = new ArrayList<InspectionElement>();
 		Equipment tempEquipment;
 
 		Object temp = null;
@@ -315,7 +316,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		//For each piece of equipment
 		for (int i = 0; i < nodes.getLength(); i++) {
 
-			tempInspectionElements = new ArrayList<inspectionElement>();
+			tempInspectionElements = new ArrayList<InspectionElement>();
 
 			tempEquipment = new Equipment();
 
@@ -358,11 +359,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 					if(testResult.equals("Pass")){
 						((ExtinguisherPassFailElement) temp).setPassFail(1);
-						((inspectionElement) temp).setCompleted(true);
+						((InspectionElement) temp).setCompleted(true);
 					}
 					else if(testResult.equals("Fail")){
 						((ExtinguisherPassFailElement) temp).setPassFail(-1);
-						((inspectionElement) temp).setCompleted(true);
+						((InspectionElement) temp).setCompleted(true);
 					}
 
 
@@ -379,11 +380,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 						if(testResult.equals("Yes")){
 							((FireHoseCabinetYesNoElement) temp).setYesNo(1);
-							((inspectionElement) temp).setCompleted(true);
+							((InspectionElement) temp).setCompleted(true);
 						}
 						else if(testResult.equals("No")){
 							((FireHoseCabinetYesNoElement) temp).setYesNo(-1);
-							((inspectionElement) temp).setCompleted(true);
+							((InspectionElement) temp).setCompleted(true);
 						}
 
 
@@ -396,11 +397,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 						if(testResult.equals("Good")){
 							((FireHoseCabinetGoodPoorElement) temp).setGoodPoor(0);
-							((inspectionElement) temp).setCompleted(true);
+							((InspectionElement) temp).setCompleted(true);
 						}
 						else if(testResult.equals("Poor")){
 							((FireHoseCabinetGoodPoorElement) temp).setGoodPoor(1);
-							((inspectionElement) temp).setCompleted(true);
+							((InspectionElement) temp).setCompleted(true);
 						}
 					}
 				}
@@ -413,11 +414,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 					if(testResult.equals("Yes")){
 						((EmergencyLightYesNoElement) temp).setYesNo(1);
-						((inspectionElement) temp).setCompleted(true);
+						((InspectionElement) temp).setCompleted(true);
 					}
 					else if(testResult.equals("No")){
 						((EmergencyLightYesNoElement) temp).setYesNo(-1);
-						((inspectionElement) temp).setCompleted(true);
+						((InspectionElement) temp).setCompleted(true);
 					}
 
 				}
@@ -425,8 +426,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 					temp = null;
 
 				if (temp!=null){
-					((inspectionElement) temp).setName(attrElement.getAttribute("name"));
-					tempInspectionElements.add((inspectionElement) temp);
+					((InspectionElement) temp).setName(attrElement.getAttribute("name"));
+					tempInspectionElements.add((InspectionElement) temp);
 				}
 
 			}

@@ -1,6 +1,7 @@
-package se3350y.aleph.firealertscanner;
+package se3350y.aleph.ScanActivity;
 
 //import Sample.TCPClient.R;
+import se3350y.aleph.firealertscanner.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
