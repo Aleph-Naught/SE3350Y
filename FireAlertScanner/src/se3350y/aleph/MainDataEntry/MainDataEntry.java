@@ -53,19 +53,21 @@ import android.graphics.Typeface;
 import android.os.Build;
 
 public class MainDataEntry extends Activity implements OnItemSelectedListener, DOMActivity{
-	
+
 	TCPController _tcpController = new TCPController(this);
-	
+
 	public class xmlLoader extends AsyncTask<getValuesPackage, Void, ArrayList<String> >{
 
 		private final Spinner spinner;
 		private final Button enterButton;
-		
-		public xmlLoader(Spinner _spinner, Button button){
+		private final Activity a;
+
+		public xmlLoader(Spinner _spinner, Button button, Activity _a){
 			spinner = _spinner;
 			enterButton = button;
+			a = _a;
 		}
-		
+
 		@Override
 		protected ArrayList<String> doInBackground(getValuesPackage... params) {
 			// TODO Auto-generated method stub
@@ -74,23 +76,50 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			} catch (XPathExpressionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+
+				e.printStackTrace();
+
+				return null;
+
 			}
 			return null;
 		}
-		
+
 		@Override
 		protected void onPostExecute(ArrayList<String> ar ) {
+
+			if(ar.equals(null)){
+				Log.i("Main data entry", "Can't read info from SD Card");
+
+				final Context c = getApplicationContext();
+				AlertDialog.Builder builder = new AlertDialog.Builder(a);
+				builder.setTitle("XML File Not Found");
+				builder.setMessage("InspectionData.xml was not found on the SD card. Place the file on the SD card and restart the application.");
+				builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+					public void onClick(DialogInterface dialog, int which) {
+						a.finish();
+						Intent intent = new Intent(c, LoginActivity.class);
+
+						// clear the stack
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						c.startActivity(intent);
+					}
+				});
+				builder.show();
+			}
+
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainDataEntry.this,android.R.layout.simple_spinner_item, ar);
 			adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 			spinner.setAdapter(adapter);
-			
+
 			if(spinner.getId() == R.id.serviceAddressSpinner)
 				enterButton.setEnabled(true);
-			
-			
-			
+
 		}
-		
+
 	}
 
 	@Override
@@ -99,16 +128,46 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		setContentView(R.layout.activity_main_data_entry);
 		// Show the Up button in the action bar.
 		setupActionBar();
-		
+
 		Button enterButton = (Button) findViewById(R.id.enterButton);
 		enterButton.setEnabled(false);
-		
+
 
 		try {
 			//Sets up the textview with the name and id of the franchisee logged in
 			//Displayed in bold style
 			TextView tv = (TextView) findViewById(R.id.Franchisee);
-			String name = getValues("/*[@name]", "name").toString(), id = getValues("/*[@id]", "id").toString();
+			String name = null, id = null;
+
+			try {
+				name = getValues("/*[@name]", "name").toString();
+				id = getValues("/*[@id]", "id").toString();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				Log.i("Main data entry", "Can't read info from SD Card");
+
+				final Activity a = this;
+
+				final Context c = getApplicationContext();
+				AlertDialog.Builder builder = new AlertDialog.Builder(a);
+				builder.setTitle("XML File Not Found");
+				builder.setMessage("InspectionData.xml was not found on the SD card. Place the file on the SD card and restart the application.");
+				builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+					public void onClick(DialogInterface dialog, int which) {
+						a.finish();
+						Intent intent = new Intent(c, LoginActivity.class);
+
+						// clear the stack
+						intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						c.startActivity(intent);
+					}
+				});
+				builder.show();
+				e.printStackTrace();
+			}
+
+
 			name = name.substring(1, name.length() - 1);
 			id = id.substring(1, id.length() - 1);
 			tv.setText("Franchisee: " + name + ", ID: " + id);
@@ -116,17 +175,17 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			Log.i("Main Data Entry", "Franchisee TextView set");
 			//TODO ask group what they think about this
 			setTitle("Please Select...");
-			
+
 			Spinner spinner = (Spinner) findViewById(R.id.clientSpinner);
-		
-			xmlLoader loader = new xmlLoader(spinner, new Button(this));
-			
+
+			xmlLoader loader = new xmlLoader(spinner, new Button(this), this);
+
 			loader.execute(new getValuesPackage("/Franchisee/*[@name]", "name"));
 
 			spinner.setOnItemSelectedListener(this);
-			
+
 			spinner = (Spinner) findViewById(R.id.clientContractSpinner);
-			
+
 			spinner.setOnItemSelectedListener(this);
 
 			//Catch all errors from xpath parsing
@@ -138,7 +197,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 
 	//xpath parsing function
 	//Takes expressions and attribute as parameters and returns an array list with attribute value
-	private ArrayList<String> getValues(String expression, String attribute) throws XPathExpressionException{
+	private ArrayList<String> getValues(String expression, String attribute) throws XPathExpressionException, FileNotFoundException{
 
 		Log.i("Main Data Entry", "getValues() xPath parser called");
 
@@ -150,32 +209,8 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
-
-		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
-		} catch (FileNotFoundException e) {
-			Log.i("Main data entry", "Can't read info from SD Card");
-			
-			final Activity a = this;
-			final Context c = getApplicationContext();
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("XML File Not Found");
-			builder.setMessage("InspectionData.xml was not found on the SD card. Place the file on the SD card and restart the application.");
-			builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
-				public void onClick(DialogInterface dialog, int which) {
-					a.finish();
-					Intent intent = new Intent(c, LoginActivity.class);
-					
-					// clear the stack
-					intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					c.startActivity(intent);
-				}
-			});
-			builder.show();
-			
-			e.printStackTrace();
-		}
+	
+		in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
 
 		InputSource is = new InputSource(in);
 		Log.i("Main Data Entry", "Sucessfully read from SD Card");
@@ -230,17 +265,17 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void launchTCP(View view){
-//		Intent intent = new Intent (this, ClientView.class);
-//		startActivity(intent);
+		//		Intent intent = new Intent (this, ClientView.class);
+		//		startActivity(intent);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Send Results");
 		View dialogView = getLayoutInflater().inflate(R.layout.dialog_tcp, null);
 		final EditText portView = (EditText) dialogView.findViewById(R.id.portInput);
 		final EditText ipView = (EditText) dialogView.findViewById(R.id.ipInput);
 		builder.setView(dialogView);
-		
+
 		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
 			public void onClick(DialogInterface dialog, int which) {
 				// Retrieve the data from the Dialog
@@ -255,21 +290,21 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			}
 		});
 		builder.show();
-		
-		
+
+
 	}
-	
+
 	public void makeToast(String text, int duration){
 		Toast.makeText(MainDataEntry.this, text, duration).show();
 	}
-	
+
 	public void getDataInput(View view) throws XPathExpressionException, IOException {
-		
+
 		Spinner client = (Spinner) findViewById(R.id.clientSpinner),
 				serviceAddress = (Spinner) findViewById(R.id.serviceAddressSpinner);
 		String clientSelection = client.getSelectedItem().toString(),
 				serviceAddressSelection = serviceAddress.getSelectedItem().toString();
-		
+
 		Intent intent = new Intent(this, ScanActivity.class);
 		String path = "/Franchisee/Client[@name='";
 		Spinner clientSpinner = (Spinner) findViewById(R.id.clientSpinner);
@@ -281,7 +316,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		Spinner serviceAddressSpinner = (Spinner) findViewById(R.id.serviceAddressSpinner);
 		path += serviceAddressSpinner.getItemAtPosition(serviceAddressSpinner.getSelectedItemPosition());
 		path += "']";
-		
+
 		intent.putExtra("se3350y.aleph.firealertscanner.dataentry", path);
 		Log.i("Main Data Entry","Put path: "+path);
 		startActivity(intent);
@@ -295,13 +330,13 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		String spinnerValue = (String) parent.getItemAtPosition(pos);
 		//Stores child spinner so that child spinners can be updated in a chain reaction
 		Spinner spinner_child = null;
-		
+
 		xmlLoader loader;
-		
+
 		Button enterButton = (Button) findViewById(R.id.enterButton);
-		
+
 		enterButton.setEnabled(false);
-		
+
 		//Reference to parent spinner
 		Spinner spinner = (Spinner) parent;
 		//Check to see what spinner event occured at
@@ -310,10 +345,10 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			Log.i("Main Data Entry", "Client spinner event triggered");
 			//get child spinner  
 			spinner_child = (Spinner) findViewById(R.id.clientContractSpinner);
-			
-			loader = new xmlLoader(spinner_child, enterButton);
-			
-			
+
+			loader = new xmlLoader(spinner_child, enterButton, this);
+
+
 			loader.execute(new getValuesPackage("/Franchisee/Client[@name='" + spinnerValue + "']/*[@id]", "id"));
 
 		}
@@ -322,10 +357,10 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 			Log.i("Main Data Entry", "Client contract spinner triggered");
 			//get child spinner
 			spinner_child = (Spinner) findViewById(R.id.serviceAddressSpinner);
-			
-			loader = new xmlLoader(spinner_child, enterButton);
-			
-			
+
+			loader = new xmlLoader(spinner_child, enterButton, this);
+
+
 			loader.execute(new getValuesPackage("/Franchisee/Client/clientContract[@id='" + spinnerValue + "']/*[@address]", "address"));
 
 		}

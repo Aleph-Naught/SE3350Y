@@ -18,19 +18,19 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="se3350y.aleph.firealertscanner.MainActivity"
+            android:name="se3350y.aleph.ScanActivity.MainActivity"
             android:label="@string/app_name"
-            android:parentActivityName="se3350y.aleph.firealertscanner.MainDataEntry"
+            android:parentActivityName="se3350y.aleph.MainDataEntry.MainDataEntry"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.dataInput.samplescanner.ScanCodeDemo"
             android:label="@string/app_name"
-            android:parentActivityName="se3350y.aleph.firealertscanner.ScanActivity"
+            android:parentActivityName="se3350y.aleph.ScanActivity.ScanActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="se3350y.aleph.firealertscanner.LoginActivity"
+            android:name="se3350.aleph.Login.LoginActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
@@ -42,21 +42,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="se3350y.aleph.firealertscanner.MainDataEntry"
+            android:name="se3350y.aleph.MainDataEntry.MainDataEntry"
             android:label="@string/title_activity_main_data_entry"
-            android:parentActivityName="se3350y.aleph.firealertscanner.LoginActivity"
+            android:parentActivityName="se3350.aleph.Login.LoginActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="se3350y.aleph.firealertscanner.ScanActivity"
+            android:name="se3350y.aleph.ScanActivity.ScanActivity"
             android:label="@string/title_activity_scan"
-            android:parentActivityName="se3350y.aleph.firealertscanner.MainDataEntry"
+            android:parentActivityName="se3350y.aleph.MainDataEntry.MainDataEntry"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="se3350y.aleph.firealertscanner.ClientView"
+            android:name="se3350y.aleph.ScanActivity.ClientView"
             android:label="@string/title_activity_client_view"
-            android:parentActivityName="se3350y.aleph.firealertscanner.MainDataEntry"
+            android:parentActivityName="se3350y.aleph.MainDataEntry.MainDataEntry"
             android:screenOrientation="portrait" >
         </activity>
     </application>
