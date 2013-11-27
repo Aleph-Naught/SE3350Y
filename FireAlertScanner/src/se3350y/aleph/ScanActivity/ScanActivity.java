@@ -592,9 +592,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			
 			spinnerLoader sloader = new spinnerLoader(roomSpinner);
 			
-			saveButton.setText("Loading...");
-			saveButton.setEnabled(false);
-			
 			sloader.execute(new spinnerPackage(path+"/Floor[@name='" + spinnerValue + "']/*", "id"));
 			
 			loadDone = 1;
@@ -603,9 +600,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		}
 		else if (spinner.getId() == R.id.roomSpinner){
-			
-			saveButton.setText("Loading...");
-			saveButton.setEnabled(false);
 			
 			// reset the expandable list based on the new floor/room
 			ExpListItems = SetStandardGroups();
