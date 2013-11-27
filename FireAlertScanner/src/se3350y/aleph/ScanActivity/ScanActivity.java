@@ -60,7 +60,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	boolean falseTrigger = false;
 	int loadDone = 0;
 
-
 	InputStream in=null;
 
 	private ExpandableListAdapter ExpAdapter;
@@ -76,8 +75,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	DataReceiver dataScanner = new DataReceiver();
 	
 	private String m_Text;
-
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
