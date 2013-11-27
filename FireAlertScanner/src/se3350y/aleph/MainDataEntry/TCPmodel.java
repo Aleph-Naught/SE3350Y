@@ -12,14 +12,14 @@ import java.net.UnknownHostException;
 
 import android.util.Log;
 
-public class TCPmodel {
+public class TCPModel {
 	Socket RTSPsocket;
 	InetAddress ServerIPAdd = null;
 	InetAddress ClientIPAdd = null;
 	int RTSP_PORT;
 
 	//RTSPmodel constructor
-	public TCPmodel(String IP, int ServerPort) throws IOException, SocketTimeoutException {
+	public TCPModel(String IP, int ServerPort) throws IOException, SocketTimeoutException {
 		try {
 			ServerIPAdd = InetAddress.getByName(IP);
 			RTSPsocket = new Socket();

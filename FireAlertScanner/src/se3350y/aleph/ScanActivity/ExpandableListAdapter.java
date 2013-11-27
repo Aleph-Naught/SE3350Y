@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.RadioGroup;
@@ -140,7 +139,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     		
 
     		if( ((InspectionElement) child).getName().contains("Hose Re-Rack") || ((InspectionElement) child).getName().contains("Hydrostatic Test Due")){
-    			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(context.LAYOUT_INFLATER_SERVICE));
+    			view = ((FireHoseCabinetYesNoElement) child).XMLInflator(convertView, parent, context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
     			
     			RadioGroup radioGroup = (RadioGroup) view.findViewById(R.id.fireHoseCabinetRadioGroup);
     			
