@@ -53,6 +53,8 @@ import android.widget.Toast;
 public class ScanActivity extends Activity implements OnItemSelectedListener, DOMActivity {
 	
 	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
+	
+	// dummy change
 	DOMWriter dom;
 	Node fromNode = null;
 	String path = "";
