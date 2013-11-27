@@ -52,6 +52,7 @@ import android.widget.Toast;
 
 public class ScanActivity extends Activity implements OnItemSelectedListener, DOMActivity {
 	
+	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
 	DOMWriter dom;
 	Node fromNode = null;
 	String path = "";
@@ -278,7 +279,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(), XML_FILENAME));
 			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
@@ -459,7 +460,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 		try {
-			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
+			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(), XML_FILENAME));
 		} catch (FileNotFoundException e) {
 			Toast.makeText(getBaseContext(), "Can't read inspection file from SD Card.", Toast.LENGTH_LONG).show();
 			e.printStackTrace();

@@ -47,6 +47,7 @@ import android.os.Build;
 
 public class MainDataEntry extends Activity implements OnItemSelectedListener, DOMActivity{
 
+	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
 	TCPController _tcpController = new TCPController(this);
 
 	public class xmlLoader extends AsyncTask<getValuesPackage, Void, ArrayList<String> >{
@@ -203,7 +204,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
 	
-		in = new FileInputStream(new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml"));
+		in = new FileInputStream(new File(Environment.getExternalStorageDirectory(), XML_FILENAME));
 
 		InputSource is = new InputSource(in);
 		Log.i("Main Data Entry", "Sucessfully read from SD Card");
