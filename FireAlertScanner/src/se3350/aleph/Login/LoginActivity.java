@@ -1,19 +1,13 @@
 package se3350.aleph.Login;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import se3350y.aleph.MainDataEntry.MainDataEntry;
 import se3350y.aleph.firealertscanner.R;
-import se3350y.aleph.firealertscanner.R.id;
-import se3350y.aleph.firealertscanner.R.layout;
-import se3350y.aleph.firealertscanner.R.menu;
-import se3350y.aleph.firealertscanner.R.string;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -23,7 +17,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -39,6 +32,8 @@ import android.widget.Toast;
  * well.
  */
 public class LoginActivity extends Activity {
+	private static final String FILENAME = "UserAccounts.txt";
+	
 	/**
 	 * A dummy authentication store containing known user names and passwords.
 	 * TODO: remove after connecting to a real authentication system.
@@ -57,7 +52,6 @@ public class LoginActivity extends Activity {
 	
 	private static int [] userHashCodes;
 	private static int [] passwordHashCodes;
-	private static File in;
 	private UserLoginTask mAuthTask = null;
 
 	// Values for username and password at the time of the login attempt.
@@ -109,14 +103,12 @@ public class LoginActivity extends Activity {
 						attemptLogin();
 					}
 				});
-		//TODO: decide format for usename/password file, get reading+writing working, authenticate login data
-				in=null;
-
-				in = new File(Environment.getExternalStorageDirectory(),"/UserAccounts.txt");
 				try {
-					getCredentials(in);
+					getCredentials();
 				} catch (FileNotFoundException e) {
 					Log.i("Login", "Can't read info from SD Card");
+					e.printStackTrace();
+				} catch (IOException e) {
 					e.printStackTrace();
 				}
 	}
@@ -128,12 +120,18 @@ public class LoginActivity extends Activity {
 		return true;
 	}
 	
-	public void getCredentials(File userFile) throws FileNotFoundException {
+	public void getCredentials() throws IOException {
 		ArrayList<String> users = new ArrayList<String>();
 		ArrayList<String> passwords = new ArrayList<String>();
-		Scanner input = new Scanner(userFile);
-		String raw = input.next();
-		input.close();
+//		Scanner input = new Scanner(userFile);
+//		String raw = input.next();
+//		input.close();
+		FileInputStream fis = openFileInput(FILENAME);
+		String raw = "";
+		int content;
+		while ((content = fis.read()) != -1){
+			raw += (char) content;
+		}
 		String [] rawArray = raw.split(":");
 		for (int i=0; i<rawArray.length; i+=2) {
 			users.add(rawArray[i]);
@@ -199,26 +197,29 @@ public class LoginActivity extends Activity {
 			cancel = true;
 		}
 		if (!cancel) {
-			int userIndex = 0;
-		for (int i=0; i<userHashCodes.length; i++) {
-			if (userHashCodes[i]==userHash) {
-				create=false;
-				userIndex=i;
+			if (userHashCodes != null){
+				int userIndex = 0;
+				for (int i=0; i<userHashCodes.length; i++) {
+					if (userHashCodes[i]==userHash) {
+						create=false;
+						userIndex=i;
+					}
+				}
+				if (!create) {
+					boolean found = false;
+					if (passwordHashCodes[userIndex]==passHash)
+						found=true;
+					if (!found) {
+						mPasswordView.setError(getString(R.string.error_incorrect_password));
+						focusView = mPasswordView;
+						cancel=true;
+					}
+				}
+				else {
+					registerUser(userHash,passHash);
+				}
 			}
-		}
-		if (!create) {
-			boolean found = false;
-			if (passwordHashCodes[userIndex]==passHash)
-				found=true;
-			if (!found) {
-				mPasswordView.setError(getString(R.string.error_incorrect_password));
-				focusView = mPasswordView;
-				cancel=true;
-			}
-		}
-		else {
-			registerUser(userHash,passHash);
-		}
+			else registerUser(userHash, passHash);
 		}
 
 		if (cancel) {
@@ -239,11 +240,11 @@ public class LoginActivity extends Activity {
 	
 	private void registerUser(int user, int pass) {
 		try {
-			PrintWriter pw = new PrintWriter(in);
-			String toWrite = user+":"+pass;
-			for (int i=0; i<userHashCodes.length; i++) {
-				toWrite+=":"+userHashCodes[i]+":"+passwordHashCodes[i];
-			}
+			PrintWriter pw = new PrintWriter(openFileOutput(FILENAME, MODE_APPEND));
+			String toWrite = user+":"+pass+":";
+//			for (int i=0; i<userHashCodes.length; i++) {
+//				toWrite+=":"+userHashCodes[i]+":"+passwordHashCodes[i];
+//			}
 			pw.write(toWrite);
 			pw.close();
 			Toast.makeText(getBaseContext(), getString(R.string.user_registered), Toast.LENGTH_SHORT).show();
