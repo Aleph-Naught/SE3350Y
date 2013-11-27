@@ -577,7 +577,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 				case DialogInterface.BUTTON_NEGATIVE:
 					//No button clicked
-					//loadRoom(parent, view, pos, id);
+					loadRoom(parent, view, pos, id);
 					break;
 				}
 			}
