@@ -84,10 +84,10 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 				
 				spinnerLoader sloader = new spinnerLoader(roomSpinner);
 				
+				
 				sloader.execute(new spinnerPackage(path+"/Floor[@name='" + spinner.getSelectedItem() + "']/*", "id"));
 			}
 			else if(spinner.getId() == R.id.roomSpinner){
-				
 				
 				
 				// get the listview
@@ -161,6 +161,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 				currentFloor = floorSpinner.getSelectedItemPosition();
 				currentRoom = roomSpinner.getSelectedItemPosition();
 				
+				saveButton.setEnabled(true);
+				saveButton.setText("Save");
+				
 			}
 			
 			currentFloor = floorSpinner.getSelectedItemPosition();
@@ -190,6 +193,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	String ACTION_CONTENT_NOTIFY = "android.intent.action.CONTENT_NOTIFY";
 	DataReceiver dataScanner = new DataReceiver();
 	
+	Button saveButton;
+	
 	private String m_Text;
 
 	@Override
@@ -197,7 +202,12 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
 		
+		saveButton = (Button) findViewById(R.id.saveButton);
+		
 		setTitle("Ready to Scan...");
+		
+		saveButton.setText("Loading...");
+		saveButton.setEnabled(false);
 
 
 		Bundle b = getIntent().getExtras();
@@ -211,32 +221,18 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
 		
-		/*
-		//populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
-		populate(path+"/*", spinner, "name");
-		Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
-		populate(path+"/Floor[@name='" + spinner.getSelectedItem() + "']/*",roomSpinner,"id");
-		*/
 		
 		ExpListItems = new ArrayList<Equipment>();
 		
 		spinnerLoader sloader = new spinnerLoader(spinner);
 		
+		saveButton.setEnabled(false);
 		sloader.execute(new spinnerPackage(path+"/*", "name"));
 		
 		
 
 		spinner.setOnItemSelectedListener(this);
 		((Spinner) findViewById(R.id.roomSpinner)).setOnItemSelectedListener(this);
-
-		/*
-		// get the listview
-		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
-		ExpListItems = SetStandardGroups();
-		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);
-		*/
-
 		
 		
 	}
@@ -596,42 +592,20 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			
 			spinnerLoader sloader = new spinnerLoader(roomSpinner);
 			
+			saveButton.setText("Loading...");
+			saveButton.setEnabled(false);
+			
 			sloader.execute(new spinnerPackage(path+"/Floor[@name='" + spinnerValue + "']/*", "id"));
 			
 			loadDone = 1;
 			
-			/*
-			Log.i("Main Data Entry", "floor spinner event triggered");
-			//get child spinner  
-			spinner_child = (Spinner) findViewById(R.id.roomSpinner);
-			//update child spinner data
-			populate(path+"/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
-			Log.i("Main Data Entry", "floor contract spinner updated");
-		
-			loadDone = 1;
-			
-			// reset the expandable list based on the new floor/room
-			ExpListItems = SetStandardGroups();
-			ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
-			ExpandList.setAdapter(ExpAdapter);
-			changesMade = false;
-
-			ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
-				@Override
-				public void onInspectionChanged() {
-					// TODO Auto-generated method stub
-					Log.i("Scan Activity","Inspection Change Made");
-					changesMade = true;
-				}});
-			
-			currentFloor = spinner.getSelectedItemPosition();
-			currentRoom = spinner_child.getSelectedItemPosition();
-			*/
 			
 
 		}
 		else if (spinner.getId() == R.id.roomSpinner){
 			
+			saveButton.setText("Loading...");
+			saveButton.setEnabled(false);
 			
 			// reset the expandable list based on the new floor/room
 			ExpListItems = SetStandardGroups();
