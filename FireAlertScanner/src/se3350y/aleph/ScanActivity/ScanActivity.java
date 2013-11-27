@@ -57,6 +57,85 @@ import android.widget.Toast;
 public class ScanActivity extends Activity implements OnItemSelectedListener, DOMActivity {
 	
 	
+	public void loadList(){
+		
+		// get the listview
+		
+		ExpandableListAdapter old = ExpAdapter;
+
+		ArrayList<Equipment> list = SetStandardGroups();
+		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
+		ExpListItems = list;
+		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
+		ExpandList.setAdapter(ExpAdapter);
+
+		ExpandList.setClickable(true);
+		ExpandList.setLongClickable(true);
+
+		ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
+			@Override
+			public void onInspectionChanged() {
+				// TODO Auto-generated method stub
+				Log.i("Scan Activity","Inspection Change Made");
+				changesMade = true;
+			}});
+
+		ExpandList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+				long packedPosition = ExpandList.getExpandableListPosition(position);
+				if (ExpandableListView.getPackedPositionType(packedPosition) == 
+						ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+					// get item ID's
+					int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
+					int childPosition = ExpandableListView.getPackedPositionChild(packedPosition);
+
+					// handle data 
+
+					Log.i("Scan Activity", "Child position: " + childPosition);
+					Log.i("Scan Activity", "Parent position: " + groupPosition);
+
+					// return true as we are handling the event.
+					Equipment tempEquip = (Equipment) ExpAdapter.getParent(groupPosition);
+
+					Log.i("Scan Activity", tempEquip.getName());
+					String details = new String();
+					for(int i = 0; i < tempEquip.getDetails().size(); i++){
+						details = details + tempEquip.getDetails().get(i);
+					}
+
+					String message = details;
+
+					AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
+
+					builder.setTitle(tempEquip.getName());
+					builder.setMessage(message);
+					builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							dialog.cancel();
+						}
+					});
+
+					AlertDialog alertDialog = builder.create();
+					alertDialog.show();
+
+					return true;
+				}
+				return false;
+			}
+		});
+		
+		if(!old.getSaving()){
+			saveButton.setEnabled(true);
+			saveButton.setText("Save");
+		}
+					
+	}
+	
 	public class spinnerLoader extends AsyncTask<spinnerPackage, Void, ArrayAdapter<String> >{
 
 		Spinner spinner;
@@ -89,80 +168,17 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			}
 			else if(spinner.getId() == R.id.roomSpinner){
 				
+				/*
+				listLoader loader = new listLoader(ExpAdapter);
 				
-				// get the listview
-				ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
-				ExpListItems = SetStandardGroups();
-				ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
-				ExpandList.setAdapter(ExpAdapter);
+				loader.execute();
+				*/
 				
-				ExpandList.setClickable(true);
-				ExpandList.setLongClickable(true);
-
-				ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
-					@Override
-					public void onInspectionChanged() {
-						// TODO Auto-generated method stub
-						Log.i("Scan Activity","Inspection Change Made");
-						changesMade = true;
-					}});
+				loadList();
 				
-				ExpandList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-			        @Override
-			        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-			            long packedPosition = ExpandList.getExpandableListPosition(position);
-			            if (ExpandableListView.getPackedPositionType(packedPosition) == 
-			                    ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
-			                // get item ID's
-			                int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
-			                int childPosition = ExpandableListView.getPackedPositionChild(packedPosition);
-
-			                // handle data 
-			                
-			                Log.i("Scan Activity", "Child position: " + childPosition);
-			                Log.i("Scan Activity", "Parent position: " + groupPosition);
-
-			                // return true as we are handling the event.
-			                Equipment tempEquip = (Equipment) ExpAdapter.getParent(groupPosition);
-			                
-			                Log.i("Scan Activity", tempEquip.getName());
-			                String details = new String();
-			                for(int i = 0; i < tempEquip.getDetails().size(); i++){
-			                	details = details + tempEquip.getDetails().get(i);
-			                }
-			                
-			                String message = details;
-			                
-			                AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
-			                
-			                builder.setTitle(tempEquip.getName());
-			                builder.setMessage(message);
-			                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-								
-								@Override
-								public void onClick(DialogInterface dialog, int which) {
-									// TODO Auto-generated method stub
-									dialog.cancel();
-								}
-							});
-			                
-			                AlertDialog alertDialog = builder.create();
-			                alertDialog.show();
-			                
-			                return true;
-			            }
-			            return false;
-			        }
-			    });
-				
-				
-
 				currentFloor = floorSpinner.getSelectedItemPosition();
 				currentRoom = roomSpinner.getSelectedItemPosition();
 				
-				saveButton.setEnabled(true);
-				saveButton.setText("Save");
 				
 			}
 			
@@ -203,6 +219,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		setContentView(R.layout.activity_scan);
 		
 		saveButton = (Button) findViewById(R.id.saveButton);
+		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
+		ExpAdapter = new ExpandableListAdapter(this, new ArrayList<Equipment>());
 		
 		setTitle("Ready to Scan...");
 		
@@ -313,6 +331,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 
 	private ArrayList<Equipment> SetStandardGroups() {
+		
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
 		ArrayList<InspectionElement> tempInspectionElements = new ArrayList<InspectionElement>();
 		Equipment tempEquipment;
@@ -601,19 +620,13 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		}
 		else if (spinner.getId() == R.id.roomSpinner){
 			
-			// reset the expandable list based on the new floor/room
-			ExpListItems = SetStandardGroups();
-			ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
-			ExpandList.setAdapter(ExpAdapter);
-			changesMade = false;
-
-			ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
-				@Override
-				public void onInspectionChanged() {
-					// TODO Auto-generated method stub
-					Log.i("Scan Activity","Inspection Change Made");
-					changesMade = true;
-				}});
+			/*
+			listLoader loader = new listLoader(ExpAdapter);
+			
+			loader.execute();
+			*/
+			
+			loadList();
 
 			currentRoom = spinner.getSelectedItemPosition();
 
@@ -646,6 +659,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			promptSave(parent, view, pos, id);
 		}
 		else{
+			saveButton.setText("Loading...");
+			saveButton.setEnabled(false);
 			loadRoom(parent, view, pos, id);
 		}
 

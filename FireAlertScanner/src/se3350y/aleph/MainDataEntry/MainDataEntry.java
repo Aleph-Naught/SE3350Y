@@ -217,6 +217,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 
 		//Performs xpath and returns list of nodes
 		NodeList nodes = (NodeList) xpath.evaluate(expression, is, XPathConstants.NODESET);
+	
 		Element element = null;
 
 		//List of nodes stored in element data type
