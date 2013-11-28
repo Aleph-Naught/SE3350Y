@@ -38,6 +38,8 @@ import android.widget.Toast;
  */
 public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 	
+	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
+	
 	DOMActivity _activity;
 	
 	public DOMWriter(DOMActivity a){
@@ -186,7 +188,7 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 		}
 		
 		File workingDir = Environment.getExternalStorageDirectory();
-		File file = new File(workingDir,"/InspectionData.xml");
+		File file = new File(workingDir, XML_FILENAME);
 		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = builder.parse(file);
 		return doc;
@@ -207,7 +209,7 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 		}
 		
 		File workingDir = Environment.getExternalStorageDirectory();
-		File file = new File(workingDir,"/Modified.xml");
+		File file = new File(workingDir, XML_FILENAME);
 		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		Document doc = builder.parse(file);
 		return doc;
@@ -224,7 +226,7 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
 		// TODO Might change this to a different name, or pass the filename as a method argument.
-		File modifiedFile = new File(Environment.getExternalStorageDirectory(),"/InspectionData.xml");
+		File modifiedFile = new File(Environment.getExternalStorageDirectory(), XML_FILENAME);
 		
 		if(modifiedFile.exists())
 			// For now, we're overwriting.
