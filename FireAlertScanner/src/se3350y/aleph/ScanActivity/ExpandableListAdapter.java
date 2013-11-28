@@ -230,8 +230,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			@Override
 			public void onInspectionElementComplete() {
 				tv.setTextColor(Color.GREEN);
-				
-				
+				//notifyDataSetChanged();
 			}
 		});
 		
