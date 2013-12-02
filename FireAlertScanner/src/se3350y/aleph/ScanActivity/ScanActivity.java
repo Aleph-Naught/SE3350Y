@@ -59,12 +59,11 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 						//Yes button clicked
 						saveResults(new View(getBaseContext()));
 						ScanActivity.super.onBackPressed();
-						int meow=1;
 						break;
 	
 					case DialogInterface.BUTTON_NEGATIVE:
 						ScanActivity.super.onBackPressed();
-						//break;
+						break;
 					}
 				}
 			};
@@ -77,6 +76,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			changesMade = false;
 			
 		}
+		else
+			ScanActivity.super.onBackPressed();
 	}
 	
 	public void loadList(){
