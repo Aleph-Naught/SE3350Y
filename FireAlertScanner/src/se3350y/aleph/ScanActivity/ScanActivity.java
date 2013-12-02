@@ -279,10 +279,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			
 	}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> Long-Press-Notification
 	public void saveResults(View view){
 			
 			final Button saveButton = (Button) findViewById(R.id.saveButton);

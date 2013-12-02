@@ -237,24 +237,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		((InspectionElement) child).setOnInspectionElementCompletedListener(new OnInspectionElementCompletedListener(){
 			@Override
 			public void onInspectionElementComplete() {
-<<<<<<< HEAD
-				tv.setTextColor(Color.GREEN);
 				groupParent.OnElementChanged();
 				//notifyDataSetChanged();
-=======
 				tv.setTextColor(Color.rgb(34, 139, 34));;
->>>>>>> Long-Press-Notification
+
 			}
 		});
 
 		if(((InspectionElement) child).getCompleted()){
-<<<<<<< HEAD
-			tv.setTextColor(Color.GREEN);
 
-=======
 			tv.setTextColor(Color.rgb(34, 139, 34));
 			
->>>>>>> Long-Press-Notification
 		}
 
 		return view;
