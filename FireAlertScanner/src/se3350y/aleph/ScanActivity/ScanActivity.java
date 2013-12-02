@@ -58,6 +58,35 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	
 	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
 	
+	@Override
+	public void onBackPressed(){
+		if (changesMade){
+			DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					switch (which){
+					case DialogInterface.BUTTON_POSITIVE:
+						//Yes button clicked
+						saveResults(new View(getBaseContext()));
+						ScanActivity.super.onBackPressed();
+						break;
+	
+					case DialogInterface.BUTTON_NEGATIVE:
+						ScanActivity.super.onBackPressed();
+						break;
+					}
+				}
+			};
+	
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("There are unsaved changes for this room, do you want to save?").setPositiveButton("Yes", dialogClickListener)
+			.setNegativeButton("No", dialogClickListener).show();
+	
+	
+			changesMade = false;
+			
+		}
+	}
 	
 	public void loadList(){
 		
