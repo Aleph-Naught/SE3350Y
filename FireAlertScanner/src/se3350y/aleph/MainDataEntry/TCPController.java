@@ -12,6 +12,8 @@ import org.w3c.dom.Document;
 
 import se3350y.aleph.ScanActivity.DOMWriter;
 
+import android.app.ProgressDialog;
+import android.content.res.Resources;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,7 +22,7 @@ public class TCPController {
 	String ServerIP = null;
 	int ServerPort = 0;
 
-	TCPModel _TCPmodel = null;
+	TCPmodel _TCPmodel = null;
 
 	// Controller constructor
 	private MainDataEntry _view;
@@ -36,8 +38,12 @@ public class TCPController {
 		Log.i("TCPController", Integer.toString(ServerPort));
 		Log.i("TCPController", ServerIP);
 		try {
-			_TCPmodel = new TCPModel(ServerIP, ServerPort);
+			_TCPmodel = new TCPmodel(ServerIP, ServerPort);
 			Log.i("TCP Stuff", "Made new TCP model");
+
+//			_view.setConnectBtnFalse();
+//			_view.setSendBtnTrue();
+//			_view.setDisconnectBtnTrue();
 			
 			DOMWriter dom = new DOMWriter(_view);
 			Document doc = dom.getModifiedDOM();
@@ -63,4 +69,19 @@ public class TCPController {
 			
 		}
 	}
+/*
+	// Send button click function
+	public void SendBtnClick() {
+		String txt = _view.GetXMLText();
+		_TCPmodel.RTSPSend(txt); // send message to server
+	}
+
+	// Disconnect button click function
+	public void DisconnectBtnClick() {
+		_TCPmodel.close();
+		_view.setConnectBtnTrue();
+		_view.setSendBtnFalse();
+		_view.setDisconnectBtnFalse();
+	}
+*/
 }

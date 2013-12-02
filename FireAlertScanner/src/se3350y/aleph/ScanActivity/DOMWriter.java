@@ -1,6 +1,7 @@
 package se3350y.aleph.ScanActivity;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,8 +23,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
 import se3350y.aleph.Listeners.OnSavedFinishedListener;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
@@ -36,6 +39,7 @@ import android.widget.Toast;
 public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 	
 	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
+	
 	DOMActivity _activity;
 	
 	public DOMWriter(DOMActivity a){

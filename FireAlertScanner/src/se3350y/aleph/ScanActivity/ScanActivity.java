@@ -21,10 +21,14 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import se3350.aleph.Login.LoginActivity;
 import se3350y.aleph.Listeners.OnInspectionChangedListener;
 import se3350y.aleph.Listeners.OnSavedFinishedListener;
+import se3350y.aleph.MainDataEntry.MainDataEntry;
+import se3350y.aleph.MainDataEntry.getValuesPackage;
 import se3350y.aleph.firealertscanner.R;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
@@ -54,7 +58,140 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	
 	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
 	
+<<<<<<< HEAD
 	// dummy change
+=======
+	public void loadList(){
+		
+		// get the listview
+		
+		ExpandableListAdapter old = ExpAdapter;
+
+		ArrayList<Equipment> list = SetStandardGroups();
+		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
+		ExpListItems = list;
+		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
+		ExpandList.setAdapter(ExpAdapter);
+
+		ExpandList.setClickable(true);
+		ExpandList.setLongClickable(true);
+
+		ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
+			@Override
+			public void onInspectionChanged() {
+				// TODO Auto-generated method stub
+				Log.i("Scan Activity","Inspection Change Made");
+				changesMade = true;
+			}});
+
+		ExpandList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+				long packedPosition = ExpandList.getExpandableListPosition(position);
+				if (ExpandableListView.getPackedPositionType(packedPosition) == 
+						ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+					// get item ID's
+					int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
+					int childPosition = ExpandableListView.getPackedPositionChild(packedPosition);
+
+					// handle data 
+
+					Log.i("Scan Activity", "Child position: " + childPosition);
+					Log.i("Scan Activity", "Parent position: " + groupPosition);
+
+					// return true as we are handling the event.
+					Equipment tempEquip = (Equipment) ExpAdapter.getParent(groupPosition);
+
+					Log.i("Scan Activity", tempEquip.getName());
+					String details = new String();
+					for(int i = 0; i < tempEquip.getDetails().size(); i++){
+						details = details + tempEquip.getDetails().get(i);
+					}
+
+					String message = details;
+
+					AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
+
+					builder.setTitle(tempEquip.getName());
+					builder.setMessage(message);
+					builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							// TODO Auto-generated method stub
+							dialog.cancel();
+						}
+					});
+
+					AlertDialog alertDialog = builder.create();
+					alertDialog.show();
+
+					return true;
+				}
+				return false;
+			}
+		});
+		
+		if(!old.getSaving()){
+			saveButton.setEnabled(true);
+			saveButton.setText("Save");
+		}
+					
+	}
+	
+	public class spinnerLoader extends AsyncTask<spinnerPackage, Void, ArrayAdapter<String> >{
+
+		Spinner spinner;
+
+		public spinnerLoader(Spinner _spinner){
+			spinner = _spinner;
+		}
+
+		@Override
+		protected ArrayAdapter<String> doInBackground(spinnerPackage... params) {
+			
+			return populate(params[0].getPath(), params[0].getAttr());
+			
+		}
+
+		@Override
+		protected void onPostExecute(ArrayAdapter<String> adapter ) {
+			
+			Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
+			Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
+			
+			spinner.setAdapter(adapter);
+			
+			if(spinner.getId() == R.id.floorSpinner){
+				
+				spinnerLoader sloader = new spinnerLoader(roomSpinner);
+				
+				
+				sloader.execute(new spinnerPackage(path+"/Floor[@name='" + spinner.getSelectedItem() + "']/*", "id"));
+			}
+			else if(spinner.getId() == R.id.roomSpinner){
+				
+				/*
+				listLoader loader = new listLoader(ExpAdapter);
+				
+				loader.execute();
+				*/
+				
+				loadList();
+				
+				currentFloor = floorSpinner.getSelectedItemPosition();
+				currentRoom = roomSpinner.getSelectedItemPosition();
+				
+				
+			}
+			
+			currentFloor = floorSpinner.getSelectedItemPosition();
+		}
+
+	}
+	
+>>>>>>> f48329150b8ee16a29931fd9e6535e028896ce5b
 	DOMWriter dom;
 	Node fromNode = null;
 	String path = "";
@@ -77,6 +214,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	String ACTION_CONTENT_NOTIFY = "android.intent.action.CONTENT_NOTIFY";
 	DataReceiver dataScanner = new DataReceiver();
 	
+	Button saveButton;
+	
 	private String m_Text;
 
 	@Override
@@ -84,7 +223,14 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan);
 		
+		saveButton = (Button) findViewById(R.id.saveButton);
+		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
+		ExpAdapter = new ExpandableListAdapter(this, new ArrayList<Equipment>());
+		
 		setTitle("Ready to Scan...");
+		
+		saveButton.setText("Loading...");
+		saveButton.setEnabled(false);
 
 
 		Bundle b = getIntent().getExtras();
@@ -93,103 +239,24 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		dom = new DOMWriter(this);
 		
+		
+		
 		//Populate Floor Spinner
 		Spinner spinner = (Spinner) findViewById(R.id.floorSpinner);
-		//populate("/Franchisee/Client/clientContract/ServiceAddress/*", spinner, "name");
-		populate(path+"/*", spinner, "name");
-		Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
-		populate(path+"/Floor[@name='" + spinner.getSelectedItem() + "']/*",roomSpinner,"id");
-		XPath xpath = XPathFactory.newInstance().newXPath();
-		try {
-			fromNode = ((NodeList) xpath.evaluate(path, dom.getDOM(), XPathConstants.NODESET)).item(0);
-			if (fromNode == null) Log.i("ScanActivity", "Node is null.");
-			else Log.i("ScanActivity", "Node is not null.");
-		} catch (XPathExpressionException e) {
-			e.printStackTrace();
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (SDCardException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		
+		ExpListItems = new ArrayList<Equipment>();
+		
+		spinnerLoader sloader = new spinnerLoader(spinner);
+		
+		saveButton.setEnabled(false);
+		sloader.execute(new spinnerPackage(path+"/*", "name"));
+		
+		
 
 		spinner.setOnItemSelectedListener(this);
 		((Spinner) findViewById(R.id.roomSpinner)).setOnItemSelectedListener(this);
-
-		// get the listview
-		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
-		ExpListItems = SetStandarGroups();
-		ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
-		ExpandList.setAdapter(ExpAdapter);
-
-		ExpandList.setClickable(true);
-		ExpandList.setLongClickable(true);
-
-		ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
-			@Override
-			public void onInspectionChanged() {
-				// TODO Auto-generated method stub
-				Log.i("Scan Activity","Inspection Change Made");
-				changesMade = true;
-			}});
 		
-		ExpandList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
-	        @Override
-	        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-	            long packedPosition = ExpandList.getExpandableListPosition(position);
-	            if (ExpandableListView.getPackedPositionType(packedPosition) == 
-	                    ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
-	                // get item ID's
-	                int groupPosition = ExpandableListView.getPackedPositionGroup(packedPosition);
-	                int childPosition = ExpandableListView.getPackedPositionChild(packedPosition);
-
-	                // handle data 
-	                
-	                Log.i("Scan Activity", "Child position: " + childPosition);
-	                Log.i("Scan Activity", "Parent position: " + groupPosition);
-
-	                // return true as we are handling the event.
-	                Equipment tempEquip = (Equipment) ExpAdapter.getParent(groupPosition);
-	                
-	                Log.i("Scan Activity", tempEquip.getName());
-	                String details = new String();
-	                for(int i = 0; i < tempEquip.getDetails().size(); i++){
-	                	details = details + tempEquip.getDetails().get(i);
-	                }
-	                
-	                String message = details;
-	                
-	                AlertDialog.Builder builder = new AlertDialog.Builder(ScanActivity.this);
-	                
-	                builder.setTitle(tempEquip.getName());
-	                builder.setMessage(message);
-	                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
-						
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
-							dialog.cancel();
-						}
-					});
-	                
-	                AlertDialog alertDialog = builder.create();
-	                alertDialog.show();
-	                
-	                return true;
-	            }
-	            return false;
-	        }
-	    });
-		
-		
-
-		currentFloor = spinner.getSelectedItemPosition();
-		currentRoom = roomSpinner.getSelectedItemPosition();
 		
 	}
 
@@ -268,7 +335,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	}
 
 
-	private ArrayList<Equipment> SetStandarGroups() {
+	private ArrayList<Equipment> SetStandardGroups() {
+		
 		ArrayList<Equipment> list = new ArrayList<Equipment>();
 		ArrayList<InspectionElement> tempInspectionElements = new ArrayList<InspectionElement>();
 		Equipment tempEquipment;
@@ -451,7 +519,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		return true;
 	}
 
-	private void populate(String expression, Spinner spinner, String attribute){
+	private ArrayAdapter<String> populate(String expression, String attribute){
 
 		//An array of strings to hold the names
 		ArrayList<String> options=new ArrayList<String>();
@@ -492,8 +560,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,options);
 		adapter.setDropDownViewResource(R.layout.simple_spinner_dropdown_item);
 
-		//Sets spinner
-		spinner.setAdapter(adapter);
+		//return adapter
+		return adapter;
 
 	}
 
@@ -513,7 +581,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 				case DialogInterface.BUTTON_NEGATIVE:
 					//No button clicked
-					//loadRoom(parent, view, pos, id);
+					loadRoom(parent, view, pos, id);
 					break;
 				}
 			}
@@ -529,6 +597,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 	public void loadRoom(AdapterView<?> parent, View view, int pos,
 			long id){
+		
+		
 
 		Log.i("ScanActivity","OnItemSelected Triggered");
 		//Value chosen in spinner that event happened at
@@ -541,48 +611,27 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		//Check to see what spinner event occured at
 		if(spinner.getId() == R.id.floorSpinner)
 		{        
-			Log.i("Main Data Entry", "floor spinner event triggered");
-			//get child spinner  
-			spinner_child = (Spinner) findViewById(R.id.roomSpinner);
-			//update child spinner data
-			populate(path+"/Floor[@name='" + spinnerValue + "']/*",spinner_child,"id");
-			Log.i("Main Data Entry", "floor contract spinner updated");
-		
+			
+			Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
+			
+			spinnerLoader sloader = new spinnerLoader(roomSpinner);
+			
+			sloader.execute(new spinnerPackage(path+"/Floor[@name='" + spinnerValue + "']/*", "id"));
+			
 			loadDone = 1;
 			
-			// reset the expandable list based on the new floor/room
-			ExpListItems = SetStandarGroups();
-			ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
-			ExpandList.setAdapter(ExpAdapter);
-			changesMade = false;
-
-			ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
-				@Override
-				public void onInspectionChanged() {
-					// TODO Auto-generated method stub
-					Log.i("Scan Activity","Inspection Change Made");
-					changesMade = true;
-				}});
-			
-			currentFloor = spinner.getSelectedItemPosition();
-			currentRoom = spinner_child.getSelectedItemPosition();
 			
 
 		}
 		else if (spinner.getId() == R.id.roomSpinner){
-			// reset the expandable list based on the new floor/room
-			ExpListItems = SetStandarGroups();
-			ExpAdapter = new ExpandableListAdapter(ScanActivity.this, ExpListItems);
-			ExpandList.setAdapter(ExpAdapter);
-			changesMade = false;
-
-			ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
-				@Override
-				public void onInspectionChanged() {
-					// TODO Auto-generated method stub
-					Log.i("Scan Activity","Inspection Change Made");
-					changesMade = true;
-				}});
+			
+			/*
+			listLoader loader = new listLoader(ExpAdapter);
+			
+			loader.execute();
+			*/
+			
+			loadList();
 
 			currentRoom = spinner.getSelectedItemPosition();
 
@@ -600,7 +649,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		
 		boolean roomFinished = false;
 		
-		roomFinished = ExpAdapter.groupsCompleted();
+		if(loadDone > 3){
+			roomFinished = ExpAdapter.groupsCompleted();
+		}
 		
 		if(falseTrigger){
 			falseTrigger = false;
@@ -613,6 +664,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			promptSave(parent, view, pos, id);
 		}
 		else{
+			saveButton.setText("Loading...");
+			saveButton.setEnabled(false);
 			loadRoom(parent, view, pos, id);
 		}
 

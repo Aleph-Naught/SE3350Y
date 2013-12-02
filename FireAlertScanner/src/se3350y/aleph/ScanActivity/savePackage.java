@@ -2,6 +2,8 @@ package se3350y.aleph.ScanActivity;
 
 import java.util.ArrayList;
 
+import android.app.ProgressDialog;
+
 public class savePackage {
 	
 	ArrayList<Equipment> equipment;

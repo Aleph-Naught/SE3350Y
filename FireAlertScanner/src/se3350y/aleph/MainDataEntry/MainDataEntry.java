@@ -20,15 +20,22 @@ import se3350.aleph.Login.LoginActivity;
 import se3350y.aleph.ScanActivity.DOMActivity;
 import se3350y.aleph.ScanActivity.ScanActivity;
 import se3350y.aleph.firealertscanner.R;
+import se3350y.aleph.firealertscanner.R.id;
+import se3350y.aleph.firealertscanner.R.layout;
+import se3350y.aleph.firealertscanner.R.menu;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -47,8 +54,9 @@ import android.os.Build;
 
 public class MainDataEntry extends Activity implements OnItemSelectedListener, DOMActivity{
 
-	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
 	TCPController _tcpController = new TCPController(this);
+	
+	private static final String XML_FILENAME = "/FireAlertScanner/InspectionData.xml";
 
 	public class xmlLoader extends AsyncTask<getValuesPackage, Void, ArrayList<String> >{
 
@@ -211,6 +219,7 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 
 		//Performs xpath and returns list of nodes
 		NodeList nodes = (NodeList) xpath.evaluate(expression, is, XPathConstants.NODESET);
+	
 		Element element = null;
 
 		//List of nodes stored in element data type
