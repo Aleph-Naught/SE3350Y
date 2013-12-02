@@ -18,6 +18,14 @@ public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 	private int goodPoor;
 	private boolean falseTrigger;
 	
+	public boolean isFalseTrigger() {
+		return falseTrigger;
+	}
+
+	public void setFalseTrigger(boolean falseTrigger) {
+		this.falseTrigger = falseTrigger;
+	}
+
 	public FireHoseCabinetGoodPoorElement(Context context){
 		goodPoor = 2;
 		falseTrigger = true;
@@ -42,6 +50,8 @@ public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 	
 	//Creates the row on the page
 	public View XMLInflator(View convertView, ViewGroup parent, Object context){
+		
+		falseTrigger = true;
 		
 		View view = null;
 		

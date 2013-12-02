@@ -70,7 +70,7 @@ public class FireHoseCabinetYesNoElement extends InspectionElement {
 						// TODO Auto-generated method stub
 						
 						
-						OnElementChangeMade();
+						setChanged(true);
 						
 					}
 
@@ -82,7 +82,7 @@ public class FireHoseCabinetYesNoElement extends InspectionElement {
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						
-						OnElementChangeMade();
+						setChanged(true);
 						makeNotesDialog();
 						
 					}

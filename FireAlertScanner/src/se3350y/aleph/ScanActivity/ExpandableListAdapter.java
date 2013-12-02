@@ -200,6 +200,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		final TextView tv = (TextView) view.findViewById(R.id.inspectionElement);
 
 		tv.setText(((InspectionElement) child).getName().toString());
+		
+		final boolean childChanged = ((InspectionElement) child).getChanged();
 
 		if (((InspectionElement) child).getChanged()) {
 			tv.setText("*"+tv.getText());
@@ -216,15 +218,18 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				Log.i("ExpandableListAdapter","Element Change Made");
 
 				OnInspectionChangeMade();
+				
 
 				if (!((String) tv.getText()).contains("*")) {
 					tv.setText("*"+tv.getText());
 				}
 
-				if (!groupParent.getName().contains("*")) {
+				if (!groupParent.getChanged()) {
 					groupParent.setChanged(true);
-					groupParent.setName("*"+groupParent.getName());
+					//groupParent.OnElementChanged();
 				}
+				
+				
 			}
 		});
 
@@ -234,6 +239,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			@Override
 			public void onInspectionElementComplete() {
 				tv.setTextColor(Color.GREEN);
+				groupParent.OnElementChanged();
 				//notifyDataSetChanged();
 			}
 		});
@@ -291,10 +297,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		return groupPosition;
 	}
 
-	public View getGroupView(int groupPosition, boolean isLastChild, View view,
+	public View getGroupView(final int groupPosition, boolean isLastChild, View view,
 			ViewGroup parent) {
 
-		Equipment group = (Equipment) getGroup(groupPosition);
+		final Equipment group = (Equipment) getGroup(groupPosition);
+		
+		
 
 		if (view == null) {
 			LayoutInflater inf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -313,14 +321,39 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 
-		TextView tv = (TextView) view.findViewById(R.id.lblListHeader);
+		final TextView tv = (TextView) view.findViewById(R.id.lblListHeader);
 		tv.setText(group.getName());
 		tv.setTextColor(group.getColor());
+		
+		group.setOnElementChangedListener( new OnElementChangedListener(){
+
+			@Override
+			public void onElementChanged() {
+				// TODO Auto-generated method stub
+				
+				if(group.getChanged())
+					tv.setText("*" + group.getName());
+				else
+					tv.setText(group.getName());
+				
+				if(isGroupCompleted(groupPosition)){
+					group.setCompleted(true);
+				}
+
+				if(group.getCompleted()){
+					group.setColor(Color.GREEN);
+				}
+					
+				
+				tv.setTextColor(group.getColor());
+				
+			}});
+		
 
 		// TODO Auto-generated method stub
 
-		tv = (TextView) view.findViewById(R.id.location);
-		tv.setText(group.getLocation());
+		TextView locationTv = (TextView) view.findViewById(R.id.location);
+		locationTv.setText(group.getLocation());
 
 
 		return view;

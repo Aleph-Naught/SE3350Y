@@ -2,6 +2,9 @@ package se3350y.aleph.ScanActivity;
 
 import java.util.ArrayList;
 
+import se3350y.aleph.Listeners.OnElementChangedListener;
+import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
+
 import android.graphics.Color;
 
 public class Equipment {
@@ -16,6 +19,21 @@ public class Equipment {
 
 	private boolean completed = false;
 	private boolean changed = false;
+	
+	OnElementChangedListener onElementChangedListener = null;
+	
+	public void setOnElementChangedListener(OnElementChangedListener listener) {
+		onElementChangedListener = listener;
+	}
+	
+	// This function is called after the check was complete
+	public void OnElementChanged(){
+	    // Check if the Listener was set, otherwise we'll get an Exception when we try to call it
+	    if(onElementChangedListener!=null) {
+	    	onElementChangedListener.onElementChanged();
+	    }
+	}
+
 
 	public void setCompleted(boolean _completed){
 		this.completed = _completed;
@@ -32,6 +50,7 @@ public class Equipment {
 	
 	public void setChanged(boolean _changed) {
 		this.changed = _changed;
+		OnElementChanged();
 	}
 
 

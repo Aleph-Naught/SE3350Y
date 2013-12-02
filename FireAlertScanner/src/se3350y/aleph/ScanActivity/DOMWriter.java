@@ -131,10 +131,13 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 				setPassFail(currID, inspectName, passFail, roomNode);
 				setNotes(currID, inspectName, currElement.getNotes(), roomNode);
 				innerCounter++;
-				currElement.setChanged(false);
+				
+				//currElement.setChanged(false);
+				
 			}
 			outerCounter++;
-			currEquip.setChanged(false);
+			
+			//currEquip.setChanged(false);
 		}
 		
 		Log.i("DOMWriter", "Outer Counter:"+String.valueOf(outerCounter));

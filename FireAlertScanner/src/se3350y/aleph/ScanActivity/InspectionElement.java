@@ -23,7 +23,8 @@ public class InspectionElement {
 		
 		public void setCompleted(boolean _completed){
 			completed = _completed;
-			OnInspectionElementCompleted();
+			if(completed)
+				OnInspectionElementCompleted();
 		}
 		
 		public boolean getCompleted(){
@@ -32,7 +33,8 @@ public class InspectionElement {
 		
 		public void setChanged (boolean _changed) {
 			changed = _changed;
-			OnElementChangeMade();
+			if(changed)
+				OnElementChangeMade();
 		}
 		
 		public boolean getChanged() {

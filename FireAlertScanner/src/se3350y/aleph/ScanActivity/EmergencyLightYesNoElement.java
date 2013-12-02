@@ -69,7 +69,7 @@ public int yesNo;
 						// TODO Auto-generated method stub
 						
 						
-						OnElementChangeMade();
+						setChanged(true);
 						
 					}
 
@@ -81,7 +81,7 @@ public int yesNo;
 					public void onClick(View v) {
 						// TODO Auto-generated method stub
 						
-						OnElementChangeMade();
+						setChanged(true);
 						makeNotesDialog();
 						
 					}

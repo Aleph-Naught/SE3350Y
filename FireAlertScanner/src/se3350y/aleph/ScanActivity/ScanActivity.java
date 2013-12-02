@@ -332,6 +332,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 					floorSpinner.setEnabled(true);
 					roomSpinner.setEnabled(true);
 					
+					resetAsterisk();
+					
 				}
 				
 			});
@@ -343,6 +345,17 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		changesMade = false;
 
+	}
+	
+	public void resetAsterisk(){
+		
+		for(Equipment currEquip: ExpListItems){			
+			currEquip.setChanged(false);
+			for(InspectionElement currElem: currEquip.getItems()){
+				currElem.setChanged(false);
+			}
+		}
+		
 	}
 
 	public void makeToast(String text, int duration){
