@@ -230,12 +230,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		((InspectionElement) child).setOnInspectionElementCompletedListener(new OnInspectionElementCompletedListener(){
 			@Override
 			public void onInspectionElementComplete() {
-				tv.setTextColor(Color.GREEN);
+				tv.setTextColor(Color.rgb(34, 139, 34));;
 			}
 		});
 		
 		if(((InspectionElement) child).getCompleted()){
-			tv.setTextColor(Color.GREEN);
+			tv.setTextColor(Color.rgb(34, 139, 34));
 			
 		}
 		
@@ -302,7 +302,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 		
 		if(group.getCompleted()){
-			group.setColor(Color.GREEN);
+			group.setColor(Color.rgb(34, 139, 34));
 		}
 		else
 			group.setColor(Color.BLACK);
