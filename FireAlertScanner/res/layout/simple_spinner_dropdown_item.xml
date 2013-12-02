@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android" 
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
-    android:singleLine="true"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:padding="10dp"
-    android:ellipsize="marquee" />
+    android:layout_width="fill_parent"
+    android:layout_height="?android:attr/listPreferredItemHeight"
+    android:ellipsize="marquee"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingBottom="10dip"
+    android:paddingLeft="20dip"
+    android:paddingRight="20dip"
+    android:paddingTop="10dip"
+    android:singleLine="true" />
