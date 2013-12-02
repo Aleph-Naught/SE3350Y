@@ -2,7 +2,6 @@ package se3350y.aleph.ScanActivity;
 
 import se3350y.aleph.MainDataEntry.TCPmodel;
 import android.util.Log;
-import android.widget.Toast;
 
 public class Controller {
 

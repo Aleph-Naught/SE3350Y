@@ -80,12 +80,10 @@ public class Equipment {
 	}
 
 	public int getColor() {
-		// TODO Auto-generated method stub
 		return color;
 	}
 
 	public void setColor(int _color) {
-		// TODO Auto-generated method stub
 		this.color = _color;
 	}
 

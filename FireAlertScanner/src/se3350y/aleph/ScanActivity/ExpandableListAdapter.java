@@ -11,7 +11,6 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.RadioGroup;
@@ -238,15 +237,24 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		((InspectionElement) child).setOnInspectionElementCompletedListener(new OnInspectionElementCompletedListener(){
 			@Override
 			public void onInspectionElementComplete() {
+<<<<<<< HEAD
 				tv.setTextColor(Color.GREEN);
 				groupParent.OnElementChanged();
 				//notifyDataSetChanged();
+=======
+				tv.setTextColor(Color.rgb(34, 139, 34));;
+>>>>>>> Long-Press-Notification
 			}
 		});
 
 		if(((InspectionElement) child).getCompleted()){
+<<<<<<< HEAD
 			tv.setTextColor(Color.GREEN);
 
+=======
+			tv.setTextColor(Color.rgb(34, 139, 34));
+			
+>>>>>>> Long-Press-Notification
 		}
 
 		return view;
@@ -314,7 +322,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 
 		if(group.getCompleted()){
-			group.setColor(Color.GREEN);
+			group.setColor(Color.rgb(34, 139, 34));
 		}
 		else
 			group.setColor(Color.BLACK);
