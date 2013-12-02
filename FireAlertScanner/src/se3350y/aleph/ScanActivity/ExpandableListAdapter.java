@@ -342,7 +342,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				}
 
 				if(group.getCompleted()){
-					group.setColor(Color.GREEN);
+					group.setColor(Color.rgb(34, 139, 34));
 				}
 					
 				
