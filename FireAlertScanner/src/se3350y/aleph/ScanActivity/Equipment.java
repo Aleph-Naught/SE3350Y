@@ -20,6 +20,7 @@ public class Equipment {
 	private boolean completed = false;
 	private boolean changed = false;
 	
+	
 	OnElementChangedListener onElementChangedListener = null;
 	
 	public void setOnElementChangedListener(OnElementChangedListener listener) {

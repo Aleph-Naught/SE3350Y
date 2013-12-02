@@ -59,11 +59,12 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 						//Yes button clicked
 						saveResults(new View(getBaseContext()));
 						ScanActivity.super.onBackPressed();
+						int meow=1;
 						break;
 	
 					case DialogInterface.BUTTON_NEGATIVE:
 						ScanActivity.super.onBackPressed();
-						break;
+						//break;
 					}
 				}
 			};
@@ -395,7 +396,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		Spinner floorSpinner = (Spinner) findViewById(R.id.floorSpinner);
 		Spinner roomSpinner = (Spinner) findViewById(R.id.roomSpinner);
-
+		
 		try {
 			// needs to be populated before we make the nodelist
 			nodes = (NodeList) xpath.evaluate(path+"/Floor[@name='"+floorSpinner.getSelectedItem()
@@ -404,8 +405,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
-
-
+		
 
 		//An element node to hold the current working node
 		Element element = null;
@@ -422,7 +422,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			tempEquipment = new Equipment();
 
 			//Add node attribute to string array
-			element = (Element) nodes.item(i);
+			element = (Element) nodes.item(0);
 
 
 			tempEquipment.setName(element.getNodeName());
@@ -534,12 +534,10 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 			}
 
-
-
 			tempEquipment.setItems(tempInspectionElements);
 
 			list.add(tempEquipment);
-
+			
 		}
 
 		
@@ -582,12 +580,12 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 
 		//An element node to hold the current working node
-		Element franchisee = null;
+		NamedNodeMap franchisee = null;
 
 		for (int i = 0; i < nodes.getLength(); i++) {
 			//Add node attribute to string array
-			franchisee = (Element) nodes.item(i);
-			options.add(franchisee.getAttribute(attribute));
+			franchisee = nodes.item(i).getAttributes();
+			options.add(franchisee.getNamedItem(attribute).getNodeValue());
 		}
 
 		//Create array adapter to change spinner
