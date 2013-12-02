@@ -35,8 +35,8 @@ public final class R {
         public static final int OperationsLayout=0x7f090021;
         public static final int TCPTest=0x7f09001b;
         public static final int TextView01=0x7f090005;
-        public static final int action_forgot_password=0x7f090036;
-        public static final int action_settings=0x7f090037;
+        public static final int action_forgot_password=0x7f090037;
+        public static final int action_settings=0x7f090038;
         public static final int button1=0x7f090004;
         public static final int button2=0x7f090007;
         public static final int button3=0x7f090008;
@@ -48,34 +48,35 @@ public final class R {
         public static final int editText2=0x7f090003;
         public static final int editText3=0x7f090006;
         public static final int email=0x7f09000c;
-        public static final int emergencyLightRadioGroup=0x7f090029;
+        public static final int emergencyLightRadioGroup=0x7f09002a;
         public static final int enterButton=0x7f09001a;
         public static final int expandableEquipmentList=0x7f090020;
-        public static final int extinguisherRadioGroup=0x7f09002f;
-        public static final int fireHoseCabinetRadioGroup=0x7f090033;
+        public static final int extinguisherRadioGroup=0x7f090030;
+        public static final int fireHoseCabinetRadioGroup=0x7f090034;
         public static final int floorSpinner=0x7f09001d;
         public static final int floorTextView=0x7f09001c;
-        public static final int goodPoorSpinner=0x7f090032;
-        public static final int id_num=0x7f09002e;
-        public static final int inspectionElement=0x7f090028;
-        public static final int ipInput=0x7f090027;
-        public static final int ipLabel=0x7f090026;
-        public static final int item_layout=0x7f09002d;
-        public static final int lblListHeader=0x7f090034;
-        public static final int location=0x7f090035;
+        public static final int goodPoorSpinner=0x7f090033;
+        public static final int id_num=0x7f09002f;
+        public static final int inspectionElement=0x7f090029;
+        public static final int ipInput=0x7f090028;
+        public static final int ipLabel=0x7f090027;
+        public static final int item_layout=0x7f09002e;
+        public static final int keyField=0x7f090024;
+        public static final int lblListHeader=0x7f090035;
+        public static final int location=0x7f090036;
         public static final int login=0x7f09000e;
         public static final int login_form=0x7f09000b;
         public static final int login_status=0x7f090009;
         public static final int login_status_message=0x7f09000a;
         public static final int manButton=0x7f090022;
         public static final int password=0x7f09000d;
-        public static final int portInput=0x7f090025;
-        public static final int portLabel=0x7f090024;
-        public static final int radioFail=0x7f090031;
-        public static final int radioNo=0x7f09002b;
-        public static final int radioNone=0x7f09002c;
-        public static final int radioPass=0x7f090030;
-        public static final int radioYes=0x7f09002a;
+        public static final int portInput=0x7f090026;
+        public static final int portLabel=0x7f090025;
+        public static final int radioFail=0x7f090032;
+        public static final int radioNo=0x7f09002c;
+        public static final int radioNone=0x7f09002d;
+        public static final int radioPass=0x7f090031;
+        public static final int radioYes=0x7f09002b;
         public static final int record_button=0x7f090011;
         public static final int roomSpinner=0x7f09001f;
         public static final int roomTextView=0x7f09001e;
@@ -94,13 +95,14 @@ public final class R {
         public static final int activity_main=0x7f030002;
         public static final int activity_main_data_entry=0x7f030003;
         public static final int activity_scan=0x7f030004;
-        public static final int dialog_tcp=0x7f030005;
-        public static final int emergencylight_yesno_item=0x7f030006;
-        public static final int extinguisher_item=0x7f030007;
-        public static final int firehosecabinet_goodpoor_item=0x7f030008;
-        public static final int firehosecabinet_yesno_item=0x7f030009;
-        public static final int list_group=0x7f03000a;
-        public static final int simple_spinner_dropdown_item=0x7f03000b;
+        public static final int dialog_adminkey=0x7f030005;
+        public static final int dialog_tcp=0x7f030006;
+        public static final int emergencylight_yesno_item=0x7f030007;
+        public static final int extinguisher_item=0x7f030008;
+        public static final int firehosecabinet_goodpoor_item=0x7f030009;
+        public static final int firehosecabinet_yesno_item=0x7f03000a;
+        public static final int list_group=0x7f03000b;
+        public static final int simple_spinner_dropdown_item=0x7f03000c;
     }
     public static final class menu {
         public static final int login=0x7f080000;
@@ -118,6 +120,7 @@ public final class R {
         public static final int action_sign_in_register=0x7f050024;
         public static final int action_sign_in_short=0x7f050025;
         public static final int app_name=0x7f050000;
+        public static final int button_register=0x7f05002f;
         public static final int client_contract_textview=0x7f05000c;
         public static final int clients_textview=0x7f050007;
         public static final int element_textview=0x7f05000e;
@@ -125,6 +128,7 @@ public final class R {
         public static final int equiptment_textview=0x7f05000a;
         public static final int error_field_required=0x7f05002b;
         public static final int error_incorrect_password=0x7f05002a;
+        public static final int error_invalid_adminkey=0x7f050030;
         public static final int error_invalid_password=0x7f05002c;
         public static final int error_invalid_username=0x7f050028;
         public static final int error_short_password=0x7f050029;
@@ -145,6 +149,7 @@ public final class R {
          */
         public static final int port_hint=0x7f050017;
         public static final int port_label=0x7f050019;
+        public static final int prompt_adminkey=0x7f05002e;
         public static final int prompt_password=0x7f050023;
         /**  Strings related to login 
          */
