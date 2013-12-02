@@ -422,7 +422,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			tempEquipment = new Equipment();
 
 			//Add node attribute to string array
-			element = (Element) nodes.item(0);
+			element = (Element) nodes.item(i);
 
 
 			tempEquipment.setName(element.getNodeName());
