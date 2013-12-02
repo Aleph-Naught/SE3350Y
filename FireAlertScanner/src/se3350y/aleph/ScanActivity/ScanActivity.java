@@ -3,12 +3,9 @@ package se3350y.aleph.ScanActivity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -19,13 +16,8 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
-import se3350.aleph.Login.LoginActivity;
 import se3350y.aleph.Listeners.OnInspectionChangedListener;
 import se3350y.aleph.Listeners.OnSavedFinishedListener;
-import se3350y.aleph.MainDataEntry.MainDataEntry;
-import se3350y.aleph.MainDataEntry.getValuesPackage;
 import se3350y.aleph.firealertscanner.R;
 
 import android.os.AsyncTask;
@@ -33,7 +25,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -44,7 +35,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -253,12 +243,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		spinner.setOnItemSelectedListener(this);
 		((Spinner) findViewById(R.id.roomSpinner)).setOnItemSelectedListener(this);
-		
-		
+			
 	}
-
-
-
 
 	public void saveResults(View view){
 			
