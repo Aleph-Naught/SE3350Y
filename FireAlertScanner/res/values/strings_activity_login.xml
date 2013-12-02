@@ -15,5 +15,8 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_password">&quot;:&quot; may not be used in the password</string>
     <string name="user_registered">Account registered successfully.</string>
+    <string name="prompt_adminkey">Enter an administrator key to authorize registration:</string>
+    <string name="button_register">Register</string>
+    <string name="error_invalid_adminkey">The administrator key is invalid.</string>
 
 </resources>

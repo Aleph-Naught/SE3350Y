@@ -13,6 +13,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -33,6 +35,7 @@ import android.widget.Toast;
  */
 public class LoginActivity extends Activity {
 	private static final String FILENAME = "UserAccounts.txt";
+	private static final String ADMINKEYS = "AdminKeys.txt";
 	
 	/**
 	 * A dummy authentication store containing known user names and passwords.
@@ -57,6 +60,8 @@ public class LoginActivity extends Activity {
 	// Values for username and password at the time of the login attempt.
 	private String mUsername;
 	private String mPassword;
+	
+	private boolean cancel;
 
 	// UI references.
 	private EditText mUsernameView;
@@ -166,7 +171,7 @@ public class LoginActivity extends Activity {
 		int userHash = mUsername.hashCode();
 		int passHash = mPassword.hashCode();
 
-		boolean cancel = false;
+		cancel = false;
 		boolean create = true;
 		View focusView = null;
 
@@ -179,11 +184,7 @@ public class LoginActivity extends Activity {
 			mPasswordView.setError(getString(R.string.error_short_password));
 			focusView = mPasswordView;
 			cancel = true;
-		} else if (mPassword.contains(":")) {
-			mPasswordView.setError(getString(R.string.error_invalid_password));
-			focusView = mPasswordView;
-			cancel = true;
-		}
+		} 
 		
 
 		// Check for a valid username.
@@ -191,11 +192,7 @@ public class LoginActivity extends Activity {
 			mUsernameView.setError(getString(R.string.error_field_required));
 			focusView = mUsernameView;
 			cancel = true;
-		} else if (mUsername.contains(":")) {
-			mUsernameView.setError(getString(R.string.error_invalid_username));
-			focusView = mUsernameView;
-			cancel = true;
-		}
+		} 
 		if (!cancel) {
 			if (userHashCodes != null){
 				int userIndex = 0;
@@ -216,15 +213,20 @@ public class LoginActivity extends Activity {
 					}
 				}
 				else {
-					registerUser(userHash,passHash);
+					adminValidate(userHash,passHash);
+					return;
 				}
 			}
-			else registerUser(userHash, passHash);
+			else {
+				adminValidate(userHash,passHash);
+				return;
+			}
 		}
 
 		if (cancel) {
 			// There was an error; don't attempt login and focus the first
 			// form field with an error.
+			if (focusView!=null)
 			focusView.requestFocus();
 		} else {
 			// Show a progress spinner, and kick off a background task to
@@ -238,17 +240,81 @@ public class LoginActivity extends Activity {
 		}
 	}
 	
+	private void adminValidate(final int u, final int p) {
+		try {
+		FileInputStream aIn = openFileInput(ADMINKEYS);
+		String raw = "";
+		int content;
+		while ((content = aIn.read()) != -1){
+			raw += (char) content;
+		}
+		aIn.close();
+		final String [] adminHashArray = raw.split(":");
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Admin Permission Required");
+		View dialogView = getLayoutInflater().inflate(R.layout.dialog_adminkey, null);
+		final EditText keyView = (EditText) dialogView.findViewById(R.id.keyField);
+		builder.setView(dialogView);
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+		public void onClick(DialogInterface dialog, int which) {
+			// Retrieve the data from the Dialog
+			int keyHash = keyView.getText().toString().hashCode();
+			boolean found = false;
+			for (int i=0; i<adminHashArray.length; i++) {
+				if (Integer.parseInt(adminHashArray[i])==keyHash) {
+					registerUser(u,p);
+					cancel = false;
+					found = true;
+				}
+			}
+			if (!found)
+				Toast.makeText(getBaseContext(), getString(R.string.error_invalid_adminkey), Toast.LENGTH_SHORT).show();
+		}
+		});
+		builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.cancel();
+				cancel = true;
+				
+			}
+		});
+		builder.show();
+		//return true;
+		}
+		catch (FileNotFoundException e) {
+			Log.i("Admin Validation", "FileNotFoundException");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			Log.i("Admin Validation", "IOException");
+			e.printStackTrace();
+		}
+		Log.i("Admin Validation", "method called");
+		//return doNotProceed;
+	}
+	
 	private void registerUser(int user, int pass) {
 		try {
+			
+			
+			
 			PrintWriter pw = new PrintWriter(openFileOutput(FILENAME, MODE_APPEND));
-			String toWrite = user+":"+pass+":";
+			String toWrite = ":"+user+":"+pass;
 //			for (int i=0; i<userHashCodes.length; i++) {
 //				toWrite+=":"+userHashCodes[i]+":"+passwordHashCodes[i];
 //			}
 			pw.write(toWrite);
 			pw.close();
 			Toast.makeText(getBaseContext(), getString(R.string.user_registered), Toast.LENGTH_SHORT).show();
+			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
+			showProgress(true);
+			mAuthTask = new UserLoginTask();
+			mAuthTask.execute((Void) null);
+			Intent intent = new Intent(this, MainDataEntry.class);
+			startActivity(intent);
 		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
