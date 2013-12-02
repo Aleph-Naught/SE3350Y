@@ -93,6 +93,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		// get the listview
 		
 		ExpandableListAdapter old = ExpAdapter;
+		
+		
 
 		ArrayList<Equipment> list = SetStandardGroups();
 		ExpandList = (ExpandableListView) findViewById(R.id.expandableEquipmentList);
@@ -109,6 +111,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 				// TODO Auto-generated method stub
 				Log.i("Scan Activity","Inspection Change Made");
 				changesMade = true;
+				
 			}});
 
 		ExpandList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -166,6 +169,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		}
 					
 	}
+	
 	
 	public class spinnerLoader extends AsyncTask<spinnerPackage, Void, ArrayAdapter<String> >{
 
@@ -287,8 +291,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	}
 
 
-
-
 	public void saveResults(View view){
 			
 			final Button saveButton = (Button) findViewById(R.id.saveButton);
@@ -371,9 +373,13 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		//An xpath instance
 		XPath xpath = XPathFactory.newInstance().newXPath();
+		
+		
 
 		//Creates an InputStream and opens the file, then casts to InputSource
 		InputStream in=null;
+		
+		
 		try {
 			in = new FileInputStream(new File(Environment.getExternalStorageDirectory(), XML_FILENAME));
 			//Toast.makeText(getBaseContext(), "File read from SD card YEAH", Toast.LENGTH_LONG).show();
@@ -424,6 +430,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			
 
 			NamedNodeMap map = element.getAttributes();
+			
 			ArrayList<String> attributes = new ArrayList<String>();
 			for(int j = 0; j < map.getLength(); j++){
 				attributes.add(map.item(j).getNodeName().toUpperCase() + ": " + map.item(j).getNodeValue() + "\n");

@@ -32,6 +32,7 @@ public class InspectionElement {
 		
 		public void setChanged (boolean _changed) {
 			changed = _changed;
+			OnElementChangeMade();
 		}
 		
 		public boolean getChanged() {

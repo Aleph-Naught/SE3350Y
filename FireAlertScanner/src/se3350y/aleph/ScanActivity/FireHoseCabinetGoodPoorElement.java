@@ -2,6 +2,7 @@ package se3350y.aleph.ScanActivity;
 
 import se3350y.aleph.firealertscanner.R;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,25 +15,24 @@ import android.widget.Spinner;
 
 public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 	
-	private Spinner goodPoor;
+	private int goodPoor;
 	private boolean falseTrigger;
 	
 	public FireHoseCabinetGoodPoorElement(Context context){
-		goodPoor = new Spinner(context);
-		goodPoor.setSelection(2);
+		goodPoor = 2;
 		falseTrigger = true;
 		
 	}
 	
 	public void setGoodPoor(int i) {
 		// TODO Auto-generated method stub
-		goodPoor.setSelection(i);
+		goodPoor = i;
 		
 	}
 
 	public int getGoodPoor() {
 		// TODO Auto-generated method stub
-		return goodPoor.getSelectedItemPosition();
+		return goodPoor;
 	}
 	
 	//Holds the view for the RadioButtons
@@ -58,7 +58,6 @@ public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 			
 			viewHolder.VH_spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-				
 
 				@Override
 				public void onItemSelected(AdapterView<?> arg0, View arg1,
@@ -67,10 +66,10 @@ public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 					
 					FireHoseCabinetGoodPoorElement element = (FireHoseCabinetGoodPoorElement) viewHolder.VH_spinner.getTag();
 					
-					
 					if(!falseTrigger){
 						element.setGoodPoor(posSelected);
 						setCompleted(true);
+						setChanged(true);
 					}
 					
 					falseTrigger = false;
@@ -83,17 +82,6 @@ public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 					// TODO Auto-generated method stub
 				}
             });
-			
-			viewHolder.VH_spinner.setOnTouchListener(new OnTouchListener(){
-
-				@Override
-				public boolean onTouch(View v, MotionEvent event) {
-					// TODO Auto-generated method stub
-					
-					OnElementChangeMade();
-					
-					return false;
-				}});
 			
 			view.setTag(viewHolder);
 		    viewHolder.VH_spinner.setTag(this);
