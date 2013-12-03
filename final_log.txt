@@ -1,0 +1,2186 @@
+commit fd55643ad8a2950ee433f2c1d1c79a1da373f4ba
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 17:16:40 2013 -0500
+
+    Last commit forever
+    
+    There's mostly no bugs
+
+commit 846ae71d7db6f8c2f4e9e8ec3565216143abd8fc
+Merge: 2306bf1 396df2c
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Tue Dec 3 16:05:13 2013 -0500
+
+    Merge branch 'new-master' of https://github.com/Aleph-Naught/SE3350Y into new-master
+
+commit 2306bf1d14760a9a03c459f98af447a75cba8ce2
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Tue Dec 3 16:04:47 2013 -0500
+
+    Cleaned up some code
+
+commit 396df2ca26a275177ef98f202fec56f28a7bfae1
+Author: Thomas <thomt17@gmail.com>
+Date:   Tue Dec 3 15:48:55 2013 -0500
+
+    Added README
+
+commit e9ea31f30f14a5ea069ba4341c55db87e2435e39
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 15:43:43 2013 -0500
+
+    Finished Requisite Pro Stuff
+
+commit 2998b7fe26237e59f6db5cbc0a0a04ec4009b4cb
+Author: Thomas <thomt17@gmail.com>
+Date:   Tue Dec 3 14:57:29 2013 -0500
+
+    Updated SDS
+
+commit 3831097a5cd37d7e64698a7a06147cb62de83178
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 14:30:39 2013 -0500
+
+    Messing with Requisite Pro
+
+commit 8674c6aeb8d6f4b218821e06e18af0580dcebead
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 13:49:12 2013 -0500
+
+    Imported testing documents into requisite
+
+commit 1aa5a6e42b42e8cc781c8c1357ceae9d9a6bb566
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 13:14:56 2013 -0500
+
+    Combined all testing documents into one pdf
+    
+    also updated a couple cause you guys are lazy
+
+commit 3ecc5a2f96b5409d90ea158a0f54baba8194a57e
+Author: Thomas <thomt17@gmail.com>
+Date:   Tue Dec 3 13:11:27 2013 -0500
+
+    AdminKeys.txt generated on first app use
+
+commit 0aadda66277f45bfc3971db5138ba44f6c52a6af
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Tue Dec 3 12:44:23 2013 -0500
+
+    Hard coded more to make things better
+
+commit 5f7c98e5815ce0d145d240a14750852b28bf2579
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 12:34:11 2013 -0500
+
+    I'm better than zach
+
+commit c82c0960d78d9b3b7d6a4fe7e0aade8c6a3f07ba
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 12:23:22 2013 -0500
+
+    FIXED IT AGAIN
+
+commit fe2716a81efd3941c06c7aab6a8e9fcf9b669da2
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 12:18:09 2013 -0500
+
+    FIXED IT
+
+commit efea72a3d436277970bb887a9f940d0d7059256a
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 12:15:50 2013 -0500
+
+    Added pics and shit
+
+commit f759c6c63dc934648989b16efcf75ed9ffd57c32
+Author: Thomas <thomt17@gmail.com>
+Date:   Tue Dec 3 11:41:22 2013 -0500
+
+    Fixed registration bugs
+
+commit 7318772c3460332235a7ab69dc1e4893e7f78100
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 11:18:21 2013 -0500
+
+    Did all of ben's jobs
+    
+    he's off the team
+
+commit 18486763444c2d47009a1a76b055cf419d4004bf
+Merge: a77e7ea 1f0a505
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Tue Dec 3 11:16:47 2013 -0500
+
+    Merge branch 'maindata_layout' into new-master
+
+commit 1f0a505b319178f250bc1a3136619af0b2ace11f
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Tue Dec 3 11:14:46 2013 -0500
+
+    Layout resdesigned on MainDataEntry to be more consistant with the rest of Fire Alert Scanner
+
+commit a77e7ea926e61ae2251442f8be46a3d847e6c8e8
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Dec 3 10:51:12 2013 -0500
+
+    Trying shit out
+
+commit 0ff3f51c12353f7811f02af3674880cc1c5dd706
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Tue Dec 3 10:44:02 2013 -0500
+
+    Checking for the XML file actually works now
+
+commit 096e6c96a4b34e14d7f5d884b4b01233bf9b8b8a
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Dec 2 17:42:07 2013 -0500
+
+    Fixed Ben's Blunders
+
+commit 2de3773c61909aab1352b625c2b289ff3587f1da
+Merge: 4abb91a 8778af9
+Author: Thomas <thomt17@gmail.com>
+Date:   Mon Dec 2 17:23:17 2013 -0500
+
+    Tom Merge
+
+commit 4abb91a2303a0516f75225d0abe55e235426c675
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Dec 2 17:19:02 2013 -0500
+
+    I broke some shit
+
+commit 643c864c94e42303ce1c079849766d2b367bf46b
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Dec 2 17:12:19 2013 -0500
+
+    Didn't really do anything
+
+commit 8778af99e09cd2fa88a10c9b9b5752f33b1d9a98
+Author: Thomas <thomt17@gmail.com>
+Date:   Mon Dec 2 17:02:52 2013 -0500
+
+    Registration with dialog working
+
+commit 4d96aeada0d40431feaefacd8f3bb747d7b65791
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Dec 2 16:37:47 2013 -0500
+
+    Lol missed a green change
+
+commit 6491190687fed1e57b560a9946aa5c62f73eeeed
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Dec 2 16:29:50 2013 -0500
+
+    Fixed merge conflicts
+
+commit aa1b1fcf389935c09a189a10fa7312268bf2474e
+Merge: 1c70c5c 8da302e
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Dec 2 16:26:05 2013 -0500
+
+    Merge branch 'Long-Press-Notification' into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/resources.ap_
+    
+    FireAlertScanner/src/se3350y/aleph/ScanActivity/ExpandableListAdapter.ja
+    va
+    	FireAlertScanner/src/se3350y/aleph/ScanActivity/ScanActivity.java
+
+commit 8da302e4dbdd627d4677ff7d017b868db362f4d3
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Dec 2 16:23:53 2013 -0500
+
+    Deleted useless java file
+
+commit 499a64fbcc2595586b152afdd1c16f12db4a3903
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Dec 2 16:22:31 2013 -0500
+
+    Made the green look nicer, also the hold for press prompt is no longer included. It looks like shit
+
+commit 1c70c5cff21ae3ba3ed66e89f09dafe1e14f03f1
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Dec 2 15:52:32 2013 -0500
+
+    THE BUG IS FIXED OMG
+
+commit b5c187dbd79217a77464479fa773a9d10774e661
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Dec 2 15:05:52 2013 -0500
+
+    Initial commit in this branch
+
+commit 6ba6e04bedc171a6f9249685e45e68a62242a44c
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Dec 2 14:45:19 2013 -0500
+
+    Did Stuff
+
+commit 7ea9ba8f2abc27acc16b6971c10c81a6b2172129
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Dec 2 13:52:45 2013 -0500
+
+    Added my test spec files
+
+commit d54a593ea20cc74935ae680511f12bc55518d801
+Merge: ea433d5 2edd197
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Dec 2 13:00:46 2013 -0500
+
+    Merge branch 'new-master' of https://github.com/Aleph-Naught/SE3350Y into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/resources.ap_
+
+commit ea433d5a3a27bc6eef49b9a8dacf44550777ef49
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Dec 2 12:59:44 2013 -0500
+
+    Overrided ScanActivity's onBackPressed() for saving purposes.
+    It seems to be working as it should.
+
+commit 2edd197bbf50bb4c4350d3181ddf54934830d934
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Dec 2 12:46:11 2013 -0500
+
+    Updated spinner padding
+
+commit 4673ba396b931bdbf288a467494db38b5e9b8ef0
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Dec 1 20:03:17 2013 -0500
+
+    Added my testing documents
+    
+    Hey Ben, pls catch up
+
+commit 94c773dc9914cf45cbd8a25db89a0c4242af643b
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Dec 1 20:00:34 2013 -0500
+
+    Fixed bug
+
+commit 6d4abb9a1bb2d19ab399ffd71b8ef11e3d57cb03
+Author: Thomas <thomt17@gmail.com>
+Date:   Sun Dec 1 17:50:49 2013 -0500
+
+    Manage User Accounts TCS complete
+
+commit f4d7ee09da9dadf4121f3303265074c27f3e5870
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Dec 1 16:41:59 2013 -0500
+
+    Did Client Locations and List of Clients
+
+commit 4b247998890a4d6628562aaef3be2c1b250d4181
+Author: Thomas <thomt17@gmail.com>
+Date:   Sun Dec 1 16:39:33 2013 -0500
+
+    Authenticate User TCS Complete
+
+commit 5503c13e323f1cbc5f522e8907bf2e2eea196820
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Dec 1 15:49:04 2013 -0500
+
+    Look at my Inspect Equipment for formatting!
+
+commit 8fdc467029314f63d65cbb2ab7b754896660764e
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Dec 1 14:57:28 2013 -0500
+
+    Updated shit
+
+commit aa756b598031758b6c1e9307517d9d7f0dcb836f
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Dec 1 13:28:52 2013 -0500
+
+    Added testing documents stuff
+
+commit 5bf9175ce641428cf1e5fd84b07a277c75d66dda
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Nov 28 18:43:56 2013 -0500
+
+    This broke something so I commented it out
+
+commit a1caafcb7002bd92a5432cc803ee1b307745ee9f
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Nov 28 18:06:46 2013 -0500
+
+    fixed shit
+
+commit 342bb878f1b32c6347e17bf34c8edfe4d429e502
+Merge: ae5f842 46b4914
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Nov 27 15:58:15 2013 -0500
+
+    Fine I'll commit it
+
+commit ae5f84231085b882e1c920669b88d43d157e4074
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Nov 27 15:01:32 2013 -0500
+
+    Done with Async for now
+
+commit a94718913e7e420294cf7193069a26c2a3040ddf
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Nov 27 13:39:33 2013 -0500
+
+    Fixed bug
+
+commit 5d67988ae889b3fe5cc5240fab1dcae4dfef2e74
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Nov 27 13:29:08 2013 -0500
+
+    Bug fixes
+
+commit 701cded80332f60de83a294ffc09afbb8367fd51
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Nov 27 12:57:14 2013 -0500
+
+    Spinners load async
+
+commit 46b49146cc3ac72581fa504976316bb2ab65d0ae
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Nov 27 12:47:25 2013 -0500
+
+    InspectionData.xml file moved to the folder FireAlertScanner on the SD card.
+
+commit bd9c45a0bd3cbb7be72fdf605f4cf095e262c94e
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Nov 27 12:33:12 2013 -0500
+
+    Deleted unnecessary files, removed unused imports.
+
+commit 3dc23dab9532caf5a30b857ea3a392fd52c36019
+Merge: c0b157f d0ca227
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Nov 27 11:41:15 2013 -0500
+
+    Merge branch 'new-master' of https://github.com/Aleph-Naught/SE3350Y into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/resources.ap_
+
+commit c0b157fddca55892fbbcc353f9ecd46c94ef686a
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Nov 27 11:40:09 2013 -0500
+
+    UserAccounts.txt successfully moved to internal storage. W00t.
+
+commit d0ca227002e99252cb857c284943786a04ce8ba5
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Nov 27 11:24:18 2013 -0500
+
+    Fixed Async bugs in MainDataEntry
+
+commit db0f59aaff88dae89e1a83ddff996a280e0dea9e
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 20:09:55 2013 -0500
+
+    Organized packages
+    
+    some of them probably still need to be moved. Also I don't know how to
+    nest packages
+
+commit 7b02d7d5e9be931996ef4118c60af9f98a910a0b
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 19:55:39 2013 -0500
+
+    MainDataEntry now async loads
+
+commit f37a24d5abec996e7b44f017f2c94de96d1c4976
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 18:29:03 2013 -0500
+
+    Added one line to the .gitignore lol
+
+commit 323ea28354c1bf08d2e37bd695ebd43c043908da
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 18:26:12 2013 -0500
+
+    Attempting to untrack weird stuff
+
+commit 096b9094875a4226ab58a2bbf6889471f124a2da
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 18:23:27 2013 -0500
+
+    bug fixes here and there
+
+commit 43ec33723c41f8f547850fef77c7c2616050ffd5
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 17:15:25 2013 -0500
+
+    I don't think I even changed anything
+
+commit 9b5bbf8de64a297a840c5e32f69b225a6ffd0fea
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 17:06:30 2013 -0500
+
+    Working on Spinner completed bugs
+
+commit 188a63acdb049fc29b71b4057acb6229adac7541
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 16:49:53 2013 -0500
+
+    Async Saving in ScanActivity works
+
+commit fd97b967443411d9bc026c284ea0d60ac5c3173b
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Nov 26 11:12:37 2013 -0500
+
+    Room switch glitch fixed
+
+commit ef06fabaaea0986bf8f8baebacc544c6bb3bc276
+Merge: e4f0f27 071ac8b
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 25 21:30:56 2013 -0500
+
+    Merge branch 'new-master' of https://github.com/Aleph-Naught/SE3350Y into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    	FireAlertScanner/bin/resources.ap_
+
+commit e4f0f2746c1b3b9b57e27c5eacc19770fa0982c8
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 25 21:29:45 2013 -0500
+
+    Exception handling when XML file is missing is handled.
+    Currently brings you back to the login screen.
+
+commit 071ac8b1a4b1ba09ad5ed5a3aa2782f96bc9fb68
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 20:58:18 2013 -0500
+
+    Screw you Tom
+    
+    you were supposed to do this
+
+commit 58595aa1d7fbed870003ccf8510cee0a4681aa08
+Author: Thomas <thomt17@gmail.com>
+Date:   Mon Nov 25 20:39:03 2013 -0500
+
+    * appears next to equipment when change is made
+
+commit 6facb65e44b43fa4650eba775ad89478afa63e50
+Merge: 32e7297 e00d1eb
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Nov 25 15:23:14 2013 -0500
+
+    Merge branch 'Equipment-Deatils-Fix' into new-master
+    
+    Conflicts:
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    $3.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    $4.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    $5.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    $6.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    $7.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    $8.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    $DataReceiver.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    .class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ScanActivity.java
+
+commit e00d1eb1321a114b9eb9fabb83a5747f1302ccd0
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Nov 25 15:21:38 2013 -0500
+
+    Added all extra equipment details
+
+commit 32e72976eb36c20b0d00451b4163196e8de79fea
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 15:20:56 2013 -0500
+
+    Fixed bug related to changesMade and saving
+
+commit 047b070d8d10ad44ae5afc8dc0e992073e4d6737
+Merge: 5100580 ac039fc
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 14:44:31 2013 -0500
+
+    Merge branch 'new-master' of https://github.com/Aleph-Naught/SE3350Y into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/resources.ap_
+
+commit 5100580fda1cc66051a644d6946f6f4dec019602
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 14:42:15 2013 -0500
+
+    I'm better than everyone
+
+commit e3d4c51e9d47d27b2d67156584cb76c063194990
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Nov 25 14:39:18 2013 -0500
+
+    Initial commit on this branch
+
+commit ac039fc647693be2427007901f974c016169467e
+Merge: 418650d 96c6e20
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 25 14:13:05 2013 -0500
+
+    Merge branch 'new-master' of https://github.com/Aleph-Naught/SE3350Y into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/resources.ap_
+
+commit 96c6e200142e92bbb153f7a66ff621d548a84793
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 14:11:52 2013 -0500
+
+    Small fix
+
+commit 418650de4a4c3415d5e16311f68a4c6fec5ebcee
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 25 14:11:08 2013 -0500
+
+    Actually fixed the TCP text color. Maybe.
+
+commit 9df7cff18f9cc465826480846893cb4d42ff3462
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 14:11:05 2013 -0500
+
+    Save updates the changesMade asteriks
+
+commit 8dd5a18bb56325b29e21068c7b90e9792c18c8d5
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 13:53:34 2013 -0500
+
+    We apparently have lots of problems with colours
+
+commit 4618ab0e9cea9ba69b1c01c6957b173637ff54ca
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Nov 25 13:49:58 2013 -0500
+
+    Fixed text colours
+
+commit 12e20c85994bacc98f9ad1409c07f6e8accf8fc8
+Merge: cf297ff de65a81
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Nov 25 13:37:08 2013 -0500
+
+    Merge branch 'remove-brackets' into new-master
+
+commit cf297ffb9339da3442faf954f9a70a2772e8c167
+Merge: 949d58b fe5bbec
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 25 13:30:05 2013 -0500
+
+    Merge branch 'TCPStuff' into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/EmergencyLig
+    htYesNoElement$1.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/EmergencyLig
+    htYesNoElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableLi
+    stAdapter.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/Extinguisher
+    PassFailElement$1.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/Extinguisher
+    PassFailElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netGoodPoorElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netYesNoElement$1.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netYesNoElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y$1.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y$2.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$layout.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.clas
+    s
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+
+commit de65a810db1d1bc836f900fa9aa83e386fe57b29
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Nov 25 13:28:29 2013 -0500
+
+    Removed brackets
+
+commit fe5bbec3dbfacee7988c854ac3233c8d84386623
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 25 13:27:01 2013 -0500
+
+    Changed the TCP dialog to an AlertDialog for compatibility.
+
+commit 949d58b4cb087dda220161f5938f8420c45fccc8
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 13:18:35 2013 -0500
+
+    Changed the colour
+
+commit c01004a66e8721ac0e0f2fd72fd79c1c9348358a
+Merge: 264931f fc18d2f
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 13:03:51 2013 -0500
+
+    Merged Tom's Stuff and fixed conflicts
+
+commit 264931fd7238ba6c58f17957f0072dbff0c753c1
+Merge: e345881 f661930
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 12:49:57 2013 -0500
+
+    Merged and fixed conflicts
+
+commit e34588194ba9596559acf7851e0ddb99bec1bddb
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 12:41:55 2013 -0500
+
+    Fixed man button....I think
+
+commit 57bc281d7d4afe1166fbbf7e952aa18b6c850daa
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 11:55:30 2013 -0500
+
+    Fixed other merge stuff
+
+commit de996c03b8c0aedba67ab64754bd62a1f3b88530
+Merge: ed700ac 029f5f1
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 11:50:05 2013 -0500
+
+    Merge branch 'new-master' of https://github.com/Aleph-Naught/SE3350Y into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    	FireAlertScanner/bin/classes/com/dataInput/samplescanner/ScanCodeDemo.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/DOM.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableListAdapter$passFailViewHolder.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableListAdapter.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExtinguisherPassFailElement$1.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExtinguisherPassFailElement$passFailViewHolder.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExtinguisherPassFailElement.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity$1.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity$2.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity$3.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity$4.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity$5.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity$DataReceiver.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity.class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/res/layout/activity_scan.xml
+    	FireAlertScanner/res/values/strings.xml
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ExpandableListAdapter.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ExtinguisherPassFailElement.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ScanActivity.java
+
+commit ed700ac244f7b991fda59f2c8ee1ec4d4bba2c1a
+Merge: 0f1b23d 147d4ea
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 11:49:22 2013 -0500
+
+    Fixed the merge stuff
+
+commit 029f5f1db83cfe7312b973d642248e61ea31deb5
+Merge: 0f1b23d 147d4ea
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 11:08:40 2013 -0500
+
+    Merge remote-tracking branch 'origin/AuthenticateUser' into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    	FireAlertScanner/bin/classes/com/dataInput/samplescanner/ScanCodeDemo.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/DOM.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/EmergencyLightYesNoElement$1.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/EmergencyLightYesNoElement$yesNoViewHolder.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/EmergencyLightYesNoElement.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableListAdapter$passFailViewHolder.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableListAdapter.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExtinguisherPassFailElement$1.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExtinguisherPassFailElement$passFailViewHolder.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExtinguisherPassFailElement.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabinetGoodPoorElement$1.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabinetGoodPoorElement$goodPoorViewHolder.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabinetGoodPoorElement.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabinetYesNoElement$1.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabinetYesNoElement$yesNoViewHolder.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabinetYesNoElement.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivity$1.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivity$UserLoginTask.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivity.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainActivity.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntry.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$layout.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity$1.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity$2.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/inspectionElement.class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+    	FireAlertScanner/res/layout/activity_scan.xml
+    	FireAlertScanner/res/layout/list_group.xml
+    	FireAlertScanner/res/values/strings.xml
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ExpandableListAdapter.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ExtinguisherPassFailElement.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/MainDataEntry.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ScanActivity.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/inspectionElement.java
+
+commit 0f1b23d4613b2bf0eb1ca32cc341933abc5fc971
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 10:16:41 2013 -0500
+
+    Fixed other weird bugs
+    
+    I don't know how this thing worked before I fixed these things, but I'm
+    not going to question it.
+
+commit ed72c6bcc8cdbb6ec7f05514d7a57b00375ecd16
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Nov 25 09:59:37 2013 -0500
+
+    Fixed double prompt
+    
+    There's still bugs, mostly related to changing floors, I don't think
+    it's loading the floor properly
+
+commit fc18d2f77c290b448fdba8336372b8cf0b91d2e9
+Author: Thomas <thomt17@gmail.com>
+Date:   Sun Nov 24 21:42:47 2013 -0500
+
+    * appears next to element when change is made
+
+commit 78a9c71e323e19f0ea4df93f5345707c2ac3e9c8
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Nov 24 21:23:30 2013 -0500
+
+    Prompt for unfinished rooms added
+    
+    It has this bug where it prompts twice if you change floors
+
+commit f66193037df4f6ba52ab0b62d509e085481dfc6e
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Nov 24 20:57:06 2013 -0500
+
+    Added title Ready to Scan
+
+commit 1149cb99fc069437264a956ffcf1aa539e3ced1e
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Nov 24 20:45:32 2013 -0500
+
+    Added titles to dialog info
+
+commit 6995492aaca5b380325951caf3617c04eb9ee40a
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Nov 24 20:43:51 2013 -0500
+
+    Ok so the popups are done but they done show very much info atm
+
+commit b636da9fd9c05b5569c58df4c04b1081f2d9af06
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Nov 24 20:09:39 2013 -0500
+
+    Almost done working on equipment popup info
+
+commit bf7bbd376be93649a28d30311d01c974f3f8a647
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Nov 24 20:01:40 2013 -0500
+
+    Colors and shit
+
+commit a95a1d9d0caca1bb72fdc2ac24a2a81ba919c60b
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Nov 24 16:57:03 2013 -0500
+
+    Expandable lists now show equipment locations
+
+commit 9a01dbabbd5ebb52d1ed25715a8305170316bcb1
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Nov 24 16:32:38 2013 -0500
+
+    Added preliminary location to groups
+
+commit 6cc2495bb963afb2190ed33d02e6f2766d48d131
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Nov 24 16:27:15 2013 -0500
+
+    Fixed bug
+
+commit 9b05d6f32089045ca3ae0773e40eb52b59cb8cf8
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Nov 24 16:06:40 2013 -0500
+
+    Kind of works notifying changes
+
+commit df27c48a7773414270737dd3a3484e07a90d813e
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Nov 24 15:32:16 2013 -0500
+
+    Shouldn't crash anymore
+
+commit 497904c9e751f6776a06335d9fdd0437e43509d9
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Nov 24 15:07:37 2013 -0500
+
+    I didn't save in the last one lol
+
+commit 553e57c119f0d5bddf1e70af0e6e04efc9712e5c
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Nov 24 15:07:24 2013 -0500
+
+    Playing with Listeners
+    
+    HERE IT IS
+
+commit a9a50e97c3cbdb6c9d51194faeec2ba4ab314622
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sat Nov 23 17:22:59 2013 -0500
+
+    Saving and Loading
+    
+    Expandable List now saves and loads stuff. Minimally tested
+
+commit e81c38ecb726e218e07ede702351f22ba1dfbabd
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sat Nov 23 17:09:27 2013 -0500
+
+    Initial Commit
+    
+    it loads stuff now
+
+commit db970265974929289bb3cb07c78a2a3c90d89eaf
+Merge: d8e6554 12c85b2
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Nov 21 13:13:43 2013 -0500
+
+    Merge branch 'TCPStuff' into new-master
+
+commit 12c85b2510782d6aecca8e76544d58b4d87b2496
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Nov 21 13:11:59 2013 -0500
+
+    Commiting before I merge to new-new-new-new-new-master.
+    Nick told me to!
+
+commit 861245017d7e6410849fcfd1b3e09f6d45c487b2
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 18 21:09:38 2013 -0500
+
+    Changing floors/rooms will now update the ExpandableList accordingly.
+    I think we'll need to implement something preventing the user from changing
+     rooms until one is finished, as the button states aren't persistent.
+
+commit 000c11ed7a7ad2be86538f8474893fc54c8d6d08
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 18 14:31:02 2013 -0500
+
+    Tested with an expanded XML file and it works.
+    Removed a hardcode from the Spinner and ExpandableList population.
+     (Floor was hardcoded to 'First Floor' and room was 'R1')
+
+commit c9ae518f36653cb2d3302b7982a9f6456de84894
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 18 12:23:50 2013 -0500
+
+    ScanActivity and DOMWriter both take client address and stuff into account.
+    Although I have yet to test it with an XML file with multiple addresses.
+    That's next on the list.
+
+commit 1023abd1531dce8dc40fa9df55b7f0b8c756a3c5
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Mon Nov 18 03:27:11 2013 -0500
+
+    Pressing the Fail radio button brings up a dialog for notes.
+    The value of the text box will persist if the user clicks Fail again.
+    It is writing to XML correctly.
+    I realized that the DOMWriter doesn't take floor or room into account,
+     so that will have to be changed.
+
+commit 952b122ad7adcdf621680fd06925091e26cc37a1
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Sun Nov 17 20:08:33 2013 -0500
+
+    Set a timeout on the Socket.
+    Otherwise, if the IP or port are wrong the app will freeze indefinitely.
+    Also cleaned up some ScanActivity stuff.
+    Took away the Scan button since Zach made it work in the same window.
+
+commit 147d4ea57dbc6f443b25c0bc10efea12f89499f7
+Author: Thomas <thomt17@gmail.com>
+Date:   Sun Nov 17 15:56:07 2013 -0500
+
+    Account Registration Works
+
+commit 25d72389c37f29d07f1e95c9a10d7d249b0b3261
+Author: Thomas <thomt17@gmail.com>
+Date:   Sun Nov 17 15:27:15 2013 -0500
+
+    USER AUTHENTICATION WORKS
+    
+    Users validated via hashcodes.
+    File format:
+    
+    user1usernamehashcode:user1passwordhashcode:user2usernamehashcode:user2passwordhashcode
+
+commit 0491b2dfa516f82b53bd1b6500914ed8b965da95
+Author: Thomas <thomt17@gmail.com>
+Date:   Sun Nov 17 13:40:10 2013 -0500
+
+    Added UserAccounts.txt
+
+commit b3d81e5977bf3726094048faad7458066f44ea0a
+Author: Thomas <thomt17@gmail.com>
+Date:   Sun Nov 17 13:32:36 2013 -0500
+
+    Initial Commit
+
+commit b265056cfdb9995ab4c01d154ae45a4e855a59cd
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Sat Nov 16 20:55:03 2013 -0500
+
+    Added a dialog to get the port and IP for the TCP connection.
+    Will have to verify that the layout looks good on WinMate.
+
+commit 641e573db70d48497ff0d7d5727f1b624c2fee69
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Nov 15 22:19:42 2013 -0500
+
+    TCP Works!
+    For now, the port and IP are hardcoded. They can't stay like that.
+    Will try to figure out a view to incorporate this into.
+
+commit f1f434af2e23b2ca4ac98613c7c12e6bd2201583
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Nov 15 21:42:24 2013 -0500
+
+    TCP might be working?
+    I'm trying to figure out a way to test it.
+
+commit 4ec2db8e7aa5d3c16895345f7717653f48275c39
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Fri Nov 8 11:30:21 2013 -0500
+
+    Updated activity titles and made the scanner work without pushing the button
+
+commit db6302a1340c5ed57bf3659cdc6cd2b76d8181a1
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Nov 7 19:08:24 2013 -0500
+
+    Scanner UI simplified
+    
+    I also did a bit of project cleanup so that things a bit more organized
+
+commit a0a7e7721658848721e98edd075550898618e5b1
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Nov 7 15:14:20 2013 -0500
+
+    Fixed all warnings
+
+commit d8e655459779e0cbff8a3240a4fda4eab538d3c5
+Merge: bdd99d4 2168bf8
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Nov 6 15:47:47 2013 -0500
+
+    Merge branch 'new-master' of https://github.com/Aleph-Naught/SE3350Y into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/EmergencyLig
+    htYesNoElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableLi
+    stAdapter.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/Extinguisher
+    PassFailElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netGoodPoorElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netYesNoElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    .class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/res/layout/activity_scan.xml
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ScanActivity.java
+
+commit bdd99d4e7d836eb05d07199637473f82025c817f
+Merge: 8ff9207 1005b76
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Nov 6 15:45:57 2013 -0500
+
+    Merge branch 'DomManipulation' into new-master
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/EmergencyLig
+    htYesNoElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableLi
+    stAdapter.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/Extinguisher
+    PassFailElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netGoodPoorElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netYesNoElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    .class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/res/layout/activity_scan.xml
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ScanActivity.java
+
+commit 1005b76c0f836262f68ee06aa74a5997f8e24aa9
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Nov 6 15:34:02 2013 -0500
+
+    The whole XML write process is now one static DOM function.
+
+commit 2168bf8cd65593881349311562ba4c60970425e7
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Mon Oct 28 13:36:56 2013 -0400
+
+    Emergency over
+    
+    Jesus
+
+commit 1408df0f4b1344b1d67575a761a61d1e8aa72098
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Oct 28 12:14:30 2013 -0400
+
+    EMERGENCY
+
+commit 595b2e809644f79364cd1b5932efec0f614cbb4c
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Oct 28 10:45:22 2013 -0400
+
+    Prototype V1.04
+    
+    Fixed weird scanning bug that made the expandable list do weird things
+
+commit 28ba2844b104b740b4298b11ad1be037db3cdc42
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Mon Oct 28 10:05:30 2013 -0400
+
+    Prototype V1.03
+    
+    Un-hard-coded everything. Kinda. Also not everything, just the
+    scan_activity page.
+
+commit 8ff9207dc4d7e5d80e402fa79935760f9ccfa14c
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Oct 27 16:20:16 2013 -0400
+
+    Prototype V1.02
+    
+    Other bug fixes
+
+commit 3e35cd5fee5eb4866c9435f30c4ec9073e903f93
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Oct 27 16:08:28 2013 -0400
+
+    Prototype V1.01
+    
+    Fixed some small stuff
+
+commit ec1fc3bedf3ea90bb67b335470c8b05aa44c4102
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sun Oct 27 15:55:52 2013 -0400
+
+    Prototype V1
+    
+    first commit for potential prototype
+
+commit 093f0401262afc3a787c707ebb0a09e1ca75292f
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Oct 27 12:56:01 2013 -0400
+
+    Scanner integration complete
+    
+    Next step to mmerge with master
+
+commit cb3f88f459b86461e026a04a251944176d397859
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sat Oct 26 19:34:24 2013 -0400
+
+    Scanner button should work now
+    
+    I have to actually test it on the winmate
+
+commit b69bc1d1b9bee686231bfd75e48f04dede260e03
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Fri Oct 25 19:11:46 2013 -0400
+
+    Added manual button input
+
+commit fc602b67775531ad39cd3b25410358f099589b3d
+Merge: 3cc3bc9 0cbd04a
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Oct 25 18:08:35 2013 -0400
+
+    Merge branch 'master' into DomManipulation
+
+commit 0cbd04ab13f5771f2c457304f8e59839fa02f000
+Merge: 1a6cb20 d5ff8e9
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Oct 25 18:08:07 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/com/dataInput/samplescanner/ScanCodeDemo.cl
+    ass
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableLi
+    stAdapter.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/Extinguisher
+    PassFailElement$1.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/Extinguisher
+    PassFailElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netGoodPoorElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainActivity
+    .class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$layout.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.clas
+    s
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    .class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/MainDataEntry.java
+
+commit 1a6cb20e531c45369f2132480923eda3490011eb
+Merge: c8b3c0e 3cc3bc9
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Oct 25 17:58:38 2013 -0400
+
+    Merge branch 'DomManipulation'
+
+commit 3cc3bc915eb97ebf9a76f48a5040b7b78d747055
+Merge: 43ddde1 dc71b1f
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Oct 25 17:56:43 2013 -0400
+
+    Merge Nick's branch
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/com/dataInput/samplescanner/ScanCodeDemo.cl
+    ass
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableLi
+    stAdapter.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/Extinguisher
+    PassFailElement$1.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/Extinguisher
+    PassFailElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/FireHoseCabi
+    netGoodPoorElement.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivit
+    y.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainActivity
+    .class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$layout.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.clas
+    s
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    .class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+    	FireAlertScanner/res/layout/activity_scan.xml
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ScanActivity.java
+
+commit d5ff8e9e1974b457e4a104d4848bc5bf271211da
+Merge: c8b3c0e 47a8cb4
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Fri Oct 25 17:21:39 2013 -0400
+
+    Merge branch 'Spinner-Improvement'
+
+commit 47a8cb4d7a4586b6f61578cef914ca6e6425523a
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Fri Oct 25 17:21:18 2013 -0400
+
+    Such update
+    
+    wow
+
+commit 1ecffc96ecf7402e1867507a61d8c28b53976577
+Merge: 6c00f9a dc71b1f
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Fri Oct 25 17:12:04 2013 -0400
+
+    Merge branch 'InspectionPage' into Spinner-Improvement
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/com/dataInput/samplescanner/ScanCodeDemo.cl
+    ass
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainActivity
+    .class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$layout.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.clas
+    s
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/MainDataEntry.java
+
+commit dc71b1fec25c38c5779819c6a402d5ced2fcc0b6
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Fri Oct 25 16:43:00 2013 -0400
+
+    View optimizations
+    
+    speed ups! doesn't lag as much
+
+commit 540cca9392dfdafdffeee3b89ea15798a491830b
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Fri Oct 25 13:51:39 2013 -0400
+
+    All dropdowns now populate with stuff
+    
+    Although no comments are there for any of them, that will come later
+
+commit 43ddde1a307bb56e645b007fd1113cb386bed446
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Oct 25 13:16:23 2013 -0400
+
+    Iterating through ALL the radio buttons and writing to XML!
+    
+    Obviously this will change slightly as Nick modifies things further.
+
+commit cd69b0dd195598639877f34c79f8c96a09b3cbe9
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Fri Oct 25 12:55:40 2013 -0400
+
+    FireHostCabinet now works
+    
+    DAT LAG
+
+commit ae19afddfad58ea88886ed015d408f36b3a78d32
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Oct 25 12:54:23 2013 -0400
+
+    Basic writing to XML based on the radio buttons works.
+    
+    Now I need to get it to iterate through every element.
+
+commit 81f1f174eed64d02df4c610eecd6f3216e52028d
+Merge: 01c9cb5 355844d
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Fri Oct 25 11:44:48 2013 -0400
+
+    Updating from Nick's branch
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableLi
+    stAdapter$1.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableLi
+    stAdapter.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$layout.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.clas
+    s
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    .class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ScanActivity.java
+
+commit 355844dec0f830d4337079da07f55edd3493557c
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Fri Oct 25 11:32:19 2013 -0400
+
+    Implemented unique child objects yay
+    
+    yayaaayayayay
+
+commit 01c9cb526471943fb26b635507f5d48292628444
+Merge: 3da9e57 6c00f9a
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 23:58:02 2013 -0400
+
+    Merging Zach's branch with fixed spinners.
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivit
+    y$UserLoginTask.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivit
+    y.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y.class
+    	FireAlertScanner/bin/resources.ap_
+
+commit 3da9e57d63b64894b4b6e499bf2fe8de7037d84d
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 23:54:14 2013 -0400
+
+    Cleaned up
+
+commit bb0d7b824fdd35d11999c539b7a9d9386a0b1e8e
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Oct 24 23:36:59 2013 -0400
+
+    Bedtime Commit
+    
+    Fixed a weird bug too, ignore the previous commit, it doesn't work
+
+commit 4ec033fd5847eecba0ce681a283489f46a846442
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Oct 24 23:24:12 2013 -0400
+
+    Spinners "work"
+    
+    that's Zach Hoggard's definition of work btw
+
+commit e0c1996afceb555b910f0bff53596cfe4fa6f9a7
+Merge: 64b78c3 9b2d57a
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 22:56:50 2013 -0400
+
+    Merged Nick's branch again.
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ExpandableLi
+    stAdapter.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$layout.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.clas
+    s
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/ScanActivity
+    .class
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/ScanActivity.java
+
+commit 9b2d57a454f8e2261a2e9d55f6ecb93c78b23303
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Oct 24 22:14:51 2013 -0400
+
+    RadioButtons now retain their state!
+    
+    This took a long time and is complicated and stuff
+
+commit 64b78c34b393ff3f767d8466ec406297068094dc
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 16:03:39 2013 -0400
+
+    Removed unnecessary menu
+    
+    Nick's "Manual" button records test results, for now.
+    Also, we may want to look into our Activities, as it seems that
+    MainActivity isn't being used for anything right now.
+
+commit 62b39c0cbb89d997f7f06ab4a5430cc7d1f0da2c
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 15:50:15 2013 -0400
+
+    Put the static functions into a new class. Added some comments and JavaDocs.
+    
+    Next step is probably to stop using the redundant screen with both
+    "Scan" and "Record Results" buttons.
+
+commit c0b4365a80bd7cf1abc9df6761e3b6bc644c3c73
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 14:40:30 2013 -0400
+
+    Fixed write error
+    
+    I'm an idiot, it was a one-liner
+
+commit a972aed4b014696be30c5305ff5f6933f40093d7
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 14:02:24 2013 -0400
+
+    Nick's scan button opens old scan page for now.
+    
+    Still getting file-writing errors.
+
+commit 370627c457da19896e8f58665acb7f5c7d5a7f01
+Merge: c8b3c0e 54919cd
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 13:37:08 2013 -0400
+
+    Merged Nick's InspectionPage branch
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/com/dataInput/samplescanner/ScanCodeDemo.cl
+    ass
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivit
+    y$UserLoginTask.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivit
+    y.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$layout.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.clas
+    s
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/MainDataEntry.java
+
+commit 6c00f9afb52ff2a3cd437fdc13ed81702c1efa78
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 24 13:21:29 2013 -0400
+
+    Removed spinner flag
+    
+    Stuff populates better now
+
+commit c8b3c0e7b9b7065a7726f0870aaeca406d83e2e0
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 12:53:20 2013 -0400
+
+    Apparently I need to commit again.
+
+commit d97f9d4bb145908840bf363a42f460f54427895b
+Merge: 8b82507 17761b0
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 12:47:44 2013 -0400
+
+    Merge branch 'BensBranchYo'
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainActivity
+    .class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y.class
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/MainDataEntry.java
+
+commit 17761b092ed92c403be803b3236652ecbb5d9527
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 12:14:36 2013 -0400
+
+    DOM reading, manipulation, and writing simplified into 3 static functions.
+
+commit ec0f242c197ba1dc9b40c1c12f714641b00e7f0c
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 11:01:01 2013 -0400
+
+    XPath statement reduced significantly and rolled into a static function.
+    This will do until we can interact with the radio buttons and such.
+
+commit 8b825071fa858e6e3f0a0f20921347240ffad3dd
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 24 10:48:43 2013 -0400
+
+    Fxing broken master
+    
+    I dont even know what happened
+
+commit 54919cd64e748699b80c5d7373558eeba130e989
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Oct 24 10:23:31 2013 -0400
+
+    Playing with stuff
+    
+    NEVER PUSH TO MASTER EVER NEVER
+
+commit e030077a01ca0901499962642cc958421150c626
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Oct 24 00:07:30 2013 -0400
+
+    XPATH WORKS AH YEAH SON
+
+commit 6aa1681a51d3daf6c582a4fdc7d6057763a2bd13
+Merge: e04732b 277a8a5
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 24 00:06:21 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+    
+    Conflicts:
+    	FireAlertScanner/bin/FireAlertScanner.apk
+    	FireAlertScanner/bin/classes.dex
+    
+    FireAlertScanner/bin/classes/com/dataInput/samplescanner/ScanCodeDemo.cl
+    ass
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivit
+    y$UserLoginTask.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/LoginActivit
+    y.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainActivity
+    .class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/MainDataEntr
+    y.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$id.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$menu.class
+    	FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$raw.class
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$string.cla
+    ss
+    
+    FireAlertScanner/bin/classes/se3350y/aleph/firealertscanner/R$style.clas
+    s
+    	FireAlertScanner/bin/resources.ap_
+    	FireAlertScanner/gen/se3350y/aleph/firealertscanner/R.java
+    	FireAlertScanner/src/se3350y/aleph/firealertscanner/MainDataEntry.java
+
+commit e04732b782adbca546b2014b196740bba18edec1
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 24 00:03:58 2013 -0400
+
+    Spinners completly working
+    
+    Need to connect intent with message to send current node to next
+    activity
+
+commit 1c3940c3b0f994003d6ed1e40635f0f80e9ebb24
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Oct 23 22:57:11 2013 -0400
+
+    I dunno if I changed anything, but bedtime
+    
+    I hope I dream about boobs
+
+commit 29aa6e08802e5e0fce9d2fcc42bb72531c496fd1
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Oct 23 22:22:43 2013 -0400
+
+    XML manipulation and writing to SD is kind of working!
+    Currently using W3's DOM setup instead of XPath.
+    More exciting things to come.
+
+commit 8325d2167c041703918facea288df20fb550e020
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Oct 23 22:12:39 2013 -0400
+
+    Expandable List Populates
+    
+    it's magic boys and girls
+
+commit 534516fe649fb657265034fcc51e0aa161e004b5
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Oct 23 19:42:16 2013 -0400
+
+    Initial Commit
+    
+    Added a ton of shit
+
+commit 277a8a5c8490f30e1de673c0102e31f93e8b2533
+Author: Thomas <thomt17@gmail.com>
+Date:   Wed Oct 23 17:11:50 2013 -0400
+
+    Changed email fields to username, user+password combination works
+
+commit 24b3f34b1c17b52b9dc4f09f44e61e5572e77c73
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Oct 23 15:41:07 2013 -0400
+
+    Reading and writing from SD working.
+
+commit cd148dae4124deb533f4c21ac55dc26a6c445820
+Merge: be0e059 6ed1cd4
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Oct 23 15:30:49 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+    Because cats.
+
+commit be0e059ae1104b334bd68394543e9a390ba80fc3
+Merge: 4d94be0 5522dff
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Oct 23 15:28:42 2013 -0400
+
+    Merge branch 'SendResults'
+
+commit 5522dff4915f90ddfd2f90793bf1ff4b6d76a5f7
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Oct 23 15:28:17 2013 -0400
+
+    Writing to SD is working. Reading from SD is almost working.
+
+commit 23137092daf6c9e44b5479f3f14ee7ca06132474
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Tue Oct 22 07:51:05 2013 -0400
+
+    Added .gradle for Andoird Studio
+    
+    Also other small small spinner changes
+
+commit 424f055a9b1aff7c7b1032309bf2aa3a7c97ea7f
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Oct 20 17:40:46 2013 -0400
+
+    All spinners populated
+    
+    Need to move some spinners to the next activity as way too many o this
+    one
+
+commit d956ff85ac761cdcdcd937e814a71f31051b99d0
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sun Oct 20 00:07:12 2013 -0400
+
+    Cleaned up project, working more on spinner loading
+    
+    Kind of made the project file and string neat and made the spinner
+    stuff more generic. Done have time to complete tonight…commiting.
+
+commit 0b9f2498b7f4e78632b8d070c9c22c352d30292c
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sat Oct 19 23:15:12 2013 -0400
+
+    Initial commit in this branch
+    
+    Pretty much just cleaned project
+
+commit 6ed1cd45e2d9f7571196bc9f76c6c99193b85875
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sat Oct 19 18:24:40 2013 -0400
+
+    SRS V1.0
+    
+    HYPE
+
+commit 4d94be01e943140187e23aa595a8b87175ec1633
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sat Oct 19 13:30:04 2013 -0400
+
+    Updated SRS
+
+commit 3677fa1fb2dae1f06c63b485d9f3802bbfacd8e5
+Merge: aa22025 7d874e3
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sat Oct 19 12:57:05 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+    
+    Conflicts:
+    	IBM Rational/RequisitPro-1/Record Results.UCS
+    	IBM Rational/RequisitPro-1/SE3350y_Requirements_Documents.MDB
+    	IBM Rational/RequisitPro-1/XML File does not exist.UCS
+
+commit aa22025a690c38e89123eba4e82748ecf21892de
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Sat Oct 19 12:55:22 2013 -0400
+
+    Added some more stuff to the SRS
+    
+    Yes
+
+commit 7d874e3f2ef29d310d4408b538fb1b68220d7c23
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sat Oct 19 12:38:17 2013 -0400
+
+    Updated other things in Requisite
+    
+    Fixed features stuff, updated uc responsibilities
+
+commit 047951d0e133516d23e3d6efad5b43e250597400
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sat Oct 19 11:33:53 2013 -0400
+
+    Traceability Matrix updated
+    
+    Also added 2 or 3 features, should be reviewed at SUPER SECRET TEAM
+    MEETING AT TOM'S HOUSE WITH SNACKS
+
+commit 63fdd457c375bb33dfad36980185573e60163714
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Sat Oct 19 10:49:34 2013 -0400
+
+    FUCK ALL OF YOU, I FIXED IT
+    
+    GOOD JORB
+
+commit f6ef00dac54ccf71fb3ef741d6ffbecec53b2457
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Fri Oct 18 17:51:56 2013 -0400
+
+    Commented Xpath Populate Method
+    
+    ITS MAGIC
+
+commit a856878bc387966bde84c6ff9b8ed0ba64a9856e
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Fri Oct 18 17:26:46 2013 -0400
+
+    XPATH WORKS OMG
+    
+    it's magic!
+
+commit b8faea481bdf987ac19b156fb24fed5fb4c7c2f3
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Fri Oct 18 15:03:22 2013 -0400
+
+    I have no clue what's going on
+
+commit 23b030546fea873d6688611281bc5b4d5ca51079
+Author: Thomas <thomt17@gmail.com>
+Date:   Fri Oct 18 12:17:09 2013 -0400
+
+    srs document edited
+
+commit f436f0756cd64f970f683be70206af606a7b4621
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 17 17:22:22 2013 -0400
+
+    Added impact analysis to Requisite Pro
+
+commit 434c9f93cc73cccd6633e3e3f79296f4595db2bf
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 17 16:49:37 2013 -0400
+
+    SRS brought back online
+
+commit a872a82f5548654a78746b994becbbb33d04a9b3
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 17 16:45:09 2013 -0400
+
+    Use Case Descriptions
+    
+    Finally finished Use Case Descriptions
+
+commit 406937a1434f6e6cacc2386dc340fc158b1cf7fa
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 17 15:41:41 2013 -0400
+
+    Update to a proper Readme
+    
+    I'd like to thank everyone for posting random shit in the old version
+
+commit 127d464afda7a1928e00e672a5689271b162858d
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 17 15:36:21 2013 -0400
+
+    Cleaning up useless files
+    
+    It looked like huricane Katrina went through repo
+
+commit 1ea5ed63c6f9c909e08ce1bde469e05742e56150
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Oct 17 15:27:51 2013 -0400
+
+    Added like nothing
+
+commit 60e815e64381374216bfb0e2a125b540c2b6df5d
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Oct 17 10:10:35 2013 -0400
+
+    Preliminary SRS Stuff
+    
+    Tom is into dudes
+
+commit 7fb19520e85ec854a4eaf6959af945ec2f2065c4
+Merge: b1dff6d d9b1939
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 17 09:08:27 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+    
+    Conflicts:
+    	RequisitPro-1/SE3350y_Requirements_Documents.MDB
+
+commit b1dff6d925b726d861e9cead374e22dc1f7f61dd
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 17 09:08:07 2013 -0400
+
+    Updated Requisite Pro documents
+
+commit d9b1939bcda008ec665b519629f21bad21f9608d
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Thu Oct 17 09:07:11 2013 -0400
+
+    Working on SRS document
+    
+    Tom_Likes_Men.jpg
+
+commit dcadbbf59759d3acc76503681cf75cab272a90cb
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Thu Oct 17 08:25:48 2013 -0400
+
+    Offline SRS documentation
+    
+    Pls use to do SRS
+
+commit 5342c8491c76302a3994892a9d587ca9ef109b70
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Wed Oct 16 22:39:44 2013 -0400
+
+    Added Use Case Descriptions
+    
+    Added: Authenticate User, Display Client Locations, Display List of
+    Clients, and Get Code Manually
+
+commit 3521c2b7e38a9260ad3aaba2bf5060559febcf33
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Oct 16 21:58:16 2013 -0400
+
+    Added UC descriptions for Send Report and XML file does not exist.
+
+commit 5f219de436c6ec4a63a25726b53d9c97a0f92a27
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Wed Oct 16 17:08:06 2013 -0400
+
+    Requsite Pro Commit
+    
+    This commit contains all project documentation created by IBM Rational
+    Requesite Pro
+
+commit c2e3bc9d08ff26297b44d5a7303c795fbf297e93
+Author: Ryan Segal <rsegal2@uwo.ca>
+Date:   Wed Oct 16 16:16:27 2013 -0400
+
+    License key for Rational RequisitePro
+
+commit dfcd30f06860282fb7b94ca09fbc5f92a7b6fec1
+Merge: ab9d03b df5eec9
+Author: Ryan Segal <rsegal2@uwo.ca>
+Date:   Wed Oct 16 16:05:00 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+
+commit ab9d03b444cbc67dd6d5a2b6c6215d64a7f947e8
+Author: Ryan Segal <rsegal2@uwo.ca>
+Date:   Wed Oct 16 15:59:32 2013 -0400
+
+    Added Use Case Diagram
+
+commit df5eec94ce918aeb31ccad9d860069983eb3524b
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Wed Oct 9 23:06:02 2013 -0400
+
+    added project files and resources
+
+commit 38507644d98e26901782fd53061c74ee01e833b3
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Sep 18 20:02:27 2013 -0400
+
+    A loading GIF ?!
+
+commit efe2ad56bd39074c17ccf2319e54129bf34b2dd4
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Wed Sep 18 10:31:18 2013 -0400
+
+    Added a few versions of the prototype logo.
+
+commit f1ac3b1d7054d3439be34076620bc26c23a1634b
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Tue Sep 17 12:40:14 2013 -0400
+
+    Added some sick PHP that won't even run natively and needs a server to view it so why did I add it tell me why TELL ME WHY
+
+commit 07ae49ab2582b39d92c9a49db4bc895f298ce225
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Thu Sep 12 10:37:58 2013 -0400
+
+    Whaddup
+
+commit 0250a248fcc0f21135625b177896556e9c1a3b5f
+Author: Thomas <thomt17@gmail.com>
+Date:   Wed Sep 11 11:28:14 2013 -0400
+
+    First real commit, omg
+
+commit c4761ed5a744b810e1a3f0a8c0bddc52cbf76223
+Merge: 8b3b1d6 91cf87e
+Author: Thomas <thomt17@gmail.com>
+Date:   Wed Sep 11 11:10:57 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+
+commit 91cf87e08b2adcf7cdf507b6e9e3bcf0d3cf36f2
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Sep 11 11:01:26 2013 -0400
+
+    KILLED PEOPLE
+
+commit 4de3162b05201ade24b5493991c098255b4309fe
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Sep 11 10:46:42 2013 -0400
+
+    touch dudes
+
+commit 1a85857ff5b9bfa7292c53a9f0e52dbcaa33d765
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Wed Sep 11 10:43:35 2013 -0400
+
+    IMPORTANT STUFF
+
+commit 8b3b1d6ce5531468f1a210b76d35bf440f189bfe
+Author: Thomas <thomt17@gmail.com>
+Date:   Tue Sep 10 20:25:38 2013 -0400
+
+    tom's html file added, waddup
+
+commit 412425177511c2f477f83d8b68935e3807c4134d
+Merge: c33447c 92b856b
+Author: Ryan Segal <rsegal2@uwo.ca>
+Date:   Tue Sep 10 19:55:45 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+
+commit c33447cba954dbd1adac86051d343d4683ba516c
+Author: Ryan Segal <rsegal2@uwo.ca>
+Date:   Tue Sep 10 19:55:26 2013 -0400
+
+    commited updated html file
+
+commit 92b856bd5aa5b515389363f573de1aa2634ae88d
+Author: rsegal2 <rsegal2@uwo.ca>
+Date:   Tue Sep 10 19:47:35 2013 -0400
+
+    Update README.md
+
+commit 543d470e6d6c76f1b8ac11ee25a714ea2fc920b9
+Merge: f93c436 941baf6
+Author: Ryan Segal <rsegal2@uwo.ca>
+Date:   Tue Sep 10 19:44:40 2013 -0400
+
+    Merge branch 'master' of https://github.com/Aleph-Naught/SE3350Y
+
+commit f93c43648f25a1abc938dce779da1f774695001f
+Author: Ryan Segal <rsegal2@uwo.ca>
+Date:   Tue Sep 10 19:43:16 2013 -0400
+
+    Added first html
+
+commit 941baf600e354c3077737d544b09e5b9464d1ecd
+Author: BenJuan26 <brm.schubert@gmail.com>
+Date:   Tue Sep 10 19:33:36 2013 -0400
+
+    Making a simple change on the web app to test a pull from the command line.
+
+commit e971347a6b2f877775885e3f72bc855dc9ea2f29
+Author: Benjamin Schubert <brm.schubert@gmail.com>
+Date:   Tue Sep 10 19:28:33 2013 -0400
+
+    Added sheet.css from command line on local machine.
+
+commit b8ad627b10ffcb7b50efb294a4352dd02a4b76e4
+Author: BenJuan26 <brm.schubert@gmail.com>
+Date:   Tue Sep 10 19:18:33 2013 -0400
+
+    Added bens_file.html from web app
+
+commit 064a1183f16dd5c679d82e5b39c1dbf71516cffd
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Sep 10 18:38:02 2013 -0400
+
+    KILLBOT KILL
+
+commit 272d0159dd9d9f2298043ac56aff185cd169b9cf
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Sep 10 18:34:04 2013 -0400
+
+    Meow
+
+commit 65ad3186950dd020d65afb5e05e8cbbed5c31e1e
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Sep 10 18:30:38 2013 -0400
+
+    magic
+
+commit 42bcb4063ca2d1a4fbeb498979d8e2081ef7c633
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Sep 10 18:26:57 2013 -0400
+
+    Undoing Important Updates
+    
+    WTF AM I DOING OMG OMGOMG
+
+commit 672029f1a78229e1101345629999cbdb99e385cd
+Author: Nick Ward <nward24@uwo.ca>
+Date:   Tue Sep 10 18:25:04 2013 -0400
+
+    Important updates.txt
+
+commit 6a3c65845bb6de46e19abf9593a990e8e8945263
+Author: rsegal2 <rsegal2@uwo.ca>
+Date:   Tue Sep 10 18:15:16 2013 -0400
+
+    Update README.md
+
+commit 83c258e794c03975ed09070f7959798ba021a5b9
+Author: narwhaldisco <nward24@uwo.ca>
+Date:   Tue Sep 10 18:13:23 2013 -0400
+
+    Update README.md
+    
+    SUPER DUPER IMPORTANT STUFF
+
+commit ec43e023edcc607075da0f5353401b93651debda
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Tue Sep 10 18:03:41 2013 -0400
+
+    Update README.md
+
+commit e1d466be79339a981704e47c898ae16d0c0e37bf
+Author: narwhaldisco <nward24@uwo.ca>
+Date:   Tue Sep 10 17:58:54 2013 -0400
+
+    Update README.md
+    
+    super important stuff
+
+commit 59c27ec075734d1edfaab246712946822fd2bc58
+Author: Hogglo <zhoggard9@gmail.com>
+Date:   Tue Sep 10 14:57:49 2013 -0700
+
+    Initial commit
