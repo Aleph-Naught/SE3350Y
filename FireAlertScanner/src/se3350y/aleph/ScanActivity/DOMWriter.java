@@ -23,6 +23,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import se3350.aleph.Login.UserName;
 import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
 import se3350y.aleph.Listeners.OnSavedFinishedListener;
 
@@ -62,6 +63,8 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 		
 		// Root node; in this case, Franchisee
 		//Node firstNode = doc.getFirstChild();
+		
+		Log.i("UserName: ",UserName.getInstance().getUserName());
 		
 		int outerCounter = 0;
 		int innerCounter = 0;
