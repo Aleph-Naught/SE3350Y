@@ -1,5 +1,6 @@
 package se3350.aleph.Login;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,13 +38,7 @@ public class LoginActivity extends Activity {
 	private static final String FILENAME = "UserAccounts.txt";
 	private static final String ADMINKEYS = "AdminKeys.txt";
 	
-	/**
-	 * A dummy authentication store containing known user names and passwords.
-	 * TODO: remove after connecting to a real authentication system.
-	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
-
+	
 	/**
 	 * The default email to populate the email field with.
 	 */
@@ -108,14 +103,20 @@ public class LoginActivity extends Activity {
 						attemptLogin();
 					}
 				});
-				try {
-					getCredentials();
-				} catch (FileNotFoundException e) {
-					Log.i("Login", "Can't read info from SD Card");
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		
+	}
+	
+	protected void onResume () {
+		super.onResume();
+		try {
+			getCredentials();
+		} catch (FileNotFoundException e) {
+			Log.i("Login", "Can't read info from SD Card");
+			e.printStackTrace();
+			//File file = new File(context.getFilesDir(), FILENAME);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -126,6 +127,7 @@ public class LoginActivity extends Activity {
 	}
 	
 	public void getCredentials() throws IOException {
+		Log.i("Login", "GetCredentials called");
 		ArrayList<String> users = new ArrayList<String>();
 		ArrayList<String> passwords = new ArrayList<String>();
 //		Scanner input = new Scanner(userFile);
@@ -138,16 +140,20 @@ public class LoginActivity extends Activity {
 			raw += (char) content;
 		}
 		String [] rawArray = raw.split(":");
+		if (rawArray!=null)
+			Log.i("Login", ""+rawArray.length);
+		if (rawArray.length%2==0) {
 		for (int i=0; i<rawArray.length; i+=2) {
 			users.add(rawArray[i]);
 			passwords.add(rawArray[i+1]);
-		}
+		}}
 		userHashCodes = new int [users.size()];
 		passwordHashCodes = new int [passwords.size()];
+		if (users.size()>=1 && passwords.size()>=1) {
 		for (int i=0; i<users.size(); i++) {
 			userHashCodes[i] = Integer.parseInt(users.get(i));
 			passwordHashCodes[i] = Integer.parseInt(passwords.get(i));
-		}
+		}}
 	}
 
 	/**
@@ -286,6 +292,7 @@ public class LoginActivity extends Activity {
 		}
 		catch (FileNotFoundException e) {
 			Log.i("Admin Validation", "FileNotFoundException");
+			Toast.makeText(getBaseContext(), getString(R.string.error_adminkey_file_missing), Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			Log.i("Admin Validation", "IOException");
@@ -299,12 +306,9 @@ public class LoginActivity extends Activity {
 		try {
 			
 			
-			
+			String toWrite;
 			PrintWriter pw = new PrintWriter(openFileOutput(FILENAME, MODE_APPEND));
-			String toWrite = ":"+user+":"+pass;
-//			for (int i=0; i<userHashCodes.length; i++) {
-//				toWrite+=":"+userHashCodes[i]+":"+passwordHashCodes[i];
-//			}
+			toWrite = user+":"+pass+":";
 			pw.write(toWrite);
 			pw.close();
 			Toast.makeText(getBaseContext(), getString(R.string.user_registered), Toast.LENGTH_SHORT).show();
@@ -374,13 +378,7 @@ public class LoginActivity extends Activity {
 			// TODO: attempt authentication against a network service.
 
 
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mUsername)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
-			}
+			
 
 			// TODO: register the new account here.
 			return true;

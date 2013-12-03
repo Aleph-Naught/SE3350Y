@@ -18,5 +18,6 @@
     <string name="prompt_adminkey">Enter an administrator key to authorize registration:</string>
     <string name="button_register">Register</string>
     <string name="error_invalid_adminkey">The administrator key is invalid.</string>
+    <string name="error_adminkey_file_missing">Validation failed. Please contact an IT administrator.</string>
 
 </resources>
