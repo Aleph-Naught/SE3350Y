@@ -3,7 +3,9 @@ package se3350y.aleph.ScanActivity;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -59,15 +61,35 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 	 * @throws SDCardException 
 	 */
 	public void saveXML(ArrayList<Equipment> list, String fromPath) throws XPathExpressionException, SAXException, IOException, ParserConfigurationException, TransformerException, SDCardException{
+		
 		Document doc = getDOM();
+		
+		XPath xpath = XPathFactory.newInstance().newXPath();
+		
+		Node roomNode = ((NodeList)xpath.evaluate(fromPath, doc, XPathConstants.NODESET)).item(0);
+		
+		Node serviceAddress = ((Node)xpath.evaluate("../..",roomNode, XPathConstants.NODE));
+		
+		//Set InspectorID
+		serviceAddress.getAttributes().getNamedItem("InspectorID").setNodeValue(UserName.getInstance().getUserName());
+		
+		//Set Date
+		Calendar c = Calendar.getInstance();
+		
+		SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd hh:mma");
+		String formattedDate = df.format(c.getTime());
+		
+		formattedDate.replace("A", "AM");
+		formattedDate.replace("P", "PM");
+		
+		serviceAddress.getAttributes().getNamedItem("testTimeStamp").setNodeValue(formattedDate);
 		
 		// Root node; in this case, Franchisee
 		//Node firstNode = doc.getFirstChild();
 		
-		Log.i("UserName: ",UserName.getInstance().getUserName());
-		
 		int outerCounter = 0;
 		int innerCounter = 0;
+		
 		for (int j=0; j<list.size(); j++){
 			// Get the Equipment
 			Equipment currEquip = list.get(j);
@@ -129,8 +151,7 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 				}
 				
 				// Modify the underlying node
-				XPath xpath = XPathFactory.newInstance().newXPath();
-				Node roomNode = ((NodeList)xpath.evaluate(fromPath, doc, XPathConstants.NODESET)).item(0);
+				
 				setPassFail(currID, inspectName, passFail, roomNode);
 				setNotes(currID, inspectName, currElement.getNotes(), roomNode);
 				innerCounter++;
