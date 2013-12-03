@@ -2,6 +2,8 @@ package se3350y.aleph.ScanActivity;
 
 public class SDCardException extends Exception {
 
+	private static final long serialVersionUID = 1L;
+
 	//Parameterless Constructor
     public SDCardException() {}
 

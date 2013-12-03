@@ -20,22 +20,15 @@ import se3350.aleph.Login.LoginActivity;
 import se3350y.aleph.ScanActivity.DOMActivity;
 import se3350y.aleph.ScanActivity.ScanActivity;
 import se3350y.aleph.firealertscanner.R;
-import se3350y.aleph.firealertscanner.R.id;
-import se3350y.aleph.firealertscanner.R.layout;
-import se3350y.aleph.firealertscanner.R.menu;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -304,11 +297,6 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 	}
 
 	public void getDataInput(View view) throws XPathExpressionException, IOException {
-
-		Spinner client = (Spinner) findViewById(R.id.clientSpinner),
-				serviceAddress = (Spinner) findViewById(R.id.serviceAddressSpinner);
-		String clientSelection = client.getSelectedItem().toString(),
-				serviceAddressSelection = serviceAddress.getSelectedItem().toString();
 
 		Intent intent = new Intent(this, ScanActivity.class);
 		String path = "/Franchisee/Client[@name='";

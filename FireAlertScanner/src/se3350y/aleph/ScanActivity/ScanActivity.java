@@ -100,7 +100,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		ExpAdapter.setOnInspectionChangedListener(new OnInspectionChangedListener(){
 			@Override
 			public void onInspectionChanged() {
-				// TODO Auto-generated method stub
 				Log.i("Scan Activity","Inspection Change Made");
 				changesMade = true;
 				
@@ -141,7 +140,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
 							dialog.cancel();
 						}
 					});
@@ -310,7 +308,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 				@Override
 				public void OnSavedFinished() {
-					// TODO Auto-generated method stub
 					
 					saveButton.setEnabled(true);
 					saveButton.setText("Save");
@@ -444,7 +441,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 			try {
 				attrNodes = (NodeList) xpath.evaluate("./*", element, XPathConstants.NODESET);
 			} catch (XPathExpressionException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
@@ -707,7 +703,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 	private void promptImcomplete(final AdapterView<?> parent, final View view, final int pos,
 			final long id) {
-		// TODO Auto-generated method stub
 		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
 		    @Override
 		    public void onClick(DialogInterface dialog, int which) {

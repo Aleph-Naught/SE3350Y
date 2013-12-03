@@ -12,8 +12,6 @@ import org.w3c.dom.Document;
 
 import se3350y.aleph.ScanActivity.DOMWriter;
 
-import android.app.ProgressDialog;
-import android.content.res.Resources;
 import android.util.Log;
 import android.widget.Toast;
 

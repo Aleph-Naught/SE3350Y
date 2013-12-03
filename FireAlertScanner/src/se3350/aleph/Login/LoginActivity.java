@@ -117,7 +117,6 @@ public class LoginActivity extends Activity {
 			try {
 				PrintWriter pw = new PrintWriter(openFileOutput(FILENAME, MODE_APPEND));
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
@@ -137,7 +136,6 @@ public class LoginActivity extends Activity {
 	}
 
 	private void adminFileInit() {
-		// TODO Auto-generated method stub
 		try {
 			//request an admin key to be stored in memory for future use
 			final PrintWriter pw = new PrintWriter(openFileOutput(ADMINKEYS, MODE_APPEND));
@@ -337,7 +335,6 @@ public class LoginActivity extends Activity {
 			Log.i("Admin Validation", "FileNotFoundException");
 			Toast.makeText(getBaseContext(), getString(R.string.error_adminkey_file_missing), Toast.LENGTH_SHORT).show();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			Log.i("Admin Validation", "IOException");
 			e.printStackTrace();
 		}
@@ -347,25 +344,22 @@ public class LoginActivity extends Activity {
 	
 	private void registerUser(int user, int pass) {
 		try {
-			
-			
 			String toWrite;
 			PrintWriter pw = new PrintWriter(openFileOutput(FILENAME, MODE_APPEND));
 			toWrite = user+":"+pass+":";
 			pw.write(toWrite);
 			pw.close();
+			
 			Toast.makeText(getBaseContext(), getString(R.string.user_registered), Toast.LENGTH_SHORT).show();
+			
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
+			
 			Intent intent = new Intent(this, MainDataEntry.class);
 			startActivity(intent);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -420,12 +414,6 @@ public class LoginActivity extends Activity {
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			// TODO: attempt authentication against a network service.
-
-
-			
-
-			// TODO: register the new account here.
 			return true;
 		}
 

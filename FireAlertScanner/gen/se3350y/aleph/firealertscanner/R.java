@@ -97,13 +97,14 @@ public final class R {
         public static final int activity_main_data_entry=0x7f030003;
         public static final int activity_scan=0x7f030004;
         public static final int dialog_adminkey=0x7f030005;
-        public static final int dialog_tcp=0x7f030006;
-        public static final int emergencylight_yesno_item=0x7f030007;
-        public static final int extinguisher_item=0x7f030008;
-        public static final int firehosecabinet_goodpoor_item=0x7f030009;
-        public static final int firehosecabinet_yesno_item=0x7f03000a;
-        public static final int list_group=0x7f03000b;
-        public static final int simple_spinner_dropdown_item=0x7f03000c;
+        public static final int dialog_initialize_admin=0x7f030006;
+        public static final int dialog_tcp=0x7f030007;
+        public static final int emergencylight_yesno_item=0x7f030008;
+        public static final int extinguisher_item=0x7f030009;
+        public static final int firehosecabinet_goodpoor_item=0x7f03000a;
+        public static final int firehosecabinet_yesno_item=0x7f03000b;
+        public static final int list_group=0x7f03000c;
+        public static final int simple_spinner_dropdown_item=0x7f03000d;
     }
     public static final class menu {
         public static final int login=0x7f080000;
@@ -120,6 +121,7 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int action_sign_in_register=0x7f050024;
         public static final int action_sign_in_short=0x7f050025;
+        public static final int admin_init_success=0x7f050032;
         public static final int app_name=0x7f050000;
         public static final int button_register=0x7f05002f;
         public static final int client_contract_textview=0x7f05000c;

@@ -1,7 +1,6 @@
 package se3350y.aleph.ScanActivity;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,10 +25,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import se3350.aleph.Login.UserName;
-import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
 import se3350y.aleph.Listeners.OnSavedFinishedListener;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
@@ -252,7 +249,6 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 	public void writeDOMResults(Document doc) throws TransformerException, IOException{
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		DOMSource source = new DOMSource(doc);
-		// TODO Might change this to a different name, or pass the filename as a method argument.
 		File modifiedFile = new File(Environment.getExternalStorageDirectory(), XML_FILENAME);
 		
 		if(modifiedFile.exists())
@@ -270,28 +266,21 @@ public class DOMWriter extends AsyncTask<savePackage, Void, String> {
 
 	@Override
 	protected String doInBackground(savePackage... params) {
-		// TODO Auto-generated method stub
 		
 		try {
 			saveXML(params[0].getEquipment(), params[0].getPath());
 		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "Error reading/writing file.";
 		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SDCardException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return "SD Card not available.";
 		}

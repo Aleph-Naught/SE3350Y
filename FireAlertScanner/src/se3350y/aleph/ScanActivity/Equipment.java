@@ -3,7 +3,6 @@ package se3350y.aleph.ScanActivity;
 import java.util.ArrayList;
 
 import se3350y.aleph.Listeners.OnElementChangedListener;
-import se3350y.aleph.Listeners.OnInspectionElementCompletedListener;
 
 import android.graphics.Color;
 

@@ -2,12 +2,8 @@ package se3350y.aleph.ScanActivity;
 
 import se3350y.aleph.firealertscanner.R;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -33,13 +29,11 @@ public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 	}
 	
 	public void setGoodPoor(int i) {
-		// TODO Auto-generated method stub
 		goodPoor = i;
 		
 	}
 
 	public int getGoodPoor() {
-		// TODO Auto-generated method stub
 		return goodPoor;
 	}
 	
@@ -72,7 +66,6 @@ public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 				@Override
 				public void onItemSelected(AdapterView<?> arg0, View arg1,
 						int posSelected, long arg3) {
-					// TODO Auto-generated method stub
 					
 					FireHoseCabinetGoodPoorElement element = (FireHoseCabinetGoodPoorElement) viewHolder.VH_spinner.getTag();
 					
@@ -89,7 +82,6 @@ public class FireHoseCabinetGoodPoorElement extends InspectionElement {
 
 				@Override
 				public void onNothingSelected(AdapterView<?> arg0) {
-					// TODO Auto-generated method stub
 				}
             });
 			

@@ -1,7 +1,5 @@
 package se3350y.aleph.MainDataEntry;
 
-import android.widget.Spinner;
-
 public class getValuesPackage {
 	
 	String expression;

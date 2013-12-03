@@ -1,22 +1,11 @@
 package se3350y.aleph.ScanActivity;
 
 import se3350y.aleph.firealertscanner.R;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.res.Resources;
-import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
-import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.RadioButton;
 
@@ -58,7 +47,6 @@ public class ExtinguisherPassFailElement extends InspectionElement {
 
 				@Override
 				public void onCheckedChanged(RadioGroup group, int checkedId) {
-					// TODO Auto-generated method stub
 					
 					ExtinguisherPassFailElement element = (ExtinguisherPassFailElement) viewHolder.VH_radioGroupPassFail.getTag();
 					
@@ -83,7 +71,6 @@ public class ExtinguisherPassFailElement extends InspectionElement {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					
 					
 					setChanged(true);
@@ -96,7 +83,6 @@ public class ExtinguisherPassFailElement extends InspectionElement {
 
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					
 					setChanged(true);
 					makeNotesDialog();
@@ -137,7 +123,6 @@ public class ExtinguisherPassFailElement extends InspectionElement {
 	}
 	
 	public void setPassFail(int i) {
-		// TODO Auto-generated method stub
 		passFail = i;
 		
 	}
