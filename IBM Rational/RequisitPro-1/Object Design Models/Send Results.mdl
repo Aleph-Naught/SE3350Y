@@ -11,7 +11,43 @@
 	(object Attribute
 	    tool       	"Java"
 	    name       	"IDE"
-	    value      	"Internal Editor"))
+	    value      	"Internal Editor")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply1"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply2"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagName3"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagText3"
+	    value      	"")
+	(object Attribute
+	    tool       	"Java"
+	    name       	"UserDefineTagApply3"
+	    value      	""))
     quid       	"527FA5F00058"
     enforceClosureAutoLoad 	FALSE
     defaults   	(object defaults
@@ -59,103 +95,165 @@
 	subsystem  	"Component View"
 	quidu      	"527FA5F0005B"
 	logical_models 	(list unit_reference_list
-	    (object Class "Result"
-		quid       	"527FAA9002BB"
+	    (object Class "Document"
+		quid       	"529E2FD403C1")
+	    (object Class "MainDataEntry"
+		quid       	"529E301F02B7"
 		operations 	(list Operations
-		    (object Operation "sendResult"
-			quid       	"527FAB5102EE"
+		    (object Operation "launchTCP"
+			quid       	"529E32B301B8"
+			parameters 	(list Parameters
+			    (object Parameter "View"
+				quid       	"529E32E80332"))
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0)))
+	    (object Class "AlertDialog"
+		quid       	"529E302802E3"
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "ipView"
+			quid       	"529E33420050"
+			type       	"EditText")
+		    (object ClassAttribute "portView"
+			quid       	"529E334D0066"
+			type       	"EditText")
+		    (object ClassAttribute "positiveButton"
+			quid       	"529E33550037"
+			type       	"Button")
+		    (object ClassAttribute "negativeButton"
+			quid       	"529E337E002A"
+			type       	"Button")))
+	    (object Class "TCPmodel"
+		quid       	"529E30300193"
+		operations 	(list Operations
+		    (object Operation "send"
+			quid       	"529E349C01F6"
+			parameters 	(list Parameters
+			    (object Parameter "String"
+				quid       	"529E34A4035B"))
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0)
-		    (object Operation "select"
-			quid       	"527FB36401EE"
+		    (object Operation "close"
+			quid       	"529E34A40346"
 			concurrency 	"Sequential"
 			opExportControl 	"Public"
 			uid        	0))
 		class_attributes 	(list class_attribute_list
-		    (object ClassAttribute "title"
-			quid       	"527FAB18039A"
+		    (object ClassAttribute "RTSPSocket"
+			quid       	"529E342F03A1"
+			type       	"Socket")
+		    (object ClassAttribute "ServerIPAdd"
+			quid       	"529E34490182"
+			type       	"InetAddress")
+		    (object ClassAttribute "ClientIPAdd"
+			quid       	"529E345D0320"
+			type       	"InetAddress")
+		    (object ClassAttribute "RTSP_Port"
+			quid       	"529E346B0251"
+			type       	"int")))
+	    (object Class "TCPController"
+		quid       	"529E303D00A5"
+		operations 	(list Operations
+		    (object Operation "send"
+			quid       	"529E350B016C"
+			parameters 	(list Parameters
+			    (object Parameter "String"
+				quid       	"529E35120195"))
+			concurrency 	"Sequential"
+			opExportControl 	"Public"
+			uid        	0))
+		class_attributes 	(list class_attribute_list
+		    (object ClassAttribute "ServerIP"
+			quid       	"529E34E300DD"
 			type       	"String")
-		    (object ClassAttribute "text"
-			quid       	"527FAB240146"
-			type       	"String")
-		    (object ClassAttribute "isComplete"
-			quid       	"527FAE4C030E"
-			type       	"boolean")
-		    (object ClassAttribute "isSelected"
-			quid       	"527FBAE600A8"
-			type       	"boolean")))
-	    (object Class "Menu"
-		quid       	"527FB68C00A3")
-	    (object Class "SendResultsActivity"
-		quid       	"527FB6E10054")
-	    (object Association "displays"
-		quid       	"527FB6A100FF"
+		    (object ClassAttribute "ServerPort"
+			quid       	"529E34E8007B"
+			type       	"int")))
+	    (object Association "$UNNAMED$0"
+		quid       	"529E305D0232"
 		roles      	(list role_list
-		    (object Role "displayed"
-			quid       	"527FB6A50103"
-			label      	"displayed"
-			supplier   	"Logical View::Result"
-			quidu      	"527FAA9002BB"
-			client_cardinality 	(value cardinality "1..*")
+		    (object Role "doc"
+			quid       	"529E305E0266"
+			label      	"doc"
+			supplier   	"Logical View::Document"
+			quidu      	"529E2FD403C1"
+			client_cardinality 	(value cardinality "1")
 			is_navigable 	TRUE)
-		    (object Role "container"
-			quid       	"527FB6A50106"
-			label      	"container"
-			supplier   	"Logical View::Menu"
-			quidu      	"527FB68C00A3"
+		    (object Role "$UNNAMED$1"
+			quid       	"529E305E0268"
+			supplier   	"Logical View::TCPController"
+			quidu      	"529E303D00A5"
 			client_cardinality 	(value cardinality "1")
 			is_navigable 	TRUE)))
-	    (object Association "controls"
-		quid       	"527FB7010091"
+	    (object Association "$UNNAMED$2"
+		quid       	"529E30B30318"
 		roles      	(list role_list
-		    (object Role "controlled"
-			quid       	"527FB7030396"
-			label      	"controlled"
-			supplier   	"Logical View::Menu"
-			quidu      	"527FB68C00A3"
+		    (object Role "_TCPmodel"
+			quid       	"529E30B40367"
+			label      	"_TCPmodel"
+			supplier   	"Logical View::TCPmodel"
+			quidu      	"529E30300193"
 			client_cardinality 	(value cardinality "1"))
-		    (object Role "controller"
-			quid       	"527FB7030399"
-			label      	"controller"
-			supplier   	"Logical View::SendResultsActivity"
-			quidu      	"527FB6E10054"
+		    (object Role "$UNNAMED$3"
+			quid       	"529E30B40369"
+			supplier   	"Logical View::TCPController"
+			quidu      	"529E303D00A5"
 			client_cardinality 	(value cardinality "1"))))
+	    (object Association "$UNNAMED$4"
+		quid       	"529E315A0025"
+		roles      	(list role_list
+		    (object Role "txt"
+			quid       	"529E315A03BF"
+			label      	"txt"
+			supplier   	"Logical View::Document"
+			quidu      	"529E2FD403C1"
+			client_cardinality 	(value cardinality "1"))
+		    (object Role "$UNNAMED$5"
+			quid       	"529E315A03C1"
+			supplier   	"Logical View::TCPmodel"
+			quidu      	"529E30300193"
+			client_cardinality 	(value cardinality "1"))))
+	    (object Association "$UNNAMED$6"
+		quid       	"529E320A01BD"
+		roles      	(list role_list
+		    (object Role "_TCPController"
+			quid       	"529E320B01E5"
+			label      	"_TCPController"
+			supplier   	"Logical View::TCPController"
+			quidu      	"529E303D00A5"
+			client_cardinality 	(value cardinality "1"))
+		    (object Role "_view"
+			quid       	"529E320B01E7"
+			label      	"_view"
+			supplier   	"Logical View::MainDataEntry"
+			quidu      	"529E301F02B7"
+			client_cardinality 	(value cardinality "1"))))
+	    (object Association "$UNNAMED$7"
+		quid       	"529E328C0390"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$8"
+			quid       	"529E328F006A"
+			supplier   	"Logical View::MainDataEntry"
+			quidu      	"529E301F02B7"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$9"
+			quid       	"529E328F006C"
+			supplier   	"Logical View::AlertDialog"
+			quidu      	"529E302802E3"
+			is_navigable 	TRUE)))
 	    (object Mechanism @1
 		logical_models 	(list unit_reference_list
 		    (object Object "Inspector"
 			quid       	"527FAEFB0258"
 			collaborators 	(list link_list
 			    (object Link
-				quid       	"527FB3B10138"
-				supplier   	"Menu"
-				quidu      	"527FAF1B00B8"
+				quid       	"529E357001C3"
+				supplier   	"MainDataEntry"
+				quidu      	"529E35310062"
 				messages   	(list Messages
-				    (object Message "selectResults()"
-					quid       	"527FBA7B0196"
-					frequency  	"Aperiodic"
-					synchronization 	"Simple"
-					dir        	"FromClientToSupplier"
-					sequence   	"4"
-					ordinal    	4
-					quidu      	"000000000000"
-					creation   	FALSE)
-				    (object Message "sendResults()"
-					quid       	"527FBB2A036F"
-					frequency  	"Aperiodic"
-					synchronization 	"Simple"
-					dir        	"FromClientToSupplier"
-					sequence   	"5"
-					ordinal    	6
-					quidu      	"000000000000"
-					creation   	FALSE)))
-			    (object Link
-				quid       	"527FB98C0254"
-				supplier   	"SendResultsButton"
-				quidu      	"527FB8FC03C3"
-				messages   	(list Messages
-				    (object Message "sendResults()"
-					quid       	"527FB98C0255"
+				    (object Message "launchTCP()"
+					quid       	"529E357001C4"
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
@@ -166,101 +264,115 @@
 			persistence 	"Transient"
 			creationObj 	FALSE
 			multi      	FALSE)
-		    (object Object "Menu"
-			quid       	"527FAF1B00B8"
+		    (object Object "MainDataEntry"
+			quid       	"529E35310062"
 			collaborators 	(list link_list
 			    (object Link
-				quid       	"527FB43F00E0"
-				supplier   	"SendResultsActivity"
-				quidu      	"527FAF3C0042"
+				quid       	"529E35BE0185"
+				supplier   	"AlertDialog"
+				quidu      	"529E35B10116"
 				messages   	(list Messages
 				    (object Message "<<create>>"
-					quid       	"527FB9DC003C"
-					frequency  	"Aperiodic"
-					synchronization 	"Simple"
-					dir        	"ToClientFromSupplier"
-					sequence   	"2"
-					ordinal    	2
-					quidu      	"000000000000"
-					creation   	TRUE)))
-			    (object Link
-				quid       	"527FBA1002BC"
-				supplier   	"Result"
-				quidu      	"527FB2380333"
-				messages   	(list Messages
-				    (object Message "select()"
-					quid       	"527FBB0B029A"
-					frequency  	"Aperiodic"
-					synchronization 	"Simple"
-					dir        	"FromClientToSupplier"
-					sequence   	"4.1"
-					ordinal    	5
-					quidu      	"000000000000"
-					creation   	FALSE)
-				    (object Message "sendResult()"
-					quid       	"527FBB3801A8"
-					frequency  	"Aperiodic"
-					synchronization 	"Simple"
-					dir        	"FromClientToSupplier"
-					sequence   	"5.1"
-					ordinal    	7
-					quidu      	"000000000000"
-					creation   	FALSE))))
-			persistence 	"Transient"
-			creationObj 	TRUE
-			multi      	FALSE)
-		    (object Object "SendResultsActivity"
-			quid       	"527FAF3C0042"
-			collaborators 	(list link_list
-			    (object Link
-				quid       	"527FB45D0044"
-				supplier   	"Result"
-				quidu      	"527FB2380333"
-				messages   	(list Messages
-				    (object Message "<<create>>"
-					quid       	"527FBAB10077"
-					frequency  	"Aperiodic"
-					synchronization 	"Simple"
-					dir        	"FromClientToSupplier"
-					sequence   	"3"
-					ordinal    	3
-					quidu      	"000000000000"
-					creation   	TRUE))))
-			persistence 	"Transient"
-			creationObj 	TRUE
-			multi      	FALSE)
-		    (object Object "Result"
-			quid       	"527FB2380333"
-			persistence 	"Transient"
-			creationObj 	TRUE
-			multi      	FALSE)
-		    (object Object "SendResultsButton"
-			quid       	"527FB8FC03C3"
-			collaborators 	(list link_list
-			    (object Link
-				quid       	"527FB9B70359"
-				supplier   	"SendResultsActivity"
-				quidu      	"527FAF3C0042"
-				messages   	(list Messages
-				    (object Message "<<create>>"
-					quid       	"527FB9B7035A"
+					quid       	"529E35BE0186"
 					frequency  	"Aperiodic"
 					synchronization 	"Simple"
 					dir        	"FromClientToSupplier"
 					sequence   	"1.1"
 					ordinal    	1
 					quidu      	"000000000000"
-					creation   	TRUE))))
+					creation   	TRUE)
+				    (object Message "show()"
+					quid       	"529E35EE0321"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.2"
+					ordinal    	2
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "AlertDialog"
+			quid       	"529E35B10116"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"529E364B021E"
+				supplier   	"TCPController"
+				quidu      	"529E362C035C"
+				messages   	(list Messages
+				    (object Message "send()"
+					quid       	"529E364B021F"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.2.1"
+					ordinal    	3
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	TRUE
+			multi      	FALSE)
+		    (object Object "TCPController"
+			quid       	"529E362C035C"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"529E3667000F"
+				supplier   	"Document"
+				quidu      	"529E365E034F"
+				messages   	(list Messages
+				    (object Message "<<create>>"
+					quid       	"529E36670010"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1.2.1.1"
+					ordinal    	4
+					quidu      	"000000000000"
+					creation   	TRUE)))
+			    (object Link
+				quid       	"529E36AD0110"
+				supplier   	"TCPmodel"
+				quidu      	"529E368902FA"
+				messages   	(list Messages
+				    (object Message "RTSPSend(String txt)"
+					quid       	"529E36AD0111"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2"
+					ordinal    	5
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "close()"
+					quid       	"529E36ED01FE"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"3"
+					ordinal    	6
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "Document"
+			quid       	"529E365E034F"
+			persistence 	"Transient"
+			creationObj 	TRUE
+			multi      	FALSE)
+		    (object Object "TCPmodel"
+			quid       	"529E368902FA"
 			persistence 	"Transient"
 			creationObj 	FALSE
 			multi      	FALSE))))
 	statemachine 	(object State_Machine "State/Activity Model"
 	    quid       	"527FBF4F0392"
 	    states     	(list States
-		(object State "$UNNAMED$0"
+		(object State "$UNNAMED$10"
 		    quid       	"527FBF6D0220"
 		    type       	"StartState")
-		(object State "$UNNAMED$1"
+		(object State "$UNNAMED$11"
 		    quid       	"527FBF6F0117"
 		    type       	"EndState")
 		(object State "Result Incomplete"
@@ -277,7 +389,7 @@
 		    label      	""
 		    supplier   	"Logical View::State/Activity Model::Result Incomplete"
 		    supplier_quidu 	"527FBF8F00EB"
-		    client     	"$UNNAMED$0"
+		    client     	"$UNNAMED$10"
 		    client_quidu 	"527FBF6D0220"
 		    Event      	(object Event "Create Result"
 			quid       	"527FBFD40002")
@@ -297,7 +409,7 @@
 		(object State_Transition
 		    quid       	"527FBFE30301"
 		    label      	""
-		    supplier   	"$UNNAMED$1"
+		    supplier   	"$UNNAMED$11"
 		    supplier_quidu 	"527FBF6F0117"
 		    client     	"Logical View::State/Activity Model::Result Complete"
 		    client_quidu 	"527FBF900342"
@@ -349,13 +461,13 @@
 		    origin_x   	0
 		    origin_y   	0
 		    items      	(list diagram_item_list
-			(object StateView "StartState" "$UNNAMED$0" @2
+			(object StateView "StartState" "$UNNAMED$10" @2
 			    location   	(253, 561)
 			    icon_style 	"Icon"
 			    line_color 	3342489
 			    quidu      	"527FBF6D0220"
 			    autoResize 	TRUE)
-			(object StateView "EndState" "$UNNAMED$1" @3
+			(object StateView "EndState" "$UNNAMED$11" @3
 			    location   	(2023, 561)
 			    icon_style 	"Icon"
 			    line_color 	3342489
@@ -664,11 +776,11 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Logical View::Result" @18
+		    (object ClassView "Class" "Logical View::Document" @18
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(1422, 734)
+			location   	(956, 350)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -680,36 +792,18 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@18
-			    location   	(1204, 528)
+			    location   	(848, 299)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	436
+			    max_width  	216
 			    justify    	0
-			    label      	"Result")
+			    label      	"Document")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"527FAA9002BB"
-			compartment 	(object Compartment
-			    Parent_View 	@18
-			    location   	(1204, 589)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    icon_style 	"Icon"
-			    fill_color 	13434879
-			    anchor     	2
-			    nlines     	7
-			    max_width  	434
-			    justify    	1)
-			width      	454
-			height     	436
+			quidu      	"529E2FD403C1"
+			width      	234
+			height     	126
 			annotation 	8
 			autoResize 	TRUE)))
 	    (object ClassDiagram "SendResultsClassesRevised"
@@ -721,11 +815,11 @@
 		origin_x   	16
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Logical View::Result" @19
+		    (object ClassView "Class" "Logical View::TCPmodel" @19
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(2012, 744)
+			location   	(1263, 1234)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -737,19 +831,19 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@19
-			    location   	(1796, 538)
+			    location   	(1002, 1028)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	432
+			    max_width  	522
 			    justify    	0
-			    label      	"Result")
+			    label      	"TCPmodel")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"527FAA9002BB"
+			quidu      	"529E30300193"
 			compartment 	(object Compartment
 			    Parent_View 	@19
-			    location   	(1796, 599)
+			    location   	(1002, 1089)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -763,17 +857,17 @@
 			    fill_color 	13434879
 			    anchor     	2
 			    nlines     	7
-			    max_width  	440
+			    max_width  	519
 			    justify    	1)
-			width      	450
+			width      	540
 			height     	436
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::SendResultsActivity" @20
+		    (object ClassView "Class" "Logical View::Document" @20
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(262, 746)
+			location   	(2207, 718)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -785,25 +879,22 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@20
-			    location   	(62, 695)
+			    location   	(2100, 667)
 			    fill_color 	13434879
 			    nlines     	1
-			    max_width  	400
+			    max_width  	214
 			    justify    	0
-			    label      	"SendResultsActivity")
+			    label      	"Document")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"527FB6E10054"
-			width      	418
+			quidu      	"529E2FD403C1"
+			width      	232
 			height     	126
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Menu" @21
-			ShowCompartmentStereotypes 	TRUE
-			IncludeAttribute 	TRUE
-			IncludeOperation 	TRUE
-			location   	(1103, 743)
+		    (object AssociationViewNew "$UNNAMED$4" @21
+			location   	(1811, 933)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -813,60 +904,13 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@21
-			    location   	(1022, 692)
-			    fill_color 	13434879
-			    nlines     	1
-			    max_width  	162
-			    justify    	0
-			    label      	"Menu")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"527FB68C00A3"
-			height     	126
-			annotation 	8
-			autoResize 	TRUE)
-		    (object AssociationViewNew "displays" @22
-			location   	(1489, 743)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object SegLabel @23
-			    Parent_View 	@22
-			    location   	(1489, 684)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	TRUE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    anchor     	1
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	450
-			    justify    	0
-			    label      	"displays"
-			    pctDist    	0.500000
-			    height     	60
-			    orientation 	0)
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"527FB6A100FF"
+			quidu      	"529E315A0025"
 			roleview_list 	(list RoleViews
-			    (object RoleView "displayed" @24
-				Parent_View 	@22
-				location   	(368, 112)
+			    (object RoleView "txt" @22
+				Parent_View 	@21
+				location   	(548, -301)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -876,9 +920,9 @@
 				    strike     	FALSE
 				    color      	0
 				    default_color 	TRUE)
-				label      	(object SegLabel @25
-				    Parent_View 	@24
-				    location   	(1672, 707)
+				label      	(object SegLabel @23
+				    Parent_View 	@22
+				    location   	(1998, 796)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -891,24 +935,24 @@
 				    anchor     	1
 				    anchor_loc 	1
 				    nlines     	1
-				    max_width  	196
+				    max_width  	76
 				    justify    	0
-				    label      	"+displayed"
-				    pctDist    	0.616162
-				    height     	36
+				    label      	"+txt"
+				    pctDist    	0.724326
+				    height     	32
 				    orientation 	0)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"527FB6A50103"
-				client     	@22
-				supplier   	@19
+				quidu      	"529E315A03BF"
+				client     	@21
+				supplier   	@20
 				vertices   	(list Points
-				    (1489, 743)
-				    (1786, 743))
+				    (1811, 933)
+				    (2090, 781))
 				line_style 	0
-				label      	(object SegLabel @26
-				    Parent_View 	@24
-				    location   	(1756, 797)
+				label      	(object SegLabel @24
+				    Parent_View 	@22
+				    location   	(2082, 855)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -923,13 +967,13 @@
 				    nlines     	1
 				    max_width  	15
 				    justify    	0
-				    label      	"1..*"
-				    pctDist    	0.900000
-				    height     	54
+				    label      	"1"
+				    pctDist    	0.867217
+				    height     	62
 				    orientation 	1))
-			    (object RoleView "container" @27
-				Parent_View 	@22
-				location   	(368, 112)
+			    (object RoleView "$UNNAMED$5" @25
+				Parent_View 	@21
+				location   	(548, -301)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -939,39 +983,18 @@
 				    strike     	FALSE
 				    color      	0
 				    default_color 	TRUE)
-				label      	(object SegLabel @28
-				    Parent_View 	@27
-				    location   	(1301, 701)
-				    font       	(object Font
-					size       	10
-					face       	"Arial"
-					bold       	FALSE
-					italics    	FALSE
-					underline  	FALSE
-					strike     	FALSE
-					color      	0
-					default_color 	TRUE)
-				    anchor     	1
-				    anchor_loc 	1
-				    nlines     	1
-				    max_width  	194
-				    justify    	0
-				    label      	"+container"
-				    pctDist    	0.635135
-				    height     	42
-				    orientation 	1)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"527FB6A50106"
-				client     	@22
-				supplier   	@21
+				quidu      	"529E315A03C1"
+				client     	@21
+				supplier   	@19
 				vertices   	(list Points
-				    (1489, 743)
-				    (1193, 743))
+				    (1811, 933)
+				    (1533, 1085))
 				line_style 	0
-				label      	(object SegLabel @29
-				    Parent_View 	@27
-				    location   	(1224, 797)
+				label      	(object SegLabel @26
+				    Parent_View 	@25
+				    location   	(1587, 1117)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -990,8 +1013,11 @@
 				    pctDist    	0.900000
 				    height     	54
 				    orientation 	0))))
-		    (object AssociationViewNew "controls" @30
-			location   	(741, 744)
+		    (object ClassView "Class" "Logical View::TCPController" @27
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1261, 725)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1001,34 +1027,58 @@
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @31
-			    Parent_View 	@30
-			    location   	(741, 685)
+			label      	(object ItemLabel
+			    Parent_View 	@27
+			    location   	(1089, 594)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	344
+			    justify    	0
+			    label      	"TCPController")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"529E303D00A5"
+			compartment 	(object Compartment
+			    Parent_View 	@27
+			    location   	(1089, 655)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
 				bold       	FALSE
-				italics    	TRUE
+				italics    	FALSE
 				underline  	FALSE
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    anchor     	1
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	450
-			    justify    	0
-			    label      	"controls"
-			    pctDist    	0.500000
-			    height     	60
-			    orientation 	0)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	4
+			    max_width  	341
+			    justify    	1)
+			width      	362
+			height     	286
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$0" @28
+			location   	(1766, 720)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
 			stereotype 	TRUE
 			line_color 	3342489
-			quidu      	"527FB7010091"
+			quidu      	"529E305D0232"
 			roleview_list 	(list RoleViews
-			    (object RoleView "controlled" @32
-				Parent_View 	@30
-				location   	(335, -2)
+			    (object RoleView "doc" @29
+				Parent_View 	@28
+				location   	(467, -1)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -1038,9 +1088,9 @@
 				    strike     	FALSE
 				    color      	0
 				    default_color 	TRUE)
-				label      	(object SegLabel @33
-				    Parent_View 	@32
-				    location   	(915, 701)
+				label      	(object SegLabel @30
+				    Parent_View 	@29
+				    location   	(2018, 681)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -1053,24 +1103,360 @@
 				    anchor     	1
 				    anchor_loc 	1
 				    nlines     	1
-				    max_width  	201
+				    max_width  	106
 				    justify    	0
-				    label      	"+controlled"
-				    pctDist    	0.642643
-				    height     	42
+				    label      	"+doc"
+				    pctDist    	0.779143
+				    height     	38
 				    orientation 	0)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"527FB7030396"
-				client     	@30
-				supplier   	@21
+				quidu      	"529E305E0266"
+				client     	@28
+				supplier   	@20
 				vertices   	(list Points
-				    (741, 744)
-				    (1012, 743))
+				    (1766, 720)
+				    (2090, 718))
 				line_style 	0
-				label      	(object SegLabel @34
+				label      	(object SegLabel @31
+				    Parent_View 	@29
+				    location   	(2057, 754)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.901457
+				    height     	36
+				    orientation 	1))
+			    (object RoleView "$UNNAMED$1" @32
+				Parent_View 	@28
+				location   	(467, -1)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"529E305E0268"
+				client     	@28
+				supplier   	@27
+				vertices   	(list Points
+				    (1766, 720)
+				    (1442, 723))
+				line_style 	0
+				label      	(object SegLabel @33
 				    Parent_View 	@32
-				    location   	(984, 797)
+				    location   	(1503, 764)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.813187
+				    height     	42
+				    orientation 	0))))
+		    (object AssociationViewNew "$UNNAMED$2" @34
+			location   	(1261, 941)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"529E30B30318"
+			roleview_list 	(list RoleViews
+			    (object RoleView "_TCPmodel" @35
+				Parent_View 	@34
+				location   	(0, 216)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object SegLabel @36
+				    Parent_View 	@35
+				    location   	(1125, 1001)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	239
+				    justify    	0
+				    label      	"+_TCPmodel"
+				    pctDist    	0.781564
+				    height     	138
+				    orientation 	1)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"529E30B40367"
+				client     	@34
+				supplier   	@19
+				vertices   	(list Points
+				    (1261, 941)
+				    (1262, 1015))
+				line_style 	0
+				label      	(object SegLabel @37
+				    Parent_View 	@35
+				    location   	(1288, 1005)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.864591
+				    height     	26
+				    orientation 	0))
+			    (object RoleView "$UNNAMED$3" @38
+				Parent_View 	@34
+				location   	(0, 216)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"529E30B40369"
+				client     	@34
+				supplier   	@27
+				vertices   	(list Points
+				    (1261, 941)
+				    (1261, 868))
+				line_style 	0
+				label      	(object SegLabel @39
+				    Parent_View 	@38
+				    location   	(1315, 875)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    anchor     	2
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	15
+				    justify    	0
+				    label      	"1"
+				    pctDist    	0.900000
+				    height     	54
+				    orientation 	1))))
+		    (object ClassView "Class" "Logical View::AlertDialog" @40
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(372, 1231)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@40
+			    location   	(136, 1075)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	472
+			    justify    	0
+			    label      	"AlertDialog")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"529E302802E3"
+			compartment 	(object Compartment
+			    Parent_View 	@40
+			    location   	(136, 1136)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	5
+			    max_width  	469
+			    justify    	1)
+			width      	490
+			height     	336
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::MainDataEntry" @41
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(375, 728)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@41
+			    location   	(227, 647)
+			    fill_color 	13434879
+			    nlines     	1
+			    max_width  	296
+			    justify    	0
+			    label      	"MainDataEntry")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"529E301F02B7"
+			compartment 	(object Compartment
+			    Parent_View 	@41
+			    location   	(227, 708)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    icon_style 	"Icon"
+			    fill_color 	13434879
+			    anchor     	2
+			    nlines     	2
+			    max_width  	272
+			    justify    	1)
+			width      	314
+			height     	186
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$6" @42
+			location   	(805, 726)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"529E320A01BD"
+			roleview_list 	(list RoleViews
+			    (object RoleView "_TCPController" @43
+				Parent_View 	@42
+				location   	(352, -11)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				label      	(object SegLabel @44
+				    Parent_View 	@43
+				    location   	(921, 686)
+				    font       	(object Font
+					size       	10
+					face       	"Arial"
+					bold       	FALSE
+					italics    	FALSE
+					underline  	FALSE
+					strike     	FALSE
+					color      	0
+					default_color 	TRUE)
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	302
+				    justify    	0
+				    label      	"+_TCPController"
+				    pctDist    	0.425606
+				    height     	41
+				    orientation 	0)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"529E320B01E5"
+				client     	@42
+				supplier   	@27
+				vertices   	(list Points
+				    (805, 726)
+				    (1079, 725))
+				line_style 	0
+				label      	(object SegLabel @45
+				    Parent_View 	@43
+				    location   	(1052, 779)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -1089,9 +1475,9 @@
 				    pctDist    	0.900000
 				    height     	54
 				    orientation 	1))
-			    (object RoleView "controller" @35
-				Parent_View 	@30
-				location   	(335, -2)
+			    (object RoleView "_view" @46
+				Parent_View 	@42
+				location   	(352, -11)
 				font       	(object Font
 				    size       	10
 				    face       	"Arial"
@@ -1101,9 +1487,9 @@
 				    strike     	FALSE
 				    color      	0
 				    default_color 	TRUE)
-				label      	(object SegLabel @36
-				    Parent_View 	@35
-				    location   	(562, 704)
+				label      	(object SegLabel @47
+				    Parent_View 	@46
+				    location   	(587, 686)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -1116,24 +1502,24 @@
 				    anchor     	1
 				    anchor_loc 	1
 				    nlines     	1
-				    max_width  	195
+				    max_width  	138
 				    justify    	0
-				    label      	"+controller"
-				    pctDist    	0.662405
-				    height     	41
+				    label      	"+_view"
+				    pctDist    	0.800000
+				    height     	42
 				    orientation 	1)
 				stereotype 	TRUE
 				line_color 	3342489
-				quidu      	"527FB7030399"
-				client     	@30
-				supplier   	@20
+				quidu      	"529E320B01E7"
+				client     	@42
+				supplier   	@41
 				vertices   	(list Points
-				    (741, 744)
-				    (471, 745))
+				    (805, 726)
+				    (532, 727))
 				line_style 	0
-				label      	(object SegLabel @37
-				    Parent_View 	@35
-				    location   	(499, 799)
+				label      	(object SegLabel @48
+				    Parent_View 	@46
+				    location   	(559, 781)
 				    font       	(object Font
 					size       	10
 					face       	"Arial"
@@ -1151,7 +1537,46 @@
 				    label      	"1"
 				    pctDist    	0.900000
 				    height     	54
-				    orientation 	0))))))
+				    orientation 	0))))
+		    (object AssociationViewNew "$UNNAMED$7" @49
+			location   	(373, 941)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"529E328C0390"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$8" @50
+				Parent_View 	@49
+				location   	(23, -274)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"529E328F006A"
+				client     	@49
+				supplier   	@41
+				vertices   	(list Points
+				    (373, 941)
+				    (374, 821))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$9" @51
+				Parent_View 	@49
+				location   	(23, -274)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"529E328F006C"
+				client     	@49
+				supplier   	@40
+				vertices   	(list Points
+				    (373, 941)
+				    (372, 1062))
+				line_style 	0)))))
 	    (object InteractionDiagram "SendResultsSequence"
 		mechanism_ref 	@1
 		quid       	"527FAED40017"
@@ -1162,7 +1587,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object InterObjView "Inspector" @38
+		    (object InterObjView "Inspector" @52
 			location   	(181, 225)
 			font       	(object Font
 			    size       	10
@@ -1174,7 +1599,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@38
+			    Parent_View 	@52
 			    location   	(181, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
@@ -1187,34 +1612,20 @@
 			fill_color 	13434879
 			quidu      	"527FAEFB0258"
 			width      	300
-			height     	1161
+			height     	1136
 			icon_height 	0
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @39
+			Focus_Of_Control 	(object Focus_Of_Control "" @53
 			    location   	(181, 350)
 			    line_color 	3342489
-			    InterObjView 	@38
-			    height     	90
-			    y_coord    	0
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @40
-			    location   	(181, 891)
-			    line_color 	3342489
-			    InterObjView 	@38
-			    height     	90
-			    y_coord    	0
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @41
-			    location   	(181, 1101)
-			    line_color 	3342489
-			    InterObjView 	@38
+			    InterObjView 	@52
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE))
-		    (object InterObjView "SendResultsButton" @42
-			location   	(606, 225)
+		    (object InterObjView "MainDataEntry" @54
+			location   	(616, 225)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1225,142 +1636,84 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@42
-			    location   	(606, 225)
-			    fill_color 	13434879
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	413
-			    justify    	0
-			    label      	"SendResultsButton")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"527FB8FC03C3"
-			width      	431
-			height     	1161
-			icon_height 	0
-			icon_width 	0
-			icon_y_offset 	0
-			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @43
-			    location   	(606, 350)
-			    line_color 	3342489
-			    InterObjView 	@42
-			    height     	195
-			    y_coord    	105
-			    Nested     	FALSE))
-		    (object InterObjView "SendResultsActivity" @44
-			location   	(1122, 455)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	TRUE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@44
-			    location   	(1122, 455)
-			    fill_color 	13434879
-			    anchor_loc 	1
-			    nlines     	2
-			    max_width  	464
-			    justify    	0
-			    label      	"SendResultsActivity")
-			icon_style 	"Icon"
-			line_color 	3342489
-			fill_color 	13434879
-			quidu      	"527FAF3C0042"
-			width      	482
-			height     	931
-			icon_height 	0
-			icon_width 	0
-			icon_y_offset 	0
-			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @45
-			    location   	(1122, 455)
-			    line_color 	3342489
-			    InterObjView 	@44
-			    height     	90
-			    y_coord    	0
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @46
-			    location   	(1122, 535)
-			    line_color 	3342489
-			    InterObjView 	@44
-			    height     	195
-			    y_coord    	105
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @47
-			    location   	(1122, 778)
-			    line_color 	3342489
-			    InterObjView 	@44
-			    height     	90
-			    y_coord    	0
-			    Nested     	FALSE))
-		    (object InterObjView "Menu" @48
-			location   	(1590, 640)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	TRUE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object ItemLabel
-			    Parent_View 	@48
-			    location   	(1590, 640)
+			    Parent_View 	@54
+			    location   	(616, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	282
 			    justify    	0
-			    label      	"Menu")
+			    label      	"MainDataEntry")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"527FAF1B00B8"
+			quidu      	"529E35310062"
 			width      	300
-			height     	746
+			height     	1136
 			icon_height 	0
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @49
-			    location   	(1590, 640)
+			Focus_Of_Control 	(object Focus_Of_Control "" @55
+			    location   	(616, 350)
 			    line_color 	3342489
-			    InterObjView 	@48
+			    InterObjView 	@54
+			    height     	300
+			    y_coord    	210
+			    Nested     	FALSE))
+		    (object InterObjView "AlertDialog" @56
+			location   	(1088, 455)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@56
+			    location   	(1088, 455)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"AlertDialog")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"529E35B10116"
+			width      	300
+			height     	906
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @57
+			    location   	(1088, 455)
+			    line_color 	3342489
+			    InterObjView 	@56
+			    height     	165
+			    y_coord    	75
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @58
+			    location   	(1088, 535)
+			    line_color 	3342489
+			    InterObjView 	@56
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @50
-			    location   	(1590, 720)
+			Focus_Of_Control 	(object Focus_Of_Control "" @59
+			    location   	(1088, 560)
 			    line_color 	3342489
-			    InterObjView 	@48
-			    height     	231
-			    y_coord    	141
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @51
-			    location   	(1590, 891)
-			    line_color 	3342489
-			    InterObjView 	@48
-			    height     	270
-			    y_coord    	180
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @52
-			    location   	(1590, 1101)
-			    line_color 	3342489
-			    InterObjView 	@48
+			    InterObjView 	@56
 			    height     	195
 			    y_coord    	105
 			    Nested     	TRUE))
-		    (object InterObjView "Result" @53
-			location   	(1950, 778)
+		    (object InterObjView "TCPController" @60
+			location   	(1525, 225)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1371,294 +1724,135 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@53
-			    location   	(1950, 778)
+			    Parent_View 	@60
+			    location   	(1525, 225)
 			    fill_color 	13434879
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	282
 			    justify    	0
-			    label      	"Result")
+			    label      	"TCPController")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"527FB2380333"
+			quidu      	"529E362C035C"
 			width      	300
-			height     	608
+			height     	1136
 			icon_height 	0
 			icon_width 	0
 			icon_y_offset 	0
 			annotation 	1
-			Focus_Of_Control 	(object Focus_Of_Control "" @54
-			    location   	(1950, 778)
+			Focus_Of_Control 	(object Focus_Of_Control "" @61
+			    location   	(1525, 665)
 			    line_color 	3342489
-			    InterObjView 	@53
-			    height     	90
-			    y_coord    	0
-			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @55
-			    location   	(1950, 858)
-			    line_color 	3342489
-			    InterObjView 	@53
+			    InterObjView 	@60
 			    height     	198
 			    y_coord    	108
 			    Nested     	FALSE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @56
-			    location   	(1950, 996)
+			Focus_Of_Control 	(object Focus_Of_Control "" @62
+			    location   	(1525, 1047)
 			    line_color 	3342489
-			    InterObjView 	@53
+			    InterObjView 	@60
 			    height     	90
 			    y_coord    	0
-			    Nested     	TRUE)
-			Focus_Of_Control 	(object Focus_Of_Control "" @57
-			    location   	(1950, 1206)
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @63
+			    location   	(1525, 1181)
 			    line_color 	3342489
-			    InterObjView 	@53
+			    InterObjView 	@60
 			    height     	90
 			    y_coord    	0
 			    Nested     	FALSE))
-		    (object InterMessView "sendResults()" @58
-			location   	(0, 350)
+		    (object InterObjView "Document" @64
+			location   	(2010, 773)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
 			    bold       	FALSE
 			    italics    	FALSE
-			    underline  	FALSE
+			    underline  	TRUE
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @59
-			    Parent_View 	@58
-			    location   	(393, 306)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    quidu      	"527FB98C0255"
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	300
-			    justify    	0
-			    label      	"sendResults()"
-			    pctDist    	0.500000
-			    height     	45
-			    orientation 	0)
-			line_color 	3342489
-			client     	@38
-			supplier   	@42
-			Focus_Src  	@39
-			Focus_Entry 	@43
-			origin     	(196, 350)
-			terminus   	(590, 350)
-			ordinal    	0)
-		    (object InterMessView "<<create>>" @60
-			location   	(0, 455)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object SegLabel @61
-			    Parent_View 	@60
-			    location   	(751, 411)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    quidu      	"527FB9B7035A"
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	263
-			    justify    	0
-			    label      	"<<create>>"
-			    pctDist    	0.500000
-			    height     	45
-			    orientation 	0)
-			line_color 	3342489
-			client     	@42
-			supplier   	@44
-			Focus_Src  	@43
-			Focus_Entry 	@45
-			origin     	(621, 455)
-			terminus   	(881, 455)
-			ordinal    	1)
-		    (object InterMessView "<<create>>" @62
-			location   	(0, 640)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object SegLabel @63
-			    Parent_View 	@62
-			    location   	(1288, 596)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    quidu      	"527FB9DC003C"
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	263
-			    justify    	0
-			    label      	"<<create>>"
-			    pctDist    	0.500000
-			    height     	45
-			    orientation 	0)
-			line_color 	3342489
-			client     	@44
-			supplier   	@48
-			Focus_Src  	@46
-			Focus_Entry 	@49
-			origin     	(1137, 640)
-			terminus   	(1440, 640)
-			ordinal    	2)
-		    (object InterMessView "selectResults()" @64
-			location   	(0, 891)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object SegLabel @65
+			label      	(object ItemLabel
 			    Parent_View 	@64
-			    location   	(885, 847)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    quidu      	"527FBA7B0196"
+			    location   	(2010, 773)
+			    fill_color 	13434879
 			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	322
+			    nlines     	2
+			    max_width  	282
 			    justify    	0
-			    label      	"selectResults()"
-			    pctDist    	0.500000
-			    height     	45
-			    orientation 	0)
+			    label      	"Document")
+			icon_style 	"Icon"
 			line_color 	3342489
-			client     	@38
-			supplier   	@48
-			Focus_Src  	@40
-			Focus_Entry 	@51
-			origin     	(196, 891)
-			terminus   	(1574, 891)
-			ordinal    	4)
-		    (object InterMessView "<<create>>" @66
-			location   	(0, 778)
+			fill_color 	13434879
+			quidu      	"529E365E034F"
+			width      	300
+			height     	588
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @65
+			    location   	(2010, 773)
+			    line_color 	3342489
+			    InterObjView 	@64
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @66
+			    location   	(2010, 853)
+			    line_color 	3342489
+			    InterObjView 	@64
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "TCPmodel" @67
+			location   	(2401, 225)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
 			    bold       	FALSE
 			    italics    	FALSE
-			    underline  	FALSE
+			    underline  	TRUE
 			    strike     	FALSE
 			    color      	0
 			    default_color 	TRUE)
-			label      	(object SegLabel @67
-			    Parent_View 	@66
-			    location   	(1468, 734)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    quidu      	"527FBAB10077"
+			label      	(object ItemLabel
+			    Parent_View 	@67
+			    location   	(2401, 225)
+			    fill_color 	13434879
 			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	263
+			    nlines     	2
+			    max_width  	282
 			    justify    	0
-			    label      	"<<create>>"
-			    pctDist    	0.500000
-			    height     	45
-			    orientation 	0)
+			    label      	"TCPmodel")
+			icon_style 	"Icon"
 			line_color 	3342489
-			client     	@44
-			supplier   	@53
-			Focus_Src  	@47
-			Focus_Entry 	@54
-			origin     	(1137, 778)
-			terminus   	(1800, 778)
-			ordinal    	3)
-		    (object InterMessView "select()" @68
-			location   	(0, 996)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			label      	(object SegLabel @69
-			    Parent_View 	@68
-			    location   	(1769, 952)
-			    font       	(object Font
-				size       	10
-				face       	"Arial"
-				bold       	FALSE
-				italics    	FALSE
-				underline  	FALSE
-				strike     	FALSE
-				color      	0
-				default_color 	TRUE)
-			    quidu      	"527FBB0B029A"
-			    anchor_loc 	1
-			    nlines     	1
-			    max_width  	184
-			    justify    	0
-			    label      	"select()"
-			    pctDist    	0.500000
-			    height     	45
-			    orientation 	0)
-			line_color 	3342489
-			client     	@48
-			supplier   	@53
-			Focus_Src  	@51
-			Focus_Entry 	@56
-			origin     	(1605, 996)
-			terminus   	(1934, 996)
-			ordinal    	5)
-		    (object InterMessView "sendResults()" @70
-			location   	(0, 1101)
+			fill_color 	13434879
+			quidu      	"529E368902FA"
+			width      	300
+			height     	1136
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @68
+			    location   	(2401, 1047)
+			    line_color 	3342489
+			    InterObjView 	@67
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @69
+			    location   	(2401, 1181)
+			    line_color 	3342489
+			    InterObjView 	@67
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterMessView "launchTCP()" @70
+			location   	(0, 350)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1670,7 +1864,7 @@
 			    default_color 	TRUE)
 			label      	(object SegLabel @71
 			    Parent_View 	@70
-			    location   	(885, 1057)
+			    location   	(398, 306)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -1680,25 +1874,25 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    quidu      	"527FBB2A036F"
+			    quidu      	"529E357001C4"
 			    anchor_loc 	1
 			    nlines     	1
-			    max_width  	300
+			    max_width  	272
 			    justify    	0
-			    label      	"sendResults()"
+			    label      	"launchTCP()"
 			    pctDist    	0.500000
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@38
-			supplier   	@48
-			Focus_Src  	@41
-			Focus_Entry 	@52
-			origin     	(196, 1101)
-			terminus   	(1574, 1101)
-			ordinal    	6)
-		    (object InterMessView "sendResult()" @72
-			location   	(0, 1206)
+			client     	@52
+			supplier   	@54
+			Focus_Src  	@53
+			Focus_Entry 	@55
+			origin     	(196, 350)
+			terminus   	(600, 350)
+			ordinal    	0)
+		    (object InterMessView "<<create>>" @72
+			location   	(0, 455)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -1710,7 +1904,7 @@
 			    default_color 	TRUE)
 			label      	(object SegLabel @73
 			    Parent_View 	@72
-			    location   	(1769, 1162)
+			    location   	(783, 412)
 			    font       	(object Font
 				size       	10
 				face       	"Arial"
@@ -1720,23 +1914,223 @@
 				strike     	FALSE
 				color      	0
 				default_color 	TRUE)
-			    quidu      	"527FBB3801A8"
+			    quidu      	"529E35BE0186"
 			    anchor_loc 	1
 			    nlines     	1
-			    max_width  	278
+			    max_width  	263
 			    justify    	0
-			    label      	"sendResult()"
+			    label      	"<<create>>"
+			    pctDist    	0.497872
+			    height     	44
+			    orientation 	0)
+			line_color 	3342489
+			client     	@54
+			supplier   	@56
+			Focus_Src  	@55
+			Focus_Entry 	@57
+			origin     	(631, 455)
+			terminus   	(938, 455)
+			ordinal    	1)
+		    (object InterMessView "show()" @74
+			location   	(0, 560)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @75
+			    Parent_View 	@74
+			    location   	(851, 516)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"529E35EE0321"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	169
+			    justify    	0
+			    label      	"show()"
 			    pctDist    	0.500000
 			    height     	45
 			    orientation 	0)
 			line_color 	3342489
-			client     	@48
-			supplier   	@53
-			Focus_Src  	@52
-			Focus_Entry 	@57
-			origin     	(1605, 1206)
-			terminus   	(1934, 1206)
-			ordinal    	7)))))
+			client     	@54
+			supplier   	@56
+			Focus_Src  	@55
+			Focus_Entry 	@59
+			origin     	(631, 560)
+			terminus   	(1072, 560)
+			ordinal    	2)
+		    (object InterMessView "send()" @76
+			location   	(0, 665)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @77
+			    Parent_View 	@76
+			    location   	(1306, 621)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"529E364B021F"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	163
+			    justify    	0
+			    label      	"send()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@56
+			supplier   	@60
+			Focus_Src  	@59
+			Focus_Entry 	@61
+			origin     	(1103, 665)
+			terminus   	(1509, 665)
+			ordinal    	3)
+		    (object InterMessView "<<create>>" @78
+			location   	(0, 773)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @79
+			    Parent_View 	@78
+			    location   	(1700, 730)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"529E36670010"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	263
+			    justify    	0
+			    label      	"<<create>>"
+			    pctDist    	0.500000
+			    height     	44
+			    orientation 	0)
+			line_color 	3342489
+			client     	@60
+			supplier   	@64
+			Focus_Src  	@61
+			Focus_Entry 	@65
+			origin     	(1540, 773)
+			terminus   	(1860, 773)
+			ordinal    	4)
+		    (object InterMessView "RTSPSend(String txt)" @80
+			location   	(0, 1047)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @81
+			    Parent_View 	@80
+			    location   	(1962, 1003)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"529E36AD0111"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	434
+			    justify    	0
+			    label      	"RTSPSend(String txt)"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@60
+			supplier   	@67
+			Focus_Src  	@62
+			Focus_Entry 	@68
+			origin     	(1540, 1047)
+			terminus   	(2385, 1047)
+			ordinal    	5)
+		    (object InterMessView "close()" @82
+			location   	(0, 1181)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @83
+			    Parent_View 	@82
+			    location   	(1962, 1137)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"529E36ED01FE"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	166
+			    justify    	0
+			    label      	"close()"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@60
+			supplier   	@67
+			Focus_Src  	@63
+			Focus_Entry 	@69
+			origin     	(1540, 1181)
+			terminus   	(2385, 1181)
+			ordinal    	6)))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"527FA5F0005B"
 	physical_models 	(list unit_reference_list)
