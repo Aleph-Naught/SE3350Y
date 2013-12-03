@@ -5,5 +5,5 @@
 *.cache
 *.ap_
 *.db
-*.png
 R.java
+ic_launcher.png
