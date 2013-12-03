@@ -1,0 +1,4 @@
+-When starting the app for the first time, you will be prompted for an administrator key. The key that is entered will be saved to internal storage, and used to validate registration of new users.
+-When registering a new user account, the administrator key must be entered for validation. The new account credentials will be saved to internal storage.
+-For the app to function properly, inspection data must be stored on the device's SD card in a file called "InspectionData.xml", contained in a folder called FireAlertScanner. This file must be formatted according to the project specifications.
+-On the equipment list, long-pressing on a piece of equipment will display more information about that equipment (eg. id, make/model, etc.)
