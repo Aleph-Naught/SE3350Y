@@ -6,10 +6,10 @@ CQWebURL=
 isTrackChangesAllowed=1
 Description=
 Owner Key=1
-Revision number=1.0013
+Revision number=1.0014
 Prefix=
-NbrRequirements=63
-Directory=\\psf\Home\Documents\School\Year 3\SE3350Y\RequisitPro-1\SE3350y_Requirements_Documents.rqs
+NbrRequirements=80
+Directory=C:\Users\Nicholas\Documents\GitHub\SE3350Y\IBM Rational\RequisitPro-1\SE3350y_Requirements_Documents.rqs
 Key=1
 
 [Application]
