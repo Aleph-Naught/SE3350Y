@@ -73,4 +73,21 @@
         </LinearLayout>
     </ScrollView>
 
+    <RelativeLayout
+        android:id="@+id/logo"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true" >
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="50dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/firealert_icon" />
+        
+        
+    </RelativeLayout>
+
 </merge>

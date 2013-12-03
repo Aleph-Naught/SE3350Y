@@ -62,6 +62,7 @@ public class LoginActivity extends Activity {
 	private EditText mUsernameView;
 	private EditText mPasswordView;
 	private View mLoginFormView;
+	private View mLogo;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
 
@@ -93,6 +94,7 @@ public class LoginActivity extends Activity {
 				});
 
 		mLoginFormView = findViewById(R.id.login_form);
+		mLogo = findViewById(R.id.logo);
 		mLoginStatusView = findViewById(R.id.login_status);
 		mLoginStatusMessageView = (TextView) findViewById(R.id.login_status_message);
 
@@ -358,6 +360,7 @@ public class LoginActivity extends Activity {
 						public void onAnimationEnd(Animator animation) {
 							mLoginFormView.setVisibility(show ? View.GONE
 									: View.VISIBLE);
+							mLogo.setVisibility(show ? View.GONE : View.VISIBLE);
 						}
 					});
 		} else {
@@ -365,6 +368,7 @@ public class LoginActivity extends Activity {
 			// and hide the relevant UI components.
 			mLoginStatusView.setVisibility(show ? View.VISIBLE : View.GONE);
 			mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
+			mLogo.setVisibility(show ? View.GONE: View.VISIBLE);
 		}
 	}
 
