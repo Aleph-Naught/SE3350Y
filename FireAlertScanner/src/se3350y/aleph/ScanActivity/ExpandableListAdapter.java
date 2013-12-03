@@ -323,7 +323,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
 		final TextView tv = (TextView) view.findViewById(R.id.lblListHeader);
-		tv.setText(group.getName());
+		
+		if(group.getChanged())
+			tv.setText("*" + group.getName());
+		else
+			tv.setText(group.getName());
+		
+		
 		tv.setTextColor(group.getColor());
 		
 		group.setOnElementChangedListener( new OnElementChangedListener(){
