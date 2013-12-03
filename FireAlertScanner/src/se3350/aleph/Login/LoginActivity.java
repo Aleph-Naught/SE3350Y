@@ -114,10 +114,51 @@ public class LoginActivity extends Activity {
 			getCredentials();
 		} catch (FileNotFoundException e) {
 			Log.i("Login", "Can't read info from SD Card");
+			try {
+				PrintWriter pw = new PrintWriter(openFileOutput(FILENAME, MODE_APPEND));
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 			//File file = new File(context.getFilesDir(), FILENAME);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+		try {
+			//check if adminkey file exists
+			FileInputStream aIn = openFileInput(ADMINKEYS);
+		}
+		catch (FileNotFoundException e) {
+			Log.i("Login", "adminFileInit called");
+			adminFileInit();
+		}
+		
+	}
+
+	private void adminFileInit() {
+		// TODO Auto-generated method stub
+		try {
+			//request an admin key to be stored in memory for future use
+			final PrintWriter pw = new PrintWriter(openFileOutput(ADMINKEYS, MODE_APPEND));
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("Admin Initialize");
+			View dialogView = getLayoutInflater().inflate(R.layout.dialog_initialize_admin, null);
+			final EditText keyView = (EditText) dialogView.findViewById(R.id.keyField);
+			builder.setView(dialogView);
+			builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog, int which) {
+				// Retrieve the data from the Dialog
+				String toWrite = keyView.getText().toString().hashCode()+":";
+				pw.write(toWrite);
+				pw.close();
+				Toast.makeText(getBaseContext(), getString(R.string.admin_init_success), Toast.LENGTH_SHORT).show();
+			}
+			});
+			builder.show();
+		}
+		catch (Exception e) {
+			
 		}
 	}
 
