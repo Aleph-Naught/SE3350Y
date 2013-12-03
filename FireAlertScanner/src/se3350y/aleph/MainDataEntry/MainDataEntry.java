@@ -167,6 +167,8 @@ public class MainDataEntry extends Activity implements OnItemSelectedListener, D
 				});
 				builder.show();
 				e.printStackTrace();
+				
+				return;
 			}
 
 
