@@ -33,7 +33,6 @@
         <activity
             android:name="se3350.aleph.Login.LoginActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustResize|stateVisible"
             android:screenOrientation="portrait"
             android:launchMode="singleTop" >
             <intent-filter>
