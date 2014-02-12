@@ -798,6 +798,8 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	public void expandGroup(String _group){
 
 		String group = _group.substring(0,5);
+		Log.i("FireAlert", group);
+		Log.d("FireAlertScanner", "expandGroup called");
 
 		Equipment temp = new Equipment();
 
@@ -830,6 +832,7 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	private void listExpansion (String equipmentNo) {
 		Equipment temp = new Equipment();
 
+		Log.i("FireAlertScanner", equipmentNo);
 
 		int groupPos = 0;
 
@@ -838,7 +841,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 
 		for(int i = 0; i < ExpListItems.size(); i++){
 			temp = ExpListItems.get(i);
-			if(temp.getId().equals(equipmentNo)){
+			Log.i("FireAlertScanner", temp.getId()+", "+equipmentNo);
+			if(temp.getId().equals(equipmentNo.trim())){
+				Log.i("FireAlertScanner", temp.getId()+", "+equipmentNo);
 				groupPos = i;
 				break;
 			}
