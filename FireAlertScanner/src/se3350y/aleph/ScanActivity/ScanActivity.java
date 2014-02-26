@@ -832,8 +832,6 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 	private void listExpansion (String equipmentNo) {
 		Equipment temp = new Equipment();
 
-		Log.i("FireAlertScanner", equipmentNo);
-
 		int groupPos = 0;
 
 		for(int i = 0; i < ExpListItems.size(); i++)
@@ -842,8 +840,9 @@ public class ScanActivity extends Activity implements OnItemSelectedListener, DO
 		for(int i = 0; i < ExpListItems.size(); i++){
 			temp = ExpListItems.get(i);
 			Log.i("FireAlertScanner", temp.getId()+", "+equipmentNo);
+			
+			// the .trim() is necessary because the scanner adds a space at the end of the String
 			if(temp.getId().equals(equipmentNo.trim())){
-				Log.i("FireAlertScanner", temp.getId()+", "+equipmentNo);
 				groupPos = i;
 				break;
 			}
